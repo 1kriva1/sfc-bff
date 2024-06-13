@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="title">
+        <sfc-title [sfcComponentSize]="ComponentSize.Medium" [label]="Localization.TITLE.LABEL"
+            [description]="Localization.TITLE.DESCRIPTION" [tooltip]="Localization.TITLE.TOOLTIP" [delimeter]="false">
+        </sfc-title>
+    </div>
+
+    <div class="content">
+        <div class="panels">
+            <sfc-info-panel *ngFor="let model of dataModels" [model]="model"></sfc-info-panel>
+        </div>
+
+        <div class="charts">
+            <div class="chart">
+                <sfc-title [sfcComponentSize]="ComponentSize.Medium" [label]="Localization.CHART.GAMES.TITLE.LABEL"
+                    [description]="Localization.CHART.GAMES.TITLE.DESCRIPTION"
+                    [tooltip]="Localization.CHART.GAMES.TITLE.TOOLTIP" [delimeter]="false">
+                </sfc-title>
+
+                <div class="chart-container">
+                    <sfc-chart [theme]="themeService.theme" [type]="'line'" [data]="gamesChartData"
+                        [options]="gamesChartOptions" [chartOptions]="Constants.CHART_OPTION_MODEL"></sfc-chart>
+                </div>
+            </div>
+
+            <div class="chart">
+                <sfc-title [sfcComponentSize]="ComponentSize.Medium" [label]="Localization.CHART.ACTIVITIES.TITLE.LABEL"
+                    [description]="Localization.CHART.ACTIVITIES.TITLE.DESCRIPTION"
+                    [tooltip]="Localization.CHART.ACTIVITIES.TITLE.TOOLTIP" [delimeter]="false">
+                </sfc-title>
+
+                <div class="chart-container">
+                    <sfc-chart [theme]="themeService.theme" [type]="'bar'" [data]="activitiesChartData"
+                        [options]="activitiesChartOptions" [chartOptions]="Constants.CHART_OPTION_MODEL"></sfc-chart>
+                </div>
+            </div>
+        </div>
+
+        <div class="charts">
+            <div class="chart">
+                <sfc-title [sfcComponentSize]="ComponentSize.Medium" [label]="Localization.CHART.FOULS.TITLE.LABEL"
+                    [description]="Localization.CHART.FOULS.TITLE.DESCRIPTION"
+                    [tooltip]="Localization.CHART.FOULS.TITLE.TOOLTIP" [delimeter]="false">
+                </sfc-title>
+
+                <div class="chart-container">
+                    <sfc-chart [theme]="themeService.theme" [type]="'pie'" [data]="foulsChartData"
+                        [options]="foulsChartOptions" [chartOptions]="Constants.CHART_OPTION_MODEL"></sfc-chart>
+                </div>
+            </div>
+
+            <div class="chart">
+                <sfc-title [sfcComponentSize]="ComponentSize.Medium" [label]="Localization.CHART.POSITIONS.TITLE.LABEL"
+                    [description]="Localization.CHART.POSITIONS.TITLE.DESCRIPTION"
+                    [tooltip]="Localization.CHART.POSITIONS.TITLE.TOOLTIP" [delimeter]="false">
+                </sfc-title>
+
+                <div class="chart-container">
+                    <sfc-chart [theme]="themeService.theme" [type]="'polarArea'" [data]="positionsChartData"
+                        [options]="positionsChartOptions" [chartOptions]="Constants.CHART_OPTION_MODEL"></sfc-chart>
+                </div>
+            </div>
+
+            <div class="chart">
+                <sfc-title [sfcComponentSize]="ComponentSize.Medium" [label]="Localization.CHART.ACTIONS.TITLE.LABEL"
+                    [description]="Localization.CHART.ACTIONS.TITLE.DESCRIPTION"
+                    [tooltip]="Localization.CHART.ACTIONS.TITLE.TOOLTIP" [delimeter]="false">
+                </sfc-title>
+
+                <div class="chart-container">
+                    <sfc-chart [theme]="themeService.theme" [type]="'doughnut'" [data]="actionsChartData"
+                        [options]="actionsChartOptions" [chartOptions]="Constants.CHART_OPTION_MODEL"></sfc-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

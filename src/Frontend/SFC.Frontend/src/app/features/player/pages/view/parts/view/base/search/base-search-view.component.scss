@@ -1,0 +1,111 @@
+:host {
+  .container {
+    .content {
+      flex-direction: column;
+
+      .filters {
+        padding: 1em 0;
+
+        .form {
+          .name {
+            display: flex;
+            justify-content: center;
+            padding: 0.5em 0;
+
+            sfc-text-input {
+              width: 50%;
+              font-size: 1.5em;
+              display: inline-block;
+
+              ::ng-deep input {
+                box-shadow: none !important;
+                border-width: 1px;
+              }
+            }
+          }
+
+          .status {
+            sfc-bubbles-input {
+              ::ng-deep .bubbles {
+                sfc-bubble {
+                  .bubble {
+                    min-width: 7em;
+                    min-height: 1.5em;
+                    display: flex;
+                    justify-content: center;
+                    text-align: center;
+
+                    sfc-icon {
+                      min-height: auto;
+                      margin-right: 0.4em;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      .content {
+        .filters {
+          .form {
+            .name {
+              sfc-text-input {
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        .table {
+          sfc-table {
+            ::ng-deep > .container {
+              .columns-container {
+                .columns {
+                  justify-content: center;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 425px) {
+    .container {
+      .content {
+        .filters {
+          .form {
+            .name {
+              sfc-text-input {
+                ::ng-deep > .container {
+                  fa-icon {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .table {
+          sfc-table {
+            ::ng-deep > .container {
+              > .columns-container {
+                > .columns {
+                  flex-direction: column;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

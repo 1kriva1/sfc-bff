@@ -1,0 +1,23 @@
+@use "ngx-sfc-common/styles/index" as *;
+
+:host {
+  width: 100%;
+
+  .container {
+    @include center-wrap;
+
+    width: 100%;
+    justify-content: space-evenly;
+
+    .type {
+      padding: 1em;
+
+      h3 {
+        @include theme-value(color, $color-default, $color-dark);
+        text-align: center;
+
+        text-align: center;
+      }
+    }
+  }
+}

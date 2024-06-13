@@ -1,0 +1,102 @@
+<div class="container">
+    <ng-container *ngFor="let column of columns">
+        <ng-container [ngSwitch]="column.field">
+            <ng-container *ngSwitchCase="GamesTableColumn.Location">
+                <div class="column location" [style.width]="column.calculatedWidth">
+                    <img [src]="model.location.field.photo || ApplicationCommonConstants.DEFAULT_FIELD_IMAGE_PATH">
+                    <div class="info">
+                        <p>
+                            <span class="field">{{model.location.field.name}}</span>
+                            <span class="city">{{model.location.city}}</span>
+                        </p>
+                        <sfc-stars [value]="model.location.field.raiting" [sfcComponentSize]="ComponentSize.Small">
+                        </sfc-stars>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="GamesTableColumn.Name">
+                <div class="column name" [style.width]="column.calculatedWidth">
+                    {{model.name}}
+                </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="GamesTableColumn.Status">
+                <div class="column status" [style.width]="column.calculatedWidth">
+                    <span class="point"></span>
+                    {{model.status.value}}
+                </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="GamesTableColumn.Date">
+                <div class="column date-time" [style.width]="column.calculatedWidth">
+                    <div class="date">
+                        <span class="title">
+                            <fa-icon [icon]="faCalendar"></fa-icon>
+                            {{Localization.COLUMN.DATE_TIME.DATE}}:
+                        </span>
+                        <div class="content">
+                            <p>{{model.date.date.toLocaleDateString()}}</p>
+                        </div>
+                    </div>
+                    <div class="time">
+                        <span class="title">
+                            <fa-icon [icon]="faClock"></fa-icon>
+                            {{Localization.COLUMN.DATE_TIME.TIME}}:
+                        </span>
+                        <div class="content">
+                            <p>
+                                <span>{{Localization.COLUMN.DATE_TIME.FROM}}</span> -
+                                {{convertDateToTimestamp(model.date.start)}},
+                                <span>{{Localization.COLUMN.DATE_TIME.TO}}</span> -
+                                {{convertDateToTimestamp(model.date.end)}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="GamesTableColumn.FreePlay">
+                <div class="column free-play" [style.width]="column.calculatedWidth">
+                    <fa-icon [icon]="faCircleCheck"></fa-icon>
+                </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="GamesTableColumn.Result">
+                <div class="column result" [style.width]="column.calculatedWidth">
+                    <div class="team one">
+                        <img [src]="model.result.scoreOne.team.emblem 
+                            || ApplicationCommonConstants.DEFAULT_TEAM_A_IMAGE_PATH">
+                        <span class="small">{{model.result.scoreOne.team.shortName}}</span>
+                        <span class="full">{{model.result.scoreOne.team.fullName}}</span>
+                    </div>
+
+                    <div class="score">
+                        <span [ngClass]="model.result.scoreOne.value 
+                        && model.result.scoreOne.value < model.result.scoreTwo.value! ? 'lose': 'win'">
+                            {{model.result.scoreOne.value || '-'}}</span>
+                        <span> : </span>
+                        <span [ngClass]="model.result.scoreTwo.value 
+                        && model.result.scoreTwo.value > model.result.scoreOne.value! ? 'win': 'lose'">
+                            {{model.result.scoreTwo.value || '-'}}</span>
+                    </div>
+
+                    <div class="team two">
+                        <img [src]="model.result.scoreTwo.team.emblem
+                             || ApplicationCommonConstants.DEFAULT_TEAM_B_IMAGE_PATH">
+                        <span class="small">{{model.result.scoreTwo.team.shortName}}</span>
+                        <span class="full">{{model.result.scoreTwo.team.fullName}}</span>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="GamesTableColumn.Actions">
+                <div class="column actions" [style.width]="column.calculatedWidth">
+                    <sfc-dropdown-menu [items]="ACTION_ITEMS" [bordered]="false" [filled]="true"
+                        [position]="[Position.Bottom, Position.Center]" [sfcComponentSize] [customSize]="0.9">
+                    </sfc-dropdown-menu>
+                </div>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</div>

@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="content">
+        <sfc-badge class="small" [model]="model.type" [sfcComponentSize] [customSize]="0.4">
+        </sfc-badge>
+        <span class="points">
+            <fa-icon [icon]="faPlus"></fa-icon>
+            <span>{{model.points}} {{Localization.EXP}}</span>
+        </span>
+        <sfc-badge [model]="model.type"></sfc-badge>
+        <h2 class="name">{{model.type.value}}</h2>
+        <p class="description">{{model.type.description}}</p>
+        <sfc-progress-line [progress]="model.progress" [hideEnd]="true"></sfc-progress-line>
+        <span class="progress">{{model.progress}}/{{model.total}}</span>
+    </div>
+</div>

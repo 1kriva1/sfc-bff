@@ -1,0 +1,28 @@
+@use "ngx-sfc-common/styles/index" as *;
+
+:host {
+  .container {
+    @include center-wrap;
+
+    cursor: pointer;
+    color: inherit;
+
+    a {
+      @include center-wrap;
+
+      text-align: center;
+
+      img {
+        max-width: 3em;
+        padding: 0.5em 0.5em 0.5em 0;
+      }
+
+      span {
+        font-size: 1em;
+        text-transform: uppercase;
+        font-weight: bold;
+        user-select: none;
+      }
+    }
+  }
+}

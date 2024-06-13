@@ -1,0 +1,112 @@
+@use "ngx-sfc-common/styles/index" as *;
+
+$box-shadow: 0 0.625em 1.25em $color-shadow-0, 0 0.3753em 0.3753em $color-shadow-1;
+
+:host {
+  display: inline-block;
+  box-shadow: $box-shadow;
+  border-radius: 0.75em;
+  margin: 0.5em;
+  background-color: $color-0;
+
+  .container {
+    @include center-wrap;
+
+    flex-direction: column;
+    width: 15em;
+    height: 28em;
+
+    .content {
+      @include center;
+
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+      padding: 1em;
+
+      sfc-badge {
+        position: relative;
+
+        &.small {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+
+      span.points {
+        user-select: none;
+        border-radius: 2em;
+        padding: 0.8em;
+        font-size: 0.7em;
+        position: absolute;
+        top: 0;
+        right: -0.6em;
+        background: $color-0;
+        color: $color-default;
+        text-transform: uppercase;
+        font-weight: bold;
+        box-shadow: $box-shadow;
+
+        fa-icon {
+          color: $color-blue-0;
+        }
+      }
+
+      h2 {
+        font-weight: bold;
+        margin: 0 0 1em;
+        color: $color-0;
+      }
+
+      p {
+        font-size: 0.9em;
+        color: $color-1;
+      }
+
+      sfc-progress-line {
+        margin: 1em 0;
+      }
+
+      span.progress {
+        font-size: 0.9em;
+        font-weight: bold;
+        color: $color-0;
+      }
+    }
+  }
+
+  &:not(.small):hover {
+    .container {
+      .content {
+        sfc-badge:not(.small) {
+          top: -0.25em;
+        }
+      }
+    }
+  }
+
+  &.status-0 {
+    background: $color-green-0;
+  }
+
+  &.status-1 {
+    background: $color-blue-0;
+  }
+
+  &.status-2 {
+    background: $color-magenta-0;
+  }
+
+  @media (max-width: 425px) {
+    .container {
+      width: 14em;
+    }
+  }
+
+  @media (max-width: 375px) {
+    .container {
+      width: 13em;
+    }
+  }
+}

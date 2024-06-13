@@ -1,0 +1,81 @@
+@mixin table {
+  sfc-table {
+    ::ng-deep > .container {
+      width: auto;
+      margin: 0;
+
+      .columns-container {
+        .columns-actions {
+          .left {
+            sfc-columns-toggle {
+              .container .label {
+                text-transform: none;
+              }
+            }
+          }
+
+          .right {
+            sfc-toggle-switcher {
+              font-size: 0.8em;
+            }
+          }
+        }
+
+        .columns {
+          .column {
+            sfc-default-table-column {
+              .container {
+                text-transform: none;
+              }
+            }
+          }
+        }
+      }
+
+      .rows-container {
+        sfc-load-container {
+          .container {
+            .content {
+              overflow: visible;
+
+              .items {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+
+                sfc-game-row,
+                sfc-team-row {
+                  margin: 1em 0.5em 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin delimeter($vertical: true) {
+  @if $vertical {
+    sfc-delimeter {
+      &.horizontal {
+        display: none;
+      }
+
+      &.vertical {
+        display: inline-table;
+      }
+    }
+  } @else {
+    sfc-delimeter {
+      &.horizontal {
+        display: flex;
+      }
+
+      &.vertical {
+        display: none;
+      }
+    }
+  }
+}

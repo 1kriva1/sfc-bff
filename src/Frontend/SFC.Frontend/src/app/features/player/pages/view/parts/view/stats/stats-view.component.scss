@@ -1,0 +1,213 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "mixins";
+
+:host {
+  .container {
+    .content {
+      flex-direction: column;
+
+      .additional {
+        display: flex;
+        justify-content: space-between;
+
+        .chart {
+          @include part;
+
+          display: flex;
+          justify-content: flex-start;
+          flex-direction: column;
+          align-items: center;
+
+          .chart-content {
+            display: inline-block;
+            position: relative;
+            width: 20em;
+
+            sfc-chart {
+              display: inline-block;
+            }
+          }
+        }
+
+        .avarage {
+          @include part;
+          @include center-wrap;
+
+          align-items: baseline;
+          width: 60%;
+        }
+
+        .total {
+          display: flex;
+          flex-direction: column;
+
+          @include part;
+
+          width: 20%;
+        }
+      }
+
+      .stats {
+        @include part;
+
+        .items {
+          display: flex;
+
+          .item {
+            flex-grow: 1;
+            margin: 1em;
+
+            .title {
+              @include center;
+
+              flex-direction: column;
+
+              h3 {
+                @include theme-value(color, $color-default, $color-dark);
+
+                text-transform: uppercase;
+                text-align: center;
+                margin-top: 0.5em;
+                font-size: 0.9em;
+              }
+
+              span {
+                font-weight: bold;
+                font-size: 1.8em;
+              }
+            }
+
+            .lines {
+              .line {
+                padding: 0.5em 0;
+
+                sfc-progress-line {
+                  ::ng-deep > .container {
+                    .labels {
+                      span {
+                        &:last-child {
+                          font-size: 1.5em;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1440px) {
+    .container {
+      .content {
+        .additional {
+          flex-direction: column;
+          justify-content: center;
+
+          .total {
+            sfc-stats-total {
+              ::ng-deep > .container {
+                justify-content: space-evenly;
+              }
+            }
+          }
+
+          .avarage,
+          .total {
+            width: auto;
+          }
+        }
+
+        .stats {
+          .items {
+            flex-wrap: wrap;
+
+            .item {
+              width: 25%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .container {
+      .content {
+        .stats {
+          .items {
+            flex-wrap: wrap;
+
+            .item {
+              width: 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      .content {
+        .additional {
+          .chart {
+            .chart-content {
+              width: calc(80% - 1em);
+
+              sfc-chart {
+                width: 100%;
+              }
+            }
+          }
+
+          .total {
+            sfc-stats-total {
+              ::ng-deep > .container {
+                flex-wrap: wrap;
+
+                sfc-delimeter {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 425px) {
+    .container {
+      .content {
+        .additional {
+          .chart {
+            .chart-content {
+              width: calc(100% - 0.1em);
+            }
+          }
+
+          .total,
+          .avarage {
+            padding: 0.5em 1em;
+          }
+        }
+
+        .stats {
+          padding: 0.5em 1em;
+
+          .items {
+            .item {
+              margin: auto;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

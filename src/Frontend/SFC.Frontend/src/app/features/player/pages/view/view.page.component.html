@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="side" *ngIf="!headerService.open">
+        <div class="menu-container">
+            <sfc-side-menu [model]="Constants.SIDE_MENU_MODEL">
+            </sfc-side-menu>
+
+            <sfc-theme-toggler [sfcComponentSize] [customSize]="0.8">
+            </sfc-theme-toggler>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="title">
+            <sfc-title [sfcComponentSize]="ComponentSize.Large" [label]="Localization.TITLE.LABEL"
+                [description]="Localization.TITLE.DESCRIPTION" [tooltip]="Localization.TITLE.TOOLTIP">
+            </sfc-title>
+        </div>
+
+        <div class="main">
+            <div class="left">
+                <div class="actions">
+                    <sfc-dropdown-menu [items]="ACTION_ITEMS" [bordered]="false" [filled]="true"
+                        [position]="[Position.Bottom, Position.Center]" [sfcComponentSize] [customSize]="0.9">
+                    </sfc-dropdown-menu>
+                </div>
+
+                <div class="info-panel">
+                    <sfc-player-info-panel [radius]="Constants.AVATAR_RADIUS" [model]="playerInfoPanelModel"
+                        [sfcComponentSize] [customSize]="1.5">
+                    </sfc-player-info-panel>
+                </div>
+
+                <div class="menu">
+                    <sfc-navigation-menu [items]="MENU" [sfcComponentSize] [customSize]="0.9"></sfc-navigation-menu>
+                </div>
+            </div>
+
+            <div class="right">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

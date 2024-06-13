@@ -1,0 +1,4 @@
+<div class="container">
+    <sfc-welcome-header *ngIf="anonymous$ | async"></sfc-welcome-header>
+    <sfc-authenticated-header *ngIf="authenticated$ | async"></sfc-authenticated-header>
+</div>

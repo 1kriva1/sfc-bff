@@ -1,0 +1,76 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "mixins";
+
+:host {
+  .container {
+    .content {
+      display: initial;
+
+      .panels {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+
+        sfc-info-panel {
+          margin: 0.5em;
+          flex-grow: 1;
+        }
+      }
+
+      .charts {
+        display: flex;
+
+        .chart {
+          @include part;
+
+          width: 100%;
+
+          .chart-container {
+            display: inline-block;
+            position: relative;
+            width: calc(100% - 1em);
+
+            sfc-chart {
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1440px) {
+    .container {
+      .content {
+        .charts {
+          flex-wrap: wrap;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 425px) {
+    .container {
+      .content {
+        .panels {
+          sfc-info-panel {
+            ::ng-deep > .container {
+              flex-direction: column;
+              justify-content: center;
+              text-align: center;
+              padding: 0.6em 1em;
+            }
+          }
+        }
+
+        .charts {
+          .chart {
+            .chart-container {
+              width: calc(100% - 0.1em);
+            }
+          }
+        }
+      }
+    }
+  }
+}

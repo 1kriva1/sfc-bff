@@ -1,0 +1,11 @@
+@import "../base/mixins";
+
+:host {
+  .container {
+    .content {
+      .table {
+        @include table;
+      }
+    }
+  }
+}

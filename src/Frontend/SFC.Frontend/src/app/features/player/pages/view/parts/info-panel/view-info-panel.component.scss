@@ -1,0 +1,24 @@
+@import "mixins";
+
+:host {
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    @include part;
+
+    .header {
+      sfc-title {
+        ::ng-deep > .container {
+          .title {
+            flex-wrap: nowrap;
+
+            sfc-icon-tooltip {
+              padding: 0.5em 0.3em;
+            }
+          }
+        }
+      }
+    }
+  }
+}

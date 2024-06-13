@@ -1,0 +1,19 @@
+@mixin title() {
+  color: $color-default;
+  font-size: 0.6em;
+  font-weight: bold;
+  user-select: none;
+  text-align: center;
+  padding: 0.5em 0;
+  text-transform: capitalize;
+}
+
+@mixin column() {
+  @include center-wrap;
+
+  padding: 0 0.2em;
+
+  sfc-no-data {
+    color: $color-default;
+  }
+}

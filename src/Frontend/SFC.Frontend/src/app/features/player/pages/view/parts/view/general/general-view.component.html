@@ -1,0 +1,200 @@
+<div class="container">
+    <div class="title">
+        <sfc-title [sfcComponentSize]="ComponentSize.Medium" [label]="Localization.TITLE.LABEL"
+            [description]="Localization.TITLE.DESCRIPTION" [tooltip]="Localization.TITLE.TOOLTIP" [delimeter]="false">
+        </sfc-title>
+    </div>
+
+    <div class="content" *ngIf="vm$ | async as vm">
+        <ng-template #delimeters>
+            <sfc-delimeter [direction]="Direction.Vertical">
+            </sfc-delimeter>
+
+            <sfc-delimeter [direction]="Direction.Horizontal">
+            </sfc-delimeter>
+        </ng-template>
+
+        <sfc-view-info-panel class="availability" [label]="Localization.AVAILABILITY.LABEL"
+            [description]="Localization.AVAILABILITY.DESCRIPTION" [icon]="faUserClock">
+            <div class="content">
+                <div *ngIf="vm.available.hasDays" class="days">
+                    <span class="title">{{Localization.AVAILABILITY.DAYS}}:</span>
+                    <sfc-tags [tags]="vm.available.days" [sfcComponentSize] [customSize]="0.7"></sfc-tags>
+                </div>
+
+                <div *ngIf="vm.available.hasTime" class="time">
+                    <span class="title">{{Localization.AVAILABILITY.HOURS}}:</span>
+                    <div class="icon-content">
+                        <fa-icon [icon]="faClock"></fa-icon>
+                        <p>{{vm.available.time}}</p>
+                    </div>
+                </div>
+
+                <sfc-no-data *ngIf="!vm.available.hasDays && !vm.available.hasTime"></sfc-no-data>
+            </div>
+        </sfc-view-info-panel>
+
+        <sfc-view-info-panel class="birthday" [label]="Localization.BIRTHDAY.LABEL"
+            [description]="Localization.BIRTHDAY.DESCRIPTION" [icon]="faCakeCandles">
+            <div class="content">
+                <div *ngIf="vm.birthday" class="parts">
+                    <div class="part">
+                        <span>{{vm.birthday.year}}</span>
+                        <span>{{Localization.BIRTHDAY.YEAR}}</span>
+                    </div>
+
+                    <div class="part">
+                        <span>{{vm.birthday.day}}</span>
+                        <span>{{Localization.BIRTHDAY.OF}}</span>
+                        <span>{{vm.birthday.month}}</span>
+                    </div>
+                </div>
+
+                <sfc-no-data *ngIf="!vm.birthday"></sfc-no-data>
+            </div>
+        </sfc-view-info-panel>
+
+        <sfc-view-info-panel class="biography" [label]="Localization.BIOGRAPHY.LABEL"
+            [description]="Localization.BIOGRAPHY.DESCRIPTION" [icon]="faReceipt">
+            <div class="content">
+                <span>{{vm.biography}}</span>
+                <sfc-no-data *ngIf="!vm.biography"></sfc-no-data>
+            </div>
+        </sfc-view-info-panel>
+
+        <sfc-view-info-panel class="tags" [label]="Localization.TAGS.LABEL"
+            [description]="Localization.TAGS.DESCRIPTION" [icon]="faTag">
+            <div class="content">
+                <sfc-tags *ngIf="vm.tags.length" [tags]="vm.tags" [sfcComponentSize] [customSize]="0.7"></sfc-tags>
+                <sfc-no-data *ngIf="!vm.tags.length"></sfc-no-data>
+            </div>
+        </sfc-view-info-panel>
+
+        <sfc-view-info-panel class="financial" [label]="Localization.FINANCIAL.LABEL"
+            [description]="Localization.FINANCIAL.DESCRIPTION" [icon]="faMoneyBill1">
+            <div class="content">
+                <fa-icon [icon]="vm.freePlay.icon"></fa-icon>
+                <span>{{vm.freePlay.value ? Localization.FINANCIAL.ONLY : Localization.FINANCIAL.ALL}}
+                    <span>{{vm.freePlay.value ? Localization.FINANCIAL.FREE : Localization.FINANCIAL.GAMES}}</span>
+                    {{vm.freePlay.value ? Localization.FINANCIAL.GAMES : Localization.FINANCIAL.ACCEPTED}}</span>
+            </div>
+        </sfc-view-info-panel>
+
+        <sfc-view-info-panel class="positions" [label]="Localization.POSITIONS.LABEL"
+            [description]="Localization.POSITIONS.DESCRIPTION" [icon]="faStreetView">
+            <div class="content">
+                <div *ngIf="vm.position.main" class="main">
+                    <span class="title">{{Localization.POSITIONS.MAIN}}:</span>
+                    <div class="mark image">
+                        <sfc-icon [imageSrc]="vm.position.main.image" [sfcComponentSize]="ComponentSize.Large">
+                        </sfc-icon>
+                        <span>{{vm.position.main.value}}</span>
+                    </div>
+                </div>
+
+                <ng-container *ngIf="vm.position.main && vm.position.additional">
+                    <ng-container *ngTemplateOutlet="delimeters"></ng-container>
+                </ng-container>
+
+                <div *ngIf="vm.position.additional" class="additional">
+                    <span class="title">{{Localization.POSITIONS.ADDITIONAL}}:</span>
+                    <div class="mark image">
+                        <sfc-icon [imageSrc]="vm.position.additional.image" [sfcComponentSize]="ComponentSize.Large">
+                        </sfc-icon>
+                        <span>{{vm.position.additional.value}}</span>
+                    </div>
+                </div>
+
+                <sfc-no-data *ngIf="!vm.position.main && !vm.position.additional"></sfc-no-data>
+            </div>
+        </sfc-view-info-panel>
+
+        <sfc-view-info-panel class="physical-condition" [label]="Localization.PHYSICAL_CONDITION.LABEL"
+            [description]="Localization.PHYSICAL_CONDITION.DESCRIPTION" [icon]="faHeart">
+            <div class="content">
+                <sfc-stars [value]="vm.physicalCondition" [sfcComponentSize] [customSize]="0.8"></sfc-stars>
+                <p>{{Localization.PHYSICAL_CONDITION.ADDITIONAL}}</p>
+            </div>
+        </sfc-view-info-panel>
+
+        <sfc-view-info-panel class="size" [label]="Localization.SIZE.LABEL"
+            [description]="Localization.SIZE.DESCRIPTION" [icon]="faWeightScale">
+            <div class="content">
+                <div *ngIf="vm.size.height" class="height">
+                    <span class="title">{{Localization.SIZE.HEIGHT}}:</span>
+                    <div class="mark image">
+                        <sfc-icon [icon]="faRulerVertical" [sfcComponentSize]="ComponentSize.Large">
+                        </sfc-icon>
+                        <span>{{vm.size.height}} {{Localization.SIZE.CM}}</span>
+                    </div>
+                </div>
+
+                <ng-container *ngIf="vm.size.height && vm.size.weight">
+                    <ng-container *ngTemplateOutlet="delimeters"></ng-container>
+                </ng-container>
+
+                <div *ngIf="vm.size.weight" class="weight">
+                    <span class="title">{{Localization.SIZE.WEIGHT}}:</span>
+                    <div class="mark image">
+                        <sfc-icon [icon]="faWeightScale" [sfcComponentSize]="ComponentSize.Large">
+                        </sfc-icon>
+                        <span>{{vm.size.weight}} {{Localization.SIZE.KG}}</span>
+                    </div>
+                </div>
+
+                <sfc-no-data *ngIf="!vm.size.height && !vm.size.weight"></sfc-no-data>
+            </div>
+        </sfc-view-info-panel>
+
+        <sfc-view-info-panel class="game-style" [label]="Localization.GAME_STYLE.LABEL"
+            [description]="Localization.GAME_STYLE.DESCRIPTION" [icon]="faGamepad">
+            <div class="content">
+                <div *ngIf="vm.gameStyle" class="mark image">
+                    <sfc-icon [imageSrc]="vm.gameStyle.image" [sfcComponentSize]="ComponentSize.Large">
+                    </sfc-icon>
+                    <span>{{vm.gameStyle.value}}</span>
+                </div>
+
+                <sfc-no-data *ngIf="!vm.gameStyle"></sfc-no-data>
+            </div>
+        </sfc-view-info-panel>
+
+        <sfc-view-info-panel class="skill" [label]="Localization.SKILL.LABEL"
+            [description]="Localization.SKILL.DESCRIPTION" [icon]="faGamepad">
+            <div class="content">
+                <sfc-stars [value]="vm.skill" [sfcComponentSize] [customSize]="0.8"></sfc-stars>
+                <p>{{Localization.SKILL.ADDITIONAL}}</p>
+            </div>
+        </sfc-view-info-panel>
+
+        <sfc-view-info-panel class="working-foot" [label]="Localization.WORKING_FOOT.LABEL"
+            [description]="Localization.WORKING_FOOT.DESCRIPTION" [icon]="faSocks">
+            <div class="content">
+                <div *ngIf="vm.foots.working" class="mark image">
+                    <sfc-icon [imageSrc]="vm.foots.working.image" [sfcComponentSize]="ComponentSize.Large">
+                    </sfc-icon>
+                    <span>{{vm.foots.working.value}}</span>
+                </div>
+
+                <ng-container *ngIf="vm.foots.working && vm.foots.weekFoot">
+                    <ng-container *ngTemplateOutlet="delimeters"></ng-container>
+                </ng-container>
+
+                <div *ngIf="vm.foots.weekFoot" class="week-foot">
+                    <span class="title">{{Localization.WORKING_FOOT.WEEK_FOOT}}:</span>
+                    <sfc-stars [value]="vm.foots.weekFoot" [sfcComponentSize] [customSize]="0.8"></sfc-stars>
+                </div>
+
+                <sfc-no-data *ngIf="!vm.foots.working && !vm.foots.weekFoot"></sfc-no-data>
+            </div>
+        </sfc-view-info-panel>
+
+        <sfc-view-info-panel class="number" [label]="Localization.NUMBER.LABEL"
+            [description]="Localization.NUMBER.DESCRIPTION" [icon]="faShirt">
+            <div class="content">
+                <span *ngIf="vm.number !== null">{{vm.number}}</span>
+                <sfc-no-data *ngIf="vm.number === null"></sfc-no-data>
+            </div>
+        </sfc-view-info-panel>
+    </div>
+</div>

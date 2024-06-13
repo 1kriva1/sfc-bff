@@ -1,0 +1,64 @@
+<div class="container">
+    <ng-container *ngFor="let column of columns">
+        <ng-container [ngSwitch]="column.field">
+            <ng-container *ngSwitchCase="TeamsTableColumn.Logo">
+                <div class="column logo" [style.width]="column.calculatedWidth">
+                    <img [src]="model.logo || ApplicationCommonConstants.DEFAULT_TEAM_B_IMAGE_PATH">
+                    <sfc-stars [value]="model.raiting" [sfcComponentSize]="ComponentSize.Small"></sfc-stars>
+                </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="TeamsTableColumn.Name">
+                <div class="column name" [style.width]="column.calculatedWidth">
+                    <span class="full">{{model.name.full}}</span>
+                    <span class="short">({{model.name.short.toLowerCase()}})</span>
+                    <span class="city">
+                        <span class="highlight">{{model.city}}</span> •
+                        {{model.createdDate.toLocaleDateString()}}
+                    </span>
+                </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="TeamsTableColumn.Status">
+                <div class="column status" [style.width]="column.calculatedWidth">
+                    <span class="point"></span>
+                    {{model.status.value}}
+                </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="TeamsTableColumn.Schema">
+                <div class="column schema" [style.width]="column.calculatedWidth">
+                    {{model.schema}}
+                    <span [sfc-tooltip]="Localization.COLUMN.SCHEMA.TOOLTIP">
+                        <fa-icon [icon]="faQuestionCircle"></fa-icon>
+                    </span>
+                </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="TeamsTableColumn.Coach">
+                <div class="column coach" [style.width]="column.calculatedWidth">
+                    <a *ngIf="model.coach" [routerLink]="['/players', model.coach.id]">
+                        <sfc-player-info-panel [radius]="Constants.COACH_AVATAR_RADIUS" [info]="true" [avatar]="true"
+                            [model]="{
+                            photo: model.coach.photo,                 
+                            firstName: model.coach.firstName,
+                            lastName: model.coach.lastName,
+                            city:'Konotop',
+                            age: 31               
+                        }" [sfcComponentSize] [customSize]="0.9"></sfc-player-info-panel>
+                    </a>
+
+                    <sfc-no-data *ngIf="!model.coach"></sfc-no-data>
+                </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="TeamsTableColumn.Actions">
+                <div class="column actions" [style.width]="column.calculatedWidth">
+                    <sfc-dropdown-menu [items]="ACTION_ITEMS" [bordered]="false" [filled]="true"
+                        [position]="[Position.Bottom, Position.Center]" [sfcComponentSize] [customSize]="0.9">
+                    </sfc-dropdown-menu>
+                </div>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</div>

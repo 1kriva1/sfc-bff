@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="side" *ngIf="!headerService.open">
+        <sfc-side-menu [model]="MENU_MODEL" (selected)="onSelect($event)"></sfc-side-menu>
+        <sfc-theme-toggler [sfcComponentSize] [customSize]="0.8">
+        </sfc-theme-toggler>
+    </div>
+
+    <div class="content">
+        <h1 *ngIf="userName$ | async as username">User name: {{username}}</h1>
+    </div>
+</div>

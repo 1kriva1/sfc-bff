@@ -1,0 +1,401 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "mixins";
+@import "../base/mixins";
+
+:host {
+  .container {
+    .content {
+      justify-content: flex-start;
+
+      sfc-view-info-panel {
+        display: inline-block;
+        flex-basis: 25%;
+
+        .title {
+          @include theme-value(color, $color-8, $color-dark);
+
+          font-size: 0.7em;
+          font-weight: bold;
+          user-select: none;
+          text-align: center;
+          padding: 0.5em 0;
+        }
+
+        .mark {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          span {
+            @include theme-value(color, $color-default, $color-dark);
+
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-top: 0.5em;
+          }
+        }
+
+        .content {
+          @include center;
+
+          padding: 0.5em 0;
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
+
+        &.biography {
+          .content {
+            span {
+              @include theme-value(color, $color-default, $color-dark);
+
+              font-size: 0.8em;
+            }
+          }
+        }
+
+        &.birthday {
+          .content {
+            @include theme-value(color, $color-default, $color-dark);
+
+            .parts {
+              @include center;
+
+              flex-direction: column;
+
+              .part {
+                display: flex;
+                align-items: center;
+
+                span {
+                  display: inline-block;
+                  margin: 0 0.3em;
+                }
+
+                &:first-child {
+                  span {
+                    &:first-child {
+                      color: $color-yellow-0;
+                      font-weight: bold;
+                    }
+
+                    &:nth-child(2) {
+                      font-size: 0.6em;
+                      font-weight: bold;
+                    }
+                  }
+                }
+
+                &:nth-child(2) {
+                  padding: 0.5em 0;
+
+                  span {
+                    &:first-child {
+                      @include circle(2.5em, $color-green-1);
+                    }
+
+                    &:nth-child(2) {
+                      font-size: 0.5em;
+
+                      &:empty {
+                        display: none;
+                      }
+                    }
+
+                    &:nth-child(3) {
+                      font-size: 0.8em;
+                      font-weight: bold;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &.financial {
+          .content {
+            @include center;
+
+            flex-direction: column;
+
+            @include theme-value(color, $color-default, $color-dark);
+
+            text-align: center;
+            font-size: 0.8em;
+
+            fa-icon {
+              color: $color-yellow-0;
+              font-size: 2em;
+            }
+
+            span {
+              margin: 0.5em 0 0;
+
+              span {
+                color: $color-green-0;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+
+        &.availability {
+          .content {
+            flex-direction: column;
+
+            @include theme-value(color, $color-default, $color-dark);
+
+            .title {
+              text-transform: capitalize;
+            }
+
+            .days {
+              text-align: center;
+            }
+
+            .time {
+              display: flex;
+              flex-direction: column;
+
+              .icon-content {
+                display: flex;
+                font-size: 0.8em;
+                font-weight: bold;
+
+                fa-icon {
+                  color: $color-yellow-0;
+                  padding: 0 0.5em;
+                }
+
+                p {
+                  margin: 0;
+                  font-size: 0.8em;
+                }
+              }
+            }
+
+            .days,
+            .time {
+              padding: 0.2em 0;
+            }
+          }
+        }
+
+        &.positions {
+          .content {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-wrap: nowrap;
+
+            @include theme-value(color, $color-default, $color-dark);
+
+            .main,
+            .additional {
+              @include center;
+
+              flex-direction: column;
+            }
+
+            .main {
+              .mark {
+                span {
+                  color: $color-green-0;
+                }
+              }
+            }
+
+            .additional {
+              .mark {
+                span {
+                  color: $color-yellow-0;
+                }
+              }
+            }
+          }
+        }
+
+        &.game-style {
+          .content {
+            @include center;
+
+            flex-direction: column;
+          }
+        }
+
+        &.skill {
+          .content {
+            justify-content: center;
+            flex-direction: column;
+
+            p {
+              @include theme-value(color, $color-7, $color-dark);
+
+              font-size: 0.6em;
+              text-align: center;
+            }
+          }
+        }
+
+        &.working-foot {
+          .content {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-wrap: nowrap;
+
+            .week-foot {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+          }
+        }
+
+        &.size {
+          .content {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+
+            @include theme-value(color, $color-default, $color-dark);
+
+            .height,
+            .weight {
+              @include center;
+
+              flex-direction: column;
+            }
+
+            .height {
+              .mark {
+                sfc-icon,
+                span {
+                  color: $color-green-0;
+                }
+              }
+            }
+
+            .weight {
+              .mark {
+                sfc-icon,
+                span {
+                  color: $color-yellow-0;
+                }
+              }
+            }
+          }
+        }
+
+        &.physical-condition {
+          .content {
+            flex-direction: column;
+            justify-content: center;
+
+            p {
+              @include theme-value(color, $color-7, $color-dark);
+
+              font-size: 0.6em;
+              text-align: center;
+            }
+          }
+        }
+
+        &.number {
+          .content {
+            justify-content: center;
+
+            span {
+              @include circle(3em, $color-green-1);
+            }
+          }
+        }
+
+        &.positions,
+        &.size,
+        &.working-foot {
+          .content {
+            @include delimeter;
+
+            sfc-delimeter {
+              &.horizontal {
+                width: 80%;
+                padding: 1em 0;
+              }
+            }
+          }
+        }
+
+        ::ng-deep > .container {
+          &:hover {
+            transform: scale(1.1);
+            transition: transform $transition-duration-default $transition-timing-function-default;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1440px) {
+    .container {
+      .content {
+        justify-content: center;
+
+        sfc-view-info-panel {
+          flex-basis: 30%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .container {
+      > .content {
+        flex-flow: column nowrap;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      > .content {
+        flex-flow: row wrap;
+
+        sfc-view-info-panel {
+          flex-basis: 50%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 590px) {
+    .container {
+      > .content {
+        flex-flow: column nowrap;
+
+        sfc-view-info-panel {
+          flex-basis: 100%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 425px) {
+    .container {
+      > .content {
+        sfc-view-info-panel {
+          &.positions,
+          &.size,
+          &.working-foot {
+            .content {
+              flex-direction: column;
+
+              @include delimeter(false);
+            }
+          }
+        }
+      }
+    }
+  }
+}

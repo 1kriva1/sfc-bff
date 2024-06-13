@@ -1,0 +1,23 @@
+:host {
+  .container {
+    .title {
+      sfc-title {
+        ::ng-deep > .container {
+          .title {
+            justify-content: center;
+
+            .label {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0.5em 0;
+    }
+  }
+}

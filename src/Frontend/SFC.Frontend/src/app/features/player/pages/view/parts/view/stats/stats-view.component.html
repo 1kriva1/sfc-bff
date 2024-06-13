@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="title">
+        <sfc-title [sfcComponentSize]="ComponentSize.Medium" [label]="Localization.TITLE.LABEL"
+            [description]="Localization.TITLE.DESCRIPTION" [tooltip]="Localization.TITLE.TOOLTIP" [delimeter]="false">
+        </sfc-title>
+    </div>
+
+    <div class="content" *ngIf="vm$ | async as vm">
+        <div class="additional">
+            <div class="chart">
+                <sfc-title [sfcComponentSize]="ComponentSize.Medium" [label]="Localization.CHART.RADAR.LABEL"
+                    [description]="Localization.CHART.RADAR.DESCRIPTION" [delimeter]="true">
+                </sfc-title>
+
+                <div class="chart-content">
+                    <sfc-chart [theme]="themeService.theme" [type]="'radar'" [data]="vm.chart.radar.data"
+                        [options]="radarChartOptions" [chartOptions]="radarChartOptionsModel">
+                    </sfc-chart>
+                </div>
+            </div>
+
+            <div class="avarage">
+                <sfc-title [sfcComponentSize]="ComponentSize.Medium" [label]="Localization.AVARAGE.LABEL"
+                    [description]="Localization.AVARAGE.DESCRIPTION" [delimeter]="true">
+                </sfc-title>
+
+                <sfc-stats-skills [value]="vm.stats"></sfc-stats-skills>
+            </div>
+
+            <div class="total">
+                <sfc-title [sfcComponentSize]="ComponentSize.Medium" [label]="Localization.TOTAL.LABEL"
+                    [description]="Localization.TOTAL.DESCRIPTION" [delimeter]="true">
+                </sfc-title>
+
+                <sfc-stats-total [progress]="vm.progress" [value]="vm.value" [total]="vm.total" [delimeter]="false">
+                </sfc-stats-total>
+            </div>
+        </div>
+
+        <div class="stats">
+            <sfc-title [sfcComponentSize]="ComponentSize.Medium" [label]="Localization.TYPES.LABEL"
+                [description]="Localization.TYPES.DESCRIPTION" [delimeter]="true">
+            </sfc-title>
+
+            <div class="items">
+                <div class="item" *ngFor="let stat of vm.model; let i = index">
+                    <div class="header" *ngIf="vm.metadata[stat.key] as model">
+                        <div class="title">
+                            <span [style.color]="model.color">{{model.average}}</span>
+                            <h3>{{stat.label}}</h3>
+                        </div>
+                    </div>
+
+                    <div class="lines">
+                        <div class="line" *ngFor="let statItem of stat.items; let i = index">
+                            <sfc-progress-line [progress]="vm.stats[stat.key][statItem.key]"
+                                [labelStart]="statItem.label" [hideEnd]="false">
+                            </sfc-progress-line>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

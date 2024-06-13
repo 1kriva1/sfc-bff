@@ -1,0 +1,289 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "mixins";
+@import "../styles";
+
+:host {
+  @include host;
+
+  display: inline-block;
+  width: 100%;
+
+  .container {
+    display: flex;
+    align-items: center;
+
+    @include theme-value(background, $background-container-default);
+
+    border-radius: $border-radius;
+    padding: $container-padding;
+    box-shadow: $box-shadow;
+
+    .column {
+      @include column;
+
+      .title {
+        @include title;
+
+        color: $color-0;
+      }
+
+      &.location {
+        img {
+          max-width: 5em;
+          padding: 0 1em;
+        }
+
+        .info {
+          display: flex;
+          flex-direction: column;
+
+          p {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            text-align: center;
+
+            span.field {
+              font-size: 0.9em;
+              font-weight: bold;
+              color: $color-0;
+              max-width: 5em;
+            }
+
+            span.city {
+              font-size: 0.7em;
+              font-weight: bold;
+              color: $color-yellow-0;
+            }
+          }
+        }
+      }
+
+      &.name {
+        color: $color-0;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      &.status {
+        font-size: 0.8em;
+        font-weight: bold;
+        color: $color-0;
+
+        span.point {
+          border: 2px solid $color-0;
+          border-radius: 100%;
+          padding: 0.4em;
+          margin: 0 0.5em;
+        }
+      }
+
+      &.date-time {
+        flex-direction: column;
+
+        .date,
+        .time {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          > .content {
+            display: flex;
+            align-items: center;
+
+            p {
+              color: $color-0;
+              margin: 0;
+              font-size: 0.8em;
+              margin-left: 0.5em;
+              font-weight: bold;
+              text-align: center;
+
+              span {
+                font-size: 0.8em;
+                color: $color-yellow-0;
+              }
+            }
+          }
+        }
+      }
+
+      &.free-play {
+        color: $color-0;
+      }
+
+      &.result {
+        flex-wrap: nowrap;
+
+        .team {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          img {
+            max-width: 2em;
+          }
+
+          span {
+            padding-top: 0.2em;
+            font-weight: bold;
+
+            &.small {
+              text-transform: uppercase;
+              color: $color-2;
+              font-size: 0.5em;
+            }
+
+            &.full {
+              font-size: 0.8em;
+              color: $color-0;
+            }
+          }
+        }
+
+        .score {
+          display: flex;
+          align-items: center;
+          font-weight: bold;
+          padding: 0 0.3em;
+
+          span {
+            color: $color-0;
+            font-weight: bold;
+            padding: 0 0.1em;
+
+            &.lose {
+              color: $color-1;
+            }
+
+            &:nth-child(2) {
+              font-size: 0.7em;
+              color: $color-3;
+            }
+
+            &.win {
+              color: $color-yellow-0;
+            }
+          }
+        }
+      }
+
+      &.actions {
+        @include action-menu;
+
+        sfc-dropdown-menu {
+          ::ng-deep {
+            ul > li {
+              > .dropdown-container {
+                sfc-dropdown-menu-item {
+                  li {
+                    flex-wrap: nowrap;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.status-0 {
+    .container {
+      background: $game-status-new-color;
+
+      .column {
+        &.status {
+          span.point {
+            background: $color-green-0;
+          }
+        }
+      }
+    }
+  }
+
+  &.status-1 {
+    .container {
+      background: $game-status-upcoming-color;
+
+      .column {
+        &.status {
+          span.point {
+            background: $color-blue-1;
+          }
+        }
+      }
+    }
+  }
+
+  &.status-2 {
+    .container {
+      background: $game-status-active-color;
+
+      .column {
+        &.status {
+          span.point {
+            background: $color-orange-1;
+          }
+        }
+      }
+    }
+  }
+
+  &.status-3 {
+    .container {
+      background: $game-status-canceled-color;
+
+      .column {
+        &.status {
+          span.point {
+            background: $color-8;
+          }
+        }
+      }
+    }
+  }
+
+  &.status-4 {
+    .container {
+      background: $game-status-finished-color;
+
+      .column {
+        &.status {
+          span.point {
+            background: $color-magenta-1;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .container {
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 1em 0.5em;
+
+      .column {
+        flex-basis: calc(25%);
+
+        &.result {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 425px) {
+    .container {
+      .column {
+        padding: 0.5em;
+        flex-basis: calc(100%);
+
+        &.result {
+          flex-direction: row;
+        }
+      }
+    }
+  }
+}

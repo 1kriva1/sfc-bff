@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="title">
+        <div class="label">
+            <p *ngIf="label">{{label}}</p>
+            <span *ngIf="description">{{description}}</span>
+        </div>
+
+        <sfc-icon-tooltip *ngIf="icon" [tooltip]="tooltip" [icon]="icon"></sfc-icon-tooltip>
+    </div>
+
+    <sfc-delimeter *ngIf="delimeter"></sfc-delimeter>
+</div>

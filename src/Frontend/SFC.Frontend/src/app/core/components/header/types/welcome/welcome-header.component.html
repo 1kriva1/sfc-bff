@@ -1,0 +1,14 @@
+<sfc-base-header [navigations]="navigations">
+  <div class="identity">
+    <a [href]="IdentityConstants.LOGIN_URL">
+      <sfc-button [iconBefore]="faSignIn" [types]="[ButtonType.Rounded]" [sfcComponentSize] [customSize]="0.7"
+        [text]="BUTTON_SIGN_IN_TEXT">
+      </sfc-button>
+    </a>
+    <a [href]="IdentityConstants.REGISTRATION_URL">
+      <sfc-button [iconBefore]="faUserPlus" [types]="[ButtonType.Rounded]" [sfcComponentSize] [customSize]="0.7"
+        [text]="BUTTON_SIGN_UP_TEXT">
+      </sfc-button>
+    </a>
+  </div>
+</sfc-base-header>

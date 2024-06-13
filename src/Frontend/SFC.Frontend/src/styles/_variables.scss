@@ -1,0 +1,31 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "./table/variables";
+
+$transition-theme-backround-duration: 2s;
+$transition-theme-backround-timing-function: ease;
+$background-container-default: #fcfcfc;
+$background-container-dark: #0e0d0d;
+
+// Position
+$player-position-goalkeeper-color: $color-red-1;
+$player-position-goalkeeper-color-hover: $color-red-0;
+$player-position-defender-color: $color-magenta-1;
+$player-position-defender-color-hover: $color-magenta-0;
+$player-position-midfielder-color: $color-green-1;
+$player-position-midfielder-color-hover: #96c760;
+$player-position-forward-color: $color-blue-1;
+$player-position-forward-color-hover: $color-blue-0;
+
+// Game
+$game-status-new-color: $color-green-1;
+$game-status-upcoming-color: $color-blue-0;
+$game-status-active-color: $color-orange-0;
+$game-status-finished-color: $color-magenta-0;
+$game-status-canceled-color: $color-7;
+
+// Team
+$team-status-temporary-color: $color-green-0;
+$team-status-new-color: $color-magenta-0;
+$team-status-active-color: $color-blue-0;
+$team-status-postponed-color: $color-pink-0;
+$team-status-closed-color: $color-7;

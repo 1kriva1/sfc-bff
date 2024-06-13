@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="element">
+        <sfc-progress-circle [progress]="progress"></sfc-progress-circle>
+
+        <div class="label">
+            <h4 i18n="@@feature.profile.edit.page.total-rating-percentage.label">Total rating
+                (percentage)</h4>
+            <span i18n="@@feature.profile.edit.page.total-rating-percentage.description">Average
+                value from
+                your stats</span>
+        </div>
+    </div>
+
+    <sfc-delimeter *ngIf="delimeter" [direction]="Direction.Vertical"></sfc-delimeter>
+
+    <div class="element">
+        <sfc-progress-circle [progress]="value" [total]="total" [getColor]="getProgressColorDynamicallyFunc">
+        </sfc-progress-circle>
+
+        <div class="label">
+            <h4 i18n="@@feature.profile.edit.page.total-rating-absolute.label">Total rating
+                (absolute value)</h4>
+            <span i18n="@@feature.profile.edit.page.total-rating-absolute.description">Sum of
+                your
+                all stats</span>
+        </div>
+    </div>
+</div>
