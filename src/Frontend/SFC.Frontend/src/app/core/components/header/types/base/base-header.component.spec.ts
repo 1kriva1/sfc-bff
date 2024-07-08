@@ -6,8 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Direction, NgxSfcCommonModule, Theme, UIClass } from 'ngx-sfc-common';
 import { NgxSfcComponentsModule } from 'ngx-sfc-components';
 import { of } from 'rxjs';
-import { LogoComponent } from '@share/components/logo/logo.component';
-import { IdentityService } from '@share/services/identity/identity.service';
+import { LogoComponent } from '@share/components';
 import { HeaderService } from '../../services/header.service';
 import { LanguageTogglerComponent } from '../../parts/language-toggler/language-toggler.component';
 import { BaseHeaderComponent } from './base-header.component';
@@ -15,7 +14,6 @@ import { BaseHeaderComponent } from './base-header.component';
 describe('Core.Component:BaseHeader', () => {
     let component: BaseHeaderComponent;
     let fixture: ComponentFixture<BaseHeaderComponent>;
-    let identityServiceStub: Partial<IdentityService> = {};
     let headerServiceStub: Partial<HeaderService> = { toggle: () => { } };
 
     beforeEach(async () => {
@@ -27,7 +25,6 @@ describe('Core.Component:BaseHeader', () => {
                 LanguageTogglerComponent
             ],
             providers: [
-                { provide: IdentityService, useValue: identityServiceStub },
                 { provide: HeaderService, useValue: headerServiceStub }
             ]
         }).compileComponents();
@@ -116,7 +113,7 @@ describe('Core.Component:BaseHeader', () => {
             expect(fixture.nativeElement.querySelectorAll('nav > ul > li').length).toEqual(2);
         });
 
-        fit('Should have  defined text', () => {
+        fit('Should have defined text', () => {
             component.navigations = [
                 { label: 'test0', click: () => { } },
                 { label: 'test1', click: () => { } }
@@ -127,7 +124,7 @@ describe('Core.Component:BaseHeader', () => {
                 .forEach((navigation: any, index: number) => expect(navigation.innerText).toEqual(`TEST${index}`));
         });
 
-        fit('Should navigate to about', () => {
+        fit('Should navigate', () => {
             const clickNavSpy = jasmine.createSpy();
 
             component.navigations = [

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './pages/home/home.page.component';
 import { NgxSfcComponentsModule } from 'ngx-sfc-components';
 import { NgxSfcCommonModule } from 'ngx-sfc-common';
+import { ShareModule } from '@share/share.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { NgxSfcCommonModule } from 'ngx-sfc-common';
   imports: [
     CommonModule,
     NgxSfcCommonModule,
-    NgxSfcComponentsModule
+    NgxSfcComponentsModule,
+    ShareModule
   ],
   exports: [
     HomePageComponent

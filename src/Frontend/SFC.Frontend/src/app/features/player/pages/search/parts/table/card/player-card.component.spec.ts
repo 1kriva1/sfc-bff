@@ -11,7 +11,7 @@ import { ShareModule } from "@share/share.module";
 import { ComponentSize, NgxSfcCommonModule, Position } from "ngx-sfc-common";
 import { IDropdownMenuItemModel, NgxSfcComponentsModule } from "ngx-sfc-components";
 import { PlayerCardComponent } from "./player-card.component";
-import { CommonConstants as ApplicationCommonConstants } from '@core/constants/common.constants';
+import { CommonConstants as ApplicationCommonConstants } from '@core/constants';
 import { PlayerCardSide } from "./player-card-side.enum";
 import { ENUM_SERVICE } from "@test/stubs";
 import { BasePlayerItemConstants } from "../base/base-player-item.constants";

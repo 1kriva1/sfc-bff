@@ -4,7 +4,7 @@ import { isNullOrEmptyString } from 'ngx-sfc-common';
 import { Observable } from 'rxjs';
 import { RoutKey } from '@core/enums';
 import { buildPath } from '@core/utils';
-import { PlayerService } from '@share/services/player/player.service';
+import { PlayerService } from '@share/services';
 
 @Injectable({ providedIn: 'root' })
 class OnlyUserProfileService {

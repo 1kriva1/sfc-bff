@@ -1,4 +1,7 @@
-import { AfterViewInit, Directive, ElementRef, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewInit, Directive, ElementRef,
+  HostListener, Input, OnDestroy, OnInit
+} from '@angular/core';
 import { CanvasBallConstants } from './canvas-ball.constants';
 import { ICanvasBallModel } from './canvas-ball.model';
 

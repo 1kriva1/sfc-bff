@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { Router, CanMatchFn } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { RoutKey } from '../../enums';
-import { IdentityService } from '@share/services/identity/identity.service';
-import { buildPath } from '@core/utils';
+import { IdentityService } from '@share/services';
+import { buildPath } from '../../utils';
 
 @Injectable({
     providedIn: 'root'

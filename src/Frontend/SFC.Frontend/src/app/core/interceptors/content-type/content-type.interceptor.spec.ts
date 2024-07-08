@@ -34,7 +34,8 @@ describe('Core.Interceptor:ContentType', () => {
     fit('Should not add application/json type if content type already defined', (done) => {
         const contentType = 'application/xml';
 
-        client.get(url, { headers: { 'Content-Type': contentType } }).subscribe(_ => done());
+        client.get(url, { headers: { [HttpConstants.CONTENT_TYPE]: contentType } })
+            .subscribe(_ => done());
 
         const testRequest = controller.expectOne(url);
 
@@ -50,7 +51,8 @@ describe('Core.Interceptor:ContentType', () => {
         const testRequest = controller.expectOne(url);
 
         expect(testRequest.request.headers.has(HttpConstants.CONTENT_TYPE)).toBeTrue();
-        expect(testRequest.request.headers.get(HttpConstants.CONTENT_TYPE)).toEqual('application/json');
+        expect(testRequest.request.headers.get(HttpConstants.CONTENT_TYPE))
+            .toEqual(CONTENT_TYPE.defaultValue());
 
         testRequest.flush({});
     });
@@ -58,7 +60,8 @@ describe('Core.Interceptor:ContentType', () => {
     fit('Should add defined content-type', (done) => {
         const contentType = 'application/xml';
 
-        client.get(url, { context: new HttpContext().set(CONTENT_TYPE, contentType) }).subscribe(_ => done());
+        client.get(url, { context: new HttpContext().set(CONTENT_TYPE, contentType) })
+            .subscribe(_ => done());
 
         const testRequest = controller.expectOne(url);
 

@@ -1,21 +1,26 @@
 import { RouterStateSnapshot } from "@angular/router";
-import { of } from "rxjs";
+import { Observable, of } from "rxjs";
 import { ChangesCheckGuard } from "./changes-check.guard";
 import { ModalService } from "ngx-sfc-common";
 import { IChangesCheck } from "./changes-check.model";
-import { buildPath } from "@core/utils";
-import { RoutKey } from "@core/enums";
+import { buildPath } from "../../utils";
+import { RoutKey } from "../../enums";
+import { TestBed } from "@angular/core/testing";
 
 describe('Core.Guard:ChangesCheck', () => {
     let modalSpy: jasmine.SpyObj<ModalService>;
-    let guard: ChangesCheckGuard;
 
     beforeEach(() => {
         modalSpy = jasmine.createSpyObj<ModalService>('Modal', ['open', 'close']);
-        guard = new ChangesCheckGuard(modalSpy);
+
+        TestBed.configureTestingModule({
+            providers: [
+                { provide: ModalService, useValue: modalSpy }
+            ]
+        });
     });
 
-    fit('Should allow deactivate when not dirty', () => {
+    fit('Should allow deactivate when not dirty', (done) => {
         const component: IChangesCheck = {
             guardChanges$: of({
                 discardChanges: false,
@@ -23,16 +28,17 @@ describe('Core.Guard:ChangesCheck', () => {
             })
         };
 
-        const canDeactivate$ = guard.canDeactivate(component, null!, null!, {} as RouterStateSnapshot);
-
-        canDeactivate$.subscribe((canDeactivate: boolean) => {
-            expect(canDeactivate).toBeTrue()
-            expect(modalSpy.open).not.toHaveBeenCalled();
-            expect(modalSpy.close).not.toHaveBeenCalled();
-        });
+        TestBed.runInInjectionContext(() =>
+            ChangesCheckGuard(component, null!, null!, {} as RouterStateSnapshot) as Observable<boolean>)
+            .subscribe((result: boolean) => {
+                expect(result).toBeTrue();
+                expect(modalSpy.open).not.toHaveBeenCalled();
+                expect(modalSpy.close).not.toHaveBeenCalled();
+                done();
+            });
     });
 
-    fit('Should allow deactivate when dirty, but can discardChanges', () => {
+    fit('Should allow deactivate when dirty, but can discardChanges', (done) => {
         const component: IChangesCheck = {
             guardChanges$: of({
                 discardChanges: true,
@@ -40,16 +46,17 @@ describe('Core.Guard:ChangesCheck', () => {
             })
         };
 
-        const canDeactivate$ = guard.canDeactivate(component, null!, null!, {} as RouterStateSnapshot);
-
-        canDeactivate$.subscribe((canDeactivate: boolean) => {
-            expect(canDeactivate).toBeTrue()
-            expect(modalSpy.open).not.toHaveBeenCalled();
-            expect(modalSpy.close).toHaveBeenCalledTimes(1);
-        });
+        TestBed.runInInjectionContext(() =>
+            ChangesCheckGuard(component, null!, null!, {} as RouterStateSnapshot) as Observable<boolean>)
+            .subscribe((result: boolean) => {
+                expect(result).toBeTrue();
+                expect(modalSpy.open).not.toHaveBeenCalled();
+                expect(modalSpy.close).toHaveBeenCalledTimes(1);
+                done();
+            });
     });
 
-    fit('Should allow deactivate when dirty and can not discardChanges, but route is allowed to discard', () => {
+    fit('Should allow deactivate when dirty and can not discardChanges, but route is allowed to discard', (done) => {
         const component: IChangesCheck = {
             guardChanges$: of({
                 discardChanges: false,
@@ -57,17 +64,17 @@ describe('Core.Guard:ChangesCheck', () => {
             })
         };
 
-        const canDeactivate$ = guard.canDeactivate(component, null!, null!,
-            { url: buildPath(RoutKey.Welcome) } as RouterStateSnapshot);
-
-        canDeactivate$.subscribe((canDeactivate: boolean) => {
-            expect(canDeactivate).toBeTrue()
-            expect(modalSpy.open).not.toHaveBeenCalled();
-            expect(modalSpy.close).toHaveBeenCalledTimes(1);
-        });
+        TestBed.runInInjectionContext(() =>
+            ChangesCheckGuard(component, null!, null!, { url: buildPath(RoutKey.Welcome) } as RouterStateSnapshot) as Observable<boolean>)
+            .subscribe((result: boolean) => {
+                expect(result).toBeTrue();
+                expect(modalSpy.open).not.toHaveBeenCalled();
+                expect(modalSpy.close).toHaveBeenCalledTimes(1);
+                done();
+            });
     });
 
-    fit('Should not allow deactivate', () => {
+    fit('Should not allow deactivate', (done) => {
         const component: IChangesCheck = {
             guardChanges$: of({
                 discardChanges: false,
@@ -75,13 +82,13 @@ describe('Core.Guard:ChangesCheck', () => {
             })
         };
 
-        const canDeactivate$ = guard.canDeactivate(component, null!, null!,
-            { url: buildPath(RoutKey.Home) } as RouterStateSnapshot);
-
-        canDeactivate$.subscribe((canDeactivate: boolean) => {
-            expect(canDeactivate).toBeFalse()
-            expect(modalSpy.open).toHaveBeenCalledOnceWith(buildPath(RoutKey.Home));
-            expect(modalSpy.close).not.toHaveBeenCalled();
-        });
+        TestBed.runInInjectionContext(() =>
+            ChangesCheckGuard(component, null!, null!, { url: buildPath(RoutKey.Home) } as RouterStateSnapshot) as Observable<boolean>)
+            .subscribe((result: boolean) => {
+                expect(result).toBeFalse();
+                expect(modalSpy.open).toHaveBeenCalledOnceWith(buildPath(RoutKey.Home));
+                expect(modalSpy.close).not.toHaveBeenCalled();
+                done();
+            });
     });
 });

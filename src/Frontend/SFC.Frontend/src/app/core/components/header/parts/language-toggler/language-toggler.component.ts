@@ -2,9 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { firstOrDefault, WINDOW } from 'ngx-sfc-common';
 import { LanguageTogglerConstants } from './language-toggler.constants';
-import { Locale } from '@core/enums/locale.enum';
+import { Locale } from '../../../../enums';
 import { CookieService, StorageService } from '../../../../services';
-import { CommonConstants as Constants } from '@core/constants';
+import { CommonConstants } from '../../../../constants';
 import { IDropdownMenuItemModel } from 'ngx-sfc-components';
 
 @Component({
@@ -29,14 +29,14 @@ export class LanguageTogglerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const userLocale = this.storageService.get<Locale>(Constants.LOCALE_KEY)
-      || this.cookieService.get<Locale>(Constants.LOCALE_KEY, Locale.English);
+    const userLocale = this.storageService.get<Locale>(CommonConstants.LOCALE_KEY)
+      || this.cookieService.get<Locale>(CommonConstants.LOCALE_KEY, Locale.English);
     this.languages.forEach(item => item.active = userLocale === item.value);
   }
 
-  changeLocale(model: IDropdownMenuItemModel): void {
-    this.cookieService.set(Constants.LOCALE_KEY, model.value);
-    this.storageService.set(Constants.LOCALE_KEY, model.value);
+  public changeLocale(model: IDropdownMenuItemModel): void {
+    this.storageService.set(CommonConstants.LOCALE_KEY, model.value);
+    this.cookieService.set(CommonConstants.LOCALE_KEY, model.value);    
     this.window.location.reload();
   }
 }

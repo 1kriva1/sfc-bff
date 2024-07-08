@@ -1,8 +1,10 @@
 export { ILayoutModel } from './layout.model';
+export { IThemeModel } from './theme.model';
 export { IRouteDataModel } from './route-data.model';
 export { IResolverModel } from './resolver.model';
 export { IPageModel } from './page.model';
 export { ILimitModel } from './limit.model';
+export { ObservableDataModel, ObservableModel } from './observable/observable.model';
 // http
 export { BasePaginationRequest } from './http/base-pagination.request';
 export { BaseResponse } from './http/base.response';

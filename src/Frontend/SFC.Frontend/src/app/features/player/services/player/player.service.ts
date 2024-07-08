@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PlayerServiceConstants } from './player.constants';
 import { buildHttpParams } from 'ngx-sfc-common';
-import { LOADER } from '@core/interceptors/loader/loader.interceptor';
+import { LOADER } from '@core/interceptors';
 import { IGetPlayerResponse } from './models/get';
 import { IFindPlayersResponse, IFindPlayersRequest } from './models/find';
 

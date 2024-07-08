@@ -1,7 +1,11 @@
 import { IStatValueModel } from "@share/models";
 import { ENUM_SERVICE } from "@test/stubs";
 import { StatsValue } from "@share/types";
-import { convertFromServerStats, getMetadata, getModel, getRaiting, getStars, getTypes } from "./stats.utils";
+import {
+    convertFromServerStats, getMetadata,
+    getModel, getRaiting,
+    getStars, getTypes
+} from "./stats.utils";
 
 describe('Share.Utils: Stats', () => {
     fit('Should return stars', () => {

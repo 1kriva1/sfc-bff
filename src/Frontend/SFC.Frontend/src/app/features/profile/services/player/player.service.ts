@@ -2,7 +2,7 @@ import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CommonConstants } from 'ngx-sfc-common';
 import { map, Observable } from 'rxjs';
-import { LOADER } from '@core/interceptors/loader/loader.interceptor';
+import { LOADER } from '@core/interceptors';
 import { PlayerServiceConstants } from './player.constants';
 import {
     ICreatePlayerRequest, ICreatePlayerResponse,

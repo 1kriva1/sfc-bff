@@ -2,7 +2,10 @@ import { HttpClient, HttpContext, HttpErrorResponse, HTTP_INTERCEPTORS } from "@
 import { fakeAsync, TestBed, tick } from "@angular/core/testing";
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { catchError, of } from "rxjs";
-import { RetryInterceptor, RETRY_COUNT, RETRY_DELAY, RETRY_STATUSES } from "./retry.interceptor";
+import {
+    RetryInterceptor, RETRY_COUNT,
+    RETRY_DELAY, RETRY_STATUSES
+} from "./retry.interceptor";
 
 describe('Core.Interceptor:Retry', () => {
     const url = '/test';

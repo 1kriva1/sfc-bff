@@ -2,19 +2,22 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CookieService } from '../../../../services';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { WINDOW } from 'ngx-sfc-common';
 import { NgxSfcComponentsModule } from 'ngx-sfc-components';
-import { CommonConstants } from '@core/constants';
-import { Locale } from '@core/enums';
+import { CommonConstants } from '../../../../constants';
+import { Locale } from '../../../../enums';
 import { LanguageTogglerComponent } from './language-toggler.component';
 import { LanguageTogglerConstants } from './language-toggler.constants';
 
-describe('Core.BaseHeader.Component:LanguageToggler', () => {
+describe('Core.Component:BaseHeader:LanguageToggler', () => {
   let component: LanguageTogglerComponent;
   let fixture: ComponentFixture<LanguageTogglerComponent>;
-  let windowMock: any = <any>{
-    location: {}
+  let windowMock: any = <any>{ location: {} };
+  let cookieServiceStub: Partial<CookieService> = {
+    set: () => { },
+    get: () => Locale.English as any
   };
   let store: any = {};
   const mockLocalStorage = {
@@ -34,7 +37,8 @@ describe('Core.BaseHeader.Component:LanguageToggler', () => {
       imports: [NoopAnimationsModule, NgxSfcComponentsModule],
       declarations: [LanguageTogglerComponent],
       providers: [
-        { provide: WINDOW, useFactory: (() => { return windowMock; }) }
+        { provide: WINDOW, useFactory: (() => { return windowMock; }) },
+        { provide: CookieService, useValue: cookieServiceStub }
       ]
     }).compileComponents();
 
@@ -83,6 +87,16 @@ describe('Core.BaseHeader.Component:LanguageToggler', () => {
       expect(dropdownMenuEl.componentInstance.label).toEqual(LanguageTogglerConstants.LANGUAGES[0].label);
     });
 
+    fit('Should have language from cookie', () => {
+      spyOn(cookieServiceStub, 'get' as any).and.returnValue(Locale.Ukraine);
+      component.ngOnInit();
+      fixture.detectChanges();
+
+      const dropdownMenuEl: DebugElement = fixture.debugElement.query(By.css('sfc-dropdown-menu'));
+
+      expect(dropdownMenuEl.componentInstance.label).toEqual(LanguageTogglerConstants.LANGUAGES[0].label);
+    });
+
     fit('Should language has default value', () => {
       component.languages = [];
       fixture.detectChanges();
@@ -106,6 +120,7 @@ describe('Core.BaseHeader.Component:LanguageToggler', () => {
 
   describe('Locale', () => {
     fit('Should change locale value', () => {
+      spyOn(cookieServiceStub, 'set' as any);
       expect(localStorage.getItem(`${CommonConstants.APPLICATION_PREFIX}-${CommonConstants.LOCALE_KEY}`)).toBeNull();
 
       const uaLangfitemEl: DebugElement = fixture.debugElement.queryAll(By.css('sfc-dropdown-menu-item'))[0];
@@ -113,6 +128,11 @@ describe('Core.BaseHeader.Component:LanguageToggler', () => {
       fixture.detectChanges();
 
       expect(localStorage.getItem(`${CommonConstants.APPLICATION_PREFIX}-${CommonConstants.LOCALE_KEY}`)).toEqual(Locale.Ukraine);
+      expect(cookieServiceStub.set)
+        .toHaveBeenCalledWith(
+          CommonConstants.LOCALE_KEY,
+          Locale.Ukraine
+        );
     });
 
     fit('Should reload page on change language', () => {

@@ -3,18 +3,20 @@ import { Router } from '@angular/router';
 import { faBell, faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faExclamation, faPlus, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { any, ComponentSize, firstOrDefault, hasItem, isDefined, Position } from 'ngx-sfc-common';
-import { AvatarBadgePosition, IAvatarBadgeModel, IAvatarDataModel, IAvatarProgressModel, IDropdownMenuItemModel } from 'ngx-sfc-components';
+import {
+  AvatarBadgePosition, IAvatarBadgeModel,
+  IAvatarDataModel, IAvatarProgressModel,
+  IDropdownMenuItemModel
+} from 'ngx-sfc-components';
 import { filter, map, Subscription } from 'rxjs';
-import { CommonConstants } from '@core/constants';
-import { RoutKey } from '@core/enums';
-import { buildPath } from '@core/utils';
-import { IPlayerByUserProfileModel } from '@share/services';
-import { PlayerService } from '@share/services/player/player.service';
+import { CommonConstants } from '../../../../constants';
+import { RoutKey } from '../../../../enums';
+import { buildPath } from '../../../../utils';
 import { HeaderService } from '../../services/header.service';
 import { IHeaderNavigationModel } from '../base/header-navigation.model';
-import { EnumService } from '@share/services/enum/enum.service';
-import { ObservableDataModel } from '@core/models/observable.model';
-import { IdentityService } from '@share/services/identity/identity.service';
+import { EnumService } from '@share/services';
+import { ObservableDataModel } from '../../../../models';
+import { IdentityService, PlayerService, IPlayerByUserProfileModel } from '@share/services';
 
 @Component({
   selector: 'sfc-authenticated-header',
@@ -90,7 +92,7 @@ export class AuthenticatedHeaderComponent implements OnInit, OnDestroy {
       this.router.navigate([`${RoutKey.Profiles}/${this.playerService.playerId.value}/${RoutKey.Edit}`]);
 
       if (this.headerService.open)
-        this.headerService.toggleByValue(false);
+        this.headerService.set(false);
     }
   };
 
@@ -104,7 +106,7 @@ export class AuthenticatedHeaderComponent implements OnInit, OnDestroy {
     private enumService: EnumService) { }
 
   ngOnInit(): void {
-    this.headerService.toggleByValue(false);
+    this.headerService.set(false);
 
     this._playerSubscription = this.playerService.player.value$
       .pipe(
@@ -119,7 +121,7 @@ export class AuthenticatedHeaderComponent implements OnInit, OnDestroy {
   }
 
   private navigate(key: RoutKey): void {
-    this.headerService.toggleByValue(false);
+    this.headerService.set(false);
     this.router.navigate([buildPath(key)]);
   }
 

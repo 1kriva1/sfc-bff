@@ -10,7 +10,7 @@ import { EnumService } from "@share/services";
 import { ShareModule } from "@share/share.module";
 import { CommonConstants, ComponentSize, NgxSfcCommonModule, Position, UIClass } from "ngx-sfc-common";
 import { IDropdownMenuItemModel, ITableColumnExtendedModel, NgxSfcComponentsModule } from "ngx-sfc-components";
-import { CommonConstants as ApplicationCommonConstants } from '@core/constants/common.constants';
+import { CommonConstants as ApplicationCommonConstants } from '@core/constants';
 import { PlayerRowComponent } from "./player-row.component";
 import { PlayerRowConstants } from "./player-row.constants";
 import { ENUM_SERVICE } from "@test/stubs";

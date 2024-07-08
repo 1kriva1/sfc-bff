@@ -11,10 +11,17 @@ export class PlayerInitializer {
 
     public init(): Observable<any> {
         return this.identityService.getIsAuthenticated().pipe(
-            switchMap((isAuthenticated: boolean) => (isAuthenticated
-                ? this.playerService.get()
-                    .pipe(catchError(() => this.identityService.logout()))
-                : EMPTY))
+            switchMap((isAuthenticated: boolean) => {
+                if (isAuthenticated) {
+                    const player$ = this.playerService.get().pipe(
+                        catchError(() => this.identityService.logout())
+                    );
+
+                    return player$;
+                }
+
+                return EMPTY;
+            })
         );
     }
 }

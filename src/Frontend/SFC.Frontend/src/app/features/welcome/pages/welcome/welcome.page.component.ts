@@ -7,10 +7,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { ButtonType } from 'ngx-sfc-common';
 import { ITimelineItemModel, TimelineItemPosition } from 'ngx-sfc-components';
-import { HeaderService } from '@core/components/header/services/header.service';
 import { buildTitle } from '@core/utils';
 import { IImageSliderItemModel } from '../../components';
 import { WelcomePageLocalization } from './welcome.page.localization';
+import { IdentityConstants } from '@share/services/identity/identity.constants';
 
 @Component({
   templateUrl: './welcome.page.component.html',
@@ -22,6 +22,8 @@ export class WelcomePageComponent implements AfterViewInit, OnInit {
   faYoutube = faYoutube;
   faInstagram = faInstagram;
   faTwitter = faTwitter;
+
+  IdentityConstants = IdentityConstants;
 
   ButtonType = ButtonType;
   Localization = WelcomePageLocalization;
@@ -153,7 +155,6 @@ export class WelcomePageComponent implements AfterViewInit, OnInit {
   ];
 
   constructor(
-    private headerService: HeaderService,
     private changeDetectorRef: ChangeDetectorRef,
     private titleService: Title) { }
 

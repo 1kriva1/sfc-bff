@@ -4,8 +4,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MediaLimits, NgxSfcCommonModule, ResizeService, WINDOW } from 'ngx-sfc-common';
 import { NgxSfcComponentsModule } from 'ngx-sfc-components';
 import { of } from 'rxjs';
-import { LogoComponent } from '@share/components/logo/logo.component';
-import { IdentityService } from '@share/services/identity/identity.service';
+import { LogoComponent } from '@share/components';
+import { IdentityService } from '@share/services';
 import { BaseHeaderComponent } from './types/base/base-header.component';
 import { LanguageTogglerComponent } from './parts/language-toggler/language-toggler.component';
 import { AuthenticatedHeaderComponent } from './types/authenticated/authenticated-header.component';
@@ -13,21 +13,25 @@ import { WelcomeHeaderComponent } from './types/welcome/welcome-header.component
 import { HeaderComponent } from './header.component';
 import { HeaderService } from './services/header.service';
 import { HttpClientModule } from '@angular/common/http';
-import { IPlayerByUserProfileModel, PlayerService } from '@share/services';
-import { ObservableModel } from '@core/models/observable.model';
 
 describe('Core.Component:Header', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let windowMock: any = <any>{ location: {} };
   let resizeServiceStub: Partial<ResizeService> = { onResize$: of(windowMock) };
-  let playerServiceStub: Partial<PlayerService> = { player: new ObservableModel<IPlayerByUserProfileModel>(null) };
-  let identityServiceStub: Partial<IdentityService> = {};
-  let headerServiceStub: Partial<HeaderService> = { toggleByValue: () => { } };
+  let identityServiceStub: Partial<IdentityService> = {
+    getIsAuthenticated: () => of(false),
+    getIsAnonymous: () => of(true)
+  };
+  let headerServiceStub: Partial<HeaderService> = { set: () => { } };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientModule, FontAwesomeModule, NoopAnimationsModule, NgxSfcCommonModule, NgxSfcComponentsModule],
+      imports: [
+        HttpClientModule, FontAwesomeModule,
+        NoopAnimationsModule, NgxSfcCommonModule,
+        NgxSfcComponentsModule
+      ],
       declarations: [
         LogoComponent,
         HeaderComponent,
@@ -40,7 +44,6 @@ describe('Core.Component:Header', () => {
         { provide: IdentityService, useValue: identityServiceStub },
         { provide: ResizeService, useValue: resizeServiceStub },
         { provide: HeaderService, useValue: headerServiceStub },
-        { provide: PlayerService, useValue: playerServiceStub },
         { provide: WINDOW, useFactory: (() => { return windowMock; }) }
       ]
     }).compileComponents();
@@ -59,62 +62,21 @@ describe('Core.Component:Header', () => {
   });
 
   fit('Should show welcome header', () => {
+    setAuthentication(false);
+
     expect(fixture.nativeElement.querySelector('sfc-welcome-header')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('sfc-authenticated-header')).toBeNull();
   });
 
   fit('Should show authenticated header', () => {
-    (identityServiceStub as any).isLoggedIn = true;
-    fixture.detectChanges();
+    setAuthentication(true);
 
     expect(fixture.nativeElement.querySelector('sfc-welcome-header')).toBeNull();
     expect(fixture.nativeElement.querySelector('sfc-authenticated-header')).toBeTruthy();
   });
 
-  fit('Should header service height$ be defined', () => {
-    expect((component as any).headerService).toBeTruthy();
-  });
-
-  fit('Should welcome header has defined height', (done) => {
-    (identityServiceStub as any).isLoggedIn = false;
-    fixture.detectChanges();
-
-    (component as any).headerService.height$.subscribe((height: number) => {
-      expect(height).toBeDefined();
-    });
-
-    done();
-  });
-
-  fit('Should authenticated header has defined height', (done) => {
-    (identityServiceStub as any).isLoggedIn = true;
-    fixture.detectChanges();
-
-    (component as any).headerService.height$.subscribe((height: number) => {
-      expect(height).toBeDefined();
-    });
-
-    done();
-  });
-
-  fit('Should not emit headers height', (done) => {
-    (identityServiceStub as any).isLoggedIn = false;
-    (headerServiceStub as any).open = true;
-    fixture.detectChanges();
-
-    let emitted = false;
-
-    (component as any).headerService.height$.subscribe({
-      next: () => emitted = true,
-      complete: () => {
-        expect(emitted).toBeFalse();
-        done();
-      }
-    });
-  });
-
   fit('Should toggle header when window width more than MobileLarge', () => {
-    spyOn(headerServiceStub as any, 'toggleByValue').and.callThrough();
+    spyOn(headerServiceStub as any, 'set').and.callThrough();
 
     (headerServiceStub as any).open = true;
 
@@ -126,11 +88,11 @@ describe('Core.Component:Header', () => {
     window.dispatchEvent(new Event('resize'));
     fixture.detectChanges();
 
-    expect(headerServiceStub.toggleByValue).toHaveBeenCalledOnceWith(false);
+    expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
   });
 
   fit('Should not toggle header when window width more than MobileLarge', () => {
-    spyOn(headerServiceStub as any, 'toggleByValue').and.callThrough();
+    spyOn(headerServiceStub as any, 'set').and.callThrough();
 
     (headerServiceStub as any).open = true;
 
@@ -142,11 +104,11 @@ describe('Core.Component:Header', () => {
     window.dispatchEvent(new Event('resize'));
     fixture.detectChanges();
 
-    expect(headerServiceStub.toggleByValue).not.toHaveBeenCalledOnceWith(false);
+    expect(headerServiceStub.set).not.toHaveBeenCalledOnceWith(false);
   });
 
   fit('Should not toggle header when not openned', () => {
-    spyOn(headerServiceStub as any, 'toggleByValue').and.callThrough();
+    spyOn(headerServiceStub as any, 'set').and.callThrough();
 
     (headerServiceStub as any).open = false;
 
@@ -158,7 +120,7 @@ describe('Core.Component:Header', () => {
     window.dispatchEvent(new Event('resize'));
     fixture.detectChanges();
 
-    expect(headerServiceStub.toggleByValue).not.toHaveBeenCalledOnceWith(false);
+    expect(headerServiceStub.set).not.toHaveBeenCalledOnceWith(false);
   });
 
   fit('Should call unsubscribe on resize observable, when component destroyed', () => {
@@ -171,4 +133,11 @@ describe('Core.Component:Header', () => {
 
     expect(unsubscribeSpy).toHaveBeenCalled();
   });
+
+  function setAuthentication(isAuthenticated: boolean): void {
+    identityServiceStub.getIsAuthenticated = () => of(isAuthenticated);
+    identityServiceStub.getIsAnonymous = () => of(!isAuthenticated);
+    component.ngOnInit();
+    fixture.detectChanges();
+  }
 });

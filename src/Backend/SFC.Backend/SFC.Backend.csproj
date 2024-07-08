@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Frontend\SFC.Frontend\SFC.Frontend.esproj" />
+    <ProjectReference Include="..\..\Infrastructure\SFC.Bff.Infrastructure\SFC.Bff.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

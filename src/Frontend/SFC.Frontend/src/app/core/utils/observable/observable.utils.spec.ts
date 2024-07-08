@@ -1,6 +1,6 @@
 import { HttpHeaders, HttpResponse } from "@angular/common/http";
-import { HttpConstants } from "@core/constants";
-import { BaseListResponse } from "@core/models";
+import { HttpConstants } from "../../constants";
+import { BaseListResponse } from "../../models";
 import { of } from "rxjs";
 import { mapPageResponse } from "./observable.utils";
 

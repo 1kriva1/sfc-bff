@@ -1,14 +1,15 @@
-using Duende.Bff.Yarp;
-using SFC.Bff.Settings;
-using SFC.Bff.Extensions;
+using Microsoft.AspNetCore.Diagnostics;
+using SFC.Bff.Application.Common.Constants;
+using SFC.Bff.Infrastructure;
+using SFC.Bff.Middlewares;
 
 namespace SFC.Bff.Extensions;
 public static class StartupExtensions
 {
-    private const string FALLBACK_FILE_PATH = "/index.html";
-
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
+        builder.Services.AddInfrastructureServices(builder.Configuration);
+
         builder.Services.AddBffWithEndpoints();
 
         builder.AddAuthentication();
@@ -32,9 +33,14 @@ public static class StartupExtensions
 
         app.UseAuthorization();
 
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseLogIdentityHandler();
+        }
+
         app.MapRemoteBffApiEndpoint();
 
-        app.MapFallbackToFile(FALLBACK_FILE_PATH);
+        app.MapFallbackToFile(CommonConstants.FALLBACK_FILE_PATH);
 
         return app;
     }

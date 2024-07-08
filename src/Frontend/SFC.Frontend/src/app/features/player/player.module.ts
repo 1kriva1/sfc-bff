@@ -8,7 +8,6 @@ import { NgxSfcCommonModule } from 'ngx-sfc-common';
 import { NgxSfcComponentsModule } from 'ngx-sfc-components';
 import { NgxSfcInputsModule } from 'ngx-sfc-inputs';
 import {
-    ViewPageComponent,
     ViewInfoPanelComponent,
     GeneralViewComponent,
     StatsViewComponent,
@@ -19,7 +18,7 @@ import {
     TeamsViewComponent,
     BadgesViewComponent,
     BadgeCardComponent
-} from './pages/view';
+} from './pages/view/parts';
 import {
     FootballFilterComponent,
     GeneralFilterComponent,
@@ -31,6 +30,7 @@ import {
     SearchPageComponent,
     StatsFilterComponent
 } from './pages/search';
+import { ViewPageComponent } from './pages/view/view.page.component';
 
 @NgModule({
     declarations: [

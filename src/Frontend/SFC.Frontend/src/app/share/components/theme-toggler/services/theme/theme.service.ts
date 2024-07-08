@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Theme } from 'ngx-sfc-common';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { StorageService } from '@core/services/storage/storage.service';
+import { StorageService } from '@core/services';
 import { CommonConstants } from '@core/constants';
 
 @Injectable({

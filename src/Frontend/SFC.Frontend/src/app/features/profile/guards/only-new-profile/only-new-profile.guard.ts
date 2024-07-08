@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Router, CanMatchFn } from '@angular/router';
 import { Observable } from 'rxjs';
 import { RoutKey } from '@core/enums';
-import { PlayerService } from '@share/services/player/player.service';
+import { PlayerService } from '@share/services';
 
 @Injectable({ providedIn: 'root' })
 class OnlyNewProfileService {
