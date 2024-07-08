@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { DOCUMENT } from 'ngx-sfc-common';
+import { DOCUMENT, UIConstants } from 'ngx-sfc-common';
 import { HeaderService } from './header.service';
 
-describe('Core.Component:Header.Service: Header', () => {
+describe('Core.Component:Header.Service:Header', () => {
     let service: HeaderService;
 
     beforeEach(() => {
@@ -16,10 +16,6 @@ describe('Core.Component:Header.Service: Header', () => {
 
     fit('Should be created', () => {
         expect(service).toBeTruthy();
-    });
-
-    fit('Should height observable be undefined', () => {
-        expect(service.height$).toBeUndefined();
     });
 
     fit('Should open observable be defined', () => {
@@ -37,11 +33,11 @@ describe('Core.Component:Header.Service: Header', () => {
     });
 
     fit('Should set open value', () => {
-        service.toggleByValue(true);
+        service.set(true);
 
         expect(service.open).toBeTrue();
 
-        service.toggleByValue(false);
+        service.set(false);
 
         expect(service.open).toBeFalse();
     });
@@ -55,11 +51,29 @@ describe('Core.Component:Header.Service: Header', () => {
         });
     });
 
-    fit('Should emit on toggleByValue', (done) => {
-        service.toggleByValue(true);
+    fit('Should emit on set', (done) => {
+        service.set(true);
 
         service.open$.subscribe((value: boolean) => {
             expect(value).toBeTrue();
+            done();
+        });
+    });
+
+    fit('Should set document body overflow as initial', (done) => {
+        service.set(false);
+
+        service.open$.subscribe(() => {
+            expect(document.body.style.overflow).toEqual(UIConstants.CSS_INITIAL);
+            done();
+        });
+    });
+
+    fit('Should set document body overflow as hidden', (done) => {
+        service.toggle();
+
+        service.open$.subscribe(() => {
+            expect(document.body.style.overflow).toEqual(UIConstants.CSS_VISIBILITY_HIDDEN);
             done();
         });
     });

@@ -23,7 +23,7 @@ export class HeaderService {
         this.openSubject.next(!this.open);
     }
 
-    public toggleByValue(value: boolean): void {
+    public set(value: boolean): void {
         this.openSubject.next(value);
     }
 }

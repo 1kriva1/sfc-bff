@@ -2,7 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ActivatedRoute, ActivatedRouteSnapshot, ActivationStart, convertToParamMap, Router, RouterEvent } from '@angular/router';
+import { ActivatedRouteSnapshot, ActivationStart, Router, RouterEvent } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CommonConstants, DOCUMENT, NgxSfcCommonModule, Theme, WINDOW } from 'ngx-sfc-common';
 import { INotificationContentModel, NgxSfcComponentsModule } from 'ngx-sfc-components';
@@ -10,19 +10,14 @@ import { of, Subject } from 'rxjs';
 import { AppComponent } from './app.component';
 import {
     AuthenticatedHeaderComponent, BaseHeaderComponent,
-    FooterComponent, HeaderComponent, LanguageTogglerComponent, WelcomeHeaderComponent
+    FooterComponent, HeaderComponent, LanguageTogglerComponent, 
+    WelcomeHeaderComponent
 } from '@core/components';
 import { ILayoutModel, IRouteDataModel } from '@core/models';
-import { NotificationService } from '@core/services/notification/notification.service';
+import { NotificationService } from '@core/services';
 import { ThemeService } from '@share/components/theme-toggler/services/theme/theme.service';
 import { ShareModule } from '@share/share.module';
 import { AppComponentConstants } from './app.component.constants';
-import { EnumService, IdentityService, IGetPlayerByUserResponse, PlayerService } from '@share/services';
-import { ObservableModel } from '@core/models/observable.model';
-import { StorageService } from '@core/services';
-import { PlayerServiceConstants } from '@share/services/player/player.constants';
-import { Process } from '@core/enums';
-import { IEnumsModel } from '@share/services/enum/models/enums.model';
 
 describe('Component: Application', () => {
     let routerEventsSubject = new Subject<RouterEvent>();
@@ -31,10 +26,6 @@ describe('Component: Application', () => {
     let fixture: ComponentFixture<AppComponent>;
     let notificationServiceStub: Partial<NotificationService> = { remove: (_: INotificationContentModel) => { } };
     let themeServiceStub: Partial<ThemeService> = { theme: Theme.Default };
-    let identityServiceStub: Partial<IdentityService> = { userId: new ObservableModel() };
-    let playerServiceStub: Partial<PlayerService> = { update: () => { }, get: () => of({} as IGetPlayerByUserResponse) };
-    let storageServiceStub: Partial<StorageService> = { remove: () => { } };
-    let enumServiceStub: Partial<EnumService> = { load: () => of({} as IEnumsModel) };
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -60,12 +51,7 @@ describe('Component: Application', () => {
                 { provide: DOCUMENT, useValue: window.document },
                 { provide: NotificationService, useValue: notificationServiceStub },
                 { provide: ThemeService, useValue: themeServiceStub },
-                { provide: Router, useValue: routerStub },
-                { provide: ActivatedRoute, useValue: { paramMap: of(convertToParamMap({})) } },
-                { provide: IdentityService, useValue: identityServiceStub },
-                { provide: PlayerService, useValue: playerServiceStub },
-                { provide: StorageService, useValue: storageServiceStub },
-                { provide: EnumService, useValue: enumServiceStub }
+                { provide: Router, useValue: routerStub }
             ]
         }).compileComponents();
     });
@@ -89,27 +75,15 @@ describe('Component: Application', () => {
             expect(fixture.nativeElement.querySelector('sfc-bounce-loader')).toBeTruthy();
         });
 
-        fit('Should call unsubscribe for observables, when component destroyed', () => {
+        fit('Should call unsubscribe for layout observable, when component destroyed', () => {
             const layoutUnsubscribeSpy = spyOn(
                 (component as any)._layoutSubscription,
-                'unsubscribe'
-            ).and.callThrough(), logoutUnsubscribeSpy = spyOn(
-                (component as any)._logoutSubscription,
-                'unsubscribe'
-            ).and.callThrough(), loginUnsubscribeSpy = spyOn(
-                (component as any)._loginSubscription,
-                'unsubscribe'
-            ).and.callThrough(), registrationUnsubscribeSpy = spyOn(
-                (component as any)._registrationSubscription,
                 'unsubscribe'
             ).and.callThrough();
 
             component?.ngOnDestroy();
 
             expect(layoutUnsubscribeSpy).toHaveBeenCalled();
-            expect(logoutUnsubscribeSpy).toHaveBeenCalled();
-            expect(loginUnsubscribeSpy).toHaveBeenCalled();
-            expect(registrationUnsubscribeSpy).toHaveBeenCalled();
         });
     });
 
@@ -130,8 +104,7 @@ describe('Component: Application', () => {
         });
 
         fit('Should not have value', () => {
-            (storageServiceStub as any).get = (_:string) => { return Theme.Dark };
-            const dataValue: IRouteDataModel = { layout: { footer: true, header: true }, themeEnabled: false },
+            const dataValue: IRouteDataModel = { layout: { footer: true, header: true }, theme: { enabled: false } },
                 snapshot: ActivatedRouteSnapshot = ({ data: dataValue } as unknown) as ActivatedRouteSnapshot;
 
             routerEventsSubject.next(new ActivationStart(snapshot) as any);
@@ -141,8 +114,7 @@ describe('Component: Application', () => {
         });
 
         fit('Should have value', () => {
-            (storageServiceStub as any).get = (_:string) => { return Theme.Dark };
-            const dataValue: IRouteDataModel = { layout: { footer: true, header: true }, themeEnabled: true },
+            const dataValue: IRouteDataModel = { layout: { footer: true, header: true }, theme: { enabled: true } },
                 snapshot: ActivatedRouteSnapshot = ({ data: dataValue } as unknown) as ActivatedRouteSnapshot;
 
             routerEventsSubject.next(new ActivationStart(snapshot) as any);
@@ -177,7 +149,7 @@ describe('Component: Application', () => {
 
         fit('Should change layout', () => {
             const newLayout: ILayoutModel = { footer: true, header: true },
-                dataValue: IRouteDataModel = { layout: newLayout, themeEnabled: false },
+                dataValue: IRouteDataModel = { layout: newLayout, theme: { enabled: false } },
                 snapshot: ActivatedRouteSnapshot = ({ data: dataValue } as unknown) as ActivatedRouteSnapshot;
 
             routerEventsSubject.next(new ActivationStart(snapshot) as any);
@@ -228,110 +200,6 @@ describe('Component: Application', () => {
             expect(component.notificationAutoCloseModel).toEqual({
                 enabled: true,
                 interval: AppComponentConstants.NOTIFICATION_AUTO_CLOSE_INTERVAL
-            });
-        });
-    });
-
-    describe('Events', () => {
-        describe('Logout', () => {
-            fit('Should handle event', () => {
-                spyOn(playerServiceStub as any, 'update').and.callThrough();
-                spyOn(storageServiceStub as any, 'remove').and.callThrough();
-                (identityServiceStub as any).isLoggedIn = false;
-                identityServiceStub.userId!.value$ = of({ data: null });
-
-                component.ngOnInit();
-
-                expect(playerServiceStub.update).toHaveBeenCalledOnceWith(null);
-                expect(storageServiceStub.remove).toHaveBeenCalledOnceWith(PlayerServiceConstants.PLAYER_ID_KEY);
-            });
-
-            fit('Should not handle event', () => {
-                spyOn(playerServiceStub as any, 'update').and.callThrough();
-                spyOn(storageServiceStub as any, 'remove').and.callThrough();
-                (identityServiceStub as any).isLoggedIn = false;
-                identityServiceStub.userId!.value$ = of({ data: null, process: Process.Init });
-
-                component.ngOnInit();
-
-                expect(playerServiceStub.update).not.toHaveBeenCalled();
-                expect(storageServiceStub.remove).not.toHaveBeenCalled();
-            });
-        });
-
-        describe('Login', () => {
-            fit('Should handle event', () => {
-                spyOn(playerServiceStub as any, 'get').and.callThrough();
-                spyOn(enumServiceStub as any, 'load').and.callThrough();
-                (identityServiceStub as any).isLoggedIn = true;
-                identityServiceStub.userId!.value$ = of({ data: 'user-id', process: Process.Login });
-
-                component.ngOnInit();
-
-                expect(playerServiceStub.get).toHaveBeenCalledTimes(1);
-                expect(enumServiceStub.load).toHaveBeenCalledTimes(1);
-            });
-
-            fit('Should not handle event', () => {
-                spyOn(playerServiceStub as any, 'get').and.callThrough();
-                spyOn(enumServiceStub as any, 'load').and.callThrough();
-                (identityServiceStub as any).isLoggedIn = true;
-                identityServiceStub.userId!.value$ = of({ data: 'user-id', process: Process.Init });
-
-                component.ngOnInit();
-
-                expect(playerServiceStub.get).not.toHaveBeenCalled();
-                expect(enumServiceStub.load).not.toHaveBeenCalled();
-            });
-
-            fit('Should not handle event, if player not log in', () => {
-                spyOn(playerServiceStub as any, 'get').and.callThrough();
-                spyOn(enumServiceStub as any, 'load').and.callThrough();
-                (identityServiceStub as any).isLoggedIn = false;
-                identityServiceStub.userId!.value$ = of({ data: 'user-id', process: Process.Login });
-
-                component.ngOnInit();
-
-                expect(playerServiceStub.get).not.toHaveBeenCalled();
-                expect(enumServiceStub.load).not.toHaveBeenCalled();
-            });
-        });
-
-        describe('Registration', () => {
-            fit('Should handle event', () => {
-                spyOn(playerServiceStub as any, 'get').and.callThrough();
-                spyOn(enumServiceStub as any, 'load').and.callThrough();
-                (identityServiceStub as any).isLoggedIn = true;
-                identityServiceStub.userId!.value$ = of({ data: 'user-id', process: Process.Registration });
-
-                component.ngOnInit();
-
-                expect(playerServiceStub.get).not.toHaveBeenCalled();
-                expect(enumServiceStub.load).toHaveBeenCalledTimes(1);
-            });
-
-            fit('Should not handle event', () => {
-                spyOn(playerServiceStub as any, 'get').and.callThrough();
-                spyOn(enumServiceStub as any, 'load').and.callThrough();
-                (identityServiceStub as any).isLoggedIn = true;
-                identityServiceStub.userId!.value$ = of({ data: 'user-id', process: Process.Init });
-
-                component.ngOnInit();
-
-                expect(playerServiceStub.get).not.toHaveBeenCalled();
-                expect(enumServiceStub.load).not.toHaveBeenCalled();
-            });
-
-            fit('Should not handle event, if player not log in', () => {
-                spyOn(playerServiceStub as any, 'get').and.callThrough();
-                spyOn(enumServiceStub as any, 'load').and.callThrough();
-                (identityServiceStub as any).isLoggedIn = false;
-                identityServiceStub.userId!.value$ = of({ data: 'user-id', process: Process.Registration });
-
-                component.ngOnInit();
-
-                expect(playerServiceStub.get).not.toHaveBeenCalled();
-                expect(enumServiceStub.load).not.toHaveBeenCalled();
             });
         });
     });

@@ -1,7 +1,10 @@
 import { HttpResponse } from "@angular/common/http";
-import { HttpConstants } from "@core/constants";
-import { BaseListResponse, IPageMetadataModel } from "@core/models";
-import { IPageModel } from "@core/models";
+import { HttpConstants } from "../../constants";
+import {
+    BaseListResponse,
+    IPageMetadataModel,
+    IPageModel
+} from "@core/models";
 import { map, OperatorFunction, pipe } from "rxjs";
 
 export function mapPageResponse<R, I>(mapItems: (item: R) => I)

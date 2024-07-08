@@ -1,4 +1,4 @@
-export enum IdentityPrompt{
+export enum IdentityPrompt {
     Login = 'login',
     Registration = 'create'
 }

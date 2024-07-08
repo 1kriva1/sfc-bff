@@ -4,7 +4,6 @@ import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from '@angular/f
 import { By } from '@angular/platform-browser';
 import { EnumService } from '@share/services';
 import { ShareModule } from '@share/share.module';
-import { StatsValue } from '@share/types';
 import { ENUM_SERVICE, STATS } from '@test/stubs';
 import { NgxSfcCommonModule, Sequence, where } from 'ngx-sfc-common';
 import { NgxSfcComponentsModule } from 'ngx-sfc-components';

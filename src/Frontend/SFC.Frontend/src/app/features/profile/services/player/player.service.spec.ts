@@ -1,8 +1,7 @@
 import { HttpContext } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { LOADER } from '@core/interceptors/loader/loader.interceptor';
-import { environment } from '@environments/environment';
+import { LOADER } from '@core/interceptors';
 import { CommonConstants } from 'ngx-sfc-common';
 import {
     ICreatePlayerRequest,
@@ -50,7 +49,7 @@ describe('Features.Profile.Service:Player', () => {
             done();
         });
 
-        const testRequest = httpMock.expectOne(`${environment.players_url}${PlayerServiceConstants.URI_PART}`);
+        const testRequest = httpMock.expectOne(PlayerServiceConstants.URI_PART);
 
         expect(testRequest.request.body).toEqual(request);
         expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, true));
@@ -66,7 +65,7 @@ describe('Features.Profile.Service:Player', () => {
             done();
         });
 
-        const testRequest = httpMock.expectOne(`${environment.players_url}${PlayerServiceConstants.URI_PART}/1`);
+        const testRequest = httpMock.expectOne(`${PlayerServiceConstants.URI_PART}/1`);
 
         expect(testRequest.request.body).toEqual(request);
         expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, true));
@@ -87,7 +86,7 @@ describe('Features.Profile.Service:Player', () => {
             done();
         });
 
-        const testRequest = httpMock.expectOne(`${environment.players_url}${PlayerServiceConstants.URI_PART}/1`);
+        const testRequest = httpMock.expectOne(`${PlayerServiceConstants.URI_PART}/1`);
 
         expect(testRequest.request.body).toEqual(request);
         expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, true));
@@ -108,7 +107,7 @@ describe('Features.Profile.Service:Player', () => {
             done();
         });
 
-        const testRequest = httpMock.expectOne(`${environment.players_url}${PlayerServiceConstants.URI_PART}/1`);
+        const testRequest = httpMock.expectOne(`${PlayerServiceConstants.URI_PART}/1`);
 
         expect(testRequest.request.body).toBeNull();
         expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, true));

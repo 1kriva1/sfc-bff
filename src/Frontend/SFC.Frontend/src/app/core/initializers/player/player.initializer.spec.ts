@@ -1,32 +1,34 @@
-import { EMPTY, of, throwError } from "rxjs";
-import { IdentityService } from "@share/services/identity/identity.service";
+import { EMPTY, Observable, of, throwError } from "rxjs";
 import { PlayerInitializer } from "./player.initializer";
-import { IGetPlayerByUserResponse, PlayerService } from "@share/services";
-import { ILogoutResponse } from "@share/services/identity/models";
+import {
+    IGetPlayerByUserResponse,
+    PlayerService,
+    IdentityService
+} from "@share/services";
 
-describe('Core.Infitializer:Player', () => {
-    let infitializer: PlayerInitializer;
+describe('Core.Initializer:Player', () => {
+    let initializer: PlayerInitializer;
     let identityServiceStub: Partial<IdentityService> = {
-        logout: () => of({} as ILogoutResponse)
+        logout: () => of(undefined)
     };
     let playerServiceStub: Partial<PlayerService> = {};
 
     beforeEach(() => {
-        infitializer = new PlayerInitializer(
+        initializer = new PlayerInitializer(
             identityServiceStub as IdentityService,
             playerServiceStub as PlayerService);
     });
 
     fit('Should return empty observable', () => {
-        (identityServiceStub as any).isLoggedIn = false;
+        identityServiceStub.getIsAuthenticated = () => of(false);
 
-        const result = infitializer.init();
+        const result: Observable<any> = initializer.init();
 
-        expect(result).toEqual(EMPTY);
+        expect(result).not.toBeNull();
     });
 
-    fit('Should return player response', () => {
-        (identityServiceStub as any).isLoggedIn = true;
+    fit('Should return player response', (done) => {
+        identityServiceStub.getIsAuthenticated = () => of(true);
         (playerServiceStub as any).get = () => of({
             Success: true,
             Errors: null,
@@ -34,19 +36,20 @@ describe('Core.Infitializer:Player', () => {
             Player: {}
         } as IGetPlayerByUserResponse);
 
-        infitializer.init().subscribe(response => {
+        initializer.init().subscribe(response => {
             expect(response).toBeDefined();
             expect(response.Success).toBeTrue();
             expect(response.Player).toBeDefined();
+            done();
         });
     });
 
     fit('Should logout on error', () => {
-        spyOn(identityServiceStub, 'logout' as any).and.returnValue(of({} as ILogoutResponse));
-        (identityServiceStub as any).isLoggedIn = true;
+        spyOn(identityServiceStub, 'logout' as any).and.returnValue(of(undefined));
+        identityServiceStub.getIsAuthenticated = () => of(true);
         (playerServiceStub as any).get = () => throwError(() => new Error());
 
-        infitializer.init().subscribe(_ => {
+        initializer.init().subscribe(_ => {
             expect(identityServiceStub.logout).toHaveBeenCalled();
         });
     });

@@ -6,9 +6,12 @@
                 Here is your best destination for finding players, creating teams, planning games and more!
                 We believes in the passion, joy and sense of community that football brings.
             </p>
-            <sfc-button routerLink="/identity/login" [text]="BUTTON_HERO_SIGN_IN_TEXT"
-                [types]="[ButtonType.Rounded, ButtonType.Filled]"></sfc-button>
-            <p class="small" i18n="@@feature.welcome.page.hero.small">We love and grove football. For you. For the game.
+            <a [href]="IdentityConstants.LOGIN_URL">
+                <sfc-button [text]="BUTTON_HERO_SIGN_IN_TEXT" [types]="[ButtonType.Rounded, ButtonType.Filled]">
+                </sfc-button>
+            </a>
+            <p class="small" i18n="@@feature.welcome.page.hero.small">
+                We love and grove football. For you. For the game.
             </p>
         </div>
     </section>

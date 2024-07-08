@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { catchError, filter, map, Observable, of, shareReplay, tap } from 'rxjs';
+import { Inject, Injectable } from '@angular/core';
+import { WINDOW } from 'ngx-sfc-common';
+import {
+    catchError, filter, map,
+    Observable, of, shareReplay, tap
+} from 'rxjs';
 import { Claim } from './claim.model';
 import { IdentityConstants } from './identity.constants';
 import { Session } from './session.type';
@@ -12,7 +16,7 @@ export class IdentityService {
 
     private session$: Observable<Session> | null = null
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, @Inject(WINDOW) private window: Window) { }
 
     public getSession(ignoreCache: boolean = false): Observable<Session> {
         if (!this.session$ || ignoreCache) {
@@ -52,14 +56,14 @@ export class IdentityService {
     }
 
     public authenticate(): void {
-        window.location.href = IdentityConstants.LOGIN_URL;
+        this.window.location.href = IdentityConstants.LOGIN_URL;
     }
 
     public logout(): Observable<string | undefined> {
         return this.getLogoutUrl().pipe(
             tap((logoutUrl: string | undefined) => {
                 if (logoutUrl) {
-                    window.location.href = logoutUrl;
+                    this.window.location.href = logoutUrl;
                 }
             })
         );
@@ -73,4 +77,3 @@ export class IdentityService {
         return session === null;
     }
 }
-

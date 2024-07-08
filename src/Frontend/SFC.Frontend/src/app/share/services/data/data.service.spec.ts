@@ -1,9 +1,8 @@
 import { HttpContext } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { CACHE } from '@core/interceptors/cache/cache.interceptor';
-import { LOADER } from '@core/interceptors/loader/loader.interceptor';
-import { environment } from '@environments/environment';
+import { HttpMethod } from '@core/enums';
+import { CACHE, LOADER } from '@core/interceptors';
 import { DataServiceConstants } from './data.constants';
 import { DataService } from './data.service';
 import { IGetDataResponse } from './models/get-data.response';
@@ -28,7 +27,7 @@ describe('Share.Service:Data', () => {
     });
 
     fit('Should get data', (done) => {
-        const response: IGetDataResponse = {
+        const assertResponse: IGetDataResponse = {
             FootballPositions: [],
             GameStyles: [],
             StatCategories: [],
@@ -41,15 +40,16 @@ describe('Share.Service:Data', () => {
         };
 
         service.get().subscribe((response: IGetDataResponse) => {
-            expect(response).toEqual(response);
+            expect(response).toEqual(assertResponse);
             done();
         });
 
-        const testRequest = httpMock.expectOne(`${environment.data_url}${DataServiceConstants.URI_PART}`);
+        const testRequest = httpMock.expectOne(DataServiceConstants.URI_PART);
 
+        expect(testRequest.request.method).toEqual(HttpMethod.GET);
         expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, true).set(CACHE, true));
         expect(testRequest.request.body).toBeNull();
 
-        testRequest.flush(response);
+        testRequest.flush(assertResponse);
     });
 });

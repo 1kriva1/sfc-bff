@@ -1,10 +1,9 @@
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LOADER } from '@core/interceptors/loader/loader.interceptor';
+import { LOADER, CACHE } from '@core/interceptors';
 import { DataServiceConstants } from './data.constants';
 import { IGetDataResponse } from './models/get-data.response';
-import { CACHE } from '@core/interceptors/cache/cache.interceptor';
 
 @Injectable({
   providedIn: 'root'

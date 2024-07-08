@@ -1,15 +1,15 @@
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { isDefined } from 'ngx-sfc-common';
-import { map, Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { PlayerServiceConstants } from './player.constants';
 import {
   IGetPlayerByUserResponse,
   IPlayerByUserModel,
   IPlayerByUserProfileModel
 } from './models/get-player-by-user.response';
-import { ObservableModel } from '@core/models/observable.model';
-import { LOADER } from '@core/interceptors/loader/loader.interceptor';
+import { ObservableModel } from '@core/models';
+import { LOADER } from '@core/interceptors';
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +29,8 @@ export class PlayerService {
       `${PlayerServiceConstants.URI_PART}/byuser`,
       { context: new HttpContext().set(LOADER, true) }
     ).pipe(
-      map((response: IGetPlayerByUserResponse) => {
-        this.update(response.Player);
-        return response;
-      })
+      tap((response: IGetPlayerByUserResponse) =>
+        this.update(response.Player))
     );
   }
 

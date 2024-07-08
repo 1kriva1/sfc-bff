@@ -31,7 +31,6 @@ import { WelcomeModule } from './features/welcome/welcome.module';
     I18nModule.setLocale(),
     I18nModule.setLocaleId(),
     DataModule.init(),
-    // TokenRefreshModule.init(),
     PlayerModule.init(),
     HttpInterceptorProviders
   ],

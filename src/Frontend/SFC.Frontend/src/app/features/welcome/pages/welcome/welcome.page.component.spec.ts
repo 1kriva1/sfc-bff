@@ -2,32 +2,30 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonComponent, ComponentSizeDirective } from 'ngx-sfc-common';
 import { NgxSfcComponentsModule } from 'ngx-sfc-components';
-import { HeaderService } from '@core/components';
 import { ImageSliderComponent, ImageSliderItemComponent } from '../../components';
 import { WelcomePageComponent } from './welcome.page.component';
-import { of } from 'rxjs';
-import { RoutKey } from '@core/enums';
 import { By, Title } from '@angular/platform-browser';
 import { buildTitle } from '@core/utils';
+import { IdentityConstants } from '@share/services/identity/identity.constants';
 
 describe('Features.Welcome.Page:Welcome', () => {
   let component: WelcomePageComponent;
   let fixture: ComponentFixture<WelcomePageComponent>;
-  let headerServiceMock: HeaderService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FontAwesomeModule, NgxSfcComponentsModule],
-      declarations: [ComponentSizeDirective, ButtonComponent, ImageSliderItemComponent, ImageSliderComponent, WelcomePageComponent],
-      providers: [
-        { provide: HeaderService, useValue: jasmine.createSpyObj('HeaderService', ['height$']) }
+      declarations: [
+        ComponentSizeDirective,
+        ButtonComponent,
+        ImageSliderItemComponent,
+        ImageSliderComponent,
+        WelcomePageComponent
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(WelcomePageComponent);
     component = fixture.componentInstance;
-    headerServiceMock = TestBed.inject(HeaderService);
-    headerServiceMock.height$ = of(100);
     fixture.detectChanges();
   });
 
@@ -55,13 +53,9 @@ describe('Features.Welcome.Page:Welcome', () => {
 
   describe('Sections', () => {
     describe('Hero', () => {
-      fit('Should have defined padding top value', () => {
-        expect(fixture.nativeElement.querySelector('section.hero > div.title').style.paddingTop).toEqual('100px');
-      });
-
       fit('Should navigate to sign in', () => {
-        expect(fixture.debugElement.query(By.css('section.hero > div.title > sfc-button')).attributes['routerLink'])
-          .toEqual(`/${RoutKey.Identity}/${RoutKey.Login}`);
+        expect(fixture.debugElement.query(By.css('section.hero > div.title > a')).attributes['href'])
+          .toEqual(IdentityConstants.LOGIN_URL);
       });
     });
 

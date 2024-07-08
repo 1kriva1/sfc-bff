@@ -9,6 +9,8 @@ import { RetryInterceptor } from "./retry/retry.interceptor";
 import { LocaleInterceptor } from "./locale/locale.interceptor";
 import { CsrfInterceptor } from "./csrf/csrf.interceptor";
 
+export { CACHE } from "./cache/cache.interceptor";
+export { LOADER } from "./loader/loader.interceptor";
 export const HttpInterceptorProviders = [
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

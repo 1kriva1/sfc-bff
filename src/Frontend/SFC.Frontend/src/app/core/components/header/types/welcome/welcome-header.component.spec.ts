@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonType, NgxSfcCommonModule, WINDOW } from 'ngx-sfc-common';
 import { NgxSfcComponentsModule } from 'ngx-sfc-components';
-import { LogoComponent } from '@share/components/logo/logo.component';
-import { RoutKey } from '@core/enums';
+import { LogoComponent } from '@share/components';
+import { RoutKey } from '../../../../enums';
 import { WelcomeHeaderComponent } from './welcome-header.component';
 import { WelcomeHeaderConstants } from './welcome-header.constants';
 import { WelcomeHeaderPart } from './welcome-header.enum';
@@ -15,13 +15,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderService } from '../../services/header.service';
 import { LanguageTogglerComponent } from '../../parts/language-toggler/language-toggler.component';
 import { BaseHeaderComponent } from '../base/base-header.component';
+import { IdentityConstants } from '@share/services/identity/identity.constants';
 
 describe('Core.Component:WelcomeHeader', () => {
     let component: WelcomeHeaderComponent;
     let fixture: ComponentFixture<WelcomeHeaderComponent>;
     let windowMock: any = <any>{ location: {} };
     let routerMock = { navigate: jasmine.createSpy('navigate') };
-    let headerServiceStub: Partial<HeaderService> = { toggleByValue: () => { } };
+    let headerServiceStub: Partial<HeaderService> = { set: () => { } };
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -50,15 +51,15 @@ describe('Core.Component:WelcomeHeader', () => {
         fit('Should have main elements', () => {
             expect(fixture.nativeElement.querySelector('sfc-base-header')).toBeTruthy();
             expect(fixture.nativeElement.querySelector('div.identity')).toBeTruthy();
-            expect(fixture.nativeElement.querySelectorAll('div.identity > sfc-button').length).toEqual(2);
+            expect(fixture.nativeElement.querySelectorAll('div.identity > a > sfc-button').length).toEqual(2);
         });
 
-        fit('Should make header not openned', () => {
-            spyOn(headerServiceStub as any, 'toggleByValue').and.callThrough();
+        fit('Should make header be not openned', () => {
+            spyOn(headerServiceStub as any, 'set').and.callThrough();
 
             component.ngOnInit();
 
-            expect(headerServiceStub.toggleByValue).toHaveBeenCalledOnceWith(false);
+            expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
         });
     });
 
@@ -82,14 +83,14 @@ describe('Core.Component:WelcomeHeader', () => {
         });
 
         fit('Should navigate to about', () => {
-            spyOn(headerServiceStub as any, 'toggleByValue').and.callThrough();
+            spyOn(headerServiceStub as any, 'set').and.callThrough();
 
             const aboutLink = fixture.debugElement.queryAll(By.css('nav > ul > li > a'))[0],
                 fragment = WelcomeHeaderPart.About;
             aboutLink.nativeElement.dispatchEvent(new MouseEvent('click'));
 
             expect(routerMock.navigate).toHaveBeenCalledWith([`/${RoutKey.Welcome}`], { fragment });
-            expect(headerServiceStub.toggleByValue).toHaveBeenCalledOnceWith(false);
+            expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
         });
 
         fit('Should have text for locations', () => {
@@ -97,14 +98,14 @@ describe('Core.Component:WelcomeHeader', () => {
         });
 
         fit('Should navigate to locations', () => {
-            spyOn(headerServiceStub as any, 'toggleByValue').and.callThrough();
+            spyOn(headerServiceStub as any, 'set').and.callThrough();
 
             const aboutLink = fixture.debugElement.queryAll(By.css('nav > ul > li > a'))[1],
                 fragment = WelcomeHeaderPart.Locations;
             aboutLink.nativeElement.dispatchEvent(new MouseEvent('click'));
 
             expect(routerMock.navigate).toHaveBeenCalledWith([`/${RoutKey.Welcome}`], { fragment });
-            expect(headerServiceStub.toggleByValue).toHaveBeenCalledOnceWith(false);
+            expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
         });
 
         fit('Should have text for process', () => {
@@ -112,14 +113,14 @@ describe('Core.Component:WelcomeHeader', () => {
         });
 
         fit('Should navigate to process', () => {
-            spyOn(headerServiceStub as any, 'toggleByValue').and.callThrough();
+            spyOn(headerServiceStub as any, 'set').and.callThrough();
 
             const aboutLink = fixture.debugElement.queryAll(By.css('nav > ul > li > a'))[2],
                 fragment = WelcomeHeaderPart.Process;
             aboutLink.nativeElement.dispatchEvent(new MouseEvent('click'));
 
             expect(routerMock.navigate).toHaveBeenCalledWith([`/${RoutKey.Welcome}`], { fragment });
-            expect(headerServiceStub.toggleByValue).toHaveBeenCalledOnceWith(false);
+            expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
         });
 
         fit('Should have text for contact us', () => {
@@ -127,20 +128,20 @@ describe('Core.Component:WelcomeHeader', () => {
         });
 
         fit('Should navigate to contact us', () => {
-            spyOn(headerServiceStub as any, 'toggleByValue').and.callThrough();
+            spyOn(headerServiceStub as any, 'set').and.callThrough();
 
             const aboutLink = fixture.debugElement.queryAll(By.css('nav > ul > li > a'))[3],
                 fragment = WelcomeHeaderPart.Contact;
             aboutLink.nativeElement.dispatchEvent(new MouseEvent('click'));
 
             expect(routerMock.navigate).toHaveBeenCalledWith([`/${RoutKey.Welcome}`], { fragment });
-            expect(headerServiceStub.toggleByValue).toHaveBeenCalledOnceWith(false);
+            expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
         });
     });
 
     describe('Identity', () => {
         fit('Should have appropriate attributes for login', () => {
-            const loginBtn: DebugElement = fixture.debugElement.queryAll(By.css('sfc-button'))[0];
+            const loginBtn: DebugElement = fixture.debugElement.queryAll(By.css('div.identity > a > sfc-button'))[0];
 
             expect(loginBtn.componentInstance.types).toEqual([ButtonType.Rounded]);
             expect(loginBtn.attributes['ng-reflect-custom-size']).toEqual('0.7');
@@ -149,13 +150,13 @@ describe('Core.Component:WelcomeHeader', () => {
             expect(loginBtn.componentInstance.iconBefore.prefix).toEqual('fas');
         });
 
-        fit('Should navigate to sign in', () => {
-            expect(fixture.debugElement.queryAll(By.css('sfc-button'))[0].attributes['routerLink'])
-                .toEqual(`${RoutKey.Identity}/${RoutKey.Login}`);
+        fit('Should have reference to sign in', () => {
+            expect(fixture.debugElement.queryAll(By.css('div.identity > a'))[0].attributes['href'])
+                .toEqual(IdentityConstants.LOGIN_URL);
         });
 
         fit('Should have appropriate attributes for sign up', () => {
-            const registrationBtn: DebugElement = fixture.debugElement.queryAll(By.css('sfc-button'))[1];
+            const registrationBtn: DebugElement = fixture.debugElement.queryAll(By.css('div.identity > a > sfc-button'))[1];
 
             expect(registrationBtn.componentInstance.types).toEqual([ButtonType.Rounded]);
             expect(registrationBtn.attributes['ng-reflect-custom-size']).toEqual('0.7');
@@ -164,9 +165,9 @@ describe('Core.Component:WelcomeHeader', () => {
             expect(registrationBtn.componentInstance.iconBefore.prefix).toEqual('fas');
         });
 
-        fit('Should navigate to sign up', () => {
-            expect(fixture.debugElement.queryAll(By.css('sfc-button'))[1].attributes['routerLink'])
-                .toEqual(`${RoutKey.Identity}/${RoutKey.Registration}`);
+        fit('Should have reference to sign up', () => {
+            expect(fixture.debugElement.queryAll(By.css('div.identity > a'))[1].attributes['href'])
+                .toEqual(IdentityConstants.REGISTRATION_URL);
         });
     });
 });

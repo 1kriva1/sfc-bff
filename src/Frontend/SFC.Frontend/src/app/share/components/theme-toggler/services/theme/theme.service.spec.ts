@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Theme } from 'ngx-sfc-common';
 import { CommonConstants } from '@core/constants';
-import { StorageService } from '@core/services/storage/storage.service';
+import { StorageService } from '@core/services';
 import { ThemeService } from './theme.service';
 
 describe('Share.Component:ThemeToggler.Service: Theme', () => {

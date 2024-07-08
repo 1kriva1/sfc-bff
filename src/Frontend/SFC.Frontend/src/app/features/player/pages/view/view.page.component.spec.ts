@@ -8,7 +8,6 @@ import { HeaderService } from "@core/components";
 import { buildTitle } from "@core/utils";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ShareModule } from "@share/share.module";
-import { StatsValue } from "@share/types";
 import { STATS } from "@test/stubs";
 import { ComponentSize, NgxSfcCommonModule, Position } from "ngx-sfc-common";
 import { NgxSfcComponentsModule } from "ngx-sfc-components";

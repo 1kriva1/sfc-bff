@@ -1,4 +1,4 @@
-import { BaseErrorResponse } from "@core/models/http/base-error.response";
+import { BaseErrorResponse } from "@core/models";
 
 export interface IUpdatePlayerResponse
     extends BaseErrorResponse { }

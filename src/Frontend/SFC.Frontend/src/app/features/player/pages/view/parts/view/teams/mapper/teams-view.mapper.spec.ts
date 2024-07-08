@@ -39,7 +39,7 @@ describe('Features.Player.Page:View.Part.View:Teams.Mapper', () => {
             expect(result).toEqual({
                 city: 'City',
                 coach: null,
-                createdDate: new Date(),
+                createdDate: new Date(2024, 7, 8),
                 logo: null,
                 raiting: 3,
                 schema: '4-4-2',
@@ -61,7 +61,7 @@ describe('Features.Player.Page:View.Part.View:Teams.Mapper', () => {
             Id: 0,
             City: 'City',
             Coach: null,
-            CreatedDate: new Date(),
+            CreatedDate: new Date(2024, 7, 8),
             FullName: 'Name',
             Logo: null,
             Raiting: 3,

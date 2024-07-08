@@ -1,25 +1,25 @@
 import { EnumService, IdentityService } from "@share/services";
 import { IEnumsModel } from "@share/services/enum/models/enums.model";
-import { EMPTY, of } from "rxjs";
+import { Observable, of } from "rxjs";
 import { DataInitializer } from "./data.initializer";
 
 describe('Core.Initializer:Data', () => {
     let identityServiceStub: Partial<IdentityService> = {};
     let enumServiceStub: Partial<EnumService> = {};
-    let infitializer: DataInitializer = new DataInitializer(
+    let initializer: DataInitializer = new DataInitializer(
         identityServiceStub as IdentityService,
         enumServiceStub as EnumService
     );
 
     fit('Should return empty observable', () => {
-        (identityServiceStub as any).isLoggedIn = false;
+        identityServiceStub.getIsAuthenticated = () => of(false);
 
-        const result = infitializer.init();
+        const result: Observable<IEnumsModel> = initializer.init();
 
-        expect(result).toEqual(EMPTY);
+        expect(result).not.toBeNull();
     });
 
-    fit('Should return player response', () => {
+    fit('Should return player response', (done) => {
         const enumsModel: IEnumsModel = {
             footballPositions: [
                 { key: 0, value: 'Goalkeeper' },
@@ -36,12 +36,13 @@ describe('Core.Initializer:Data', () => {
             gameStatuses: [],
             teamStatuses: []
         };
-        (identityServiceStub as any).isLoggedIn = true;
+        identityServiceStub.getIsAuthenticated = () => of(true);
         (enumServiceStub as any).load = () => of(enumsModel);
 
-        infitializer.init().subscribe(model => {
+        initializer.init().subscribe(model => {
             expect(model).toBeDefined();
             expect(model.footballPositions).toEqual(enumsModel.footballPositions);
+            done();
         });
     });
 });

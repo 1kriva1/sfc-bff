@@ -1,43 +1,53 @@
-import { Router } from "@angular/router";
+import { Route, Router } from "@angular/router";
 import { CanMatchOnlyNewProfile } from "./only-new-profile.guard";
 import { PlayerService } from "@share/services";
 import { RoutKey } from "@core/enums";
+import { TestBed } from "@angular/core/testing";
 
 describe('Features.Profile.Guard:CanMatchOnlyNewProfile', () => {
-    let guard: CanMatchOnlyNewProfile;
-    let routerSpy: jasmine.SpyObj<Router>;
+    const dummyRoute = { path: `${RoutKey.Profiles}/2/${RoutKey.Edit}` } as Route;
+    let routerSpy: jasmine.SpyObj<Router> = jasmine.createSpyObj<Router>('Router', ['navigate']);
     let playerServiceStub: Partial<PlayerService> = {};
 
     beforeEach(() => {
         routerSpy = jasmine.createSpyObj<Router>('Router', ['navigate']);
-        guard = new CanMatchOnlyNewProfile(playerServiceStub as PlayerService, routerSpy);
+
+        TestBed.configureTestingModule({
+            providers: [
+                { provide: PlayerService, useValue: playerServiceStub },
+                { provide: Router, useValue: routerSpy }
+            ]
+        });
     });
 
     fit('Should allow access for not created profile', () => {
         (playerServiceStub as any).playerCreated = false;
 
-        const isAccessGranted = guard.canMatch();
+        const result: boolean = TestBed.runInInjectionContext(() =>
+            CanMatchOnlyNewProfile(dummyRoute, []) as boolean);
 
-        expect(isAccessGranted).toBeTrue();
+        expect(result).toBeTrue();
     });
 
     fit('Should not allow access for already created profile', () => {
         (playerServiceStub as any).playerCreated = true;
         (playerServiceStub as any).playerId = { value: 1 };
 
-        const isAccessGranted = guard.canMatch();
+        const result: boolean = TestBed.runInInjectionContext(() =>
+            CanMatchOnlyNewProfile(dummyRoute, []) as boolean);
 
-        expect(isAccessGranted).toBeFalse();
+        expect(result).toBeFalse();
     });
 
     fit('Should redirect to already created profile page', () => {
         (playerServiceStub as any).playerCreated = true;
         (playerServiceStub as any).playerId = { value: 1 };
 
-        guard.canMatch();
+        const result: boolean = TestBed.runInInjectionContext(() =>
+            CanMatchOnlyNewProfile(dummyRoute, []) as boolean);
 
-        expect(routerSpy.navigate).toHaveBeenCalledWith([
-            `${RoutKey.Profiles}/${playerServiceStub.playerId!.value}/${RoutKey.Edit}`
-        ]);
+        expect(result).toBeFalse();
+        expect(routerSpy.navigate)
+            .toHaveBeenCalledWith([`${RoutKey.Profiles}/${playerServiceStub.playerId!.value}/${RoutKey.Edit}`]);
     });
 });

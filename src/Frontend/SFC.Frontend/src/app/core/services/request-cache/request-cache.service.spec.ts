@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { environment } from '@environments/environment';
 import { RequestCacheWithMap } from './request-cache.service';
 
-describe('Core.Service: RequestCache', () => {
+describe('Core.Service:RequestCache', () => {
     const startingTime = Date.now();
     let service: RequestCacheWithMap;
 

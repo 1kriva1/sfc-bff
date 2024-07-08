@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpContextToken, HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import {
+    HttpContextToken, HttpErrorResponse,
+    HttpEvent, HttpHandler,
+    HttpInterceptor, HttpRequest
+} from '@angular/common/http';
 import { Observable, retry, throwError, timer } from 'rxjs';
 import { hasItem } from 'ngx-sfc-common';
 

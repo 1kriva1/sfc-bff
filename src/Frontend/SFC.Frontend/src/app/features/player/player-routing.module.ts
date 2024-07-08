@@ -6,11 +6,12 @@ import { buildTitle } from '@core/utils';
 import { LayoutConstants, RouteConstants } from '@core/constants';
 import {
     BadgesViewComponent, DashboardViewComponent, GamesViewComponent,
-    GeneralViewComponent, StatsViewComponent, TeamsViewComponent, ViewPageComponent
-} from './pages/view';
+    GeneralViewComponent, StatsViewComponent, TeamsViewComponent
+} from './pages/view/parts';
 import { ViewPagePart } from './pages/view/enums/view-page-part.enum';
 import { ViewPageResolver } from './pages/view/resolver/view.page.resolver';
 import { ViewPageConstants } from './pages/view/view.page.constants';
+import { ViewPageComponent } from './pages/view/view.page.component';
 
 const routes: Routes = [
     {

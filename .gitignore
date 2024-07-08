@@ -504,3 +504,4 @@ testem.log
 
 # Tests coverage
 tests/coverage
+coverage/

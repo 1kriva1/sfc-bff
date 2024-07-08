@@ -9,17 +9,16 @@ import { faExclamation, faRightFromBracket } from '@fortawesome/free-solid-svg-i
 import { ComponentSize, NgxSfcCommonModule, Position } from 'ngx-sfc-common';
 import { AvatarBadgePosition, IDropdownMenuItemModel, NgxSfcComponentsModule } from 'ngx-sfc-components';
 import { of } from 'rxjs';
-import { HeaderService, LanguageTogglerComponent } from '@core/components';
-import { RoutKey } from '@core/enums';
-import { LogoComponent } from '@share/components/logo/logo.component';
-import { IdentityService } from '@share/services/identity/identity.service';
+import { HeaderService, LanguageTogglerComponent } from '../../../../components';
+import { RoutKey } from '../../../../enums';
+import { LogoComponent } from '@share/components';
 import { BaseHeaderComponent } from '../base/base-header.component';
 import { IHeaderNavigationModel } from '../base/header-navigation.model';
 import { AuthenticatedHeaderComponent } from './authenticated-header.component';
 import { HttpClientModule } from '@angular/common/http';
-import { EnumService, IPlayerByUserProfileModel, PlayerService } from '@share/services';
-import { ObservableModel } from '@core/models/observable.model';
-import { CommonConstants } from '@core/constants';
+import { EnumService, IPlayerByUserProfileModel, PlayerService, IdentityService } from '@share/services';
+import { ObservableModel } from '../../../../models';
+import { CommonConstants } from '../../../../constants';
 import { ENUM_SERVICE } from "@test/stubs";
 
 describe('Core.Component:AuthenticatedHeader', () => {
@@ -27,7 +26,7 @@ describe('Core.Component:AuthenticatedHeader', () => {
   let fixture: ComponentFixture<AuthenticatedHeaderComponent>;
   let routerMock = { navigate: jasmine.createSpy('navigate') };
   let identityServiceStub: Partial<IdentityService> = { logout: () => of() };
-  let headerServiceStub: Partial<HeaderService> = { toggleByValue: () => { } };
+  let headerServiceStub: Partial<HeaderService> = { set: () => { } };
   let playerServiceStub: Partial<PlayerService> = { player: new ObservableModel<IPlayerByUserProfileModel>(null) };
 
   beforeEach(async () => {
@@ -64,11 +63,11 @@ describe('Core.Component:AuthenticatedHeader', () => {
     });
 
     fit('Should make header not openned', () => {
-      spyOn(headerServiceStub as any, 'toggleByValue').and.callThrough();
+      spyOn(headerServiceStub as any, 'set').and.callThrough();
 
       component.ngOnInit();
 
-      expect(headerServiceStub.toggleByValue).toHaveBeenCalledOnceWith(false);
+      expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
     });
 
     fit('Should call unsubscribe for subscriptions, when component destroyed', () => {
@@ -77,18 +76,13 @@ describe('Core.Component:AuthenticatedHeader', () => {
 
       (logoutItem.click as any)();
 
-      const logoutUnsubscribeSpy = spyOn(
-        (component as any)._logoutSubscription,
+      const playerUnsubscribeSpy = spyOn(
+        (component as any)._playerSubscription,
         'unsubscribe'
-      ).and.callThrough(),
-        playerUnsubscribeSpy = spyOn(
-          (component as any)._playerSubscription,
-          'unsubscribe'
-        ).and.callThrough();
+      ).and.callThrough();
 
       component?.ngOnDestroy();
 
-      expect(logoutUnsubscribeSpy).toHaveBeenCalled();
       expect(playerUnsubscribeSpy).toHaveBeenCalled();
     });
   });
@@ -162,7 +156,7 @@ describe('Core.Component:AuthenticatedHeader', () => {
     });
 
     fit('Should have players navigation', () => {
-      spyOn(headerServiceStub as any, 'toggleByValue').and.callThrough();
+      spyOn(headerServiceStub as any, 'set').and.callThrough();
 
       const playersNavigation: IHeaderNavigationModel = fixture.debugElement.query(By.css('sfc-base-header'))
         .componentInstance.navigations[0];
@@ -172,11 +166,11 @@ describe('Core.Component:AuthenticatedHeader', () => {
       playersNavigation.click();
 
       expect(routerMock.navigate).toHaveBeenCalledWith([`/${RoutKey.Players}`]);
-      expect(headerServiceStub.toggleByValue).toHaveBeenCalledOnceWith(false);
+      expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
     });
 
     fit('Should have games navigation', () => {
-      spyOn(headerServiceStub as any, 'toggleByValue').and.callThrough();
+      spyOn(headerServiceStub as any, 'set').and.callThrough();
 
       const playersNavigation: IHeaderNavigationModel = fixture.debugElement.query(By.css('sfc-base-header'))
         .componentInstance.navigations[1];
@@ -186,11 +180,11 @@ describe('Core.Component:AuthenticatedHeader', () => {
       playersNavigation.click();
 
       expect(routerMock.navigate).toHaveBeenCalledWith([`/${RoutKey.Players}`]);
-      expect(headerServiceStub.toggleByValue).toHaveBeenCalledOnceWith(false);
+      expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
     });
 
     fit('Should have teams navigation', () => {
-      spyOn(headerServiceStub as any, 'toggleByValue').and.callThrough();
+      spyOn(headerServiceStub as any, 'set').and.callThrough();
 
       const playersNavigation: IHeaderNavigationModel = fixture.debugElement.query(By.css('sfc-base-header'))
         .componentInstance.navigations[2];
@@ -200,11 +194,11 @@ describe('Core.Component:AuthenticatedHeader', () => {
       playersNavigation.click();
 
       expect(routerMock.navigate).toHaveBeenCalledWith([`/${RoutKey.Players}`]);
-      expect(headerServiceStub.toggleByValue).toHaveBeenCalledOnceWith(false);
+      expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
     });
 
     fit('Should have locations navigation', () => {
-      spyOn(headerServiceStub as any, 'toggleByValue').and.callThrough();
+      spyOn(headerServiceStub as any, 'set').and.callThrough();
 
       const playersNavigation: IHeaderNavigationModel = fixture.debugElement.query(By.css('sfc-base-header'))
         .componentInstance.navigations[3];
@@ -214,7 +208,7 @@ describe('Core.Component:AuthenticatedHeader', () => {
       playersNavigation.click();
 
       expect(routerMock.navigate).toHaveBeenCalledWith([`/${RoutKey.Players}`]);
-      expect(headerServiceStub.toggleByValue).toHaveBeenCalledOnceWith(false);
+      expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
     });
   });
 
@@ -244,7 +238,7 @@ describe('Core.Component:AuthenticatedHeader', () => {
     });
 
     fit('Should call logout', () => {
-      spyOn(identityServiceStub as any, 'logout').and.returnValue(of({ Success: true }));
+      spyOn(identityServiceStub as any, 'logout').and.returnValue(of('https:\\localhost:4200'));
       (identityServiceStub as any).playerCreated = false;
 
       component.ngOnInit();
@@ -256,21 +250,6 @@ describe('Core.Component:AuthenticatedHeader', () => {
       (logoutItem.click as any)();
 
       expect(identityServiceStub.logout).toHaveBeenCalledTimes(1);
-    });
-
-    fit('Should navigate to welcome page after logout', () => {
-      spyOn(identityServiceStub as any, 'logout').and.returnValue(of({ Success: true }));
-      (identityServiceStub as any).playerCreated = false;
-
-      component.ngOnInit();
-      fixture.detectChanges();
-
-      const dropdownMenuEl: DebugElement = fixture.debugElement.query(By.css('.profile sfc-dropdown-menu')),
-        logoutItem: IDropdownMenuItemModel = dropdownMenuEl.componentInstance.items[0];
-
-      (logoutItem.click as any)();
-
-      expect(routerMock.navigate).toHaveBeenCalledWith([`/${RoutKey.Welcome}`]);
     });
 
     fit('Should have profile and logout action', () => {
@@ -307,7 +286,7 @@ describe('Core.Component:AuthenticatedHeader', () => {
     });
 
     fit('Should toggle header for profile action, if header is oppened', () => {
-      spyOn(headerServiceStub as any, 'toggleByValue').and.callThrough();
+      spyOn(headerServiceStub as any, 'set').and.callThrough();
       (identityServiceStub as any).playerCreated = true;
       (headerServiceStub as any).open = true;
       (playerServiceStub as any).playerId = { value: 1 };
@@ -318,7 +297,7 @@ describe('Core.Component:AuthenticatedHeader', () => {
 
       (profilefitem.click as any)();
 
-      expect(headerServiceStub.toggleByValue).toHaveBeenCalledOnceWith(false);
+      expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
     });
   });
 

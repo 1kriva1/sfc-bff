@@ -5,7 +5,7 @@ import { MessageSeverity } from '../message/message-severity.enum';
 import { IMessage } from '../message/message.model';
 import { NotificationService } from '../notification/notification.service';
 
-describe('Core.Service: Notification', () => {
+describe('Core.Service:Notification', () => {
     const startingTime = Date.now();
     let service: NotificationService;
 

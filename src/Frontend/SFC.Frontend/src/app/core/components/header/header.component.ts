@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaLimits, ResizeService } from 'ngx-sfc-common';
 import { Observable, Subscription } from 'rxjs';
 import { HeaderService } from './services/header.service';
@@ -8,11 +8,11 @@ import { IdentityService } from '@share/services/identity/identity.service';
   selector: 'sfc-header',
   templateUrl: './header.component.html'
 })
-export class HeaderComponent implements AfterViewInit, OnDestroy {
+export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  public authenticated$: Observable<boolean> = this.identityService.getIsAuthenticated();
+  public authenticated$!: Observable<boolean>;
 
-  public anonymous$: Observable<boolean> = this.identityService.getIsAnonymous();
+  public anonymous$!: Observable<boolean>;
 
   private _resizeSubscription?: Subscription;
 
@@ -22,11 +22,16 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
     private headerService: HeaderService
   ) { }
 
+  ngOnInit(): void {
+    this.authenticated$ = this.identityService.getIsAuthenticated();
+    this.anonymous$ = this.identityService.getIsAnonymous();
+  }
+
   ngAfterViewInit(): void {
     this._resizeSubscription = this.resizeService.onResize$
       .subscribe(window => {
         if (window.innerWidth > MediaLimits.MobileLarge && this.headerService.open)
-          this.headerService.toggleByValue(false);
+          this.headerService.set(false);
       });
   }
 

@@ -2,8 +2,7 @@ import { HttpContext, HttpHeaders, HttpRequest, HttpResponse } from '@angular/co
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { HttpConstants } from '@core/constants';
-import { LOADER } from '@core/interceptors/loader/loader.interceptor';
-import { environment } from '@environments/environment';
+import { LOADER } from '@core/interceptors';
 import { SortingDirection } from 'ngx-sfc-common';
 import { IGetPlayerResponse, IPlayerModel } from './models/get';
 import { IFindPlayersRequest, IFindPlayersResponse, IFindPlayersFilterModel } from './models/find';
@@ -35,7 +34,7 @@ describe('Features.Player.Service:Player', () => {
         fit('Should use GET method', (done) => {
             service.get(1).subscribe(() => done());
 
-            const testRequest = httpMock.expectOne(`${environment.players_url}${PlayerServiceConstants.URI_PART}/1`);
+            const testRequest = httpMock.expectOne(`${PlayerServiceConstants.URI_PART}/1`);
 
             expect(testRequest.request.method).toEqual('GET');
 
@@ -55,7 +54,7 @@ describe('Features.Player.Service:Player', () => {
                 done();
             });
 
-            const testRequest = httpMock.expectOne(`${environment.players_url}${PlayerServiceConstants.URI_PART}/1`);
+            const testRequest = httpMock.expectOne(`${PlayerServiceConstants.URI_PART}/1`);
 
             expect(testRequest.request.body).toBeNull();
             expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, true));
@@ -66,7 +65,7 @@ describe('Features.Player.Service:Player', () => {
         fit('Should use loader', (done) => {
             service.get(1).subscribe(() => done());
 
-            const testRequest = httpMock.expectOne(`${environment.players_url}${PlayerServiceConstants.URI_PART}/1`);
+            const testRequest = httpMock.expectOne(`${PlayerServiceConstants.URI_PART}/1`);
 
             expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, true));
 
@@ -85,9 +84,9 @@ describe('Features.Player.Service:Player', () => {
             service.find(request, false).subscribe(() => done());
 
             const testRequest = httpMock.expectOne((req: HttpRequest<any>) =>
-                req.url.includes(`${environment.players_url}${PlayerServiceConstants.URI_PART}/find`));
+                req.url.includes(`${PlayerServiceConstants.URI_PART}/find`));
 
-            expect(testRequest.request.url).toEqual(`${environment.players_url}${PlayerServiceConstants.URI_PART}/find`);
+            expect(testRequest.request.url).toEqual(`${PlayerServiceConstants.URI_PART}/find`);
 
             testRequest.flush({});
         });
@@ -102,7 +101,7 @@ describe('Features.Player.Service:Player', () => {
             service.find(request, false).subscribe(() => done());
 
             const testRequest = httpMock.expectOne((req: HttpRequest<any>) =>
-                req.url.includes(`${environment.players_url}${PlayerServiceConstants.URI_PART}/find`));
+                req.url.includes(`${PlayerServiceConstants.URI_PART}/find`));
 
             expect(testRequest.request.method).toEqual('GET');
 
@@ -119,7 +118,7 @@ describe('Features.Player.Service:Player', () => {
             service.find(request, false).subscribe(() => done());
 
             const testRequest = httpMock.expectOne((req: HttpRequest<any>) =>
-                req.url.includes(`${environment.players_url}${PlayerServiceConstants.URI_PART}/find`));
+                req.url.includes(`${PlayerServiceConstants.URI_PART}/find`));
             expect(testRequest.request.params.get('Pagination.Page')).toEqual('1');
             expect(testRequest.request.params.get('Pagination.Size')).toEqual('10');
             expect(testRequest.request.params.get('Sorting[0].Name')).toEqual('City');
@@ -152,7 +151,7 @@ describe('Features.Player.Service:Player', () => {
             });
 
             const testRequest = httpMock.expectOne((req: HttpRequest<any>) =>
-                req.url.includes(`${environment.players_url}${PlayerServiceConstants.URI_PART}/find`));
+                req.url.includes(`${PlayerServiceConstants.URI_PART}/find`));
 
             testRequest.flush(body);
         });
@@ -176,7 +175,7 @@ describe('Features.Player.Service:Player', () => {
             });
 
             const testRequest = httpMock.expectOne((req: HttpRequest<any>) =>
-                req.url.includes(`${environment.players_url}${PlayerServiceConstants.URI_PART}/find`));
+                req.url.includes(`${PlayerServiceConstants.URI_PART}/find`));
 
             testRequest.flush({}, { headers });
         });
@@ -191,7 +190,7 @@ describe('Features.Player.Service:Player', () => {
             service.find(request, false).subscribe(() => done());
 
             const testRequest = httpMock.expectOne((req: HttpRequest<any>) =>
-                req.url.includes(`${environment.players_url}${PlayerServiceConstants.URI_PART}/find`));
+                req.url.includes(`${PlayerServiceConstants.URI_PART}/find`));
 
             expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, false));
 
@@ -208,7 +207,7 @@ describe('Features.Player.Service:Player', () => {
             service.find(request, true).subscribe(() => done());
 
             const testRequest = httpMock.expectOne((req: HttpRequest<any>) =>
-                req.url.includes(`${environment.players_url}${PlayerServiceConstants.URI_PART}/find`));
+                req.url.includes(`${PlayerServiceConstants.URI_PART}/find`));
 
             expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, true));
 

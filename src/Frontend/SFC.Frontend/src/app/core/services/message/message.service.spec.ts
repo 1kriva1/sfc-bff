@@ -4,7 +4,7 @@ import { MessageSeverity } from './message-severity.enum';
 import { IMessage } from './message.model';
 import { MessageService } from './message.service';
 
-describe('Core.Service: Message', () => {
+describe('Core.Service:Message', () => {
     let service: MessageService;
     let notificationServiceStub: Partial<NotificationService> = { notify: (message: IMessage) => { } };
 

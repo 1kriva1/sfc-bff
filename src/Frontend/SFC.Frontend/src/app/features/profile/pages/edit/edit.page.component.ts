@@ -19,7 +19,7 @@ import { IForm } from '@core/types';
 import { EditPageConstants } from './edit.page.constants';
 import { EditPagePart } from './enums/edit-page-part.enum';
 import { EditPageLocalization } from './edit.page.localization';
-import { BaseErrorResponse } from '@core/models/http/base-error.response';
+import { BaseErrorResponse } from '@core/models';
 import { StatsService } from './parts/stats/services/stats.service';
 import { getProgressColorDynamicallyFunc, TabsTemplate } from 'ngx-sfc-components';
 import { buildTitle, markFormTouchedAndDirty } from '@core/utils';
@@ -29,9 +29,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IProfileModel } from './mapper/models/profile.model';
 import { IChangesCheck, IChangesCheckGuardModel } from '@core/guards/changes-check/changes-check.model';
 import { Title } from '@angular/platform-browser';
-import { NotificationService } from '@core/services/notification/notification.service';
+import { NotificationService } from '@core/services';
 import { MessageSeverity } from '@core/services/message/message-severity.enum';
-import { PlayerService as SharedPlayerService } from '@share/services/player/player.service';
+import { PlayerService as SharedPlayerService } from '@share/services';
 import { PlayerService } from '../../services/player/player.service';
 import { IPlayerByUserModel } from '@share/services/player/models/get-player-by-user.response';
 import { INotification } from '@core/services/notification/notification.model';
@@ -40,7 +40,7 @@ import { mapPlayerRequest } from './mapper/edit.page.mapper';
 import { IEditModel } from './models/edit.page.model';
 import { EditPagePersonalViewModel, EditPageProgressViewModel, EditPageRaitingViewModel, IEditPageViewModel } from './models';
 import { ICreatePlayerRequest, ICreatePlayerResponse, IUpdatePlayerRequest, IUpdatePlayerResponse } from '../../services/player/models';
-import { CommonConstants as ApplicationCommonConstants } from '@core/constants/common.constants';
+import { CommonConstants as ApplicationCommonConstants } from '@core/constants';
 
 @Component({
   templateUrl: './edit.page.component.html',
