@@ -35,16 +35,4 @@
         <ProjectReference Include="..\..\src\Infrastructure\SFC.Bff.Infrastructure\SFC.Bff.Infrastructure.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <None Update="Mocks\Documents\discovery_jwks.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="Mocks\Documents\openid_configuration.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="Mocks\Documents\success_token_response.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
-
 </Project>

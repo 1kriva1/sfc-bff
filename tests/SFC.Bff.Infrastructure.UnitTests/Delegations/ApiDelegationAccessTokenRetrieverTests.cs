@@ -10,9 +10,12 @@ using SFC.Bff.Application.Common.Enums;
 using SFC.Bff.Infrastructure.Delegations;
 using SFC.Bff.Infrastructure.Settings;
 using SFC.Bff.Infrastructure.UnitTests.Mocks;
+using SFC.Bff.Infrastructure.UnitTests.Stubs;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
+using System.Net.Http.Json;
 using System.Security.Claims;
+using System.Text.Json;
 
 namespace SFC.Bff.Infrastructure.UnitTests.Delegations;
 public class ApiDelegationAccessTokenRetrieverTests
@@ -288,13 +291,11 @@ public class ApiDelegationAccessTokenRetrieverTests
 
     private void MockHttpClientFactory(bool isExchangeSuccess = true, bool isExchangeHasAccessToken = true)
     {
-        static HttpResponseMessage GetResponse(string documentPath)
+        static HttpResponseMessage GetResponse(object document)
         {
-            string path = "Mocks\\Documents", content = File.ReadAllText($"{path}\\{documentPath}");
-
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
-                Content = new StringContent(content)
+                Content = JsonContent.Create(document)
             };
         };
 
@@ -302,18 +303,18 @@ public class ApiDelegationAccessTokenRetrieverTests
         {
             if (request.RequestUri!.AbsoluteUri.Contains("openid-configuration"))
             {
-                return GetResponse("openid_configuration.json");
+                return GetResponse(DocumentStubs.OPENID_CONFIGURATION);
             }
 
             if (request.RequestUri.AbsoluteUri.Contains("jwks"))
             {
-                return GetResponse("discovery_jwks.json");
+                return GetResponse(DocumentStubs.DISCOVERY_JWKS);
             }
 
             if (request.RequestUri.AbsoluteUri.Contains("token"))
             {
                 return isExchangeSuccess
-                    ? isExchangeHasAccessToken ? GetResponse("success_token_response.json") : new HttpResponseMessage(HttpStatusCode.OK)
+                    ? isExchangeHasAccessToken ? GetResponse(DocumentStubs.SUCCESS_TOKEN_RESPONSE) : new HttpResponseMessage(HttpStatusCode.OK)
                     : new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
 
