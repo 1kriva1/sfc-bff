@@ -10,3 +10,4 @@ export { NoDataComponent } from "./no-data/no-data.component";
 export { BadgeComponent } from "./badge/badge.component";
 export { StatsSkillsComponent } from "./stats/skills/stats-skills.component";
 export { StatsTotalComponent } from "./stats/total/stats-total.component";
+export { CarouselSliderComponent } from './carousel-slider/carousel-slider.components';

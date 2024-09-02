@@ -1,0 +1,31 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+
+:host {
+    .container {
+        .content {
+            .row {
+                .column {
+                    sfc-carousel-input {
+                        ::ng-deep .container .content .component .carousel {
+                            margin: 0.5em 0;
+
+                            sfc-carousel {
+                                .navigation {
+                                    align-self: initial;
+
+                                    sfc-button {
+                                        .button {
+                                            @include square-size(3em);
+                                            border-radius: 100%;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="column photo">
+        <sfc-player-info-panel [radius]="Constants.AVATAR_RADIUS" [info]="false" [model]="avatar"
+            [sfcComponentSize]="ComponentSize.Small"></sfc-player-info-panel>
+    </div>
+
+    <div class="column name">
+        <sfc-player-info-panel [info]="true" [avatar]="false" [model]="info" [sfcComponentSize] [customSize]="0.8">
+        </sfc-player-info-panel>
+    </div>
+
+    <div class="column actions">
+        <sfc-dropdown-menu [items]="actions" [bordered]="false" [filled]="true"
+            [position]="[Position.Bottom, Position.Center]" [sfcComponentSize] [customSize]="0.7">
+        </sfc-dropdown-menu>
+    </div>
+</div>

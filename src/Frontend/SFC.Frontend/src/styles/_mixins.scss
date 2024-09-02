@@ -3,23 +3,25 @@
 @import "./variables";
 @import "./table/mixins";
 
-@mixin button() {
+@mixin button($hover: true, $background: $color-yellow-0, $background-hover: $color-yellow-1) {
   sfc-button {
     transition: transform 500ms;
     transform-origin: 50% 0;
 
-    &:hover {
-      transform: scale(1.05);
+    @if ($hover) {
+      &:hover {
+        transform: scale(1.05);
+      }
     }
 
     ::ng-deep {
       .button {
-        background: $color-yellow-0;
-        border-color: $color-yellow-0;
+        background: $background;
+        border-color: $background;
 
         &:hover {
-          background: $color-yellow-1;
-          border-color: $color-yellow-1;
+          background: $background-hover;
+          border-color: $background-hover;
         }
       }
     }
@@ -62,8 +64,7 @@
 
           sfc-side-menu {
             ::ng-deep .container {
-              transition:
-                background $transition-theme-backround-duration $transition-theme-backround-timing-function,
+              transition: background $transition-theme-backround-duration $transition-theme-backround-timing-function,
                 width $transition-duration-default ease-in-out;
             }
           }
@@ -76,13 +77,13 @@
         }
       }
 
-      .content {
+      > .content {
         width: 100%;
         padding: 0 2em 2em;
         overflow: hidden;
 
         .form {
-          form {
+          > form {
             display: flex;
             width: 100%;
           }
@@ -161,7 +162,7 @@
         sfc-dots {
           .container {
             > .dots-container {
-              > .dot {
+              sfc-dot {
                 @include theme-value(background, $color !important);
               }
             }
@@ -188,4 +189,22 @@
   color: $color;
   font-weight: bold;
   border: 2px solid $color;
+}
+
+@mixin position($background, $background-hover) {
+  .container {
+    background: $background;
+  }
+
+  &:not(.expanded):hover {
+    .container {
+      background: $background-hover;
+    }
+  }
+}
+
+@mixin sticky {
+  position: sticky;
+  top: 1em;
+  bottom: 0;
 }

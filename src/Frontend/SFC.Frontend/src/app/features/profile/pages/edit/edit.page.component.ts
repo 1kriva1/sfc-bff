@@ -4,11 +4,11 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {
-  faArrowLeft, faAsterisk, faCamera, faTriangleExclamation
+  faArrowLeft, faAsterisk, faCamera, faIdCard, faPeopleGroup, faTriangleExclamation
 } from '@fortawesome/free-solid-svg-icons';
 import {
   CommonConstants, IDefaultModalFooterModel, IDefaultModalHeaderModel,
-  isEqual, ButtonType, ModalTemplate, convertToBase64String, parseFileSize, nameof, isDefined
+  isEqual, ButtonType, ModalTemplate, convertToBase64String, parseFileSize, nameof, isDefined, Position
 } from 'ngx-sfc-common';
 import {
   fromEvent, map, Observable, startWith, Subscription, tap, switchMap,
@@ -21,7 +21,7 @@ import { EditPagePart } from './enums/edit-page-part.enum';
 import { EditPageLocalization } from './edit.page.localization';
 import { BaseErrorResponse } from '@core/models';
 import { StatsService } from './parts/stats/services/stats.service';
-import { getProgressColorDynamicallyFunc, TabsTemplate } from 'ngx-sfc-components';
+import { getProgressColorDynamicallyFunc, IDropdownMenuItemModel, TabsTemplate } from 'ngx-sfc-components';
 import { buildTitle, markFormTouchedAndDirty } from '@core/utils';
 import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import { RoutKey } from '@core/enums';
@@ -33,7 +33,7 @@ import { NotificationService } from '@core/services';
 import { MessageSeverity } from '@core/services/message/message-severity.enum';
 import { PlayerService as SharedPlayerService } from '@share/services';
 import { PlayerService } from '../../services/player/player.service';
-import { IPlayerByUserModel } from '@share/services/player/models/get-player-by-user.response';
+import { IPlayerByUserModel } from '@share/services/player/models/by-user/get-player-by-user.response';
 import { INotification } from '@core/services/notification/notification.model';
 import { fileMaxSize } from 'ngx-sfc-inputs';
 import { mapPlayerRequest } from './mapper/edit.page.mapper';
@@ -55,6 +55,7 @@ export class EditPageComponent
   faQuestionCircle = faQuestionCircle;
   faTriangleExclamation = faTriangleExclamation;
 
+  Position = Position;
   ButtonType = ButtonType;
   TabsTemplate = TabsTemplate;
   ModalTemplate = ModalTemplate;
@@ -75,6 +76,15 @@ export class EditPageComponent
         ${parseFileSize(photoControl.errors!['sfc-file-max-size']['actualSize'])}.`
       : CommonConstants.EMPTY_STRING;
   }
+
+  public ACTION_ITEMS: IDropdownMenuItemModel[] = [
+    {
+      label: EditPageLocalization.ACTION.CREATE_TEAM,
+      icon: faPeopleGroup,
+      click: () => this.router.navigate([`${RoutKey.Teams}/${RoutKey.Create}`]),
+      delimeter: this.sharedPlayerService.playerCreated
+    }
+  ];
 
   public get changesModalFooterModel(): IDefaultModalFooterModel {
     return {
@@ -171,6 +181,8 @@ export class EditPageComponent
       this.setPageTitle();
 
       this.setGuardChangesModel();
+
+      this.setActions();
     }
 
     this.statsService.init({
@@ -258,6 +270,15 @@ export class EditPageComponent
     };
 
     this.guardChangesSubject.next(model);
+  }
+
+  private setActions(): void {
+    const profileActionItem: IDropdownMenuItemModel = {
+      label: EditPageLocalization.ACTION.OPEN_VIEW,
+      click: () => this.router.navigate([`${RoutKey.Players}/${this.sharedPlayerService.playerId.value}`]),
+      icon: faIdCard
+    };
+    this.ACTION_ITEMS.push(profileActionItem);
   }
 
   private setPageTitle(): void {

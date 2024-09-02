@@ -25,4 +25,5 @@ export interface IEnumsModel {
     badgeTypes: IBadgeTypeEnumModel[];
     gameStatuses: IEnumModel<number>[];
     teamStatuses: IEnumModel<number>[];
+    shirts: IEnumModel<number>[];
 }

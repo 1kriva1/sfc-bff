@@ -37,6 +37,12 @@ const routes: Routes = [
     canMatch: [CanMatchOnlyAuthenticated]
   },
   {
+    path: RoutKey.Teams,
+    loadChildren: () => import('./features/team/team.module').then(m => m.TeamModule),
+    data: { layout: LayoutConstants.ONLY_HEADER_LAYOUT_MODEL },
+    canMatch: [CanMatchOnlyAuthenticated]
+  },
+  {
     path: RouteConstants.DEFAULT_ROUTE_PATH,
     redirectTo: buildPath(RoutKey.Welcome),
     pathMatch: 'full'

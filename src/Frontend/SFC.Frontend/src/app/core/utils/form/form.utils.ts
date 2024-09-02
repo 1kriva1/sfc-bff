@@ -13,3 +13,14 @@ export function markFormTouchedAndDirty(form: FormGroup): void {
 
     Object.values(form.controls).forEach(control => showValidationMessages(control));
 }
+
+export function markControlTouchedAndDirty(form: FormGroup, name: string): AbstractControl | null {
+    const control: AbstractControl | null = form.controls[name];
+
+    if (control) {
+        control.markAsDirty();
+        control.updateValueAndValidity();
+    }
+
+    return control;
+}

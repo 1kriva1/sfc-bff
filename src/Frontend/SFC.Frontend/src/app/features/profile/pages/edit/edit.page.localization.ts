@@ -70,4 +70,8 @@ export class EditPageLocalization {
             VALUE: $localize`:@@feature.profile.edit.page.notification.update.value:Your changes have applied.`
         }
     };
+    static ACTION = {
+        CREATE_TEAM: $localize`:@@feature.profile.edit.page.action.create-team:Create team`,
+        OPEN_VIEW: $localize`:@@feature.profile.edit.page.action.open-view:Open view`,
+    };
 }

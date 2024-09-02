@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 		nuget.config = nuget.config
 		redis-server.sh = redis-server.sh
+		start-services.ps1 = start-services.ps1
+		start-application.ps1 = start-application.ps1
 		start.ps1 = start.ps1
 	EndProjectSection
 EndProject
@@ -35,7 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFC.Bff.Infrastructure", "src\Infrastructure\SFC.Bff.Infrastructure\SFC.Bff.Infrastructure.csproj", "{6208A69E-7530-41F7-8EF9-ED33AA2906C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFC.Bff.Infrastructure.UnitTests", "tests\SFC.Bff.Infrastructure.UnitTests\SFC.Bff.Infrastructure.UnitTests.csproj", "{FB61F31B-C838-46CA-BD92-09E92E41871C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFC.Bff.Infrastructure.UnitTests", "tests\SFC.Bff.Infrastructure.UnitTests\SFC.Bff.Infrastructure.UnitTests.csproj", "{FB61F31B-C838-46CA-BD92-09E92E41871C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -32,7 +32,8 @@ class I18nInitializer {
             homeTranslations = await this.loadFeatureTranslations(Feature.Home),
             welcomeTranslations = await this.loadFeatureTranslations(Feature.Welcome),
             profileTranslations = await this.loadFeatureTranslations(Feature.Profile),
-            playerTranslations = await this.loadFeatureTranslations(Feature.Player);
+            playerTranslations = await this.loadFeatureTranslations(Feature.Player),
+            teamTranslations = await this.loadFeatureTranslations(Feature.Team);
 
         const translations = mergeDeep(
             coreTranslationsModule,
@@ -40,7 +41,8 @@ class I18nInitializer {
             homeTranslations,
             welcomeTranslations,
             profileTranslations,
-            playerTranslations);
+            playerTranslations,
+            teamTranslations);
 
         loadTranslations(translations);
     }

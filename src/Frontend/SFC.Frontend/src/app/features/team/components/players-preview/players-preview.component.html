@@ -1,0 +1,12 @@
+<div class="container" *ngIf="models$ | async as models">
+    <sfc-title [label]="'Players'" [description]="'Players that will receive requests after team will be created.'">
+    </sfc-title>
+
+    <sfc-toggle-switcher [leftModel]="leftModel" [rightModel]="rightModel" [sfcComponentSize] [customSize]="0.7"
+        (click)="onToggle()">
+    </sfc-toggle-switcher>
+
+    <sfc-players-by-position-preview *ngFor="let model of models" [type]="type" [model]="model"
+        (remove)="remove.emit($event)">
+    </sfc-players-by-position-preview>
+</div>

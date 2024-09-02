@@ -14,8 +14,14 @@ import {
   NoDataComponent,
   BadgeComponent,
   StatsSkillsComponent,
-  StatsTotalComponent
+  StatsTotalComponent,
+  CarouselSliderComponent
 } from './components';
+import { GeneralFilterComponent, FootballFilterComponent, StatsFilterComponent } from './components/players/search/filters';
+import { PlayerCardComponent, PlayerRowComponent, PlayerRowContentComponent } from './components/players/search/table';
+import { NgxSfcInputsModule } from 'ngx-sfc-inputs';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TimePipe, DayPipe } from './pipes';
 
 @NgModule({
   declarations: [
@@ -28,14 +34,26 @@ import {
     NoDataComponent,
     BadgeComponent,
     StatsSkillsComponent,
-    StatsTotalComponent
+    StatsTotalComponent,
+    CarouselSliderComponent,
+    GeneralFilterComponent,
+    FootballFilterComponent,
+    StatsFilterComponent,
+    PlayerRowComponent,
+    PlayerRowContentComponent,
+    PlayerCardComponent,
+    // pipes
+    TimePipe,
+    DayPipe
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     HttpClientModule,
     FontAwesomeModule,
     NgxSfcCommonModule,
-    NgxSfcComponentsModule
+    NgxSfcComponentsModule,
+    NgxSfcInputsModule
   ],
   exports: [
     LogoComponent,
@@ -47,7 +65,17 @@ import {
     NoDataComponent,
     BadgeComponent,
     StatsSkillsComponent,
-    StatsTotalComponent
+    StatsTotalComponent,
+    CarouselSliderComponent,
+    GeneralFilterComponent,
+    FootballFilterComponent,
+    StatsFilterComponent,
+    PlayerRowComponent,
+    PlayerRowContentComponent,
+    PlayerCardComponent,
+    // pipes
+    TimePipe,
+    DayPipe
   ]
 })
 export class ShareModule { }

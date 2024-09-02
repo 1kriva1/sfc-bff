@@ -84,5 +84,7 @@
   "edit.page.notification.create.title": "Profile successfully created!",
   "edit.page.notification.create.value": "You are ready for football.",
   "edit.page.notification.update.title": "Profile successfully updated!",
-  "edit.page.notification.update.value": "Your changes have applied."
+  "edit.page.notification.update.value": "Your changes have applied.",
+  "edit.page.action.create-team": "Create team",
+  "edit.page.action.open-view": "Open view"
 }

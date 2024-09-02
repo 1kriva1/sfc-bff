@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit } from "
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { HeaderService } from "@core/components";
 import { IForm } from "@core/types";
-import { faClock, faLocationDot, faRegistered, faSearch, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faLocationDot, faPeopleGroup, faRegistered, faSearch, faUser, faUserGroup, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { IInfoPanelModel, IPlayerInfoPanelModel } from "@share/components";
 import {
     ButtonType, ComponentSize, IDefaultModalFooterModel,
@@ -12,7 +12,7 @@ import {
     ModalTemplate, PaginationConstants, Position, ResizeService,
     Theme
 } from "ngx-sfc-common";
-import { ExpandedTableRowTemplate, ITableColumnExtendedModel, TableTemplate } from "ngx-sfc-components";
+import { ExpandedTableRowTemplate, IDropdownMenuItemModel, ITableColumnExtendedModel, TableTemplate } from "ngx-sfc-components";
 import { IFiltersVisabilityModel } from "./models/filters-visability.model";
 import { ISearchPageModel } from "./models/search.page.model";
 import { IRecommendationsVisabilityModel } from "./models/recommendations-visability.model";
@@ -21,19 +21,20 @@ import {
     catchError, filter, of, Subject, debounce,
     timer, tap, map, Observable, switchMap, distinctUntilChanged, Subscription
 } from 'rxjs';
-import { PlayerService } from "../../services/player/player.service";
-import { EnumService } from "@share/services";
+// import { PlayerService } from "../../services/player/player.service";
+import { EnumService, PlayerService } from "@share/services";
 import { mapPageResponse } from "@core/utils";
 import { INotification, NotificationService } from "@core/services";
 import { MessageSeverity } from "@core/services/message/message-severity.enum";
 import { BaseErrorResponse } from "@core/models";
 import { SearchPageLocalization } from "./search.page.localization";
 import { ThemeService } from "@share/components/theme-toggler/services/theme/theme.service";
-import { IFindPlayersRequest, IPlayerItemModel } from "../../services/player/models/find";
-import { mapGetPlayersRequest, mapSearchPageTableModel } from "./mapper/search.page.mapper";
-import { IPlayersTableModel } from "./parts/table/players-table.model";
-import { PlayersTableConstants } from "./parts/table/players-table.constants";
-import { PlayersTableLocalization } from "./parts/table/players-table.localization";
+// import { mapGetPlayersRequest, mapSearchPageTableModel } from "./mapper/search.page.mapper";
+import { IFindPlayersRequest, IPlayerItemModel } from "@share/services/player/models/find";
+import { IPlayersTableModel, PlayersTableLocalization } from "@share/components/players/search/table";
+import { RoutKey } from "@core/enums";
+import { Router } from "@angular/router";
+import { mapFindPlayersRequest, mapPlayerTableModel } from "@share/mappers";
 
 @Component({
     templateUrl: './search.page.component.html',
@@ -44,7 +45,6 @@ export class SearchPageComponent
 
     Position = Position;
     Constants = SearchPageConstants;
-    TableConstants = PlayersTableConstants;
     TableTemplate = TableTemplate;
     ExpandedTableRowTemplate = ExpandedTableRowTemplate;
     ButtonType = ButtonType;
@@ -54,9 +54,9 @@ export class SearchPageComponent
     TableLocalization = PlayersTableLocalization;
 
     // table
-    public columns: ITableColumnExtendedModel[] = PlayersTableConstants.COLUMNS;
+    public columns: ITableColumnExtendedModel[] = SearchPageConstants.COLUMNS;
 
-    public pagination: IPaginationModel = { page: PaginationConstants.DEFAULT_PAGE, size: PlayersTableConstants.PAGINATION_SIZE };
+    public pagination: IPaginationModel = { page: PaginationConstants.DEFAULT_PAGE, size: SearchPageConstants.PAGINATION_SIZE };
 
     public predicate$!: Observable<ILoadContainerPredicateParameters | null>;
 
@@ -179,6 +179,25 @@ export class SearchPageComponent
         // }
     ];
 
+    public getTableActions(player: any): IDropdownMenuItemModel[] {
+        return [
+            {
+                label: SearchPageLocalization.TABLE.ACTIONS.INVITE_TO_GAME,
+                icon: faUserPlus
+            },
+            {
+                label: SearchPageLocalization.TABLE.ACTIONS.ADD_TO_TEAM,
+                icon: faPeopleGroup,
+                delimeter: true
+            },
+            {
+                label: SearchPageLocalization.TABLE.ACTIONS.OPEN_PROFILE,
+                icon: faUser,
+                click: () => this.router.navigate([`${RoutKey.Players}/${player.id}`])
+            }
+        ];
+    }
+
     public searchForm!: FormGroup;
 
     public get showLoading(): boolean { return this.themeService.theme == Theme.Default; }
@@ -196,6 +215,7 @@ export class SearchPageComponent
         private enumService: EnumService,
         private notificationService: NotificationService,
         private themeService: ThemeService,
+        private router: Router,
         private changeDetectorRef: ChangeDetectorRef
     ) { }
 
@@ -235,13 +255,16 @@ export class SearchPageComponent
     }
 
     public loader(parameters: ILoadContainerParameters): Observable<ILoadContainerLoaderResultModel<IPlayersTableModel>> {
-        const request: IFindPlayersRequest = mapGetPlayersRequest(parameters.params?.value,
+        const request: IFindPlayersRequest = mapFindPlayersRequest(parameters.params?.value,
             parameters.page, this.pagination.size,
             parameters.sorting);
 
         return this.playerService.find(request, !this.showLoading).pipe(
             mapPageResponse<IPlayerItemModel, IPlayersTableModel>(
-                (item: IPlayerItemModel) => mapSearchPageTableModel(item, this.enumService)
+                (item: IPlayerItemModel) => {
+                    const player: IPlayersTableModel = mapPlayerTableModel(item, this.enumService);
+                    return player;
+                }
             ),
             catchError((error: BaseErrorResponse) => {
                 const notification: INotification = {

@@ -1,0 +1,82 @@
+<div class="container" [formGroupName]="EditPagePart.Players">
+    <sfc-title [label]="'Players'" [description]="'Prepare players list to send invite requests.'">
+    </sfc-title>
+
+    <div class="content">
+        <div class="filters">
+            <form [formGroup]="searchForm" autocomplete="off">
+                <div class="name">
+                    <sfc-text-input id="name" formControlName="name" [sfcFocusInput]="false"
+                        [showPlaceholderOnFocus]="true" [label]="''" [placeholder]="'Type player name'"
+                        [bordered]="false" [sfcComponentSize] [customSize]="2">
+                    </sfc-text-input>
+
+                    <sfc-delimeter></sfc-delimeter>
+                </div>
+
+                <div class="modal">
+                    <sfc-button sfcComponentReference #modalButton="componentRef" [text]="'Show all available filters'"
+                        [disabled]="false" [types]="[ButtonType.Rounded, ButtonType.Filled]" [sfcComponentSize]
+                        [customSize]="0.9">
+                    </sfc-button>
+
+                    <sfc-modal *sfcModalOpenOnClick="modalButton.elementRef.nativeElement" [hideOnClickOutside]="false"
+                        [hideOnEsc]="true" [defaultHeaderModel]="headerModel" [defaultFooterModel]="footerModel">
+                        <ng-template [sfcTemplateReference]="ModalTemplate.Body">
+                            <div class="modal-filters">
+                                <sfc-collapse-expand-container [expand]="true" [labelExpand]="'General'"
+                                    [labelCollapse]="'Hide'" [delimeter]="true">
+                                    <sfc-general-filter>
+                                    </sfc-general-filter>
+                                </sfc-collapse-expand-container>
+
+                                <sfc-collapse-expand-container [expand]="true" [labelExpand]="'Football'"
+                                    [labelCollapse]="'Hide'" [delimeter]="true">
+                                    <sfc-football-filter>
+                                    </sfc-football-filter>
+                                </sfc-collapse-expand-container>
+
+                                <sfc-collapse-expand-container [expand]="true" [labelExpand]="'Stats'"
+                                    [labelCollapse]="'Hide'" [delimeter]="false">
+                                    <sfc-stats-filter>
+                                    </sfc-stats-filter>
+                                </sfc-collapse-expand-container>
+                            </div>
+                        </ng-template>
+                    </sfc-modal>
+                </div>
+            </form>
+        </div>
+
+        <div class="table">
+            <sfc-table [columns]="TableConstants.COLUMNS" [predicate$]="predicate$" [loader]="loader.bind(this)"
+                [pagination]="TableConstants.PAGINATION" [position]="Position.Center" [showColumns]="true"
+                [columnsToggle]="true" [showTotal]="true" [showLoading]="showLoading"
+                [paginationCount]="TableConstants.PAGINATION_COUNT" [paginationLimits]="true"
+                [showColumnsLabel]="TableLocalization.COLUMNS_SHOW_LABEL"
+                [hideColumnsLabel]="TableLocalization.COLUMNS_HIDE_LABEL" [totalLabel]="TableLocalization.TOTAL_LABEL"
+                [dataListLabel]="TableLocalization.DATA_LIST_LABEL"
+                [dataCardsLabel]="TableLocalization.DATA_CARDS_LABEL"
+                [notFoundLabel]="TableLocalization.NOT_FOUND_LABEL">
+                <ng-template [sfcTemplateReference]="TableTemplate.Row" let-row>
+                    <sfc-expanded-table-row [model]="row.model" [sfcComponentSize] [customSize]="0.8"
+                        [columns]="row.columns" [position]="row.position">
+                        <ng-template [sfcTemplateReference]="ExpandedTableRowTemplate.Row" let-expandedRow>
+                            <sfc-player-row [model]="expandedRow.model.data" [expanded]="expandedRow.expanded"
+                                [columns]="expandedRow.columns" [actions]="getTableActions(expandedRow.model.data)">
+                            </sfc-player-row>
+                        </ng-template>
+                        <ng-template [sfcTemplateReference]="ExpandedTableRowTemplate.Content" let-expandedContent>
+                            <sfc-player-row-content [model]="expandedContent.model.data"></sfc-player-row-content>
+                        </ng-template>
+                    </sfc-expanded-table-row>
+                </ng-template>
+
+                <ng-template [sfcTemplateReference]="TableTemplate.Card" let-card>
+                    <sfc-player-card [model]="card.model.data" [actions]="getTableActions(card.model.data)">
+                    </sfc-player-card>
+                </ng-template>
+            </sfc-table>
+        </div>
+    </div>
+</div>

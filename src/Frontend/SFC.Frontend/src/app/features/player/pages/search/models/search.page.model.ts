@@ -1,6 +1,4 @@
-import { IFootballFilterModel } from "../parts/filters/football/football-filter.model";
-import { IGeneralFilterModel } from "../parts/filters/general/general-filter.model";
-import { IStatsFilterModel } from "../parts/filters/stats/stats-filter.model";
+import { IFootballFilterModel, IGeneralFilterModel, IStatsFilterModel } from "@share/components/players/search/filters";
 
 export interface ISearchPageModel {
     name: string | null;

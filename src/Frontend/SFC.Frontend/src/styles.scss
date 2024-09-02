@@ -10,6 +10,75 @@ html {
       text-decoration: none;
       color: inherit;
     }
+
+    // start - no-root loader
+    sfc-root {
+      &:empty {
+        & + .loading {
+          opacity: 1;
+          z-index: 100;
+        }
+      }
+
+      & + .loading {
+        opacity: 0;
+        z-index: -1;
+        transition: opacity 0.8s ease-in-out;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+
+        .preloader {
+          position: relative;
+          top: 0;
+          left: 0;
+          @include square-size(100%);
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999;
+          position: fixed;
+          opacity: 0.7;
+          background-color: $color-0;
+
+          .spinner {
+            text-align: center;
+
+            .bounce {
+              border-radius: 100%;
+              display: inline-block;
+              animation: bounce-delay 1.4s infinite ease-in-out both;
+              background-color: $color-default;
+              @include square-size(1em);
+
+              &:nth-child(1) {
+                animation-delay: -0.32s;
+              }
+
+              &:nth-child(2) {
+                animation-delay: -0.16s;
+              }
+
+              @keyframes bounce-delay {
+                0%,
+                80%,
+                100% {
+                  transform: scale(0);
+                }
+
+                40% {
+                  transform: scale(1);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    // end - no-root loader
   }
 
   @include scroll("&");

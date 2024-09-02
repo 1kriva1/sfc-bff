@@ -1,0 +1,2 @@
+export { PlayersRecommendationComponent } from "./recomendation/players-recommendation.component";
+export { PlayerRecommendationComponent } from "./recomendation/parts/player/player-recommendation.component";

@@ -1,0 +1,109 @@
+<div class="container">
+    <div class="side" *ngIf="!headerService.open">
+        <div class="menu-container">
+            <sfc-side-menu [model]="Constants.SIDE_MENU_MODEL">
+            </sfc-side-menu>
+
+            <sfc-theme-toggler [sfcComponentSize] [customSize]="0.8">
+            </sfc-theme-toggler>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="title">
+            <sfc-title [sfcComponentSize] [customSize]="2" [label]="Localization.TITLE.LABEL"
+                [description]="Localization.TITLE.DESCRIPTION " [tooltip]="Localization.TITLE.TOOLTIP">
+            </sfc-title>
+        </div>
+
+        <div class="form">
+            <form [formGroup]="form" autocomplete="off">
+                <div class="chapters" *ngIf="((vm$ | async) || $any({})) as vm">
+                    <div class="chapter left">
+                        <sfc-page-progress></sfc-page-progress>
+                    </div>
+
+                    <div class="chapter center">
+                        <div class="part logo">
+                            <div class="content logo">
+                                <sfc-image-input id="logo" formControlName="logo"
+                                    [label]="Localization.INPUT.LOGO.LABEL"
+                                    [helperText]="Localization.INPUT.LOGO.HELPER_TEXT" [icon]="faCamera"
+                                    [clearButton]="false" [hideOnClickOutside]="true"
+                                    [defaultPhoto]="ApplicationCommonConstants.DEFAULT_TEAM_A_IMAGE_PATH"
+                                    [okLabel]="Localization.BUTTON_OK_LABEL"
+                                    [cancelLabel]="Localization.BUTTON_CANCEL_LABEL" [validations]="{
+                                        'sfc-format': Localization.INPUT.LOGO.VALIDATIONS.INVALID_FORMAT,
+                                        'sfc-file-max-size': LOGO_MAX_SIZE_VALIDATION
+                                    }">
+                                </sfc-image-input>
+                            </div>
+
+                            <div class="content info">
+                                <div class="stars">
+                                    <sfc-stars [value]="playersService.stars"></sfc-stars>
+                                    <sfc-icon-tooltip [tooltip]="Localization.STARS_TOOLTIP" [position]="Position.Top"
+                                        [icon]="faQuestionCircle">
+                                    </sfc-icon-tooltip>
+                                </div>
+                                <h3>{{vm.information?.name}}</h3>
+                                <p><span>{{vm.information?.city}}</span></p>
+                            </div>
+
+                            <div class="content errors" [sfcShowHideElement]="error !== null">
+                                <span class="error-message">{{error?.Message}}</span>
+                            </div>
+
+                            <div class="content submit">
+                                <sfc-button #submitBtn [text]="Localization.BUTTON_UPDATE_TEXT"
+                                    [types]="[ButtonType.Rounded, ButtonType.Filled]" [sfcComponentSize]
+                                    [customSize]="1" [disabled]="submitDisabled">
+                                </sfc-button>
+                            </div>
+                        </div>
+
+                        <div class="part tabs">
+                            <div class="content">
+                                <sfc-tabs [tabs]="TABS">
+                                    <ng-template [sfcTemplateReference]="TabsTemplate.Label" let-label>
+                                        <sfc-tab-label [selected]="label.selected" label="{{label.label}}"
+                                            [icon]="label.icon" [delimeters]="true"></sfc-tab-label>
+                                        <!-- <sfc-tab-label-line [selected]="label.selected" [disabled]="label.disabled"
+                                            label="{{label.label}}" [icon]="label.icon">
+                                        </sfc-tab-label-line> -->
+                                    </ng-template>
+
+                                    <ng-template [sfcTemplateReference]="TabsTemplate.Slider" let-data>
+                                        <sfc-tab-label-line-slider [count]="data.count" [index]="data.index">
+                                        </sfc-tab-label-line-slider>
+                                    </ng-template>
+
+                                    <ng-template [sfcTemplateReference]="TabsTemplate.Body" let-data>
+                                        <div class="body">
+                                            <sfc-information-edit [sfcIf]="data === EditPagePart.Information">
+                                            </sfc-information-edit>
+
+                                            <sfc-players-edit [sfcIf]="data === EditPagePart.Players">
+                                            </sfc-players-edit>
+
+                                            <div class="scheme" [sfcIf]="data === EditPagePart.Scheme">
+                                                <h1>scheme</h1>
+                                            </div>
+
+                                            <div class="games" [sfcIf]="data === EditPagePart.Games">
+                                                <h1>games</h1>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </sfc-tabs>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chapter right">
+                        <sfc-players-preview (remove)="removePlayer($event)"></sfc-players-preview>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

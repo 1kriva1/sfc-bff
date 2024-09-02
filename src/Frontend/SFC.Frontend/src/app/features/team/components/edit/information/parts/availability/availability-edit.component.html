@@ -1,0 +1,71 @@
+<div class="container" [formGroupName]="InformationEditPart.Availability">
+    <sfc-title [label]="'Availability'" [description]="'Team availability.'">
+    </sfc-title>
+
+    <div class="content">
+        <form [formGroup]="availabilityForm" autocomplete="off">
+            <div class="row">
+                <div class="column">
+                    <sfc-bubbles-input id="days" formControlName="days" [label]="'Days'" [placeholder]="'Days'"
+                        [helperText]="'Choose day of week when team can play'" [items]="daysBubbles" [validations]="{
+                                                                            required: 'This field required.'
+                                                                          }">
+                    </sfc-bubbles-input>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <sfc-datetime-input id="from-time" formControlName="from" [time]="true" [date]="false"
+                        [label]="'From time'" [placeholder]="'From time'"
+                        [helperText]="'Choose time from which your team can play'" [switchOnClick]="true"
+                        [fullSize]="true" [bordered]="true" [hideOnClickOutside]="true" [locale]="locale"
+                        [modalButtonsModel]="dateTimeInputModalButtonsModel" [validations]="{
+                                                                                required: 'This field required.',
+                                                                                'sfc-compare-than': 'From must be less than to'
+                                                                              }">
+                    </sfc-datetime-input>
+                </div>
+
+                <div class="column">
+                    <sfc-datetime-input id="to-time" formControlName="to" [time]="true" [date]="false"
+                        [label]="'To time'" [placeholder]="'To time'"
+                        [helperText]="'Choose time to which your team can play'" [switchOnClick]="true"
+                        [fullSize]="true" [bordered]="true" [hideOnClickOutside]="true" [locale]="locale"
+                        [modalButtonsModel]="dateTimeInputModalButtonsModel" [validations]="{
+                                                                                required: 'This field required.',
+                                                                                'sfc-compare-than': 'To must be more than from'
+                                                                              }">
+                    </sfc-datetime-input>
+                </div>
+            </div>
+
+            <div class="row add">
+                <div class="column">
+                    <sfc-button [iconAfter]="faPlus" [types]="[ButtonType.Rounded, ButtonType.Filled]" [text]="'Add'"
+                        [sfcComponentSize] [customSize]="0.6" (click)="add()">
+                    </sfc-button>
+                </div>
+            </div>
+
+            <div class="row list">
+                <sfc-delimeter
+                    [label]="group.value.availability.length ? 'The list of available days' : 'No available days'">
+                </sfc-delimeter>
+
+                <div class="date"
+                    *ngFor="let date of group.value.availability | sfcSortBy:sortingPath:SortingDirection.Ascending">
+                    <fa-icon [icon]="faCalendarDay"></fa-icon>
+                    <span class="day">{{date.day | sfcDay: weekDays}}</span>
+                    <span class="label">from</span>
+                    <span class="from">{{date.from | sfcTime:locale:Constants.DATE_TIME_FORMAT_OPTIONS}}</span>
+                    <span class="label">to</span>
+                    <span class="to">{{date.to | sfcTime:locale:Constants.DATE_TIME_FORMAT_OPTIONS}}</span>
+                    <sfc-button [iconAfter]="faTimes" [types]="[ButtonType.Rounded, ButtonType.Filled]"
+                        [text]="'Remove'" [sfcComponentSize]="ComponentSize.Small" (click)="remove(date)">
+                    </sfc-button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

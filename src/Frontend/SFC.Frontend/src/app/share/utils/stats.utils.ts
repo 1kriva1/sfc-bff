@@ -1,4 +1,5 @@
 import { IEnumModel } from "@core/types";
+import { StatsConstants } from "@share/constants/stats.constants";
 import { IStatsTypeModel } from "@share/models/stats-type.model";
 import { IStatsModel } from "@share/models/stats.model";
 import { IStatTypeEnumModel } from "@share/services/enum/models/enums.model";
@@ -7,11 +8,8 @@ import { getProgressColorDefaultFunc } from "ngx-sfc-components";
 import { IStatsMetadataModel, IStatValueModel } from "../models";
 import { StatsValue } from "../types";
 
-const MAX_STAT_VALUE: number = 100;
-
 export function getStars(value: number, total: number = CommonConstants.FULL_PERCENTAGE): number {
-    const MAX_STARS_VALUE = 5;
-    return MAX_STARS_VALUE * value / total;
+    return StatsConstants.MAX_STARS_VALUE * value / total;
 }
 
 export function getRaiting(value: StatsValue): number {
@@ -21,7 +19,7 @@ export function getRaiting(value: StatsValue): number {
                 const valueStats: number[] = Object.values(value[+key]),
                     statsValue = sum(valueStats, (value: number) => value);
                 return ({
-                    total: statsAccumulator.total += valueStats.length * MAX_STAT_VALUE,
+                    total: statsAccumulator.total += valueStats.length * StatsConstants.MAX_STAT_VALUE,
                     value: statsAccumulator.value += statsValue
                 });
             }, initial);
@@ -86,7 +84,7 @@ export function getMetadata(value: StatsValue): { [key: string]: IStatsMetadataM
             return ({
                 ...statsAccumulator,
                 [key]: {
-                    total: valueStats.length * MAX_STAT_VALUE,
+                    total: valueStats.length * StatsConstants.MAX_STAT_VALUE,
                     value: statValue,
                     count: valueStats.length,
                     average: average,

@@ -1,0 +1,17 @@
+{
+    "edit.page.router.title.create": "Нова команда",
+    "edit.page.router.title.update": "Оновити команду",
+    "edit.page.title-create.label": "Створи команду",
+    "edit.page.title-create.description": "Будь ласка, створи команду",
+    "edit.page.title-create.tooltip": "Цей крок не вимагав багато вхідних даних. Просто введіть своє ім’я, місто та футбольну позицію, щоб почати використовувати SFC.",
+    "edit.page.title-update.label": "Твоя команда",
+    "edit.page.title-update.description": "Тут ви можете змінити інформацію про команду",
+    "edit.page.title-update.tooltip": "Цей крок не вимагав багато вхідних даних. Просто введіть своє ім’я, місто та футбольну позицію, щоб почати використовувати SFC.",
+    "edit.page.logo-input.label": "Емблема",
+    "edit.page.logo-input.placeholder": "Будь ласка, змініть емблему (лого)",
+    "edit.page.logo-input.validation.max-size-1": "Максимально допустимий розмір",
+    "edit.page.logo-input.validation.max-size-2": "розмір вашого файлу",
+    "edit.page.stars.tooltip": "Ці зірочки визначають рейтинг вашої команди як суму статистичних даних усіх гравців",
+    "edit.page.progress.filled.label": "Інформація заповнена",
+    "edit.page.progress.filled": "інформаційних полів заповнено."
+}

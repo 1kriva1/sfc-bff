@@ -1,0 +1,88 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+
+:host {
+    .container {
+        .content {
+            .row {
+                .column {
+                    sfc-bubbles-input {
+                        ::ng-deep .container {
+                            .content {
+                                .component {
+                                    .bubbles {
+                                        justify-content: center;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.add {
+                    .column {
+                        justify-content: center;
+
+                        @include button;
+
+                        sfc-button {
+                            display: contents;
+                            width: 100%;
+                        }
+                    }
+                }
+
+                &.list {
+                    flex-direction: column;
+
+                    .date {
+                        @include center;                        
+                        @include theme-value(color, $color-default, $color-dark);
+                        padding: 0.5em 0;
+                        font-size: 1em;
+                        user-select: none;
+
+                        span {
+                            width: 5em;
+                            padding: 0 0.5em;
+                            text-align: center;
+
+                            &.label {
+                                color: $color-hover-default;
+                                font-size: 0.7em;
+                            }
+
+                            &.from,
+                            &.to,
+                            &.day {
+                                font-size: 0.8em;
+                                font-weight: bold;
+                            }
+
+                            &.day {
+                                text-align: start;
+                            }
+                        }
+
+                        fa-icon {
+                            color: $color-hover-default;
+                            font-size: 0.9em;
+                        }
+
+                        @include button(true, $color-red-0, $color-red-1);
+
+                        sfc-button {
+                            padding: 0 0.5em;
+                        }
+                    }
+
+                    sfc-delimeter {
+                        width: 100%;
+                        font-size: 0.8em;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+}

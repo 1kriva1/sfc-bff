@@ -1,0 +1,56 @@
+<div class="container" [formGroupName]="InformationEditPart.General">
+    <sfc-title [label]="'General'" [description]="'General information about team.'">
+    </sfc-title>
+
+    <div class="content">
+        <div class="row">
+            <div class="column">
+                <sfc-text-input id="name" formControlName="name" [label]="'Name'" [placeholder]="'Name'"
+                    [bordered]="true" [validations]="{
+                    required: 'This field required.', 
+                    maxlength: 'Max length'
+                  }">
+                </sfc-text-input>
+            </div>
+
+            <div class="column">
+                <sfc-text-input id="city" formControlName="city" [label]="'City'" [placeholder]="'City'"
+                    [bordered]="true" [helperText]="'Where team mainly playing'" [validations]="{
+                    required: 'This field required.', 
+                    maxlength: 'Max length'
+                  }">
+                </sfc-text-input>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <sfc-autocomplete-input id="stadium" formControlName="stadium" [label]="'Stadium'"
+                    [placeholder]="'Stadium'" [helperText]="'Pitch where team mainly playing'" [loader]="stadiumsLoader"
+                    [bordered]="true">
+                </sfc-autocomplete-input>
+            </div>
+
+            <div class="column">
+                <sfc-tags-input id="tags" formControlName="tags" [label]="'Tags'" [placeholder]="'Tags'"
+                    [helperText]="'Add a few tags to describe team'" [bordered]="true" [newTagPlaceholder]="'+ '+'tag'"
+                    [maxTagLength]="Constants.MAX_TAG_VALUE_LENGTH" [validations]="{
+                    'sfc-empty': 'Can not be empty', 
+                    'sfc-duplicate': 'Duplicate', 
+                    'sfc-tags-length': 'tags length', 
+                    'sfc-max-array-length': 'max length'
+                  }">
+                </sfc-tags-input>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <sfc-text-area-input id="description" formControlName="description" [bordered]="true"
+                    [label]="'Description'" [placeholder]="'Team description'"
+                    [helperText]="'A few words about your team'" [validations]="{maxlength: 'Max length'}">
+                </sfc-text-area-input>
+            </div>
+        </div>
+    </div>
+</div>
