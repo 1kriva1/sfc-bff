@@ -2,58 +2,61 @@
 @import "index";
 
 :host {
-    > .container {
-        @include part;
+  > .container {
+    @include part;
 
-        .content {
-            @include center;
-            flex-direction: column;
+    .content {
+      @include center;
 
-            .item {
-                width: 100%;
+      flex-direction: column;
 
-                .container {
-                    @include center;
-                    flex-direction: column;
-                    width: 100%;
-                    padding: 0.5em 0;
+      .item {
+        width: 100%;
 
-                    span {
-                        @include theme-color($color-7, $color-5);
-                        width: 100%;
-                        font-size: 0.7em;
-                        padding-top: 0.5em;
-                        text-align: start;
-                    }
-                }
+        .container {
+          @include center;
 
-                &.players {
-                    sfc-delimeter {
-                        font-weight: bold;
-                        font-size: 0.8em;
-                    }
+          flex-direction: column;
+          width: 100%;
+          padding: 0.5em 0;
 
-                    .container {
-                        padding: 1em 0;
+          span {
+            @include theme-color($color-7, $color-5);
 
-                        sfc-progress-line {
-                            ::ng-deep .container {
-                                .labels {
-                                    font-size: 0.7em;
-                                }
-                            }
-                        }
-
-                        &.total {
-                            flex-direction: row;
-
-                            span {
-                                text-align: center;
-                            }
-                        }
-                    }
-                }
-            }
+            width: 100%;
+            font-size: 0.7em;
+            padding-top: 0.5em;
+            text-align: start;
+          }
         }
+
+        &.players {
+          sfc-delimeter {
+            font-weight: bold;
+            font-size: 0.8em;
+          }
+
+          .container {
+            padding: 1em 0;
+
+            sfc-progress-line {
+              ::ng-deep .container {
+                .labels {
+                  font-size: 0.7em;
+                }
+              }
+            }
+
+            &.total {
+              flex-direction: row;
+
+              span {
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
     }
+  }
 }

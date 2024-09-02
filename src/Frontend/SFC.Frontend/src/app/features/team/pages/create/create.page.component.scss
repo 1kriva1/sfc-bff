@@ -3,35 +3,35 @@
 @include base-page;
 
 :host {
-    .container {
-        .content {
-            .form {
-                form {
-                    .chapters {
-                        .chapter {
-                            &.center {
-                                .part {
-                                    &.tabs {
-                                        .content {
-                                            sfc-tabs {
-                                                ::ng-deep .container {
-                                                    .tabs-container {
-                                                        sfc-tab-label {
-                                                            .container{
-                                                                justify-content: center;
-                                                            }                                                            
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+  .container {
+    .content {
+      .form {
+        form {
+          .chapters {
+            .chapter {
+              &.center {
+                .part {
+                  &.tabs {
+                    .content {
+                      sfc-tabs {
+                        ::ng-deep .container {
+                          .tabs-container {
+                            sfc-tab-label {
+                              .container {
+                                justify-content: center;
+                              }
                             }
+                          }
                         }
+                      }
                     }
+                  }
                 }
+              }
             }
+          }
         }
+      }
     }
+  }
 }

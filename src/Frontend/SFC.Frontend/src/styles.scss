@@ -31,10 +31,11 @@ html {
         left: 0;
 
         .preloader {
-          position: relative;
           top: 0;
           left: 0;
+
           @include square-size(100%);
+
           text-align: center;
           display: flex;
           align-items: center;
@@ -52,6 +53,7 @@ html {
               display: inline-block;
               animation: bounce-delay 1.4s infinite ease-in-out both;
               background-color: $color-default;
+
               @include square-size(1em);
 
               &:nth-child(1) {
@@ -78,6 +80,7 @@ html {
         }
       }
     }
+
     // end - no-root loader
   }
 

@@ -10,7 +10,7 @@ import { NotificationService } from "@core/services";
 import { MessageSeverity } from "@core/services/message/message-severity.enum";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ThemeService } from "@share/components/theme-toggler/services/theme/theme.service";
-import { EnumService } from "@share/services";
+import { EnumService, PlayerService } from "@share/services";
 import { ShareModule } from "@share/share.module";
 import { ENUM_SERVICE } from "@test/stubs";
 import {
@@ -20,25 +20,19 @@ import {
 import { NgxSfcComponentsModule } from "ngx-sfc-components";
 import { NgxSfcInputsModule } from "ngx-sfc-inputs";
 import { of, throwError } from "rxjs";
-import { PlayerService } from "../../services/player/player.service";
 import { ISearchPageModel } from "./models/search.page.model";
-import { FootballFilterComponent } from "./parts/filters/football/football-filter.component";
-import { FootballFilterConstants } from "./parts/filters/football/football-filter.constants";
-import { GeneralFilterComponent } from "./parts/filters/general/general-filter.component";
-import { GeneralFilterConstants } from "./parts/filters/general/general-filter.constants";
-import { StatsFilterComponent } from "./parts/filters/stats/stats-filter.component";
-import { StatsFilterConstants } from "./parts/filters/stats/stats-filter.contants";
 import { PlayerRecommendationComponent } from "./parts/recomendation/parts/player/player-recommendation.component";
 import { PlayersRecommendationComponent } from "./parts/recomendation/players-recommendation.component";
 import { SearchPageComponent } from "./search.page.component";
 import { SearchPageLocalization } from "./search.page.localization";
-import { IPlayerItemModel } from '../../services/player/models/find'
-import { PlayerCardComponent } from "./parts/table/card/player-card.component";
-import { PlayerRowComponent } from "./parts/table/row/player-row.component";
-import { PlayerRowContentComponent } from "./parts/table/row-content/player-row-content.component";
-import { PlayersTableConstants } from "./parts/table/players-table.constants";
-import { PlayersTableLocalization } from "./parts/table/players-table.localization";
 import { SearchPageConstants } from "./search.page.constants";
+import { FootballFilterComponent, GeneralFilterComponent, StatsFilterComponent } from "@share/components/players/search/filters";
+import { PlayerCardComponent, PlayerRowComponent, PlayerRowContentComponent, PlayersTableLocalization } from "@share/components/players/search/table";
+import { PlayersTableConstants } from "@share/components/players/search/table/players-table.constants";
+import { GeneralFilterConstants } from "@share/components/players/search/filters/general/general-filter.constants";
+import { FootballFilterConstants } from "@share/components/players/search/filters/football/football-filter.constants";
+import { StatsFilterConstants } from "@share/components/players/search/filters/stats/stats-filter.contants";
+import { IPlayerItemModel } from "@share/services/player/models/find";
 
 describe('Features.Player.Page:Search', () => {
     let component: SearchPageComponent;

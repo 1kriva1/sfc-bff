@@ -11,10 +11,9 @@ import { ShareModule } from "@share/share.module";
 import { ComponentSize, NgxSfcCommonModule, Position } from "ngx-sfc-common";
 import { IDropdownMenuItemModel, NgxSfcComponentsModule } from "ngx-sfc-components";
 import { PlayerCardComponent } from "./player-card.component";
-import { CommonConstants as ApplicationCommonConstants } from '@core/constants';
+import { CommonConstants as ApplicationCommonConstants, UIConstants } from '@core/constants';
 import { PlayerCardSide } from "./player-card-side.enum";
 import { ENUM_SERVICE } from "@test/stubs";
-import { BasePlayerItemConstants } from "../base/base-player-item.constants";
 import { IPlayersTableModel } from "../players-table.model";
 
 describe('Features.Player.Page:Search.Part.Table:PlayerCard', () => {
@@ -76,7 +75,7 @@ describe('Features.Player.Page:Search.Part.Table:PlayerCard', () => {
     describe('Position', () => {
         fit('Should not have position class by default', () => {
             ENUM_SERVICE.enums?.footballPositions.forEach(position =>
-                expect(fixture.nativeElement.className).not.toContain(`${BasePlayerItemConstants.POSITION_CLASS_PART}${position.key}`)
+                expect(fixture.nativeElement.className).not.toContain(`${UIConstants.POSITION_CLASS_PART}${position.key}`)
             );
         });
 
@@ -86,7 +85,7 @@ describe('Features.Player.Page:Search.Part.Table:PlayerCard', () => {
             fixture.detectChanges();
 
             expect(fixture.nativeElement.className)
-                .toContain(`${BasePlayerItemConstants.POSITION_CLASS_PART}${component.model.football.position}`);
+                .toContain(`${UIConstants.POSITION_CLASS_PART}${component.model.football.position}`);
         });
     });
 

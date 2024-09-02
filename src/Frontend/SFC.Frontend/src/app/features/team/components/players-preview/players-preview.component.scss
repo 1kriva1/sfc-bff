@@ -2,19 +2,20 @@
 @import "index";
 
 :host {
-    .container {
-        @include part;
-        @include center;
-        flex-direction: column;
+  .container {
+    @include part;
+    @include center;
 
-        sfc-toggle-switcher {
-            width: 50%;
-            align-self: end;
-            padding: 0.5em 0;
-        }
+    flex-direction: column;
 
-        sfc-players-by-position-preview {
-            padding: 0.5em 0;
-        }
+    sfc-toggle-switcher {
+      width: 50%;
+      align-self: end;
+      padding: 0.5em 0;
     }
+
+    sfc-players-by-position-preview {
+      padding: 0.5em 0;
+    }
+  }
 }

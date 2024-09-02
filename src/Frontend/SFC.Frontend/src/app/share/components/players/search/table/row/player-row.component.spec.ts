@@ -10,14 +10,13 @@ import { EnumService } from "@share/services";
 import { ShareModule } from "@share/share.module";
 import { CommonConstants, ComponentSize, NgxSfcCommonModule, Position, UIClass } from "ngx-sfc-common";
 import { IDropdownMenuItemModel, ITableColumnExtendedModel, NgxSfcComponentsModule } from "ngx-sfc-components";
-import { CommonConstants as ApplicationCommonConstants } from '@core/constants';
+import { CommonConstants as ApplicationCommonConstants, UIConstants } from '@core/constants';
 import { PlayerRowComponent } from "./player-row.component";
 import { PlayerRowConstants } from "./player-row.constants";
 import { ENUM_SERVICE } from "@test/stubs";
 import { PlayersTableColumn } from "../enums/players-table-column.enum";
 import { PlayersTableLocalization } from "../players-table.localization";
 import { IPlayersTableModel } from "../players-table.model";
-import { BasePlayerItemConstants } from "../base/base-player-item.constants";
 
 describe('Features.Player.Page:Search.Part.Table:PlayerRow', () => {
     let component: PlayerRowComponent;
@@ -63,7 +62,7 @@ describe('Features.Player.Page:Search.Part.Table:PlayerRow', () => {
     describe('Position', () => {
         fit('Should not have position class by default', () => {
             ENUM_SERVICE.enums?.footballPositions.forEach(position =>
-                expect(fixture.nativeElement.className).not.toContain(`${BasePlayerItemConstants.POSITION_CLASS_PART}${position.key}`)
+                expect(fixture.nativeElement.className).not.toContain(`${UIConstants.POSITION_CLASS_PART}${position.key}`)
             );
         });
 
@@ -73,7 +72,7 @@ describe('Features.Player.Page:Search.Part.Table:PlayerRow', () => {
             fixture.detectChanges();
 
             expect(fixture.nativeElement.className)
-                .toContain(`${BasePlayerItemConstants.POSITION_CLASS_PART}${component.model.football.position}`);
+                .toContain(`${UIConstants.POSITION_CLASS_PART}${component.model.football.position}`);
         });
     });
 

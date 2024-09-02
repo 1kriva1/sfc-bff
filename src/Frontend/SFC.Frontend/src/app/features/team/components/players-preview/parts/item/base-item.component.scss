@@ -2,15 +2,15 @@
 @import "mixins";
 
 :host {
-    @include host;
+  @include host;
 
-    .container {
-        .column {
-            @include column;
+  .container {
+    .column {
+      @include column;
 
-            &.actions {
-                @include action-menu($color-default);
-            }
-        }
+      &.actions {
+        @include action-menu($color-default);
+      }
     }
+  }
 }

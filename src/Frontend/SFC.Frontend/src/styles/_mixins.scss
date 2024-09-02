@@ -8,7 +8,7 @@
     transition: transform 500ms;
     transform-origin: 50% 0;
 
-    @if ($hover) {
+    @if $hover {
       &:hover {
         transform: scale(1.05);
       }
@@ -64,7 +64,8 @@
 
           sfc-side-menu {
             ::ng-deep .container {
-              transition: background $transition-theme-backround-duration $transition-theme-backround-timing-function,
+              transition:
+                background $transition-theme-backround-duration $transition-theme-backround-timing-function,
                 width $transition-duration-default ease-in-out;
             }
           }

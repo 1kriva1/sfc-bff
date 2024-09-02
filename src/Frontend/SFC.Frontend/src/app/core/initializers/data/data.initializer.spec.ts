@@ -34,7 +34,8 @@ describe('Core.Initializer:Data', () => {
             workingFoots: [],
             badgeTypes: [],
             gameStatuses: [],
-            teamStatuses: []
+            teamStatuses: [],
+            shirts:[]
         };
         identityServiceStub.getIsAuthenticated = () => of(true);
         (enumServiceStub as any).load = () => of(enumsModel);

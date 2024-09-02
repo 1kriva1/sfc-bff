@@ -2,24 +2,25 @@
 @import "index";
 
 :host {
-    .container {
-        @include part;
+  .container {
+    @include part;
 
-        .content {
-            @include center;
-            flex-direction: column;
+    .content {
+      @include center;
 
-            .row {
-                display: flex;
-                width: 100%;
-                padding: 1em 0;
+      flex-direction: column;
 
-                .column {
-                    display: flex;
-                    width: 100%;
-                    padding: 0 0.5em;
-                }
-            }
+      .row {
+        display: flex;
+        width: 100%;
+        padding: 1em 0;
+
+        .column {
+          display: flex;
+          width: 100%;
+          padding: 0 0.5em;
         }
+      }
     }
+  }
 }
