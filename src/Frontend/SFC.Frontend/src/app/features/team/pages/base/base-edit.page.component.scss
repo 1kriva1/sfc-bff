@@ -3,142 +3,146 @@
 @include base-page;
 
 :host {
-    .container {
-        .content {
-            overflow: unset !important;
-            contain: inline-size;
+  .container {
+    .content {
+      overflow: unset !important;
+      contain: inline-size;
 
-            .form {
-                form {
-                    .chapters {
-                        display: flex;
-                        justify-content: center;
-                        width: 100%;
+      .form {
+        form {
+          .chapters {
+            display: flex;
+            justify-content: center;
+            width: 100%;
 
-                        .chapter {
-                            .part {
-                                @include part;
+            .chapter {
+              .part {
+                @include part;
 
-                                .content {
-                                    @include center;
-                                    flex-direction: column;
-                                }
-                            }
+                .content {
+                  @include center;
 
-                            &.left,
-                            &.right {
-                                width: 20%;
-                                height: fit-content;
-                                @include sticky;
-                            }
-
-                            &.center {
-                                width: 40%;
-
-                                .part {
-                                    &.logo {
-                                        .content {
-                                            padding: 0.5em 0;
-
-                                            &.logo {
-                                                sfc-image-input {
-                                                    max-width: 50%;
-                                                }
-                                            }
-
-                                            &.info {
-                                                @include theme-value(color, $color-default, $color-0);
-                                                text-align: center;
-
-                                                h3 {
-                                                    margin: 0.3em 0;
-                                                }
-
-                                                p {
-                                                    @include theme-color($color-8, $color-5);
-
-                                                    font-size: 0.8em;
-                                                    margin: 0;
-
-                                                    span {
-                                                        color: $color-hover-default;
-                                                        font-weight: bold;
-                                                    }
-                                                }
-
-                                                h3,
-                                                p {
-                                                    white-space: initial;
-                                                    word-wrap: break-word;
-                                                    max-width: 10em;
-                                                    max-height: 10em;
-                                                    overflow-y: auto;
-                                                }
-
-                                                .stars {
-                                                    display: flex;
-                                                    flex-direction: row;
-                                                    align-items: flex-start;
-
-                                                    sfc-icon-tooltip {
-                                                        ::ng-deep .container {
-                                                            a {
-                                                                fa-icon {
-                                                                    font-size: 0.7em;
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                            &.errors {
-                                                @include error-message;
-                                            }
-
-                                            &.submit {
-                                                @include button;
-
-                                                sfc-button {
-                                                    display: contents;
-                                                    width: 100%;
-                                                    font-weight: bold;
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    &.tabs {
-                                        padding: 0;
-                                        margin: 0;
-                                        background: none;
-
-                                        .content {
-                                            sfc-tabs {
-                                                ::ng-deep .container {
-                                                    .tabs-container {
-                                                        @include part;
-                                                        padding: 0 2em;
-
-                                                        sfc-tab-label-line-slider {
-                                                            bottom: 3px;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                            &.right {
-                                // overflow-y: auto;
-                                // max-height: calc(100vh - 6em);
-                            }
-                        }
-                    }
+                  flex-direction: column;
                 }
+              }
+
+              &.left,
+              &.right {
+                width: 20%;
+                height: fit-content;
+
+                @include sticky;
+              }
+
+              &.center {
+                width: 40%;
+
+                .part {
+                  &.logo {
+                    .content {
+                      padding: 0.5em 0;
+
+                      &.logo {
+                        sfc-image-input {
+                          max-width: 50%;
+                        }
+                      }
+
+                      &.info {
+                        @include theme-value(color, $color-default, $color-0);
+
+                        text-align: center;
+
+                        h3 {
+                          margin: 0.3em 0;
+                        }
+
+                        p {
+                          @include theme-color($color-8, $color-5);
+
+                          font-size: 0.8em;
+                          margin: 0;
+
+                          span {
+                            color: $color-hover-default;
+                            font-weight: bold;
+                          }
+                        }
+
+                        h3,
+                        p {
+                          white-space: initial;
+                          word-wrap: break-word;
+                          max-width: 10em;
+                          max-height: 10em;
+                          overflow-y: auto;
+                        }
+
+                        .stars {
+                          display: flex;
+                          flex-direction: row;
+                          align-items: flex-start;
+
+                          sfc-icon-tooltip {
+                            ::ng-deep .container {
+                              a {
+                                fa-icon {
+                                  font-size: 0.7em;
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+
+                      &.errors {
+                        @include error-message;
+                      }
+
+                      &.submit {
+                        @include button;
+
+                        sfc-button {
+                          display: contents;
+                          width: 100%;
+                          font-weight: bold;
+                        }
+                      }
+                    }
+                  }
+
+                  &.tabs {
+                    padding: 0;
+                    margin: 0;
+                    background: none;
+
+                    .content {
+                      sfc-tabs {
+                        ::ng-deep .container {
+                          .tabs-container {
+                            @include part;
+
+                            padding: 0 2em;
+
+                            sfc-tab-label-line-slider {
+                              bottom: 3px;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
+              &.right {
+                // overflow-y: auto;
+                // max-height: calc(100vh - 6em);
+              }
             }
+          }
         }
+      }
     }
+  }
 }

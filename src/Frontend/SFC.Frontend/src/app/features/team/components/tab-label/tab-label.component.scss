@@ -2,105 +2,104 @@
 @use "ngx-sfc-common/components/delimeter/delimeter.component.mixins.scss" as delimeter;
 
 :host {
-    width: 100%;
-    cursor: pointer;
+  width: 100%;
+  cursor: pointer;
 
-    @include theme-value(color, $color-default, $color-dark);
+  @include theme-value(color, $color-default, $color-dark);
 
-    font-weight: bold;
-    user-select: none;
+  font-weight: bold;
+  user-select: none;
 
-    &.disabled {
-        @include theme-value(color, $color-disabled-default, $color-disabled-dark);
+  &.disabled {
+    @include theme-value(color, $color-disabled-default, $color-disabled-dark);
 
-        cursor: default;
-        pointer-events: none;
-    }
+    cursor: default;
+    pointer-events: none;
+  }
 
-    &.selected:not(.disabled),
-    &:hover:not(.disabled) {
-        color: $color-hover-default;
-
-        .container {
-            // sfc-delimeter {
-            //     $delimeter-color: rgb(255 206 84 / 0%) 0%, rgb(255 206 84 / 30%) 47%, rgb(255 206 84 / 30%) 53%,
-            //         rgb(255 206 84 / 30%) 100%;
-
-            //     ::ng-deep span {
-            //         &::before {
-            //             @include delimeter.sfc-delimeter-color(bottom, 1 100%, $delimeter-color, $delimeter-color);
-            //         }
-
-            //         &::after {
-            //             @include delimeter.sfc-delimeter-color(top, 1 100%, $delimeter-color, $delimeter-color);
-            //         }
-            //     }
-            // }
-        }
-    }
+  &.selected:not(.disabled),
+  &:hover:not(.disabled) {
+    color: $color-hover-default;
 
     .container {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        
-        justify-content: space-between;
-        align-items: center;
-        // transition: color $transition-duration-default $transition-timing-function-default;
+      // sfc-delimeter {
+      //     $delimeter-color: rgb(255 206 84 / 0%) 0%, rgb(255 206 84 / 30%) 47%, rgb(255 206 84 / 30%) 53%,
+      //         rgb(255 206 84 / 30%) 100%;
 
-        .content {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            text-align: center;
-            padding: 1em 0;
-            overflow: hidden;
+      //     ::ng-deep span {
+      //         &::before {
+      //             @include delimeter.sfc-delimeter-color(bottom, 1 100%, $delimeter-color, $delimeter-color);
+      //         }
 
-            span {
-                font-size: 0.7em;
-                text-overflow: ellipsis;
-                overflow: hidden; // @include text-ellipsis;
-            }
+      //         &::after {
+      //             @include delimeter.sfc-delimeter-color(top, 1 100%, $delimeter-color, $delimeter-color);
+      //         }
+      //     }
+      // }
+    }
+  }
 
-            sfc-icon {
-                // font-size: 0.9em;
-                // display: none;
-            }
-        }
+  .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-        sfc-delimeter {
-            height: 1.2em;
-            min-height: auto;
-            padding: 0;
+    // transition: color $transition-duration-default $transition-timing-function-default;
 
-            ::ng-deep span {
-                &::before,
-                &::after {
-                    // border-width: 2px;
-                }
-            }
-        }
+    .content {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: column wrap;
+      text-align: center;
+      padding: 1em 0;
+      overflow: hidden;
+
+      span {
+        font-size: 0.7em;
+        text-overflow: ellipsis;
+        overflow: hidden; // @include text-ellipsis;
+      }
+
+      sfc-icon {
+        // font-size: 0.9em;
+        // display: none;
+      }
     }
 
-    @media (max-width: 425px) {
-        padding-bottom: 0.6em;
+    sfc-delimeter {
+      height: 1.2em;
+      min-height: auto;
+      padding: 0;
 
-        .container {
-            .content {
-                padding: 0.8em;
-                border-radius: 0.3em;
-                text-overflow: initial;
-
-                sfc-icon {
-                    display: block;
-                }
-
-                span {
-                    display: none;
-                }
-            }
+      ::ng-deep span {
+        &::before,
+        &::after {
+          // border-width: 2px;
         }
+      }
     }
+  }
+
+  @media (max-width: 425px) {
+    padding-bottom: 0.6em;
+
+    .container {
+      .content {
+        padding: 0.8em;
+        border-radius: 0.3em;
+        text-overflow: initial;
+
+        sfc-icon {
+          display: block;
+        }
+
+        span {
+          display: none;
+        }
+      }
+    }
+  }
 }

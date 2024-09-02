@@ -239,7 +239,8 @@ export const ENUM_SERVICE: Partial<EnumService> = {
             { key: 2, value: 'Active', icon: faFutbol },
             { key: 3, value: 'Postponed', icon: faPowerOff },
             { key: 4, value: 'Closed', icon: faBan }
-        ]
+        ],
+        shirts: []
     }
 };
 

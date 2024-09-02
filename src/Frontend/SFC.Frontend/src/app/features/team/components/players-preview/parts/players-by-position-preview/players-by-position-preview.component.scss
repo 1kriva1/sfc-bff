@@ -1,57 +1,59 @@
 @use "ngx-sfc-common/styles/index" as *;
 
 :host {
-    width: 100%;
+  width: 100%;
 
-    .container {
-        @include center;
-        flex-direction: column;
+  .container {
+    @include center;
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            width: 100%;
-            font-weight: bold;
-            @include theme-value(color, $color-default, $color-dark);
+    flex-direction: column;
 
-            .title {
-                align-self: flex-start;
-                font-size: 0.8em;
-            }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+      font-weight: bold;
 
-            .count {
-                margin: 0;
-                font-size: 0.7em;
+      @include theme-value(color, $color-default, $color-dark);
 
-                span {
-                    color: $color-hover-default;
-                }
-            }
+      .title {
+        align-self: flex-start;
+        font-size: 0.8em;
+      }
+
+      .count {
+        margin: 0;
+        font-size: 0.7em;
+
+        span {
+          color: $color-hover-default;
         }
-
-        .items {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-
-            sfc-player-list-item {
-                margin: 0.2em 0;
-            }
-
-            sfc-player-icon-item {
-                width: 33%;
-            }
-
-            &:empty {
-                padding: 0.5em 0;
-            }
-        }
-
-        sfc-no-data {
-            width: 100%;
-            padding: 0.5em 0;
-        }
+      }
     }
+
+    .items {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      sfc-player-list-item {
+        margin: 0.2em 0;
+      }
+
+      sfc-player-icon-item {
+        width: 33%;
+      }
+
+      &:empty {
+        padding: 0.5em 0;
+      }
+    }
+
+    sfc-no-data {
+      width: 100%;
+      padding: 0.5em 0;
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { CommonConstants, where } from 'ngx-sfc-common';
 import { map, Observable, startWith } from 'rxjs';
 import { PageProgressLocalization } from './page-progress.localization';
@@ -16,7 +16,7 @@ import { CommonConstants as ApplicationCommonConstants } from '@core/constants';
     templateUrl: './page-progress.component.html',
     styleUrls: ['./page-progress.component.scss']
 })
-export class EditPageProgressComponent {
+export class EditPageProgressComponent implements AfterViewInit {
 
     CommonConstants = CommonConstants;
 

@@ -109,7 +109,7 @@ describe('Features.Profile.Page:Edit', () => {
             expect(fixture.nativeElement.querySelector('.photo sfc-image-input')).toBeTruthy();
             expect(fixture.nativeElement.querySelector('.info .stars sfc-stars')).toBeTruthy();
             expect(fixture.nativeElement.querySelector('.errors .error-message')).toBeTruthy();
-            expect(fixture.nativeElement.querySelector('.actions sfc-button')).toBeTruthy();
+            expect(fixture.nativeElement.querySelector('.submit sfc-button')).toBeTruthy();
             expect(fixture.nativeElement.querySelectorAll('.progress .item sfc-progress-line').length).toEqual(3);
             expect(fixture.nativeElement.querySelector('.combined-part')).toBeTruthy();
             expect(fixture.nativeElement.querySelector('.combined-part .part.center')).toBeTruthy();
@@ -509,7 +509,7 @@ describe('Features.Profile.Page:Edit', () => {
 
         describe('Actions', () => {
             fit('Should submit button have appropriate attributes', () => {
-                const registrationBtn: DebugElement = fixture.debugElement.query(By.css('.actions > sfc-button'));
+                const registrationBtn: DebugElement = fixture.debugElement.query(By.css('.submit > sfc-button'));
 
                 expect(registrationBtn.componentInstance.types).toEqual([ButtonType.Rounded, ButtonType.Filled]);
                 expect(registrationBtn.componentInstance.text).toEqual(EditPageLocalization.BUTTON_CREATE_TEXT);
@@ -519,7 +519,7 @@ describe('Features.Profile.Page:Edit', () => {
                 (sharePlayerServiceStub as any).playerCreated = true;
                 fixture.detectChanges();
 
-                const registrationBtn: DebugElement = fixture.debugElement.query(By.css('.actions > sfc-button'));
+                const registrationBtn: DebugElement = fixture.debugElement.query(By.css('.submit > sfc-button'));
 
                 expect(registrationBtn.componentInstance.types).toEqual([ButtonType.Rounded, ButtonType.Filled]);
                 expect(registrationBtn.componentInstance.text).toEqual(EditPageLocalization.BUTTON_UPDATE_TEXT);
