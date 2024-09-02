@@ -1,0 +1,36 @@
+<div class="container" [formGroupName]="InformationEditPart.Financial">
+    <sfc-title [label]="'Financial & Stuff'" [description]="'Finansial & stuff part.'">
+    </sfc-title>
+
+    <div class="content">
+        <div class="row">
+            <div class="column">
+                <sfc-carousel-input id="shirts" formControlName="shirts" [items]="3" [multiple]="true"
+                    label="Choose T-Shirt that your team use" helperText="You can choose multiple T-Shirts">
+                    <ng-template *ngFor="let shirt of enumService.enums.shirts" [sfcCarouselInputSlide]="shirt.key">
+                        <sfc-carousel-slider [active]="isShirtActive(shirt.key)">
+                            <sfc-shirt-carousel-slider-content [shirt]="shirt" [active]="isShirtActive(shirt.key)">
+                            </sfc-shirt-carousel-slider-content>
+                        </sfc-carousel-slider>
+                    </ng-template>
+                </sfc-carousel-input>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <sfc-checkbox-input id="free-play" formControlName="freePlay" [checkmarkType]="CheckmarkType.Rounded"
+                    [sideLabel]="'If you dont wan\'t to pay for football stuff'"
+                    [helperText]="'Choose if your team dont wan\'t to pay'">
+                </sfc-checkbox-input>
+            </div>
+
+            <div class="column">
+                <sfc-checkbox-input id="has-maniches" formControlName="hasManiches"
+                    [checkmarkType]="CheckmarkType.Rounded" [sideLabel]="'Team has maniches'"
+                    [helperText]="'Choose if your team has maniches'">
+                </sfc-checkbox-input>
+            </div>
+        </div>
+    </div>
+</div>

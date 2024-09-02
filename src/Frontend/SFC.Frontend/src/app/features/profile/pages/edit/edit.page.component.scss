@@ -62,6 +62,19 @@
           .left {
             width: 15%;
 
+            .actions {
+              position: relative;
+              left: 50%;
+
+              sfc-dropdown-menu {
+                ::ng-deep ul > li {
+                  > .container {
+                    @include square-size(1.8em);
+                  }
+                }
+              }
+            }
+
             div {
               @include center;
 

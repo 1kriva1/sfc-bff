@@ -1,0 +1,8 @@
+<div class="container">
+    <sfc-delimeter *ngIf="delimeters" [direction]="Direction.Vertical"></sfc-delimeter>
+    <div class="content">  
+        <span>{{label}}</span>      
+        <sfc-icon [icon]="icon" [imageSrc]="image"></sfc-icon>        
+    </div>
+    <sfc-delimeter *ngIf="delimeters" [direction]="Direction.Vertical"></sfc-delimeter>
+</div>

@@ -26,6 +26,12 @@
             <form [formGroup]="profileForm" autocomplete="off">
                 <div class="parts" *ngIf="((vm$ | async) || $any({})) as vm">
                     <div class="part left">
+                        <div class="actions">
+                            <sfc-dropdown-menu [items]="ACTION_ITEMS" [bordered]="false" [filled]="true"
+                                [position]="[Position.Bottom, Position.Center]" [sfcComponentSize] [customSize]="0.9">
+                            </sfc-dropdown-menu>
+                        </div>
+
                         <div class="photo">
                             <sfc-image-input id="photo" formControlName="photo" [label]="Localization.INPUT.PHOTO.LABEL"
                                 [helperText]="Localization.INPUT.PHOTO.HELPER_TEXT" [icon]="faCamera"
@@ -54,7 +60,7 @@
                             <span class="error-message">{{error?.Message}}</span>
                         </div>
 
-                        <div class="actions">
+                        <div class="submit">
                             <sfc-button #submitBtn
                                 [text]="sharedPlayerService.playerCreated ? Localization.BUTTON_UPDATE_TEXT : Localization.BUTTON_CREATE_TEXT"
                                 [types]="[ButtonType.Rounded, ButtonType.Filled]" [disabled]="submitDisabled">

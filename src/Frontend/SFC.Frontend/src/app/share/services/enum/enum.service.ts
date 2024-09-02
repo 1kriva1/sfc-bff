@@ -23,7 +23,8 @@ export class EnumService {
         workingFoots: [],
         badgeTypes: [],
         gameStatuses: [],
-        teamStatuses: []
+        teamStatuses: [],
+        shirts: []
     };
 
     constructor(private dataService: DataService) { }
@@ -82,6 +83,17 @@ export class EnumService {
                         { key: 2, value: 'Active', icon: faFutbol },
                         { key: 3, value: 'Postponed', icon: faPowerOff },
                         { key: 4, value: 'Closed', icon: faBan }
+                    ],
+                    shirts: [
+                        { key: 0, value: 'Blue', image: `app/core/assets/images/enums/shirts/${0}.png` },
+                        { key: 1, value: 'Pink', image: `app/core/assets/images/enums/shirts/${1}.png` },
+                        { key: 2, value: 'Black', image: `app/core/assets/images/enums/shirts/${2}.png` },
+                        { key: 3, value: 'Red', image: `app/core/assets/images/enums/shirts/${3}.png` },
+                        { key: 4, value: 'Yellow', image: `app/core/assets/images/enums/shirts/${4}.png` },
+                        { key: 5, value: 'Purple', image: `app/core/assets/images/enums/shirts/${5}.png` },
+                        { key: 6, value: 'Orange', image: `app/core/assets/images/enums/shirts/${6}.png` },
+                        { key: 7, value: 'Brown', image: `app/core/assets/images/enums/shirts/${7}.png` },
+                        { key: 8, value: 'Green', image: `app/core/assets/images/enums/shirts/${8}.png` },
                     ]
                 };
             }),

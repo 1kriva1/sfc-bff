@@ -1,0 +1,37 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@include base-page;
+
+:host {
+    .container {
+        .content {
+            .form {
+                form {
+                    .chapters {
+                        .chapter {
+                            &.center {
+                                .part {
+                                    &.tabs {
+                                        .content {
+                                            sfc-tabs {
+                                                ::ng-deep .container {
+                                                    .tabs-container {
+                                                        sfc-tab-label {
+                                                            .container{
+                                                                justify-content: center;
+                                                            }                                                            
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

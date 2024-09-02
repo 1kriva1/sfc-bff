@@ -1,0 +1,17 @@
+{
+    "edit.page.router.title.create": "New Team",
+    "edit.page.router.title.update": "Update Team",
+    "edit.page.title-create.label": "Create profile",
+    "edit.page.title-create.description": "Please create profile",
+    "edit.page.title-create.tooltip": "This step not required a lot of inputs. Just enter your name, city and football position to start using SFC.",
+    "edit.page.title-update.label": "Your profile",
+    "edit.page.title-update.description": "Here you can change your personal information",
+    "edit.page.title-update.tooltip": "This step not required a lot of inputs. Just enter your name, city and football position to start using SFC.",
+    "edit.page.logo-input.label": "Logo",
+    "edit.page.logo-input.placeholder": "Please change your logo(emblem)",
+    "edit.page.logo-input.validation.max-size-1": "Max allowed size",
+    "edit.page.logo-input.validation.max-size-2": "your file size is",
+    "edit.page.stars.tooltip": "This stars define your team stats rating as a sum of all players stats",
+    "edit.page.progress.filled.label": "Information filled",
+    "edit.page.progress.filled": "fields are filled."
+}

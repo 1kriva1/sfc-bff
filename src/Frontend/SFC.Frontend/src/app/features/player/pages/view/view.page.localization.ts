@@ -17,5 +17,5 @@ export class ViewPageLocalization {
             INVITE_TO_GAME: $localize`:@@feature.player.view.page.menu.action.invite-to-game:Invite to game`,
             ADD_TO_TEAM: $localize`:@@feature.player.view.page.menu.action.add-to-team:Add to team`,
         }
-    }
+    };
 }

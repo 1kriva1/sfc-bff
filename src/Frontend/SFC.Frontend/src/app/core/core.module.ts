@@ -14,6 +14,7 @@ import { NgxSfcCommonModule } from 'ngx-sfc-common';
 import { NgxSfcComponentsModule } from 'ngx-sfc-components';
 import { RouterModule } from '@angular/router';
 import { ShareModule } from '@share/share.module';
+import { TimePipe } from '../share/pipes';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { ShareModule } from '@share/share.module';
     LanguageTogglerComponent,    
     FooterComponent,
     NotFoundPageComponent,
-    CanvasBallDirective    
+    CanvasBallDirective
   ],
   imports: [
     CommonModule,

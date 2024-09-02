@@ -7,6 +7,7 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <SpaRoot>..\..\Frontend\SFC.Frontend</SpaRoot>
     <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+    <SpaProxyTimeoutInSeconds>600</SpaProxyTimeoutInSeconds>
     <SpaProxyServerUrl>https://localhost:4200</SpaProxyServerUrl>
     <RootNamespace>SFC.Bff</RootNamespace>
   </PropertyGroup>

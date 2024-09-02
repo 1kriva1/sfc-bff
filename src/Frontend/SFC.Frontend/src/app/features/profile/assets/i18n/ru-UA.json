@@ -84,5 +84,7 @@
   "edit.page.notification.create.title": "Профіль успішно створено!",
   "edit.page.notification.create.value": "Ви готові до футболу.",
   "edit.page.notification.update.title": "Профіль успішно оновлено!",
-  "edit.page.notification.update.value": "Ваші зміни прийняті."
+  "edit.page.notification.update.value": "Ваші зміни прийняті.",
+  "edit.page.action.create-team": "Створити команду",
+  "edit.page.action.open-view": "Відкрити картку"
 }

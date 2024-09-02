@@ -124,11 +124,10 @@
                     <sfc-table #table [columns]="columns" [predicate$]="predicate$" [loader]="loader.bind(this)"
                         [pagination]="pagination" [position]="Position.Center" [showColumns]="true"
                         [columnsToggle]="true" [showTotal]="true" [showLoading]="showLoading"
-                        [paginationCount]="TableConstants.PAGINATION_COUNT" [paginationLimits]="true"
+                        [paginationCount]="Constants.PAGINATION_COUNT" [paginationLimits]="true"
                         [showColumnsLabel]="TableLocalization.COLUMNS_SHOW_LABEL"
                         [hideColumnsLabel]="TableLocalization.COLUMNS_HIDE_LABEL"
-                        [totalLabel]="TableLocalization.TOTAL_LABEL"
-                        [dataListLabel]="TableLocalization.DATA_LIST_LABEL"
+                        [totalLabel]="TableLocalization.TOTAL_LABEL" [dataListLabel]="TableLocalization.DATA_LIST_LABEL"
                         [dataCardsLabel]="TableLocalization.DATA_CARDS_LABEL"
                         [notFoundLabel]="TableLocalization.NOT_FOUND_LABEL">
                         <ng-template [sfcTemplateReference]="TableTemplate.Row" let-row>

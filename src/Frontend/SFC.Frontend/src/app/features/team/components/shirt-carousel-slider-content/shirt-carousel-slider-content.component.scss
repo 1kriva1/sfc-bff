@@ -1,0 +1,27 @@
+@use "ngx-sfc-common/styles/index" as *;
+
+:host {
+    .container {
+        @include center;
+        flex-direction: column;
+
+        span {
+            @include theme-value(color, $color-default, $color-dark);
+            font-size: 0.6em;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+
+        img {
+            max-width: 2em;
+        }
+    }
+
+    &.active {
+        .container {
+            span {
+                color: $color-hover-default;
+            }
+        }
+    }
+}

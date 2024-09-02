@@ -1,0 +1,12 @@
+export { ShirtCarouselSliderContentComponent } from './shirt-carousel-slider-content/shirt-carousel-slider-content.component';
+export { TabLabelComponent } from './tab-label/tab-label.component';
+export { EditPageProgressComponent } from './progress/page-progress.component';
+export { PlayersByPositionPreviewComponent } from './players-preview/parts/players-by-position-preview/players-by-position-preview.component';
+export { PlayersPreviewComponent } from './players-preview/players-preview.component';
+export { PlayerListItemComponent } from './players-preview/parts/item/list/player-list-item.component';
+export { PlayerIconItemComponent } from './players-preview/parts/item/icon/player-icon-item.component';
+export { GeneralEditComponent } from './edit/information/parts/general/general-edit.component';
+export { AvailabilityEditComponent } from './edit/information/parts/availability/availability-edit.component';
+export { FinancialEditComponent } from './edit/information/parts/financial/financial-edit.component';
+export { InformationEditComponent } from './edit/information/information-edit.component';
+export { PlayersEditComponent } from './edit/players/players-edit.component';

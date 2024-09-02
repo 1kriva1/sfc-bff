@@ -1,0 +1,16 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "mixins";
+
+:host {
+    @include host;
+
+    .container {
+        .column {
+            @include column;
+
+            &.actions {
+                @include action-menu($color-default);
+            }
+        }
+    }
+}

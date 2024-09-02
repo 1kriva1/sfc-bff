@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="header">
+        <span class="title">{{model.position}}:</span>
+        <p class="count">Total: <span>{{model.players.length}}</span></p>
+    </div>
+
+    <div class="items">
+        <ng-container *ngIf="type === PreviewType.List">
+            <sfc-player-list-item *ngFor="let player of model.players" [model]="player" (remove)="remove.emit($event)">
+            </sfc-player-list-item>
+        </ng-container>
+        <ng-container *ngIf="type === PreviewType.Icons">
+            <sfc-player-icon-item *ngFor="let player of model.players" [model]="player" (remove)="remove.emit($event)">
+            </sfc-player-icon-item>
+        </ng-container>
+    </div>
+
+    <sfc-no-data *ngIf="!model.players.length" [delimeter]="true" [label]="'No players'"></sfc-no-data>
+</div>

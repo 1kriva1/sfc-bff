@@ -1,0 +1,46 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@include base-page;
+
+:host {
+    .container {
+        .content {
+            .form {
+                form {
+                    .chapters {
+                        .chapter {
+                            &.center {
+                                .part {
+                                    &.tabs {
+                                        .content {
+                                            sfc-tabs {
+                                                ::ng-deep .container {
+                                                    .tabs-container {
+                                                        .tabs {
+                                                            .tab:first-child,
+                                                            .tab:last-child {
+                                                                sfc-tab-label {
+                                                                    ::ng-deep > .container {
+                                                                        justify-content: center;
+
+                                                                        sfc-delimeter {
+                                                                            display: none;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

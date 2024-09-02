@@ -1,65 +1,34 @@
-###################################### Redis ###################################################
+################################################################### Services ###############################################################
 
-Write-Host "Redis server is starting"
+$servicesNames = 'SFC.Data.Api', 'SFC.Identity.Api', 'SFC.Player.Api'
 
-invoke-expression 'cmd /c start powershell -Command {
-    set-location "C:\Users\andriik\Documents\SFC_NEW\services\BFF"; 
-    bash ./redis-server.sh;    
-}'
+$servicesProcesses = Get-Process -Name $servicesNames -ErrorAction SilentlyContinue
 
-Start-Sleep -Seconds 5
+if($servicesProcesses.Count -ne $servicesNames.Count){
+    write-host("Some of required services NOT running.")
 
-Write-Host "Redis server is running`n"
+    write-host("Stop all services.")
 
-##################################### Data serivce ##########################################
+    ForEach ($Process in $servicesProcesses) {
+        $Process.Kill()
+    }
 
-Write-Host "Data service is starting"
+    Start-Sleep -Seconds 5
 
-invoke-expression 'cmd /c start powershell -Command {
-    $host.ui.rawui.WindowTitle = "SFC - Data service"
-    write-host "Start Data service!";
-    set-location "C:\Users\andriik\Documents\SFC_NEW\services\Data\src\API\SFC.Data.Api"; 
-    dotnet run --urls=https://localhost:7466/ authentication=true
-}'
+    Get-Process -Name node | where-object {$_.MainWindowTitle -eq "SFC - Identity service"} | Kill
 
-Start-Sleep -Seconds 5
+    write-host("Start all services.")
 
-Write-Host "Data service is running`n"
+    wt.exe --window 0 new-tab --profile "Windows PowerShell" PowerShell -file C:\Users\andriik\Documents\SFC_NEW\services\BFF\start-services.ps1
+}else {
+    write-host("All required services: $($servicesNames) - already running.")
+}
 
-###################################### Identity serivce ########################################
+############################################################################################################################################
 
-Write-Host "Identity service is starting"
+################################################################### Application ############################################################
 
-invoke-expression 'cmd /c start powershell -Command {
-    $host.ui.rawui.WindowTitle = "SFC - Identity service"
-    write-host "Start Identity service!";
-    set-location "C:\Users\andriik\Documents\SFC_NEW\services\Identity\src\API\SFC.Identity.Api"; 
-    dotnet run --urls=https://localhost:7266/
-}'
+$ScriptPath = Split-Path $MyInvocation.InvocationName
+& "$ScriptPath\start-application.ps1"
 
-Start-Sleep -Seconds 5
-
-Write-Host "Identity service is running`n"
-
-##################################### Player serivce ##########################################
-
-Write-Host "Player service is starting"
-
-invoke-expression 'cmd /c start powershell -Command {
-    $host.ui.rawui.WindowTitle = "SFC - Player service"
-    write-host "Start Player service!";
-    set-location "C:\Users\andriik\Documents\SFC_NEW\services\Player\src\API\SFC.Player.Api"; 
-    dotnet run --urls=https://localhost:7366/ authentication=true
-}'
-
-Start-Sleep -Seconds 5
-
-Write-Host "Player service is running`n"
-
-#################################################################################################
-
-Write-Host "Application is starting"
-
-npm run application
-
-#################################################################################################
+############################################################################################################################################

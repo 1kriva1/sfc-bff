@@ -1,0 +1,184 @@
+@use "ngx-sfc-common/styles/index" as *;
+@use "ngx-sfc-common/components/close/close.component.mixins.scss" as close;
+@use "ngx-sfc-common/components/delimeter/delimeter.component.mixins.scss" as delimeter;
+@use "ngx-sfc-common/components/collapse-expand/collapse-expand.component.mixins.scss" as collapse-expand;
+@use "ngx-sfc-inputs/styles/input.component.mixins.scss" as input;
+@use "ngx-sfc-inputs/components/tags/tags-input.component.mixins.scss" as tags-input;
+@use "ngx-sfc-inputs/components/range/range-input.component.mixins.scss" as range-input;
+@use "ngx-sfc-inputs/components/bubbles/bubbles-input.component.mixins.scss" as bubbles-input;
+@use "ngx-sfc-inputs/components/radio/radio-input.component.mixins.scss" as radio-input;
+@use "ngx-sfc-inputs/components/stars/stars-input.component.mixins.scss" as stars-input;
+@import "index";
+
+:host {
+    .container {
+        @include part;
+
+        .content {
+            @include center;
+            flex-direction: column;
+            width: 100%;
+
+            .filters {
+                width: 100%;
+
+                form {
+                    justify-content: center;
+                    flex-direction: column;
+
+                    .name {
+                        sfc-text-input {
+                            ::ng-deep input {
+                                border: none !important;
+                                box-shadow: none !important;
+                            }
+                        }
+                    }
+
+                    .modal {
+                        @include button(false);
+
+                        sfc-button {
+                            width: 100%;
+                            padding: 1em 0;
+
+                            ::ng-deep > {
+                                .button {
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+
+                        sfc-modal {
+                            ::ng-deep sfc-collapse-expand-container {
+                                sfc-collapse-expand {
+                                    @include collapse-expand.sfc-collapse-expand-as-default;
+                                }
+
+                                sfc-delimeter {
+                                    @include delimeter.sfc-delimeter-as-default;
+                                }
+
+                                sfc-text-input {
+                                    @include input.sfc-input-as-default;
+                                }
+
+                                sfc-tags-input {
+                                    @include input.sfc-input-as-default;
+                                    @include tags-input.sfc-tags-input-as-default;
+                                }
+
+                                sfc-range-input {
+                                    @include input.sfc-input-as-default;
+                                    @include range-input.sfc-range-input-as-default;
+                                }
+
+                                sfc-bubbles-input {
+                                    @include input.sfc-input-as-default;
+                                    @include bubbles-input.sfc-bubbles-input-as-default;
+                                }
+
+                                sfc-datetime-input {
+                                    @include input.sfc-input-as-default;
+                                }
+
+                                sfc-radio-input {
+                                    @include input.sfc-input-as-default;
+                                    @include radio-input.sfc-radio-input-as-default;
+                                }
+
+                                sfc-stars-input {
+                                    @include input.sfc-input-as-default;
+                                    @include stars-input.sfc-stars-input-as-default;
+                                }
+
+                                sfc-select-input {
+                                    @include input.sfc-input-as-default;
+                                }
+                            }
+                        }
+
+                        .modal-filters {
+                            padding: 0 1em 1em;
+                            min-width: 25em;
+
+                            sfc-collapse-expand-container {
+                                ::ng-deep > .container {
+                                    padding: 0.5em 0;
+
+                                    sfc-collapse-expand {
+                                        width: 100%;
+                                        font-size: 1em !important;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .table {
+                width: 100%;
+
+                sfc-table {
+                    ::ng-deep > .container {
+                        width: auto;
+
+                        .columns-container {
+                            .columns-actions {
+                                .left {
+                                    sfc-columns-toggle {
+                                        .container .label {
+                                            text-transform: none;
+                                        }
+                                    }
+                                }
+
+                                .right {
+                                    sfc-toggle-switcher {
+                                        font-size: 0.8em;
+                                    }
+                                }
+                            }
+
+                            .columns {
+                                .column {
+                                    sfc-default-table-column {
+                                        .container {
+                                            text-transform: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .rows-container {
+                            sfc-load-container {
+                                .container {
+                                    .content {
+                                        overflow: visible;
+
+                                        .items {
+                                            display: flex;
+                                            justify-content: center;
+                                            flex-wrap: wrap;
+
+                                            sfc-expanded-table-row {
+                                                margin: 1em 0.5em 0;
+
+                                                &.expanded {
+                                                    box-shadow: 0.06em 0.06em 0.31em 0.125em $color-shadow-1;
+                                                    border-radius: 3.125em;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -2,7 +2,7 @@ import { HttpContext } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { LOADER } from '@core/interceptors';
-import { IGetPlayerByUserResponse, IPlayerByUserModel } from './models/get-player-by-user.response';
+import { IGetPlayerByUserResponse, IPlayerByUserModel } from './models/by-user/get-player-by-user.response';
 import { PlayerServiceConstants } from './player.constants';
 import { PlayerService } from './player.service';
 

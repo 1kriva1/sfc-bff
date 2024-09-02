@@ -20,29 +20,17 @@ import {
     BadgeCardComponent
 } from './pages/view/parts';
 import {
-    FootballFilterComponent,
-    GeneralFilterComponent,
     PlayerRecommendationComponent,
-    PlayerCardComponent,
-    PlayersRecommendationComponent,
-    PlayerRowComponent,
-    PlayerRowContentComponent,
-    SearchPageComponent,
-    StatsFilterComponent
-} from './pages/search';
+    PlayersRecommendationComponent
+} from './pages/search/parts';
 import { ViewPageComponent } from './pages/view/view.page.component';
+import { SearchPageComponent } from './pages/search/search.page.component';
 
 @NgModule({
     declarations: [
         SearchPageComponent,
-        GeneralFilterComponent,
-        FootballFilterComponent,
-        StatsFilterComponent,
         PlayersRecommendationComponent,
         PlayerRecommendationComponent,
-        PlayerRowComponent,
-        PlayerRowContentComponent,
-        PlayerCardComponent,
         ViewPageComponent,
         ViewInfoPanelComponent,
         GeneralViewComponent,
