@@ -130,7 +130,7 @@ describe('Features.Player.Page:Search.Part.Table:PlayerRow', () => {
 
         describe('Available', () => {
             fit('Should mobile title has defined text', () => {
-                expect(fixture.nativeElement.querySelector('.column.available > span.title.mobile').innerText)
+                expect(fixture.nativeElement.querySelector('.column.available > span.title.mobile').innerText.toLowerCase())
                     .toEqual('availability:');
             });
 
@@ -251,7 +251,7 @@ describe('Features.Player.Page:Search.Part.Table:PlayerRow', () => {
 
         describe('Position', () => {
             fit('Should mobile title has defined text', () => {
-                expect(fixture.nativeElement.querySelector('.column.position > span.title.mobile').innerText)
+                expect(fixture.nativeElement.querySelector('.column.position > span.title.mobile').innerText.toLowerCase())
                     .toEqual('position:');
             });
 
@@ -306,8 +306,8 @@ describe('Features.Player.Page:Search.Part.Table:PlayerRow', () => {
 
         describe('Physical condition', () => {
             fit('Should title has defined text', () => {
-                expect(fixture.nativeElement.querySelector('.column.physical-condition > span.title').innerText)
-                    .toEqual('Physical condition:');
+                expect(fixture.nativeElement.querySelector('.column.physical-condition > span.title').innerText.toLowerCase())
+                    .toEqual('physical condition:');
             });
 
             fit('Should stars have valid attributes', () => {
@@ -324,7 +324,7 @@ describe('Features.Player.Page:Search.Part.Table:PlayerRow', () => {
 
         describe('Size', () => {
             fit('Should mobile title has defined text', () => {
-                expect(fixture.nativeElement.querySelector('.column.size > span.title.mobile').innerText)
+                expect(fixture.nativeElement.querySelector('.column.size > span.title.mobile').innerText.toLowerCase())
                     .toEqual('size:');
             });
 

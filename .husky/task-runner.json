@@ -45,7 +45,7 @@
             "group": "pre-push-operations",
             "command": "npm",
             "cwd": "src/Frontend/SFC.Frontend",
-            "args": [ "run", "test:code-coverage" ]
+            "args": [ "run", "test:code-coverage:no-browser" ]
         }
     ]
 }

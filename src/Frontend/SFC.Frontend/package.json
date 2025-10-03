@@ -9,6 +9,7 @@
     "test": "ng test",
     "test:no-browser": "ng test --watch=false --browsers=ChromeHeadless",
     "test:code-coverage": "ng test --no-watch --code-coverage",
+    "test:code-coverage:no-browser": "ng test --no-watch --code-coverage --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "lint:styles": "npx stylelint \"**/*.scss\" --fix",
     "lint:all": "npm run lint && npm run lint:styles",
