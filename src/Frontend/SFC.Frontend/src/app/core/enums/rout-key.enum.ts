@@ -1,10 +1,6 @@
-export enum RoutKey {
-    Welcome = 'welcome',
-    Home = 'home',
-    Profiles = 'profiles',
-    Players = 'players',
-    Teams = 'teams',
+export enum RouteKey {
     Create = 'create',
     Edit = 'edit',
-    Search = 'search'
+    Search = 'search',
+    List = 'list'
 }

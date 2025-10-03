@@ -1,0 +1,51 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "../mixins";
+
+@mixin button($hover: true, $background: $color-yellow-0, $background-hover: $color-yellow-1) {
+  &:not(.disabled) {
+    transition: transform 500ms;
+    transform-origin: 50% 0;
+
+    @if $hover {
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    ::ng-deep {
+      .button {
+        background: $background;
+        border-color: $background;
+
+        &:hover {
+          background: $background-hover;
+          border-color: $background-hover;
+        }
+      }
+    }
+  }
+}
+
+@mixin status($background, $color: $color-default) {
+  sfc-status {
+    ::ng-deep .container {
+      .content {
+        .circle {
+          background: $background;
+        }
+
+        .label {
+          color: $color;
+        }
+      }
+    }
+  }
+}
+
+@mixin title-part {
+  sfc-title {
+    ::ng-deep .container {
+      @include part;
+    }
+  }
+}

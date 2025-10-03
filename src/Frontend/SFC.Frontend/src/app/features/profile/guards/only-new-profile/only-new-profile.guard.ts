@@ -1,17 +1,18 @@
 import { inject, Injectable } from '@angular/core';
 import { Router, CanMatchFn } from '@angular/router';
 import { Observable } from 'rxjs';
-import { RoutKey } from '@core/enums';
-import { PlayerService } from '@share/services';
+import { PlayerViewService } from '@share/services';
+import { ProfileRoute } from '@share/enums';
+import { RouteKey } from '@core/enums';
 
 @Injectable({ providedIn: 'root' })
 class OnlyNewProfileService {
 
-    constructor(private playerService: PlayerService, private router: Router) { }
+    constructor(private playerViewService: PlayerViewService, private router: Router) { }
 
     public canMatch(): Observable<boolean> | boolean {
-        if (this.playerService.playerCreated) {
-            this.router.navigate([`${RoutKey.Profiles}/${this.playerService.playerId.value}/${RoutKey.Edit}`]);
+        if (this.playerViewService.playerCreated) {
+            this.router.navigate([`${ProfileRoute.Profiles}/${this.playerViewService.playerId.value}/${RouteKey.Edit}`]);
             return false;
         }
 

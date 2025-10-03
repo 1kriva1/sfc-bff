@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="content">
+        <div class="header">
+            <span class="title">{{model.position.value}}:</span>
+            <p class="count">{{Localization.TOTAL}}: <span>{{model.players.length}}</span></p>
+        </div>
+
+        <div class="items">
+            <ng-container [ngSwitch]="view">
+                <ng-container *ngSwitchCase="ItemsView.List">
+                    <sfc-team-players-preview-list-item *ngFor="let player of model.players" [model]="player">
+                    </sfc-team-players-preview-list-item>
+                </ng-container>
+                <ng-container *ngSwitchCase="ItemsView.Cards">
+                    <sfc-team-players-preview-card-item *ngFor="let player of model.players" [model]="player">
+                    </sfc-team-players-preview-card-item>
+                </ng-container>
+            </ng-container>
+        </div>
+
+        <sfc-no-data *ngIf="!model.players.length" [delimeter]="true" [label]="Localization.NO_DATA.LABEL">
+        </sfc-no-data>
+    </div>
+</div>

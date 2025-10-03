@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { IPlayerInfoPanelModel } from "@share/components";
+import { IPlayerInfoModel } from "@share/components/features/player/info/player-info.model";
 
 @Component({
     selector: 'sfc-players-recommendation',
@@ -9,5 +9,5 @@ import { IPlayerInfoPanelModel } from "@share/components";
 export class PlayersRecommendationComponent {
 
     @Input()
-    items: IPlayerInfoPanelModel[] = [];
+    items: IPlayerInfoModel[] = [];
 }

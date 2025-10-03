@@ -36,7 +36,7 @@
           .info-panel {
             padding: 0.5em 0 2em;
 
-            sfc-player-info-panel {
+            sfc-player-info {
               display: inline-block;
 
               ::ng-deep > .container {
@@ -222,7 +222,7 @@
             .info-panel {
               padding: 0.5em 0 2em;
 
-              sfc-player-info-panel {
+              sfc-player-info {
                 display: inline-block;
 
                 ::ng-deep > .container {
@@ -311,7 +311,7 @@
             }
 
             .info-panel {
-              sfc-player-info-panel {
+              sfc-player-info {
                 ::ng-deep > .container {
                   flex-direction: column;
 

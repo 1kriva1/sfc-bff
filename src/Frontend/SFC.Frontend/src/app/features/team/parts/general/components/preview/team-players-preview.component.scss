@@ -1,0 +1,24 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+
+:host {
+  .container {
+    @include part;
+
+    .content {
+      .list {
+        @include center-column;
+
+        sfc-toggle-switcher {
+          width: 50%;
+          align-self: end;
+          padding: 0.5em 0;
+        }
+
+        sfc-team-players-preview-list {
+          padding: 0.5em 0;
+        }
+      }
+    }
+  }
+}

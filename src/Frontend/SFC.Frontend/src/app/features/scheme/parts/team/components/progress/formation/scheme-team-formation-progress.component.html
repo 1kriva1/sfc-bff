@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="content">
+        <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+            [collapseExpand]="true">
+            <div class="progress" *ngIf="progress$ | async as progress">
+                <p>{{progress.description}}</p>
+                <h3>{{progress.label}}</h3>                
+                <sfc-progress-circle [progress]="progress.progress" [total]="progress.total"
+                    [getColor]="getProgressColorDynamicallyFunc" [partition]="true"></sfc-progress-circle>
+                <span i18n="@@feature.scheme.team.components.progress.formation.text">Such count of
+                    players are selected in team scheme formation.</span>
+            </div>
+        </sfc-title>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container" [formGroupName]="TeamProfileEditPart.Financial">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION">
+    </sfc-title>
+
+    <div class="content">
+        <div class="rows">
+            <div class="row">
+                <div class="column">
+                    <sfc-carousel-input id="shirts" formControlName="shirts" [multiple]="true"
+                        [label]="Localization.INPUT.SHIRTS.LABEL" [helperText]="Localization.INPUT.SHIRTS.HELPER_TEXT">
+                        <ng-template *ngFor="let shirt of enumService.enums.shirts" [sfcCarouselInputSlide]="shirt.key"
+                            let-slide>
+                            <sfc-carousel-slider [multiple]="true" [active]="slide.selected">
+                                <sfc-shirt-carousel-slider-content [title]="shirt.value" [image]="shirt.image!"
+                                    [active]="slide.selected">
+                                </sfc-shirt-carousel-slider-content>
+                            </sfc-carousel-slider>
+                        </ng-template>
+                    </sfc-carousel-input>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <sfc-checkbox-input id="free-play" formControlName="freePlay"
+                        [checkmarkType]="CheckmarkType.Rounded" [sideLabel]="Localization.INPUT.FREE_PLAY.SIDE_LABEL"
+                        [helperText]="Localization.INPUT.FREE_PLAY.HELPER_TEXT">
+                    </sfc-checkbox-input>
+                </div>
+
+                <div class="column">
+                    <sfc-checkbox-input id="has-maniches" formControlName="hasManiches"
+                        [checkmarkType]="CheckmarkType.Rounded" [sideLabel]="Localization.INPUT.HAS_MANICHES.SIDE_LABEL"
+                        [helperText]="Localization.INPUT.HAS_MANICHES.HELPER_TEXT">
+                    </sfc-checkbox-input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<sfc-modal *sfcModalOpen="id" [defaultHeaderModel]="headerModel" [defaultFooterModel]="footerModel"
+    [hideOnClickOutside]="true">
+    <ng-template [sfcTemplateReference]="ModalTemplate.Body" let-invite>
+        <div class="body">
+            <fa-icon [icon]="icon" [sfcComponentSize] [customSize]="3"></fa-icon>
+            <h3 *ngIf="text">{{text}}</h3>
+            <ng-content></ng-content>
+        </div>
+    </ng-template>
+</sfc-modal>

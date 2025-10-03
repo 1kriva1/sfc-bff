@@ -1,8 +1,8 @@
 import { Pipe, PipeTransform } from "@angular/core";
+import { CommonConstants, empty, isDefined } from "ngx-sfc-common";
+import { CoreConstants } from "@core/constants";
 import { Locale } from "@core/enums";
 import { StorageService } from "@core/services";
-import { CommonConstants, empty, isDefined } from "ngx-sfc-common";
-import { CommonConstants as ApplicationCommonConstants } from "@core/constants";
 
 @Pipe({ name: 'sfcTime' })
 export class TimePipe implements PipeTransform {
@@ -15,7 +15,7 @@ export class TimePipe implements PipeTransform {
             return CommonConstants.EMPTY_STRING;
 
         if (!locale)
-            locale = this.storageService.get<Locale>(ApplicationCommonConstants.LOCALE_KEY, Locale.English)!;
+            locale = this.storageService.get<Locale>(CoreConstants.LOCALE_KEY, Locale.English)!;
 
         return value.toLocaleTimeString(locale, options);
     }

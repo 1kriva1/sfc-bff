@@ -4,22 +4,26 @@ const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_H
     env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : environment.bff_url;
 
 const PROXY_CONFIG = [
-  {
-    context: [
-      // BFF Management Routes
-      "/bff",
+    {
+        context: [
+            // BFF Management Routes
+            "/bff",
 
-      // OIDC Handler Routes
-      "/signin-oidc",
-      "/signout-callback-oidc",
+            // OIDC Handler Routes
+            "/signin-oidc",
+            "/signout-callback-oidc",
 
-      // API Routes
-      "/api/data",
-      "/api/players",
-    ],
-    target,
-    secure: false
-  }
+            // API Routes
+            "/api/data",
+            "/api/players",
+            "/api/teams",
+            "/api/invites",
+            "/api/requests",
+            "/api/schemes",
+        ],
+        target,
+        secure: false
+    }
 ]
 
 module.exports = PROXY_CONFIG;

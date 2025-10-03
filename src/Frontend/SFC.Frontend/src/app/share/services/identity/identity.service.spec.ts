@@ -3,9 +3,9 @@ import { fakeAsync, TestBed, tick } from "@angular/core/testing";
 import { HttpMethod } from "@core/enums";
 import { WINDOW } from "ngx-sfc-common";
 import { Observable } from "rxjs";
-import { IdentityConstants } from "./identity.constants";
+import { IdentityConstants } from "./constants/identity.constants";
 import { IdentityService } from "./identity.service";
-import { Session } from "./session.type";
+import { Session } from "./types/session.type";
 
 describe('Share.Service:Identity', () => {
     let service: IdentityService;

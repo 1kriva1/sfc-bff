@@ -1,0 +1,79 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "table/row";
+@import "mixins";
+
+:host {
+  @include host;
+
+  .container {
+    @include row-container;
+
+    .content {
+      .columns {
+        @include row-columns;
+
+        .column {
+          @include row-column;
+
+          &.select {
+            @include row-column-checkmark-select($color-dark);
+          }
+
+          &.player {
+            @include row-column-player-info;
+          }
+
+          &.position {
+            .enum {
+              @include row-column-enum;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.pointer {
+    @include host(pointer);
+  }
+
+  &.player-position-3 {
+    @include row-background($player-position-forward-color, $player-position-forward-color-hover);
+  }
+
+  &.player-position-2 {
+    @include row-background($player-position-midfielder-color, $player-position-midfielder-color-hover);
+  }
+
+  &.player-position-1 {
+    @include row-background($player-position-defender-color, $player-position-defender-color-hover);
+  }
+
+  &.player-position-0 {
+    @include row-background($player-position-goalkeeper-color, $player-position-goalkeeper-color-hover);
+  }
+
+  &.player-position-null {
+    .container {
+      .content {
+        .columns {
+          .column {
+            &.select {
+              @include row-column-checkmark-select($color-default);
+            }
+
+            &.player {
+              @include row-column-player-info($color-default);
+            }
+
+            &.position {
+              .enum {
+                @include row-column-enum($color-default);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

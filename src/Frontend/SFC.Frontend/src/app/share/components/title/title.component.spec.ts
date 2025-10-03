@@ -78,6 +78,7 @@ describe('Share.Component:Title', () => {
 
   fit('Should icon tooltip exist', () => {
     component.icon = faStar;
+    component.tooltip = 'Test tooltip';
     fixture.detectChanges();
 
     expect(fixture.nativeElement.querySelector('sfc-icon-tooltip')).toBeTruthy();

@@ -47,7 +47,7 @@ describe('Core.Interceptor:Loader', () => {
     fit('Should show loader', (done) => {
         spyOn(loaderServiceStub, 'show' as any);
 
-        client.get(url, { context: new HttpContext().set(LOADER, true) }).subscribe(_ => done());
+        client.get(url, { context: new HttpContext().set(LOADER, {show: true}) }).subscribe(_ => done());
 
         expect(loaderServiceStub.show).toHaveBeenCalledTimes(1);
 
@@ -58,7 +58,7 @@ describe('Core.Interceptor:Loader', () => {
         spyOn(loaderServiceStub, 'show' as any);
         spyOn(loaderServiceStub, 'hide' as any);
 
-        client.get(url, { context: new HttpContext().set(LOADER, true) }).subscribe(_ => done());
+        client.get(url, { context: new HttpContext().set(LOADER, {show: true}) }).subscribe(_ => done());
 
         expect(loaderServiceStub.show).toHaveBeenCalledTimes(1);
 
@@ -70,7 +70,7 @@ describe('Core.Interceptor:Loader', () => {
     fit('Should hide loader if event is HttpResponse', (done) => {
         spyOn(loaderServiceStub, 'hide' as any);
 
-        client.get(url, { context: new HttpContext().set(LOADER, true) }).subscribe(_ => done());
+        client.get(url, { context: new HttpContext().set(LOADER, {show: true}) }).subscribe(_ => done());
 
         controller.expectOne(url).flush({} as HttpResponse<any>);
 
@@ -80,7 +80,7 @@ describe('Core.Interceptor:Loader', () => {
     fit('Should not hide loader if event is not HttpResponse', (done) => {
         spyOn(loaderServiceStub, 'hide' as any);
 
-        client.get(url, { context: new HttpContext().set(LOADER, true) }).subscribe(_ => done());
+        client.get(url, { context: new HttpContext().set(LOADER, {show: true}) }).subscribe(_ => done());
 
         controller.expectOne(url).event({} as HttpEvent<any>);
 
@@ -92,7 +92,7 @@ describe('Core.Interceptor:Loader', () => {
     fit('Should hide loader if error occurred', (done) => {
         spyOn(loaderServiceStub, 'hide' as any);
 
-        client.get(url, { context: new HttpContext().set(LOADER, true) }).pipe(
+        client.get(url, { context: new HttpContext().set(LOADER, {show: true}) }).pipe(
             catchError(error => of(error))).subscribe(_ => done());
 
         controller.expectOne(url).error({} as ProgressEvent);
@@ -105,7 +105,7 @@ describe('Core.Interceptor:Loader', () => {
 
         const assertError: unknown = { test: 1 };
 
-        client.get(url, { context: new HttpContext().set(LOADER, true) }).pipe(
+        client.get(url, { context: new HttpContext().set(LOADER, {show: true}) }).pipe(
             catchError(errorResponse => {
                 expect(errorResponse).toBeDefined();
                 expect(errorResponse.error).toEqual(assertError);

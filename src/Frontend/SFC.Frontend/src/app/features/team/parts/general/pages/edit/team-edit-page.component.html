@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="content">
+        <div class="title">
+            <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+                [tooltip]="Localization.TITLE.TOOLTIP" [icon]="faQuestionCircle" [sfcComponentSize] [customSize]="1.5">
+            </sfc-title>
+        </div>
+
+        <form [formGroup]="form" autocomplete="off">
+            <div class="parts">
+                <div class="part left">
+                    <sfc-side-menu [model]="menu"></sfc-side-menu>
+
+                    <div class="sub-part">
+                        <sfc-team-main-edit *ngIf="changesCheckService.changes$ | async as changes"
+                            [players$]="players$" [submitDisabled]="!changes.dirty"
+                            [submitButtonText]="CoreLocalization.UPDATE" [buildSubmitObservable]="update"
+                            (postSubmit)="onUpdated($event)">
+                        </sfc-team-main-edit>
+
+                        <sfc-team-information-progress [value$]="value$"></sfc-team-information-progress>
+
+                        <ng-container [ngSwitch]="playersRoute">
+                            <sfc-team-edit-squad-progress *ngSwitchCase="TeamEditPlayersRoute.Squad"
+                                [players$]="players$">
+                            </sfc-team-edit-squad-progress>
+                            <sfc-team-edit-player-invites-progress *ngSwitchCase="TeamEditPlayersRoute.Invites">
+                            </sfc-team-edit-player-invites-progress>
+                            <sfc-team-edit-player-requests-progress *ngSwitchCase="TeamEditPlayersRoute.Requests">
+                            </sfc-team-edit-player-requests-progress>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <div class="part center">
+                    <router-outlet></router-outlet>
+                </div>
+
+                <div class="part right">
+                    <sfc-team-players-preview [title]="Localization.PREVIEW.TITLE"
+                        [description]="Localization.PREVIEW.DESCRIPTION" [players$]="previewPlayers$">
+                    </sfc-team-players-preview>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- changes check modal -->
+    <sfc-changes-check-modal [label]="Localization.CHANGES_MODAL_LABEL"></sfc-changes-check-modal>
+
+    <!-- remove player modal -->
+    <sfc-team-player-remove-modal></sfc-team-player-remove-modal>
+
+    <!-- cancel player invite modal -->
+    <sfc-invite-team-player-cancel-modal [action]="InviteAction.TeamPlayer"></sfc-invite-team-player-cancel-modal>
+
+    <!-- accept player request modal -->
+    <sfc-request-team-player-accept-modal [actions]="[RequestAction.TeamPlayer, TeamAction.Player]"></sfc-request-team-player-accept-modal>
+
+    <!-- decline player request modal -->
+    <sfc-request-team-player-decline-modal [action]="RequestAction.TeamPlayer"></sfc-request-team-player-decline-modal>
+
+    <!-- remove team scheme modal -->
+    <sfc-scheme-team-remove-modal [actions]="[SchemeAction.Team]"></sfc-scheme-team-remove-modal>
+</div>

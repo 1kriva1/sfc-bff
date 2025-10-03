@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="content">
+        <div class="columns">
+            <ng-container *ngFor="let column of columns">
+                <ng-container [ngSwitch]="column.field">
+                    <ng-container *ngSwitchCase="Column.Player">
+                        <div class="column rating" [style.width]="column.calculatedWidth">
+                            <sfc-player-info [radius]="Constants.AVATAR_RADIUS" [avatar]="true" [info]="false"
+                                [model]="avatarModel">
+                            </sfc-player-info>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Player">
+                        <div class="column player" [style.width]="column.calculatedWidth">
+                            <sfc-player-info [radius]="Constants.AVATAR_RADIUS" [avatar]="false" [info]="true"
+                                [model]="avatarModel">
+                            </sfc-player-info>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Position">
+                        <div class="column position" [style.width]="column.calculatedWidth">
+                            <div class="enum">
+                                <ng-container *ngIf="viewModel.position">
+                                    <sfc-icon [imageSrc]="viewModel.position.image"></sfc-icon>
+                                    <span>{{viewModel.position.value}}</span>
+                                </ng-container>
+                                <sfc-no-data *ngIf="!viewModel.position"></sfc-no-data>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Status">
+                        <div class="column status" [style.width]="column.calculatedWidth">
+                            <sfc-status [label]="viewModel.status.value"></sfc-status>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Actions">
+                        <div class="column actions" [style.width]="column.calculatedWidth">
+                            <sfc-dropdown-menu [items]="model.actions!" [bordered]="false" [filled]="true"
+                                [position]="[Position.Bottom, Position.Center]" [sfcComponentSize] [customSize]="0.9">
+                            </sfc-dropdown-menu>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</div>

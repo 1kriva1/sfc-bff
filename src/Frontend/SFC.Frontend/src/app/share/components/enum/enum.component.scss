@@ -1,0 +1,19 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "mixins";
+@import "common";
+
+:host {
+  .container {
+    .content {
+      @include center-column;
+
+      sfc-icon {
+        font-size: 2em;
+      }
+
+      span {
+        @include text-bold($text-transform: capitalize);
+      }
+    }
+  }
+}

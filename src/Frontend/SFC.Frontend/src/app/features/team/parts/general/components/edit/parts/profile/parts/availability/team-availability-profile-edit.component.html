@@ -1,0 +1,10 @@
+<div class="container" [formGroupName]="TeamProfileEditPart.Availability">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+        [tooltip]="Localization.TITLE.TOOLTIP" [icon]="faQuestionCircle"></sfc-title>
+
+    <div class="content">
+        <sfc-availability-edit [value]="value.availability.value || []" (add)="updateFormValue()"
+            (onRemove)="updateFormValue()">
+        </sfc-availability-edit>
+    </div>
+</div>

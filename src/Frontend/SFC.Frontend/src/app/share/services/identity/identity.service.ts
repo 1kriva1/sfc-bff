@@ -5,9 +5,9 @@ import {
     catchError, filter, map,
     Observable, of, shareReplay, tap
 } from 'rxjs';
-import { Claim } from './claim.model';
-import { IdentityConstants } from './identity.constants';
-import { Session } from './session.type';
+import { Claim } from './models/claim.model';
+import { IdentityConstants } from './constants/identity.constants';
+import { Session } from './types/session.type';
 
 @Injectable({
     providedIn: 'root'

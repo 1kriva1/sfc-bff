@@ -1,0 +1,49 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "components";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      form {
+        .row {
+          display: flex;
+          width: 100%;
+          padding: 1em 0;
+
+          .column {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 0 0.5em;
+          }
+
+          &.add {
+            flex-direction: column;
+            padding: 0 0 1em;
+
+            .column {
+              &.validation {
+                justify-content: center;
+                padding-bottom: 0.5em;
+              }
+
+              &.action {
+                justify-content: center;
+                margin: 0;
+
+                @include button;
+
+                sfc-button {
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

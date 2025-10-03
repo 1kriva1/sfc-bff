@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="content">
+        <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+            [collapseExpand]="true">
+            <div class="progress" *ngIf="progress$ | async as progress">
+                <sfc-progress-line [labelStart]="Localization.LINE.LABEL_START" [progress]="progress.percentage"
+                    [labelSuffix]="CommonConstants.PERCENTAGE_SYMBOL">
+                </sfc-progress-line>
+                <span>{{progress.filled}} {{Localization.OF}}
+                    {{progress.properties}} {{Localization.FILLED}}</span>
+            </div>
+        </sfc-title>
+    </div>
+</div>

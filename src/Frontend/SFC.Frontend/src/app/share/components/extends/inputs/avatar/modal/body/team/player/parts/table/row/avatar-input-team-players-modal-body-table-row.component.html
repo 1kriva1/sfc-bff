@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="content">
+        <div class="columns">
+            <ng-container *ngFor="let column of columns">
+                <ng-container [ngSwitch]="column.field">
+                    <ng-container *ngSwitchCase="Column.Select">
+                        <div class="column select" [style.width]="column.calculatedWidth">
+                            <sfc-checkmark [active]="selected" (click)="onSelect($event)" [type]="CheckmarkType.Circle"
+                                [sfcComponentSize] [customSize]="1.2">
+                            </sfc-checkmark>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Rating">
+                        <div class="column rating" [style.width]="column.calculatedWidth">
+                            <sfc-player-info [radius]="Constants.AVATAR_RADIUS" [avatar]="true" [info]="false"
+                                [model]="viewModel.player">
+                            </sfc-player-info>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Player">
+                        <div class="column player" [style.width]="column.calculatedWidth">
+                            <sfc-player-info [radius]="Constants.AVATAR_RADIUS" [avatar]="false" [info]="true"
+                                [model]="viewModel.player">
+                            </sfc-player-info>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Position">
+                        <div class="column position" [style.width]="column.calculatedWidth">
+                            <div class="enum">
+                                <ng-container *ngIf="viewModel.position">
+                                    <sfc-icon [imageSrc]="viewModel.position.image"></sfc-icon>
+                                    <span>{{viewModel.position.value}}</span>
+                                </ng-container>
+                                <sfc-no-data *ngIf="!viewModel.position"></sfc-no-data>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Status">
+                        <div class="column status" [style.width]="column.calculatedWidth">
+                            <sfc-status [label]="viewModel.status.value"></sfc-status>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.PhysicalCondition">
+                        <div class="column physical-condition" [style.width]="column.calculatedWidth">
+                            <sfc-stars [value]="viewModel.physicalCondition" [sfcComponentSize] [customSize]="0.6">
+                            </sfc-stars>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</div>

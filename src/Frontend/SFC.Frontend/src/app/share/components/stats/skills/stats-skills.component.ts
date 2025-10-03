@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { StatsValue } from '../../../types';
 import { IStatsTypeModel } from '../../../models';
 import { EnumService } from '../../../services';
-import { getTypes } from '../../../utils';
+import { getTypes } from '../../../utils/stats';
 import { getProgressColorDynamicallyFunc } from 'ngx-sfc-components';
 
 @Component({

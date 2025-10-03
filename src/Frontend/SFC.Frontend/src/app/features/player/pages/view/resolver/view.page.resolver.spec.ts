@@ -10,7 +10,7 @@ import { fakeAsync, tick } from "@angular/core/testing";
 import { IResolverModel } from "@core/models";
 import { IPlayerModel } from "../mapper/models";
 import { buildPath } from "@core/utils";
-import { RoutKey } from "@core/enums";
+import { HomeRoute } from "@share/enums";
 
 describe('Features.Player.Page:View.Resolver', () => {
     let resolver: ViewPageResolver;
@@ -140,7 +140,7 @@ describe('Features.Player.Page:View.Resolver', () => {
         tick();
 
         resolver.resolve(snapshot).subscribe((_: IResolverModel<IPlayerModel>) =>
-            expect(routerSpy.navigate).toHaveBeenCalledOnceWith([buildPath(RoutKey.Home)]));
+            expect(routerSpy.navigate).toHaveBeenCalledOnceWith([buildPath(HomeRoute.Home)]));
     }));
 
     function getPlayerModel(): IGetPlayerModel {

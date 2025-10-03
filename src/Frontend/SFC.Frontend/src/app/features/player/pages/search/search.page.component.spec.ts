@@ -10,12 +10,12 @@ import { NotificationService } from "@core/services";
 import { MessageSeverity } from "@core/services/message/message-severity.enum";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ThemeService } from "@share/components/theme-toggler/services/theme/theme.service";
-import { EnumService, PlayerService } from "@share/services";
+import { EnumService, IPlayerItemModel, PlayerService } from "@share/services";
 import { ShareModule } from "@share/share.module";
 import { ENUM_SERVICE } from "@test/stubs";
 import {
     ButtonType, CommonConstants, MediaLimits, ModalService,
-    NgxSfcCommonModule, PaginationConstants, Position, ResizeService, Theme, WINDOW
+    NgxSfcCommonModule, Position, ResizeService, Theme, WINDOW
 } from "ngx-sfc-common";
 import { NgxSfcComponentsModule } from "ngx-sfc-components";
 import { NgxSfcInputsModule } from "ngx-sfc-inputs";
@@ -25,14 +25,13 @@ import { PlayerRecommendationComponent } from "./parts/recomendation/parts/playe
 import { PlayersRecommendationComponent } from "./parts/recomendation/players-recommendation.component";
 import { SearchPageComponent } from "./search.page.component";
 import { SearchPageLocalization } from "./search.page.localization";
-import { SearchPageConstants } from "./search.page.constants";
-import { FootballFilterComponent, GeneralFilterComponent, StatsFilterComponent } from "@share/components/players/search/filters";
-import { PlayerCardComponent, PlayerRowComponent, PlayerRowContentComponent, PlayersTableLocalization } from "@share/components/players/search/table";
-import { PlayersTableConstants } from "@share/components/players/search/table/players-table.constants";
-import { GeneralFilterConstants } from "@share/components/players/search/filters/general/general-filter.constants";
-import { FootballFilterConstants } from "@share/components/players/search/filters/football/football-filter.constants";
-import { StatsFilterConstants } from "@share/components/players/search/filters/stats/stats-filter.contants";
-import { IPlayerItemModel } from "@share/services/player/models/find";
+import { FootballFilterComponent, GeneralFilterComponent, StatsFilterComponent } from "@share/components/features/player/search/filters";
+import { PlayerCardComponent, PlayerRowComponent, PlayerRowContentComponent, PlayersTableLocalization } from "@share/components/features/player/search/table";
+import { PlayersTableConstants } from "@share/components/features/player/search/table/constants/players-table.constants";
+import { FootballFilterConstants } from "@share/components/features/player/search/filters/parts/football/football-filter.constants";
+import { GeneralFilterConstants } from "@share/components/features/player/search/filters/parts/general/general-filter.constants";
+import { StatsFilterConstants } from "@share/components/features/player/search/filters/parts/stats/stats-filter.contants";
+import { PlayersFiltersConstants } from "@share/components/features/player/search/filters/constants/players-filters.constants";
 
 describe('Features.Player.Page:Search', () => {
     let component: SearchPageComponent;
@@ -138,10 +137,6 @@ describe('Features.Player.Page:Search', () => {
 
         fit('Should have constant columns', () => {
             expect(component.columns).toEqual(PlayersTableConstants.COLUMNS);
-        });
-
-        fit('Should have constant pagination', () => {
-            expect(component.pagination).toEqual({ page: PaginationConstants.DEFAULT_PAGE, size: PlayersTableConstants.PAGINATION_SIZE });
         });
 
         fit('Should show statistics by default', () => {
@@ -355,7 +350,8 @@ describe('Features.Player.Page:Search', () => {
                 expect(nameInput.componentInstance.label).toEqual(CommonConstants.EMPTY_STRING);
                 expect(nameInput.componentInstance.bordered).toBeFalse();
                 expect(nameInput.attributes['ng-reflect-custom-size']).toEqual('4');
-                expect(nameInput.attributes['ng-reflect-focus']).toEqual('true');
+                // TODO
+                // expect(nameInput.attributes['ng-reflect-focus']).toEqual('true');
             });
 
             fit('Should have title with appropriate attributes', () => {
@@ -705,7 +701,6 @@ describe('Features.Player.Page:Search', () => {
             expect(tableEl.componentInstance.columns).toEqual(PlayersTableConstants.COLUMNS);
             expect(tableEl.componentInstance.predicate$).toEqual(component.predicate$);
             expect(tableEl.componentInstance.loader).toBeTruthy();
-            expect(tableEl.componentInstance.pagination).toEqual(component.pagination);
             expect(tableEl.componentInstance.position).toEqual(Position.Center);
             expect(tableEl.componentInstance.showColumns).toBeTrue();
             expect(tableEl.componentInstance.columnsToggle).toBeTrue();
@@ -730,7 +725,7 @@ describe('Features.Player.Page:Search', () => {
 
                 changeNameInputFilter();
 
-                tick(SearchPageConstants.SEARCH_DEBOUNCE_TIME);
+                tick(PlayersFiltersConstants.SEARCH_DEBOUNCE_TIME);
                 fixture.detectChanges();
 
                 expect(fixture.debugElement.queryAll(By.css('form > .main > sfc-table sfc-expanded-table-row')).length).toEqual(2);
@@ -744,7 +739,7 @@ describe('Features.Player.Page:Search', () => {
 
                 changeNameInputFilter();
 
-                tick(SearchPageConstants.SEARCH_DEBOUNCE_TIME);
+                tick(PlayersFiltersConstants.SEARCH_DEBOUNCE_TIME);
                 fixture.detectChanges();
 
                 fixture.debugElement.queryAll(By.css('form > .main > sfc-table sfc-expanded-table-row'))
@@ -765,7 +760,7 @@ describe('Features.Player.Page:Search', () => {
 
                 changeNameInputFilter();
 
-                tick(SearchPageConstants.SEARCH_DEBOUNCE_TIME);
+                tick(PlayersFiltersConstants.SEARCH_DEBOUNCE_TIME);
                 fixture.detectChanges();
 
                 expect(fixture.debugElement.queryAll(By.css('form > .main > sfc-table sfc-expanded-table-row sfc-player-row')).length)
@@ -780,7 +775,7 @@ describe('Features.Player.Page:Search', () => {
 
                 changeNameInputFilter();
 
-                tick(SearchPageConstants.SEARCH_DEBOUNCE_TIME);
+                tick(PlayersFiltersConstants.SEARCH_DEBOUNCE_TIME);
                 fixture.detectChanges();
 
                 fixture.debugElement.queryAll(By.css('form > .main > sfc-table sfc-expanded-table-row sfc-player-row'))
@@ -801,7 +796,7 @@ describe('Features.Player.Page:Search', () => {
 
                 changeNameInputFilter();
 
-                tick(SearchPageConstants.SEARCH_DEBOUNCE_TIME);
+                tick(PlayersFiltersConstants.SEARCH_DEBOUNCE_TIME);
                 fixture.detectChanges();
 
                 expect(fixture.debugElement.queryAll(By.css('form > .main > sfc-table sfc-expanded-table-row sfc-player-row-content')).length)
@@ -816,7 +811,7 @@ describe('Features.Player.Page:Search', () => {
 
                 changeNameInputFilter();
 
-                tick(SearchPageConstants.SEARCH_DEBOUNCE_TIME);
+                tick(PlayersFiltersConstants.SEARCH_DEBOUNCE_TIME);
                 fixture.detectChanges();
 
                 fixture.debugElement.queryAll(By.css('form > .main > sfc-table sfc-expanded-table-row sfc-player-row-content'))
@@ -836,7 +831,7 @@ describe('Features.Player.Page:Search', () => {
 
                 changeNameInputFilter();
 
-                tick(SearchPageConstants.SEARCH_DEBOUNCE_TIME);
+                tick(PlayersFiltersConstants.SEARCH_DEBOUNCE_TIME);
                 fixture.detectChanges();
 
                 expect(fixture.debugElement.queryAll(By.css('form > .main > sfc-table sfc-player-card')).length)
@@ -854,7 +849,7 @@ describe('Features.Player.Page:Search', () => {
 
                 changeNameInputFilter();
 
-                tick(SearchPageConstants.SEARCH_DEBOUNCE_TIME);
+                tick(PlayersFiltersConstants.SEARCH_DEBOUNCE_TIME);
                 fixture.detectChanges();
 
                 fixture.debugElement.queryAll(By.css('form > .main > sfc-table sfc-player-card'))
@@ -987,7 +982,7 @@ describe('Features.Player.Page:Search', () => {
         fit('Should searching on filter changes', fakeAsync(() => {
             changeNameInputFilter();
 
-            tick(SearchPageConstants.SEARCH_DEBOUNCE_TIME);
+            tick(PlayersFiltersConstants.SEARCH_DEBOUNCE_TIME);
             fixture.detectChanges();
 
             expect(playerServiceStub.find).toHaveBeenCalledTimes(2);
@@ -999,7 +994,7 @@ describe('Features.Player.Page:Search', () => {
 
             changeNameInputFilter();
 
-            tick(SearchPageConstants.SEARCH_DEBOUNCE_TIME);
+            tick(PlayersFiltersConstants.SEARCH_DEBOUNCE_TIME);
             fixture.detectChanges();
 
             expect(playerServiceStub.find).toHaveBeenCalledTimes(1);
@@ -1010,7 +1005,7 @@ describe('Features.Player.Page:Search', () => {
 
             changeCityInputFilter();
 
-            tick(SearchPageConstants.SEARCH_DEBOUNCE_TIME);
+            tick(PlayersFiltersConstants.SEARCH_DEBOUNCE_TIME);
             fixture.detectChanges();
 
             expect(playerServiceStub.find).toHaveBeenCalledTimes(1);
@@ -1023,7 +1018,7 @@ describe('Features.Player.Page:Search', () => {
 
             startSearchingByModal();
 
-            tick(SearchPageConstants.SEARCH_DEBOUNCE_TIME);
+            tick(PlayersFiltersConstants.SEARCH_DEBOUNCE_TIME);
             fixture.detectChanges();
 
             expect(playerServiceStub.find).toHaveBeenCalledTimes(2);
@@ -1034,7 +1029,7 @@ describe('Features.Player.Page:Search', () => {
 
             expect(playerServiceStub.find).toHaveBeenCalledTimes(1);
 
-            tick(SearchPageConstants.SEARCH_DEBOUNCE_TIME);
+            tick(PlayersFiltersConstants.SEARCH_DEBOUNCE_TIME);
             fixture.detectChanges();
 
             expect(playerServiceStub.find).toHaveBeenCalledTimes(2);
@@ -1069,9 +1064,10 @@ describe('Features.Player.Page:Search', () => {
                         Raiting: null,
                         Skill: { From: StatsFilterConstants.FROM_STATS_DEFAULT, To: StatsFilterConstants.TO_STATS_DEFAULT, Skill: 2 },
                         Total: { From: StatsFilterConstants.FROM_STATS_DEFAULT, To: StatsFilterConstants.TO_STATS_DEFAULT }
-                    }
+                    },
+                    ExcludeIds: []
                 },
-                Pagination: { Page: component.pagination.page, Size: component.pagination.size },
+                Pagination: { Page: PlayersTableConstants.PAGINATION.page, Size: PlayersTableConstants.PAGINATION.size },
                 Sorting: [{ Name: 'Raiting', Direction: 'descending' }]
             }, !component.showLoading);
         }));
@@ -1083,7 +1079,7 @@ describe('Features.Player.Page:Search', () => {
 
             getSpy.and.returnValue(throwError(() => new Error()));
 
-            tick(SearchPageConstants.SEARCH_DEBOUNCE_TIME);
+            tick(PlayersFiltersConstants.SEARCH_DEBOUNCE_TIME);
             fixture.detectChanges();
 
             expect(notificationServiceStub.notify).toHaveBeenCalledOnceWith({

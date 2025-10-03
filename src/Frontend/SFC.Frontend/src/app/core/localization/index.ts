@@ -1,0 +1,1 @@
+export { CoreLocalization } from './core.localization';

@@ -1,0 +1,24 @@
+<div class="container">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"></sfc-title>
+
+    <div class="content">
+        <div class="panels">
+            <sfc-panel class="comment" [label]="Localization.PLAYER_COMMENT.LABEL"
+                [description]="Localization.PLAYER_COMMENT.DESCRIPTION" [tooltip]="Localization.PLAYER_COMMENT.TOOLTIP"
+                [icon]="faPerson">
+                <div class="content">
+                    <p>{{model.playerComment}}</p>
+                </div>
+            </sfc-panel>
+
+            <sfc-panel class="comment" [label]="Localization.TEAM_COMMENT.LABEL"
+                [description]="Localization.TEAM_COMMENT.DESCRIPTION" [tooltip]="Localization.TEAM_COMMENT.TOOLTIP"
+                [icon]="faPeopleGroup">
+                <div class="content">
+                    <p>{{model.teamComment}}</p>
+                    <sfc-no-data *ngIf="!model.teamComment"></sfc-no-data>
+                </div>
+            </sfc-panel>
+        </div>
+    </div>
+</div>

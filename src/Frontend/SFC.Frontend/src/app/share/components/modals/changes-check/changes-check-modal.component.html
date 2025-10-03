@@ -1,0 +1,9 @@
+<sfc-modal *sfcModalOpen="CoreConstants.CHANGES_CHECK_MODAL_ID" [defaultFooterModel]="footerModel"
+    [defaultHeaderModel]="headerModel" [hideOnClickOutside]="false">
+    <ng-template [sfcTemplateReference]="ModalTemplate.Body">
+        <div class="changes-warning-body">
+            <fa-icon [icon]="faTriangleExclamation" [sfcComponentSize] [customSize]="3"></fa-icon>
+            <h3>{{label}}</h3>
+        </div>
+    </ng-template>
+</sfc-modal>

@@ -1,0 +1,79 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "table/row";
+@import "mixins";
+
+@mixin team-player-squad-row-background($background, $background-hover) {
+  @include row-background($background, $background-hover);
+
+  .container {
+    .content {
+      .columns {
+        .column {
+          &.status {
+            @include row-column-status($background-hover);
+          }
+        }
+      }
+    }
+  }
+}
+
+:host {
+  @include host;
+
+  .container {
+    @include row-container;
+
+    .content {
+      .columns {
+        @include row-columns;
+
+        .column {
+          @include row-column;
+
+          &.player {
+            @include row-column-player-info;
+          }
+
+          &.position {
+            .enum {
+              @include row-column-enum;
+            }
+          }
+
+          &.actions {
+            @include action-menu($color-0);
+          }
+        }
+      }
+    }
+  }
+
+  &.team-player-request-status-0 {
+    @include team-player-squad-row-background(
+      $team-player-request-status-actual-color,
+      $team-player-request-status-actual-hover-color
+    );
+  }
+
+  &.team-player-request-status-1 {
+    @include team-player-squad-row-background(
+      $team-player-request-status-accepted-color,
+      $team-player-request-status-accepted-hover-color
+    );
+  }
+
+  &.team-player-request-status-2 {
+    @include team-player-squad-row-background(
+      $team-player-request-status-declined-color,
+      $team-player-request-status-declined-hover-color
+    );
+  }
+
+  &.team-player-request-status-3 {
+    @include team-player-squad-row-background(
+      $team-player-request-status-canceled-color,
+      $team-player-request-status-canceled-hover-color
+    );
+  }
+}

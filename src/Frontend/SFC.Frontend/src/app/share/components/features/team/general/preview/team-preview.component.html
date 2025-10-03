@@ -1,0 +1,30 @@
+<div class="container">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"></sfc-title>
+
+    <div class="content">
+        <div *ngIf="model" class="team">
+            <sfc-team-info [logo]="false" [info]="true" [model]="{
+                                    name: model.name,
+                                    city: model.city
+                                }" [sfcComponentSize] [customSize]="1.3">
+            </sfc-team-info>
+
+            <sfc-tags *ngIf="model.tags.length" [tags]="model.tags" [sfcComponentSize] [customSize]="0.7"></sfc-tags>
+
+            <p class="description" *ngIf="model.description">{{model.description}}</p>
+
+            <div class="players">
+                <sfc-progress-circle [progress]="model.players.length" [total]="model.players.length" [sfcComponentSize]
+                    [customSize]="0.8">
+                </sfc-progress-circle>
+                <span i18n="@@share.components.features.team.general.preview.players.total.label">Team players
+                    count</span>
+            </div>
+
+            <sfc-availability-list [value]="model.availability" [edit]="false" [sfcComponentSize] [customSize]="0.8">
+            </sfc-availability-list>
+        </div>
+
+        <sfc-no-data *ngIf="!model" [textContent]="Localization.NO_DATA_LABEL"></sfc-no-data>
+    </div>
+</div>

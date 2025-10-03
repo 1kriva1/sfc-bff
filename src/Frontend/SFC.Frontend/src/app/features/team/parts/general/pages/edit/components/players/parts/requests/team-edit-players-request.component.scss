@@ -1,0 +1,16 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "share/components/features/player/search/base/base-search-players.component";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      width: 100%;
+
+      .filters {
+        margin: 1em 0;
+      }
+    }
+  }
+}

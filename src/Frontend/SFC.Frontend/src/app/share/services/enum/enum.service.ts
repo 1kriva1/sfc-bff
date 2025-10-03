@@ -1,14 +1,29 @@
 import { Injectable } from "@angular/core";
 import { faAdversal, faAlgolia } from "@fortawesome/free-brands-svg-icons";
 import {
-    faAsterisk, faBan, faBellSlash, faBook, faCar, faClock, faFutbol,
-    faHockeyPuck, faHourglassEnd, faPowerOff, faRainbow, faSliders,
+    faBan, faBellSlash, faBook, faCar, faClock, faFutbol,
+    faHockeyPuck, faHourglassEnd, faRainbow, faSliders,
     faSpellCheck, faStar, faSun, faTruckMoving
 } from "@fortawesome/free-solid-svg-icons";
-import { map, Observable, tap } from "rxjs";
+import { forkJoin, map, Observable, tap } from "rxjs";
 import { DataService } from "../data/data.service";
-import { IGetDataResponse } from "../data/models/get-data.response";
-import { IEnumsModel } from "./models/enums.model";
+import { InviteDataService } from "../invite/data/invite-data.service";
+import { RequestDataService } from "../request/data/request-data.service";
+import { SchemeDataService } from "../scheme/data/scheme-data.service";
+import { TeamDataService } from "../team/data/team-data.service";
+import { IEnumsModel } from "./models/enum/enums.model";
+import { IServicesDataModel } from "./models/common/services-data.model";
+import {
+    mapEnum,
+    mapFormationEnum,
+    mapFormationPositionEnum,
+    mapImageEnum,
+    mapInviteStatusEnum,
+    mapRequestStatusEnum,
+    mapStatTypeEnum,
+    mapTeamPlayerStatusEnum,
+    mapTeamStatusEnum
+} from "../../mappers";
 
 @Injectable({
     providedIn: 'root'
@@ -24,38 +39,47 @@ export class EnumService {
         badgeTypes: [],
         gameStatuses: [],
         teamStatuses: [],
-        shirts: []
+        shirts: [],
+        inviteStatuses: [],
+        requestStatuses: [],
+        teamPlayerStatuses: [],
+        formations: [],
+        formationPositions: [],
+        formationType: []
     };
 
-    constructor(private dataService: DataService) { }
+    constructor(
+        private dataService: DataService,
+        private inviteDataService: InviteDataService,
+        private requestDataService: RequestDataService,
+        private teamDataService: TeamDataService,
+        private schemeDataService: SchemeDataService
+    ) { }
 
     public load(): Observable<IEnumsModel> {
-        return this.dataService.get().pipe(
-            tap((response: IGetDataResponse) => {
+        return forkJoin({
+            data: this.dataService.get(),
+            invite: this.inviteDataService.get(),
+            request: this.requestDataService.get(),
+            team: this.teamDataService.get(),
+            scheme: this.schemeDataService.get()
+        }).pipe(
+            tap((data: IServicesDataModel) => {
                 this.enums = {
-                    footballPositions: response.FootballPositions.map(value => ({
-                        key: value.Id,
-                        value: value.Title,
-                        image: `app/core/assets/images/enums/position/${value.Id}.png`
-                    })),
-                    gameStyles: response.GameStyles.map(value => ({
-                        key: value.Id,
-                        value: value.Title,
-                        image: `app/core/assets/images/enums/game-style/${value.Id}.png`
-                    })),
-                    workingFoots: response.WorkingFoots.map(value => ({
-                        key: value.Id,
-                        value: value.Title,
-                        image: `app/core/assets/images/enums/foot/${value.Id}.png`
-                    })),
-                    statCategories: response.StatCategories.map(value => ({ key: value.Id, value: value.Title })),
-                    statSkills: response.StatSkills.map(value => ({ key: value.Id, value: value.Title })),
-                    statTypes: response.StatTypes.map(value => ({
-                        key: value.Id,
-                        value: value.Title,
-                        category: value.Category,
-                        skill: value.Skill
-                    })),
+                    footballPositions: data.data.FootballPositions.map(value => mapImageEnum(value, 'app/share/assets/images/enums/position')),
+                    gameStyles: data.data.GameStyles.map(value => mapImageEnum(value, 'app/share/assets/images/enums/game-style')),
+                    workingFoots: data.data.WorkingFoots.map(value => mapImageEnum(value, 'app/share/assets/images/enums/foot')),
+                    statCategories: data.data.StatCategories.map(value => mapEnum(value)),
+                    statSkills: data.data.StatSkills.map(value => mapEnum(value)),
+                    statTypes: data.data.StatTypes.map(value => mapStatTypeEnum(value)),
+                    shirts: data.data.Shirts.map(value => mapImageEnum(value, 'app/share/assets/images/enums/shirts')),
+                    teamStatuses: data.team.TeamStatuses.map(value => mapTeamStatusEnum(value)),
+                    teamPlayerStatuses: data.team.TeamPlayerStatuses.map(value => mapTeamPlayerStatusEnum(value)),
+                    inviteStatuses: data.invite.InviteStatuses.map(value => mapInviteStatusEnum(value)),
+                    requestStatuses: data.request.RequestStatuses.map(value => mapRequestStatusEnum(value)),
+                    formations: data.scheme.Formations.map(value => mapFormationEnum(value, 'app/share/assets/images/enums/formation', 'jpg')),
+                    formationPositions: data.scheme.FormationPositions.map(value => mapFormationPositionEnum(value)),
+                    formationType: data.scheme.SchemeTypes.map(value => mapEnum(value)),
                     badgeTypes: [
                         { key: 0, value: 'Badge_0', icon: faStar, description: 'Has posted more than 1000 posts on their profile' },
                         { key: 1, value: 'Badge_1', icon: faStar, description: 'Has posted more than 1000 posts on their profile' },
@@ -76,24 +100,6 @@ export class EnumService {
                         { key: 2, value: 'Active', icon: faFutbol },
                         { key: 3, value: 'Canceled', icon: faBan },
                         { key: 4, value: 'Finished', icon: faHourglassEnd },
-                    ],
-                    teamStatuses: [
-                        { key: 0, value: 'Temporary', icon: faAsterisk },
-                        { key: 1, value: 'New', icon: faSun },
-                        { key: 2, value: 'Active', icon: faFutbol },
-                        { key: 3, value: 'Postponed', icon: faPowerOff },
-                        { key: 4, value: 'Closed', icon: faBan }
-                    ],
-                    shirts: [
-                        { key: 0, value: 'Blue', image: `app/core/assets/images/enums/shirts/${0}.png` },
-                        { key: 1, value: 'Pink', image: `app/core/assets/images/enums/shirts/${1}.png` },
-                        { key: 2, value: 'Black', image: `app/core/assets/images/enums/shirts/${2}.png` },
-                        { key: 3, value: 'Red', image: `app/core/assets/images/enums/shirts/${3}.png` },
-                        { key: 4, value: 'Yellow', image: `app/core/assets/images/enums/shirts/${4}.png` },
-                        { key: 5, value: 'Purple', image: `app/core/assets/images/enums/shirts/${5}.png` },
-                        { key: 6, value: 'Orange', image: `app/core/assets/images/enums/shirts/${6}.png` },
-                        { key: 7, value: 'Brown', image: `app/core/assets/images/enums/shirts/${7}.png` },
-                        { key: 8, value: 'Green', image: `app/core/assets/images/enums/shirts/${8}.png` },
                     ]
                 };
             }),

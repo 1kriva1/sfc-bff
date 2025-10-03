@@ -1,0 +1,23 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+
+:host {
+  sfc-modal {
+    .body {
+      @include center-column;
+
+      user-select: none;
+      max-width: 20em;
+      white-space: pre-wrap;
+      text-align: center;
+
+      fa-icon {
+        color: $color-yellow-1;
+      }
+
+      h3 {
+        margin: 0.5em 0 1em;
+      }
+    }
+  }
+}

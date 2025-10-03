@@ -1,8 +1,9 @@
 import { Component, Input } from "@angular/core";
 import { Router } from "@angular/router";
-import { RoutKey } from "@core/enums";
+import { RouteKey } from "@core/enums";
 import { faPeopleGroup, faUser, faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import { IPlayerInfoPanelModel } from "@share/components";
+import { IPlayerInfoModel } from "@share/components/features/player/info/player-info.model";
+import { ProfileRoute } from "@share/enums";
 import { Position } from "ngx-sfc-common";
 import { IDropdownMenuItemModel } from "ngx-sfc-components";
 import { PlayerRecomendationConstants } from "./player-recommendation.constants";
@@ -32,12 +33,12 @@ export class PlayerRecommendationComponent {
         {
             label: this.Localization.ACTIONS.OPEN_PROFILE,
             icon: faUser,
-            click: () => this.router.navigate([`${RoutKey.Profiles}/${1}/${RoutKey.Edit}`])
+            click: () => this.router.navigate([`${ProfileRoute.Profiles}/${1}/${RouteKey.Edit}`])
         }
     ];
 
     @Input()
-    model: IPlayerInfoPanelModel = { raiting: 0 };
+    model: IPlayerInfoModel = { raiting: 0 };
 
     constructor(private router: Router) { }
 }

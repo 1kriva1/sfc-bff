@@ -16,6 +16,7 @@
         @include theme-value(color, $color-default, $color-dark);
 
         text-align: center;
+        margin: 0 0 0.5em;
       }
     }
   }

@@ -1,0 +1,79 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "table/row";
+@import "mixins";
+
+@mixin team-player-squad-row-background($background, $background-hover) {
+  @include row-background($background, $background-hover);
+
+  .container {
+    .content {
+      .columns {
+        .column {
+          &.status {
+            @include row-column-status($background-hover);
+          }
+        }
+      }
+    }
+  }
+}
+
+:host {
+  @include host;
+
+  .container {
+    @include row-container;
+
+    .content {
+      .columns {
+        @include row-columns;
+
+        .column {
+          @include row-column;
+
+          &.player {
+            @include row-column-player-info;
+          }
+
+          &.position {
+            .enum {
+              @include row-column-enum;
+            }
+          }
+
+          &.actions {
+            @include action-menu($color-0);
+          }
+        }
+      }
+    }
+  }
+
+  &.team-player-invite-status-0 {
+    @include team-player-squad-row-background(
+      $team-player-invite-status-actual-color,
+      $team-player-invite-status-actual-hover-color
+    );
+  }
+
+  &.team-player-invite-status-1 {
+    @include team-player-squad-row-background(
+      $team-player-invite-status-accepted-color,
+      $team-player-invite-status-accepted-hover-color
+    );
+  }
+
+  &.team-player-invite-status-2 {
+    @include team-player-squad-row-background(
+      $team-player-invite-status-canceled-color,
+      $team-player-invite-status-canceled-hover-color
+    );
+  }
+
+  &.team-player-invite-status-3 {
+    @include team-player-squad-row-background(
+      $team-player-invite-status-refused-color,
+      $team-player-invite-status-refused-hover-color
+    );
+  }
+}

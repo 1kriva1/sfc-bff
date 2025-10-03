@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { CookieService } from './cookie.service';
 import { CookieService as Storage } from 'ngx-cookie-service';
 import { CommonConstants } from 'ngx-sfc-common';
-import { CommonConstants as ApplicationCommonConstants } from '../../constants';
+import { CookieService } from './cookie.service';
+import { CoreConstants } from '../../constants';
 
 describe('Core.Service:Cookie', () => {
     let service: CookieService;
@@ -33,7 +33,7 @@ describe('Core.Service:Cookie', () => {
 
         expect(cookieServiceStub.set)
             .toHaveBeenCalledWith(
-                `${ApplicationCommonConstants.APPLICATION_PREFIX}-${key}`,
+                `${CoreConstants.APPLICATION_PREFIX}-${key}`,
                 JSON.stringify(value),
                 1
             );
@@ -49,7 +49,7 @@ describe('Core.Service:Cookie', () => {
 
         expect(cookieServiceStub.set)
             .toHaveBeenCalledWith(
-                `${ApplicationCommonConstants.APPLICATION_PREFIX}-${key}`,
+                `${CoreConstants.APPLICATION_PREFIX}-${key}`,
                 '123',
                 1
             );
@@ -66,7 +66,7 @@ describe('Core.Service:Cookie', () => {
 
         expect(cookieServiceStub.set)
             .toHaveBeenCalledWith(
-                `${ApplicationCommonConstants.APPLICATION_PREFIX}-${key}`,
+                `${CoreConstants.APPLICATION_PREFIX}-${key}`,
                 '123',
                 expires
             );
@@ -81,7 +81,7 @@ describe('Core.Service:Cookie', () => {
 
         expect(result).toEqual(value);
         expect(cookieServiceStub.get)
-            .toHaveBeenCalledWith(`${ApplicationCommonConstants.APPLICATION_PREFIX}-${key}`);
+            .toHaveBeenCalledWith(`${CoreConstants.APPLICATION_PREFIX}-${key}`);
     });
 
     fit('Should get not exist value', () => {
@@ -110,6 +110,6 @@ describe('Core.Service:Cookie', () => {
         service.remove(key);
 
         expect(cookieServiceStub.delete)
-            .toHaveBeenCalledWith(`${ApplicationCommonConstants.APPLICATION_PREFIX}-${key}`);
+            .toHaveBeenCalledWith(`${CoreConstants.APPLICATION_PREFIX}-${key}`);
     });
 });

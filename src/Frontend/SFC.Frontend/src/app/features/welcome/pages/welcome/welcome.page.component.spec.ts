@@ -6,7 +6,7 @@ import { ImageSliderComponent, ImageSliderItemComponent } from '../../components
 import { WelcomePageComponent } from './welcome.page.component';
 import { By, Title } from '@angular/platform-browser';
 import { buildTitle } from '@core/utils';
-import { IdentityConstants } from '@share/services/identity/identity.constants';
+import { IdentityConstants } from '@share/services/identity/constants/identity.constants';
 
 describe('Features.Welcome.Page:Welcome', () => {
   let component: WelcomePageComponent;

@@ -1,0 +1,11 @@
+@import "index";
+
+:host {
+  .container {
+    @include part;
+
+    .content {
+      padding-top: 1em;
+    }
+  }
+}

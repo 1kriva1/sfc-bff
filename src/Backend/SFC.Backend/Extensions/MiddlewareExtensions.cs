@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Diagnostics;
 using SFC.Bff.Middlewares;
 
 namespace SFC.Bff.Extensions;

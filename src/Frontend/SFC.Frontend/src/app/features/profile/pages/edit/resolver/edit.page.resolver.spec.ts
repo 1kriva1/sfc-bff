@@ -1,19 +1,18 @@
-import { fakeAsync, tick } from "@angular/core/testing";
-import { ActivatedRouteSnapshot, Router } from "@angular/router";
-import { RoutKey } from "@core/enums";
+import { discardPeriodicTasks, fakeAsync, flush, flushMicrotasks, TestBed, tick } from "@angular/core/testing";
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from "@angular/router";
 import { IResolverModel } from "@core/models";
 import { buildPath } from "@core/utils";
+import { HomeRoute } from "@share/enums";
 import { EnumService } from "@share/services";
 import { ENUM_SERVICE } from "@test/stubs";
 import { LoaderService } from "ngx-sfc-common";
-import { EMPTY, finalize, of, throwError } from "rxjs";
+import { EMPTY, finalize, Observable, of, throwError } from "rxjs";
 import { IGetPlayerModel } from "../../../services/player/models";
 import { PlayerService } from "../../../services/player/player.service";
 import { IProfileModel } from "../mapper/models";
 import { EditPageResolver } from "./edit.page.resolver";
 
 describe('Features.Profile.Page:Edit.Resolver', () => {
-    let resolver: EditPageResolver;
     let routerSpy: jasmine.SpyObj<Router>;
     let playerServiceStub: Partial<PlayerService> = {
         get: (_: number) => {
@@ -32,19 +31,25 @@ describe('Features.Profile.Page:Edit.Resolver', () => {
 
     beforeEach(() => {
         routerSpy = jasmine.createSpyObj<Router>('Router', ['navigate']);
-        resolver = new EditPageResolver(
-            playerServiceStub as PlayerService,
-            routerSpy,
-            loaderServiceStub as LoaderService,
-            ENUM_SERVICE as EnumService
-        );
+
+        TestBed.configureTestingModule({
+            providers: [
+                { provide: PlayerService, useValue: playerServiceStub },
+                { provide: Router, useValue: routerSpy },
+                { provide: LoaderService, useValue: loaderServiceStub },
+                { provide: EnumService, useValue: ENUM_SERVICE }
+            ]
+        });
     });
 
     fit('Should not load player profile', () => {
-        const snapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot();
-        snapshot.paramMap.get = () => { return '' };
+        const activatedRouteSnapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot(),
+            routerStateSnapshot: RouterStateSnapshot = {} as RouterStateSnapshot;
+        activatedRouteSnapshot.paramMap.get = () => { return '' };
 
-        const result$ = resolver.resolve(snapshot);
+        const result$: Observable<IResolverModel<IProfileModel>> = TestBed.runInInjectionContext(() =>
+            EditPageResolver(activatedRouteSnapshot, routerStateSnapshot)
+        ) as Observable<IResolverModel<IProfileModel>>;
 
         expect(result$).toEqual(EMPTY);
     });
@@ -52,24 +57,34 @@ describe('Features.Profile.Page:Edit.Resolver', () => {
     fit('Should show loader on profile fetch', fakeAsync(() => {
         spyOn(loaderServiceStub, 'show' as any);
 
-        const snapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot();
-        snapshot.paramMap.get = () => { return '1' };
+        const activatedRouteSnapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot(),
+            routerStateSnapshot: RouterStateSnapshot = {} as RouterStateSnapshot;
+        activatedRouteSnapshot.paramMap.get = () => { return '1' };
 
         tick();
 
-        resolver.resolve(snapshot).subscribe((_: IResolverModel<IProfileModel>) =>
+        const result$: Observable<IResolverModel<IProfileModel>> = TestBed.runInInjectionContext(() =>
+            EditPageResolver(activatedRouteSnapshot, routerStateSnapshot)
+        ) as Observable<IResolverModel<IProfileModel>>;
+
+        result$.subscribe((_: IResolverModel<IProfileModel>) =>
             expect(loaderServiceStub.show).toHaveBeenCalledTimes(1));
     }));
 
     fit('Should hide loader on profile fetch finalize', fakeAsync(() => {
         spyOn(loaderServiceStub, 'hide' as any);
 
-        const snapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot();
-        snapshot.paramMap.get = () => { return '1' };
+        const activatedRouteSnapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot(),
+            routerStateSnapshot: RouterStateSnapshot = {} as RouterStateSnapshot;
+        activatedRouteSnapshot.paramMap.get = () => { return '1' };
 
         tick();
 
-        resolver.resolve(snapshot).pipe(
+        const result$: Observable<IResolverModel<IProfileModel>> = TestBed.runInInjectionContext(() =>
+            EditPageResolver(activatedRouteSnapshot, routerStateSnapshot)
+        ) as Observable<IResolverModel<IProfileModel>>;
+
+        result$.pipe(
             finalize(() => expect(loaderServiceStub.hide).toHaveBeenCalledTimes(1))
         ).subscribe();
     }));
@@ -77,22 +92,32 @@ describe('Features.Profile.Page:Edit.Resolver', () => {
     fit('Should call player get', fakeAsync(() => {
         spyOn(playerServiceStub, 'get' as any).and.callThrough();
 
-        const snapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot();
-        snapshot.paramMap.get = () => { return '1' };
+        const activatedRouteSnapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot(),
+            routerStateSnapshot: RouterStateSnapshot = {} as RouterStateSnapshot;
+        activatedRouteSnapshot.paramMap.get = () => { return '1' };
 
         tick();
 
-        resolver.resolve(snapshot).subscribe((_: IResolverModel<IProfileModel>) =>
+        const result$: Observable<IResolverModel<IProfileModel>> = TestBed.runInInjectionContext(() =>
+            EditPageResolver(activatedRouteSnapshot, routerStateSnapshot)
+        ) as Observable<IResolverModel<IProfileModel>>;
+
+        result$.subscribe((_: IResolverModel<IProfileModel>) =>
             expect(playerServiceStub.get).toHaveBeenCalledOnceWith(1));
     }));
 
     fit('Should return profile model', fakeAsync(() => {
-        const snapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot();
-        snapshot.paramMap.get = () => { return '1' };
+        const activatedRouteSnapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot(),
+            routerStateSnapshot: RouterStateSnapshot = {} as RouterStateSnapshot;
+        activatedRouteSnapshot.paramMap.get = () => { return '1' };
 
         tick();
 
-        resolver.resolve(snapshot).subscribe((model: IResolverModel<IProfileModel>) => {
+        const result$: Observable<IResolverModel<IProfileModel>> = TestBed.runInInjectionContext(() =>
+            EditPageResolver(activatedRouteSnapshot, routerStateSnapshot)
+        ) as Observable<IResolverModel<IProfileModel>>;
+
+        result$.subscribe((model: IResolverModel<IProfileModel>) => {
             expect(model.success).toBeTrue();
             expect(model.result).toBeDefined();
             expect(model.result?.general.firstName).toEqual('First name');
@@ -101,15 +126,23 @@ describe('Features.Profile.Page:Edit.Resolver', () => {
 
     fit('Should return empty profile on error', fakeAsync(() => {
         (playerServiceStub as any).get = () => throwError(() => new Error('Test error'));
-        const snapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot();
-        snapshot.paramMap.get = () => { return '1' };
+
+        const activatedRouteSnapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot(),
+            routerStateSnapshot: RouterStateSnapshot = {} as RouterStateSnapshot;
+        activatedRouteSnapshot.paramMap.get = () => { return '1' };
 
         tick();
 
-        resolver.resolve(snapshot).subscribe((model: IResolverModel<IProfileModel>) => {
+        const result$: Observable<IResolverModel<IProfileModel>> = TestBed.runInInjectionContext(() =>
+            EditPageResolver(activatedRouteSnapshot, routerStateSnapshot)
+        ) as Observable<IResolverModel<IProfileModel>>;
+
+        result$.subscribe((model: IResolverModel<IProfileModel>) => {
             expect(model.success).toBeFalse();
             expect(model.result).toBeNull();
         });
+
+        flush();
     }));
 
     fit('Should return empty profile on failed result', fakeAsync(() => {
@@ -121,26 +154,42 @@ describe('Features.Profile.Page:Edit.Resolver', () => {
                 Message: 'Failed'
             })
         }
-        const snapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot();
-        snapshot.paramMap.get = () => { return '1' };
+
+        const activatedRouteSnapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot(),
+            routerStateSnapshot: RouterStateSnapshot = {} as RouterStateSnapshot;
+        activatedRouteSnapshot.paramMap.get = () => { return '1' };
 
         tick();
 
-        resolver.resolve(snapshot).subscribe((model: IResolverModel<IProfileModel>) => {
+        const result$: Observable<IResolverModel<IProfileModel>> = TestBed.runInInjectionContext(() =>
+            EditPageResolver(activatedRouteSnapshot, routerStateSnapshot)
+        ) as Observable<IResolverModel<IProfileModel>>;
+
+        result$.subscribe((model: IResolverModel<IProfileModel>) => {
             expect(model.success).toBeFalse();
             expect(model.result).toBeNull();
         });
+
+        flush();
     }));
 
     fit('Should navigate to home page on error', fakeAsync(() => {
         (playerServiceStub as any).get = () => throwError(() => new Error('Test error'));
-        const snapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot();
-        snapshot.paramMap.get = () => { return '1' };
+
+        const activatedRouteSnapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot(),
+            routerStateSnapshot: RouterStateSnapshot = {} as RouterStateSnapshot;
+        activatedRouteSnapshot.paramMap.get = () => { return '1' };
 
         tick();
 
-        resolver.resolve(snapshot).subscribe((_: IResolverModel<IProfileModel>) =>
-            expect(routerSpy.navigate).toHaveBeenCalledOnceWith([buildPath(RoutKey.Home)]));
+        const result$: Observable<IResolverModel<IProfileModel>> = TestBed.runInInjectionContext(() =>
+            EditPageResolver(activatedRouteSnapshot, routerStateSnapshot)
+        ) as Observable<IResolverModel<IProfileModel>>;
+
+        result$.subscribe((_: IResolverModel<IProfileModel>) =>
+            expect(routerSpy.navigate).toHaveBeenCalledOnceWith([buildPath(HomeRoute.Home)]));
+
+        flush();
     }));
 
     function getPlayerModel(): IGetPlayerModel {

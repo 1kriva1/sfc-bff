@@ -1,0 +1,25 @@
+@use "ngx-sfc-common/styles/index" as *;
+
+:host {
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.1em;
+    width: 7em;
+    border: 2px solid;
+    border-radius: 1em;
+  }
+
+  &.multiple {
+    .container {
+      border-style: dotted;
+    }
+  }
+
+  &.active {
+    .container {
+      border-color: $color-hover-default;
+      border-style: solid;
+    }
+  }
+}

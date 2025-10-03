@@ -1,0 +1,34 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "common";
+
+:host {
+  width: 100%;
+
+  .container {
+    @include part;
+
+    .content {
+      @include center-column;
+
+      padding: 0.5em 0;
+
+      .player {
+        @include center-column;
+
+        sfc-tags {
+          padding: 0.5em 0;
+        }
+
+        .position {
+          @include center-column;
+          @include text-bold($text-transform:capitalize);
+
+          sfc-icon {
+            font-size: 2em;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "common";
+@import "table/row";
+@import "mixins";
+
+:host {
+  @include host;
+
+  .container {
+    @include row-container;
+
+    .content {
+      .columns {
+        @include row-columns;
+
+        .column {
+          @include row-column;
+
+          &.name {
+            @include text-center-bold($font-size: 1em, $color: $color-0);
+          }
+
+          &.formation {
+            flex-direction: column;
+
+            label {
+              @include text-center-bold($font-size: 1em, $color: $color-hover-default);
+
+              letter-spacing: 0.3em;
+            }
+
+            p {
+              @include text-center($font-size: 0.7em, $color: $color-0);
+
+              margin: 0;
+            }
+          }
+
+          &.comment {
+            p {
+              @include text($font-size: 0.7em, $color: $color-0);
+
+              text-overflow: ellipsis;
+              overflow: hidden;
+            }
+
+            sfc-no-data {
+              @include text-center($color: $color-0);
+            }
+          }
+
+          &.actions {
+            @include action-menu($color-0);
+          }
+        }
+      }
+    }
+  }
+
+  @include row-background($color-blue-1, $color-blue-0);
+}

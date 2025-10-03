@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { Router, CanMatchFn } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { RoutKey } from '../../enums';
 import { buildPath } from '../../utils';
 import { IdentityService } from '@share/services';
+import { HomeRoute } from '@share/enums';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +16,7 @@ class OnlyAnonymousService {
         return this.identityService.getIsAnonymous().pipe(            
             map((isAnonymous: boolean) => {
                 if (!isAnonymous) {
-                    this.router.navigate([buildPath(RoutKey.Home)]);
+                    this.router.navigate([buildPath(HomeRoute.Home)]);
                 }
 
                 return isAnonymous;

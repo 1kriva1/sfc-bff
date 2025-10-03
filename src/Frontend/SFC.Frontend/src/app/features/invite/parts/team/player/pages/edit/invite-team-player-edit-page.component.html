@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="content">
+        <sfc-back *ngIf="backNavigationModel" [model]="backNavigationModel"></sfc-back>
+
+        <div class="title">
+            <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+                [tooltip]="Localization.TITLE.TOOLTIP" [icon]="faQuestionCircle" [sfcComponentSize] [customSize]="1.5">
+            </sfc-title>
+        </div>
+
+        <form [formGroup]="form" autocomplete="off">
+            <div class="parts">
+                <div class="part left">
+                    <sfc-side-menu [model]="menu"></sfc-side-menu>
+
+                    <div class="sub-part">
+                        <sfc-invite-team-player-main-edit *ngIf="changesCheckService.changes$ | async as changes"
+                            [submitDisabled]="!changes.dirty" [buildSubmitObservable]="update"
+                            [submitButtonText]="CoreLocalization.UPDATE" (postSubmit)="onUpdated($event)"
+                            [invite]="model" [actions]="true">
+                        </sfc-invite-team-player-main-edit>
+                        <sfc-invite-team-player-information-progress [value$]="value$">
+                        </sfc-invite-team-player-information-progress>
+                    </div>
+                </div>
+
+                <div class="part center">
+                    <router-outlet></router-outlet>
+                </div>
+
+                <div class="part right" *ngIf="inviteTeamPlayerPreviewService.preview$ | async as preview">
+                    <sfc-invite-team-player-preview [player]="preview.player" [team]="preview.team">
+                    </sfc-invite-team-player-preview>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- changes check modal -->
+    <sfc-changes-check-modal [label]="Localization.CHANGES_MODAL_LABEL"></sfc-changes-check-modal>
+
+    <!-- cancel player invite modal -->
+    <sfc-invite-team-player-cancel-modal (canceled)="onCanceled($event)"></sfc-invite-team-player-cancel-modal>
+</div>

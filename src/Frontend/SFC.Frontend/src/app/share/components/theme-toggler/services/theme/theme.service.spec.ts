@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Theme } from 'ngx-sfc-common';
-import { CommonConstants } from '@core/constants';
+import { CoreConstants } from '@core/constants';
 import { StorageService } from '@core/services';
 import { ThemeService } from './theme.service';
 
@@ -56,6 +56,6 @@ describe('Share.Component:ThemeToggler.Service: Theme', () => {
 
         service.toggle();
 
-        expect(storageServiceMock.set).toHaveBeenCalledOnceWith(CommonConstants.THEME_KEY, Theme.Dark);
+        expect(storageServiceMock.set).toHaveBeenCalledOnceWith(CoreConstants.THEME_KEY, Theme.Dark);
     });
 });

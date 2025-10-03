@@ -1,10 +1,10 @@
 import { Route, Router } from "@angular/router";
 import { Observable, of } from "rxjs";
 import { IdentityService } from "@share/services";
-import { RoutKey } from "../../enums";
 import { CanMatchOnlyAnonymous } from "./anonymous.guard";
 import { buildPath } from "../../utils";
 import { TestBed } from "@angular/core/testing";
+import { HomeRoute } from "@share/enums";
 
 describe('Core.Guard:CanMatchOnlyAnonymous', () => {
     const dummyRoute = { path: '/home' } as Route;
@@ -38,7 +38,7 @@ describe('Core.Guard:CanMatchOnlyAnonymous', () => {
         TestBed.runInInjectionContext(() => CanMatchOnlyAnonymous(dummyRoute, []) as Observable<boolean>)
             .subscribe((result: boolean) => {
                 expect(result).toBeFalse();
-                expect(routerSpy.navigate).toHaveBeenCalledWith([buildPath(RoutKey.Home)]);
+                expect(routerSpy.navigate).toHaveBeenCalledWith([buildPath(HomeRoute.Home)]);
                 done();
             });
     });

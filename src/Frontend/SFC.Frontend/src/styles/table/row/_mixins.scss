@@ -1,0 +1,114 @@
+@import "./variables";
+@import "../../components";
+
+@mixin row-container() {
+  background: $background-container-default;
+  border-radius: $border-radius;
+  padding: $container-padding;
+  box-shadow: $box-shadow;
+}
+
+@mixin row-background($background, $background-hover) {
+  .container {
+    background: $background;
+  }
+
+  &:not(.expanded):hover {
+    .container {
+      background: $background-hover;
+    }
+  }
+}
+
+@mixin row-columns() {
+  display: flex;
+  width: 100%;
+}
+
+@mixin row-column() {
+  @include center-wrap;
+
+  padding: 0 0.2em;
+
+  sfc-no-data {
+    color: $color-default;
+  }
+}
+
+@mixin row-column-enum($color: $color-0) {
+  @include center-column;
+
+  color: $color;
+  font-size: 0.8em;
+  font-weight: bold;
+  user-select: none;
+  text-align: center;
+  padding: 0.5em 0;
+  text-transform: capitalize;
+
+  sfc-icon {
+    font-size: 2em;
+  }
+
+  sfc-no-data {
+    font-size: 1em;
+    color: $color;
+  }
+}
+
+@mixin row-column-player-info($color: $color-0) {
+  sfc-player-info {
+    ::ng-deep > .container {
+      > .info {
+        color: $color;
+
+        h3 {
+          font-size: 0.9em;
+        }
+
+        p {
+          color: $color;
+        }
+      }
+    }
+  }
+}
+
+@mixin row-column-team-info($color: $color-0) {
+  sfc-team-info {
+    ::ng-deep > .container .content {
+      > .info {
+        color: $color;
+      }
+    }
+  }
+}
+
+@mixin row-column-status($background) {
+  @include status($background, $color-0);
+}
+
+@mixin row-column-checkmark-select($border-color: $color-default) {
+  sfc-checkmark:not(.active) {
+    ::ng-deep > .container {
+      .check {
+        border-color: $border-color;
+      }
+    }
+  }
+}
+
+@mixin row-column-description($no-data: true, $font-size: 0.8em) {
+  white-space: pre-wrap;
+  color: $color-0;
+  font-size: $font-size;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @if $no-data {
+    sfc-no-data {
+      color: $color-0;
+      font-size: 0.9em;
+    }
+  }
+}

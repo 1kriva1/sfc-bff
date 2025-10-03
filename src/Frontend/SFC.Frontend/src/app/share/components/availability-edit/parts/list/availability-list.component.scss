@@ -1,0 +1,57 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "components";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      sfc-delimeter {
+        font-size: 0.8em;
+        font-weight: bold;
+      }
+
+      .items {
+        .item {
+          @include center;
+          @include theme-value(color, $color-default, $color-dark);
+
+          padding: 0.5em 0;
+          user-select: none;
+
+          fa-icon {
+            color: $color-hover-default;
+            font-size: 0.9em;
+          }
+
+          span {
+            width: 4em;
+            padding: 0 0.5em;
+            text-align: center;
+
+            &.label {
+              color: $color-hover-default;
+              font-size: 0.7em;
+            }
+
+            &.from,
+            &.to,
+            &.day {
+              font-size: 0.8em;
+              font-weight: bold;
+            }
+
+            &.day {
+              text-align: start;
+            }
+          }
+
+          sfc-button {
+            @include button(true, $color-red-0, $color-red-1);
+          }
+        }
+      }
+    }
+  }
+}

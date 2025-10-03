@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="content">
+        <div class="column photo">
+            <sfc-player-info [radius]="Constants.AVATAR_RADIUS" [info]="true" [model]="info" [sfcComponentSize]
+                [customSize]="0.8"></sfc-player-info>
+        </div>
+
+        <div class="column actions" *ngIf="model.actions">
+            <sfc-dropdown-menu [items]="model.actions" [bordered]="false" [filled]="true"
+                [position]="[Position.Bottom, Position.Center]" [sfcComponentSize] [customSize]="0.8">
+            </sfc-dropdown-menu>
+        </div>
+    </div>
+</div>

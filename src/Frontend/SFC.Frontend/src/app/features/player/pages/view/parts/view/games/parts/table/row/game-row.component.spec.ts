@@ -11,7 +11,7 @@ import { GameRowComponent } from "./game-row.component";
 import { GameRowConstants } from "./game-row.constants";
 import { IGameRowModel } from "./game-row.model";
 import { DebugElement } from "@angular/core";
-import { CommonConstants as ApplicationCommonConstants } from '@core/constants/common.constants';
+import { CoreConstants } from '@core/constants';
 import { ENUM_SERVICE } from "@test/stubs";
 
 describe('Features.Player.Page:View.Part.Table:GameRow', () => {
@@ -79,7 +79,7 @@ describe('Features.Player.Page:View.Part.Table:GameRow', () => {
 
             fit('Should have default image', () => {
                 expect(fixture.debugElement.query(By.css('.column.location > img')).nativeElement.src)
-                    .toContain(ApplicationCommonConstants.DEFAULT_FIELD_IMAGE_PATH);
+                    .toContain(CoreConstants.DEFAULT_FIELD_IMAGE_PATH);
             });
 
             fit('Should info has defined values', () => {
@@ -161,7 +161,7 @@ describe('Features.Player.Page:View.Part.Table:GameRow', () => {
 
                 fit('Should have default image', () => {
                     expect(fixture.debugElement.query(By.css('.column.result > .team.one img')).nativeElement.src)
-                        .toContain(ApplicationCommonConstants.DEFAULT_TEAM_A_IMAGE_PATH);
+                        .toContain(CoreConstants.DEFAULT_TEAM_A_IMAGE_PATH);
                 });
 
                 fit('Should have defined info values', () => {
@@ -220,7 +220,7 @@ describe('Features.Player.Page:View.Part.Table:GameRow', () => {
 
                 fit('Should have default image', () => {
                     expect(fixture.debugElement.query(By.css('.column.result > .team.two img')).nativeElement.src)
-                        .toContain(ApplicationCommonConstants.DEFAULT_TEAM_B_IMAGE_PATH);
+                        .toContain(CoreConstants.DEFAULT_TEAM_B_IMAGE_PATH);
                 });
 
                 fit('Should have defined info values', () => {

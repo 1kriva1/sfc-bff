@@ -1,0 +1,57 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "mixins";
+
+:host {
+  .container {
+    @include center;
+
+    .content {
+      .info {
+        @include center-column;
+        @include theme-value(color, $color-default, $color-0);
+
+        margin: 0 0.5em;
+        text-align: center;
+
+        h3,
+        span {
+          white-space: initial;
+          word-wrap: break-word;
+          overflow-y: auto;
+
+          @include max-size(10em);
+        }
+
+        h3 {
+          font-size: 0.8em;
+          margin: 0.3em 0;
+          text-align: center;
+        }
+
+        span {
+          color: $color-hover-default;
+          font-size: 0.7em;
+          font-weight: bold;
+          margin: 0;
+          user-select: none;
+        }
+      }
+    }
+  }
+
+  &.vertical {
+    .container {
+      .content {
+        flex-direction: column;
+      }
+    }
+  }
+
+  &.horizontal {
+    .container {
+      .content {
+        flex-direction: row;
+      }
+    }
+  }
+}

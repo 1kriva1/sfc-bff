@@ -1,0 +1,70 @@
+<div class="container" [formGroupName]="TeamProfileEditPart.General">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION">
+    </sfc-title>
+
+    <div class="content">
+        <div class="rows">
+            <div class="row">
+                <div class="column">
+                    <sfc-text-input id="name" formControlName="name" [label]="Localization.INPUT.NAME.LABEL"
+                        [placeholder]="Localization.INPUT.NAME.PLACEHOLDER" [bordered]="true" [validations]="{
+                            'required': ValidationLocalization.REQUIRED,
+                            'maxlength': ValidationLocalization.MAX_LENGTH
+                        }">
+                    </sfc-text-input>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <sfc-text-input id="city" formControlName="city" [label]="Localization.INPUT.CITY.LABEL"
+                        [placeholder]="Localization.INPUT.CITY.PLACEHOLDER" [bordered]="true"
+                        [helperText]="Localization.INPUT.CITY.HELPER_TEXT" [validations]="{
+                            'required': ValidationLocalization.REQUIRED,
+                            'maxlength': ValidationLocalization.MAX_LENGTH
+                        }">
+                    </sfc-text-input>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <sfc-autocomplete-input id="stadium" formControlName="stadium"
+                        [label]="Localization.INPUT.STADIUM.LABEL"
+                        [placeholder]="Localization.INPUT.STADIUM.PLACEHOLDER"
+                        [helperText]="Localization.INPUT.STADIUM.HELPER_TEXT" [loader]="stadiumsLoader"
+                        [bordered]="true">
+                    </sfc-autocomplete-input>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <sfc-tags-input id="tags" formControlName="tags" [label]="Localization.INPUT.TAGS.LABEL"
+                        [placeholder]="Localization.INPUT.TAGS.PLACEHOLDER"
+                        [helperText]="Localization.INPUT.TAGS.HELPER_TEXT" [bordered]="true"
+                        [newTagPlaceholder]="InputsLocalization.ADD_TAG"
+                        [maxTagLength]="ValidationConstants.MAX_TAG_VALUE_LENGTH" [validations]="{
+                            'sfc-empty': ValidationLocalization.EMPTY,
+                            'sfc-duplicate': ValidationLocalization.DUPLICATE,
+                            'sfc-tags-length': tagMaxLengthValidationMessage(ValidationConstants.MAX_TAG_VALUE_LENGTH),
+                            'sfc-max-array-length': ValidationLocalization.TAGS_LENGTH
+                        }">
+                    </sfc-tags-input>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column description">
+                    <sfc-text-area-input id="description" formControlName="description" [bordered]="true"
+                        [label]="Localization.INPUT.DESCRIPTION.LABEL"
+                        [placeholder]="Localization.INPUT.DESCRIPTION.PLACEHOLDER"
+                        [helperText]="Localization.INPUT.DESCRIPTION.HELPER_TEXT" [validations]="{
+                            'maxlength': ValidationLocalization.MAX_LENGTH
+                        }">
+                    </sfc-text-area-input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

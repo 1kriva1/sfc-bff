@@ -8,7 +8,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {
   CommonConstants, IDefaultModalFooterModel, IDefaultModalHeaderModel,
-  isEqual, ButtonType, ModalTemplate, convertToBase64String, parseFileSize, nameof, isDefined, Position
+  isEqual, ButtonType, ModalTemplate, convertToBase64String, parseFileSize,
+  nameof, isDefined, Position, NotificationType
 } from 'ngx-sfc-common';
 import {
   fromEvent, map, Observable, startWith, Subscription, tap, switchMap,
@@ -24,30 +25,30 @@ import { StatsService } from './parts/stats/services/stats.service';
 import { getProgressColorDynamicallyFunc, IDropdownMenuItemModel, TabsTemplate } from 'ngx-sfc-components';
 import { buildTitle, markFormTouchedAndDirty } from '@core/utils';
 import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
-import { RoutKey } from '@core/enums';
+import { RouteKey } from '@core/enums';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProfileModel } from './mapper/models/profile.model';
-import { IChangesCheck, IChangesCheckGuardModel } from '@core/guards/changes-check/changes-check.model';
+import { IChangesCheckGuardModel } from '@core/guards/changes-check/changes-check.model';
 import { Title } from '@angular/platform-browser';
 import { NotificationService } from '@core/services';
 import { MessageSeverity } from '@core/services/message/message-severity.enum';
-import { PlayerService as SharedPlayerService } from '@share/services';
+import { IPlayerByUserModel, PlayerViewService } from '@share/services';
 import { PlayerService } from '../../services/player/player.service';
-import { IPlayerByUserModel } from '@share/services/player/models/by-user/get-player-by-user.response';
 import { INotification } from '@core/services/notification/notification.model';
 import { fileMaxSize } from 'ngx-sfc-inputs';
 import { mapPlayerRequest } from './mapper/edit.page.mapper';
 import { IEditModel } from './models/edit.page.model';
 import { EditPagePersonalViewModel, EditPageProgressViewModel, EditPageRaitingViewModel, IEditPageViewModel } from './models';
 import { ICreatePlayerRequest, ICreatePlayerResponse, IUpdatePlayerRequest, IUpdatePlayerResponse } from '../../services/player/models';
-import { CommonConstants as ApplicationCommonConstants } from '@core/constants';
+import { CoreConstants } from '@core/constants';
+import { PlayerRoute, ProfileRoute, TeamRoute } from '@share/enums';
 
 @Component({
   templateUrl: './edit.page.component.html',
   styleUrls: ['./edit.page.component.scss']
 })
 export class EditPageComponent
-  implements OnInit, AfterViewInit, IChangesCheck, OnDestroy {
+  implements OnInit, AfterViewInit, OnDestroy { //IChangesCheck
 
   faArrowLeft = faArrowLeft;
   faCamera = faCamera;
@@ -62,7 +63,9 @@ export class EditPageComponent
   EditPagePart = EditPagePart;
   Constants = EditPageConstants;
   CommonConstants = CommonConstants;
-  ApplicationCommonConstants = ApplicationCommonConstants;
+  NotificationType = NotificationType;
+
+  CoreConstants = CoreConstants;
   Localization = EditPageLocalization;
   getProgressColorDynamicallyFunc = getProgressColorDynamicallyFunc;
 
@@ -77,14 +80,7 @@ export class EditPageComponent
       : CommonConstants.EMPTY_STRING;
   }
 
-  public ACTION_ITEMS: IDropdownMenuItemModel[] = [
-    {
-      label: EditPageLocalization.ACTION.CREATE_TEAM,
-      icon: faPeopleGroup,
-      click: () => this.router.navigate([`${RoutKey.Teams}/${RoutKey.Create}`]),
-      delimeter: this.sharedPlayerService.playerCreated
-    }
-  ];
+  public ACTION_ITEMS: IDropdownMenuItemModel[] = [];
 
   public get changesModalFooterModel(): IDefaultModalFooterModel {
     return {
@@ -115,7 +111,7 @@ export class EditPageComponent
   // Disable submit button when: 1) Form invalid, 2) Form has no changes
   public get submitDisabled(): boolean { return (this.isSubmitted && this.profileForm.invalid) || !this.profileChanged; }
 
-  public get isSubmitted(): boolean { return this.submitted || this.sharedPlayerService.playerCreated };
+  public get isSubmitted(): boolean { return this.submitted || this.playerViewService.playerCreated };
 
   private get profileChanged(): boolean { return !isEqual(this.guardChangesSubject?.value, this.profileForm.value); }
 
@@ -136,7 +132,7 @@ export class EditPageComponent
   constructor(
     public headerService: HeaderService,
     public statsService: StatsService,
-    public sharedPlayerService: SharedPlayerService,
+    public playerViewService: PlayerViewService,
     private formBuilder: FormBuilder,
     private playerService: PlayerService,
     private router: Router,
@@ -166,7 +162,7 @@ export class EditPageComponent
   private initValues(): void {
     const profile: IProfileModel = this.route.snapshot.data[EditPageConstants.RESOLVE_KEY]?.result;
 
-    if (this.sharedPlayerService.playerCreated) {
+    if (this.playerViewService.playerCreated) {
       const { photo: _, ...general } = profile?.general!,
         generalProfile = { ...general, tags: JSON.parse(JSON.stringify(general.tags)) },
         profileValue: IEditModel = {
@@ -186,7 +182,7 @@ export class EditPageComponent
     }
 
     this.statsService.init({
-      available: this.sharedPlayerService.playerCreated
+      available: this.playerViewService.playerCreated
         ? profile.stats.points.available
         : EditPageConstants.NEW_PROFILE_AVAILABLE_POINTS,
       used: profile?.stats.points.used || 0
@@ -221,8 +217,8 @@ export class EditPageComponent
               value,
               { available: this.statsService.stats.available, used: this.statsService.stats.used })
             )),
-            switchMap((request: ICreatePlayerRequest | IUpdatePlayerRequest) => (this.sharedPlayerService.playerCreated
-              ? this.playerService.update(this.sharedPlayerService.playerId.value!, request)
+            switchMap((request: ICreatePlayerRequest | IUpdatePlayerRequest) => (this.playerViewService.playerCreated
+              ? this.playerService.update(this.playerViewService.playerId.value!, request)
               : this.playerService.create(request))
               .pipe(catchError((error) => of(error))))
           );
@@ -236,8 +232,8 @@ export class EditPageComponent
   }
 
   private async afterModification(response: ICreatePlayerResponse | IUpdatePlayerResponse): Promise<void> {
-    const playerId = this.sharedPlayerService.playerCreated
-      ? this.sharedPlayerService.playerId.value!
+    const playerId = this.playerViewService.playerCreated
+      ? this.playerViewService.playerId.value!
       : (response as ICreatePlayerResponse).Player.Id;
 
     this.setGuardChangesModel();
@@ -250,7 +246,7 @@ export class EditPageComponent
 
     this.updatePlayer(playerId);
 
-    this.router.navigate([`${RoutKey.Profiles}/${playerId}/${RoutKey.Edit}`]);
+    this.router.navigate([`${ProfileRoute.Profiles}/${playerId}/${RouteKey.Edit}`]);
   }
 
   private tapSubmit(): void {
@@ -275,9 +271,16 @@ export class EditPageComponent
   private setActions(): void {
     const profileActionItem: IDropdownMenuItemModel = {
       label: EditPageLocalization.ACTION.OPEN_VIEW,
-      click: () => this.router.navigate([`${RoutKey.Players}/${this.sharedPlayerService.playerId.value}`]),
+      click: () => this.router.navigate([`${PlayerRoute.Players}/${this.playerViewService.playerId.value}`]),
       icon: faIdCard
-    };
+    },
+      createTeamActionItem: IDropdownMenuItemModel = {
+        label: EditPageLocalization.ACTION.CREATE_TEAM,
+        icon: faPeopleGroup,
+        click: () => this.router.navigate([`${TeamRoute.Teams}/${RouteKey.Create}`]),
+        delimeter: true
+      };
+    this.ACTION_ITEMS.push(createTeamActionItem);
     this.ACTION_ITEMS.push(profileActionItem);
   }
 
@@ -289,10 +292,10 @@ export class EditPageComponent
   private notify(): void {
     const notification: INotification = {
       severity: MessageSeverity.INFO,
-      value: this.sharedPlayerService.playerCreated
+      value: this.playerViewService.playerCreated
         ? this.Localization.NOTIFICATIONS.UPDATE.VALUE
         : this.Localization.NOTIFICATIONS.CREATE.VALUE,
-      title: this.sharedPlayerService.playerCreated
+      title: this.playerViewService.playerCreated
         ? this.Localization.NOTIFICATIONS.UPDATE.TITLE
         : this.Localization.NOTIFICATIONS.CREATE.TITLE
     };
@@ -317,6 +320,6 @@ export class EditPageComponent
       }
     };
 
-    this.sharedPlayerService.update(playerByUserModel);
+    this.playerViewService.update(playerByUserModel);
   }
 }

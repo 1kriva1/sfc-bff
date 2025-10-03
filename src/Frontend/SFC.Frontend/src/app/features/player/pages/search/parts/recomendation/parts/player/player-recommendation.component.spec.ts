@@ -3,8 +3,9 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
-import { RoutKey } from "@core/enums";
+import { RouteKey } from "@core/enums";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { ProfileRoute } from "@share/enums";
 import { ShareModule } from "@share/share.module";
 import { NgxSfcCommonModule, Position } from "ngx-sfc-common";
 import { IDropdownMenuItemModel, NgxSfcComponentsModule } from "ngx-sfc-components";
@@ -37,7 +38,7 @@ describe('Features.Player.Page:Search.Part:PlayerRecommendation', () => {
 
         fit('Should have main elements', () => {
             expect(fixture.nativeElement.querySelector('.container')).toBeTruthy();
-            expect(fixture.nativeElement.querySelector('sfc-player-info-panel')).toBeTruthy();
+            expect(fixture.nativeElement.querySelector('sfc-player-info')).toBeTruthy();
             expect(fixture.nativeElement.querySelector('sfc-dropdown-menu')).toBeTruthy();
         });
 
@@ -48,7 +49,7 @@ describe('Features.Player.Page:Search.Part:PlayerRecommendation', () => {
 
     describe('Player info panel', () => {
         fit('Should player info panel has defined attributes', () => {
-            const playerInfoPanelEl = fixture.debugElement.query(By.css('sfc-player-info-panel')),
+            const playerInfoPanelEl = fixture.debugElement.query(By.css('sfc-player-info')),
                 playerInfoPanelComponent = playerInfoPanelEl.componentInstance;
 
             expect(playerInfoPanelComponent.radius).toEqual(PlayerRecomendationConstants.AVATAR_RADIUS);
@@ -75,7 +76,7 @@ describe('Features.Player.Page:Search.Part:PlayerRecommendation', () => {
             (profilefitem.click as any)();
 
             expect(routerMock.navigate)
-                .toHaveBeenCalledWith([`${RoutKey.Profiles}/${1}/${RoutKey.Edit}`]);
+                .toHaveBeenCalledWith([`${ProfileRoute.Profiles}/${1}/${RouteKey.Edit}`]);
         });
     });
 });

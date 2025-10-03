@@ -1,0 +1,1 @@
+export { WelcomeRoute } from './welcome-route.enum';

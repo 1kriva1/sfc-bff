@@ -12,7 +12,7 @@ import { ENUM_SERVICE } from "@test/stubs";
 import { CommonConstants, ComponentSize, NgxSfcCommonModule, Position, Theme } from "ngx-sfc-common";
 import { NgxSfcComponentsModule } from "ngx-sfc-components";
 import { NgxSfcInputsModule } from "ngx-sfc-inputs";
-import { IGetGamesItemModel } from "src/app/features/player/services/game/models/get";
+import { IGetGamesItemModel } from "../../../../../services/game/models/get";
 import { GameService } from "../../../../../services/game/game.service";
 import { GamesViewComponent } from "./games-view.component";
 import { IGamesViewModel } from "./games-view.model";

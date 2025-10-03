@@ -16,9 +16,9 @@
                 <span i18n="@@core.action.back">Back</span>
             </a>
             <sfc-title [sfcComponentSize] [customSize]="2"
-                [label]="sharedPlayerService.playerCreated ? Localization.TITLE.UPDATE.LABEL : Localization.TITLE.CREATE.LABEL"
-                [description]="sharedPlayerService.playerCreated ? Localization.TITLE.UPDATE.DESCRIPTION : Localization.TITLE.CREATE.DESCRIPTION"
-                [tooltip]="sharedPlayerService.playerCreated ? Localization.TITLE.UPDATE.TOOLTIP : Localization.TITLE.CREATE.TOOLTIP">
+                [label]="playerViewService.playerCreated ? Localization.TITLE.UPDATE.LABEL : Localization.TITLE.CREATE.LABEL"
+                [description]="playerViewService.playerCreated ? Localization.TITLE.UPDATE.DESCRIPTION : Localization.TITLE.CREATE.DESCRIPTION"
+                [tooltip]="playerViewService.playerCreated ? Localization.TITLE.UPDATE.TOOLTIP : Localization.TITLE.CREATE.TOOLTIP">
             </sfc-title>
         </div>
 
@@ -26,7 +26,7 @@
             <form [formGroup]="profileForm" autocomplete="off">
                 <div class="parts" *ngIf="((vm$ | async) || $any({})) as vm">
                     <div class="part left">
-                        <div class="actions">
+                        <div class="actions" *ngIf="ACTION_ITEMS.length">
                             <sfc-dropdown-menu [items]="ACTION_ITEMS" [bordered]="false" [filled]="true"
                                 [position]="[Position.Bottom, Position.Center]" [sfcComponentSize] [customSize]="0.9">
                             </sfc-dropdown-menu>
@@ -36,7 +36,7 @@
                             <sfc-image-input id="photo" formControlName="photo" [label]="Localization.INPUT.PHOTO.LABEL"
                                 [helperText]="Localization.INPUT.PHOTO.HELPER_TEXT" [icon]="faCamera"
                                 [clearButton]="false" [hideOnClickOutside]="true"
-                                [defaultPhoto]="ApplicationCommonConstants.DEFAULT_AVATAR_PATH"
+                                [defaultPhoto]="CoreConstants.DEFAULT_AVATAR_PATH"
                                 [okLabel]="Localization.BUTTON_OK_LABEL"
                                 [cancelLabel]="Localization.BUTTON_CANCEL_LABEL" [validations]="{
                                     'sfc-format': Localization.INPUT.PHOTO.VALIDATIONS.INVALID_FORMAT,
@@ -56,13 +56,13 @@
                             <p>{{vm.personal?.position.value}} • <span>{{vm.personal?.city}}</span></p>
                         </div>
 
-                        <div [sfcShowHideElement]="error !== null" class="errors">
-                            <span class="error-message">{{error?.Message}}</span>
-                        </div>
+                        <sfc-message [sfcShowHideElement]="error !== null" [type]="NotificationType.Failed"
+                            [message]="error?.Message">
+                        </sfc-message>
 
                         <div class="submit">
                             <sfc-button #submitBtn
-                                [text]="sharedPlayerService.playerCreated ? Localization.BUTTON_UPDATE_TEXT : Localization.BUTTON_CREATE_TEXT"
+                                [text]="playerViewService.playerCreated ? Localization.BUTTON_UPDATE_TEXT : Localization.BUTTON_CREATE_TEXT"
                                 [types]="[ButtonType.Rounded, ButtonType.Filled]" [disabled]="submitDisabled">
                             </sfc-button>
                         </div>
@@ -137,8 +137,8 @@
     </div>
 </div>
 
-<sfc-modal *sfcModalOpen [defaultFooterModel]="changesModalFooterModel" [defaultHeaderModel]="changesModalHeaderModel"
-    [hideOnClickOutside]="false">
+<sfc-modal *sfcModalOpen="CoreConstants.CHANGES_CHECK_MODAL_ID" [defaultFooterModel]="changesModalFooterModel"
+    [defaultHeaderModel]="changesModalHeaderModel" [hideOnClickOutside]="false">
     <ng-template [sfcTemplateReference]="ModalTemplate.Body">
         <div class="changes-warning-body">
             <fa-icon [icon]="faTriangleExclamation" [sfcComponentSize] [customSize]="3"></fa-icon>

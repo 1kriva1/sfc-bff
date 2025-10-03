@@ -5,6 +5,10 @@ namespace SFC.Bff.Infrastructure.Extensions;
 public static class SettingsExtensions
 {
     public static BffSettings GetBffSettings(this IConfiguration configuration)
-        => configuration.GetSection(BffSettings.SECTION_KEY)
+    {
+        ArgumentNullException.ThrowIfNull(configuration);
+
+        return configuration.GetSection(BffSettings.SectionKey)
                         .Get<BffSettings>()!;
+    }
 }

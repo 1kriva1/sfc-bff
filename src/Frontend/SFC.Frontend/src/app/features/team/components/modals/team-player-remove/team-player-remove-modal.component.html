@@ -1,0 +1,34 @@
+<sfc-modal *sfcModalOpen="TeamModal.TeamPlayerRemove" [defaultHeaderModel]="headerModel" [hideOnClickOutside]="true">
+    <ng-template [sfcTemplateReference]="ModalTemplate.Body" let-player>
+        <div class="body">
+            <fa-icon [icon]="faTriangleExclamation" [sfcComponentSize] [customSize]="3"></fa-icon>
+            <h3>{{Localization.MODAL.BODY.TEXT_PART_1}} <span>{{player.general.firstName}}
+                    {{player.general.lastName}}</span> {{Localization.MODAL.BODY.TEXT_PART_2}}</h3>
+
+            <form *ngIf="form" [formGroup]="form" autocomplete="off">
+                <sfc-text-area-input id="comment" formControlName="comment" [bordered]="true"
+                    [label]="Localization.MODAL.BODY.INPUT.EXPLANATION.LABEL"
+                    [placeholder]="Localization.MODAL.BODY.INPUT.EXPLANATION.PLACEHOLDER"
+                    [helperText]="Localization.MODAL.BODY.INPUT.EXPLANATION.HELPER_TEXT"
+                    [validations]="{maxlength: ValidationLocalization.MAX_LENGTH, required:ValidationLocalization.REQUIRED}">
+                </sfc-text-area-input>
+            </form>
+
+            <div class="result" *ngIf="result$ | async as result">
+                <sfc-message *ngIf="!result.Success" [type]="NotificationType.Failed" [message]="result.Message">
+                </sfc-message>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template [sfcTemplateReference]="ModalTemplate.Footer">
+        <div class="footer">
+            <sfc-submit-button #submitButton [text]="Localization.MODAL.FOOTER.BUTTON.APPLY"
+                [types]="[ButtonType.Rounded]" [form]="form">
+            </sfc-submit-button>
+            <sfc-button [text]="Localization.MODAL.FOOTER.BUTTON.CANCEL" [types]="[ButtonType.Rounded]"
+                (click)="modalService.close(TeamModal.TeamPlayerRemove)">
+            </sfc-button>
+        </div>
+    </ng-template>
+</sfc-modal>

@@ -1,4 +1,4 @@
-import { IFootballFilterModel, IGeneralFilterModel, IStatsFilterModel } from "@share/components/players/search/filters";
+import { IFootballFilterModel, IGeneralFilterModel, IStatsFilterModel } from "@share/components/features/player/search/filters";
 
 export interface ISearchPageModel {
     name: string | null;

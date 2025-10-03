@@ -1,0 +1,1 @@
+export { TabLabelCommonComponent } from './tabs/parts/labels/common/tab-label-common.component'

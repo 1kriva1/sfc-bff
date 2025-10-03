@@ -5,7 +5,6 @@ import {
     faHand, faHandshakeAngle, faRankingStar, faShield,
     faTable, faUsersLine
 } from "@fortawesome/free-solid-svg-icons";
-import { IInfoPanelModel } from "@share/components";
 import { ThemeService } from "@share/components/theme-toggler/services/theme/theme.service";
 import { ChartConfiguration } from "chart.js";
 import { ComponentSize, MediaLimits } from "ngx-sfc-common";
@@ -14,6 +13,7 @@ import { DashboardViewConstants } from "./dashboard-view.constants";
 import { getLongMonth, getMonths, getShortMonth } from '@core/utils';
 import { IEnumModel } from '@core/types';
 import { EnumService } from '@share/services';
+import { IInfoPanelModel } from '@share/components/info-panel/info-panel.model';
 
 @Component({
     templateUrl: './dashboard-view.component.html',

@@ -1,0 +1,43 @@
+<div class="container">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"></sfc-title>
+
+    <div class="content">
+        <div class="parts">
+            <div *ngIf="request?.status" class="part status">
+                <sfc-status [label]="request!.status!.value"></sfc-status>
+            </div>
+
+            <div class="part player">
+                <sfc-player-info [model]="playerInfoModel" [direction]="Direction.Vertical"
+                    [radius]="Constants.AVATAR_RADIUS" [sfcComponentSize] [customSize]="1.3">
+                </sfc-player-info>
+            </div>
+
+            <div class="part arrow">
+                <fa-icon [icon]="faAnglesDown"></fa-icon>
+            </div>
+
+            <div class="part team">
+                <sfc-team-info [model]="teamInfoModel" [direction]="Direction.Vertical"
+                    [radius]="Constants.AVATAR_RADIUS" [sfcComponentSize] [customSize]="1.3">
+                </sfc-team-info>
+            </div>
+
+            <div class="part actions" *ngIf="actions">
+                <sfc-delimeter [label]="CoreLocalization.ACTIONS"></sfc-delimeter>
+
+                <div class="buttons">
+                    <sfc-button class="accept" [text]="CoreLocalization.ACCEPT"
+                        [types]="[ButtonType.Rounded, ButtonType.Filled]" [iconBefore]="faCheck" [sfcComponentSize]
+                        [customSize]="0.7" (click)="accept()">
+                    </sfc-button>
+
+                    <sfc-button class="decline" [text]="CoreLocalization.DECLINE"
+                        [types]="[ButtonType.Rounded, ButtonType.Filled]" [iconBefore]="faXmark" [sfcComponentSize]
+                        [customSize]="0.7" (click)="decline()">
+                    </sfc-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

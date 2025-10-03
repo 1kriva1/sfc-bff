@@ -1,27 +1,62 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxSfcCommonModule } from 'ngx-sfc-common';
 import { NgxSfcComponentsModule } from 'ngx-sfc-components';
+import { NgxSfcInputsModule } from 'ngx-sfc-inputs';
 import {
   IconTooltipComponent,
   LogoComponent,
   ThemeTogglerComponent,
   TitleComponent,
   InfoPanelComponent,
-  PlayerInfoPanelComponent,
   NoDataComponent,
   BadgeComponent,
   StatsSkillsComponent,
   StatsTotalComponent,
-  CarouselSliderComponent
+  CarouselSliderComponent,
+  AvailabilityEditComponent,
+  AvailabilityFormComponent,
+  AvailabilityListComponent,
+  TabLabelCommonComponent,
+  ShirtCarouselSliderContentComponent,
+  ChangesCheckModalComponent,
+  AvatarInputPlayersModalBodyComponent,
+  AvatarInputPlayersModalBodyTableRowComponent,
+  TeamSearchFilterGeneralComponent,
+  TeamInfoComponent,
+  StatusComponent,
+  EnumComponent,
+  BackComponent,
+  TeamPreviewComponent,
+  PlayerPreviewComponent,
+  PanelComponent,
+  CircleComponent,
+  FormationCarouselSliderContentComponent,
+  ExclamationModalComponent,
+  SchemeInfoComponent,
+  InviteTeamPlayerCancelModalComponent,
+  RequestTeamPlayerAcceptModalComponent,
+  RequestTeamPlayerDeclineModalComponent,
+  SchemeTeamRemoveModalComponent,
+  PlayerInfoComponent,
+  GeneralFilterComponent,
+  FootballFilterComponent,
+  StatsFilterComponent,
+  PlayerRowComponent,
+  PlayerRowContentComponent,
+  PlayerCardComponent,
+  AvatarInputTeamsModalBodyComponent,
+  AvatarInputTeamsModalBodyTableRowComponent,
+  AvatarInputTeamPlayersModalBodyComponent,
+  AvatarInputTeamPlayersModalBodyTableRowComponent,
+  TeamSearchFilterFinancialComponent,
+  TeamSearchFilterInventaryComponent
 } from './components';
-import { GeneralFilterComponent, FootballFilterComponent, StatsFilterComponent } from './components/players/search/filters';
-import { PlayerCardComponent, PlayerRowComponent, PlayerRowContentComponent } from './components/players/search/table';
-import { NgxSfcInputsModule } from 'ngx-sfc-inputs';
-import { ReactiveFormsModule } from '@angular/forms';
 import { TimePipe, DayPipe } from './pipes';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -30,24 +65,61 @@ import { TimePipe, DayPipe } from './pipes';
     IconTooltipComponent,
     TitleComponent,
     InfoPanelComponent,
-    PlayerInfoPanelComponent,
     NoDataComponent,
     BadgeComponent,
     StatsSkillsComponent,
     StatsTotalComponent,
+    AvailabilityEditComponent,
+    AvailabilityFormComponent,
+    AvailabilityListComponent,
+    ChangesCheckModalComponent,
+    ExclamationModalComponent,
+    StatusComponent,
+    EnumComponent,
+    BackComponent,
+    PanelComponent,
+    CircleComponent,
+    // extends
+    ShirtCarouselSliderContentComponent,
+    FormationCarouselSliderContentComponent,
     CarouselSliderComponent,
+    TabLabelCommonComponent,
+    AvatarInputPlayersModalBodyComponent,
+    AvatarInputPlayersModalBodyTableRowComponent,
+    AvatarInputTeamsModalBodyComponent,
+    AvatarInputTeamsModalBodyTableRowComponent,
+    AvatarInputTeamPlayersModalBodyComponent,
+    AvatarInputTeamPlayersModalBodyTableRowComponent,
+    // feature/player
+    PlayerInfoComponent,
+    PlayerPreviewComponent,
     GeneralFilterComponent,
     FootballFilterComponent,
     StatsFilterComponent,
     PlayerRowComponent,
     PlayerRowContentComponent,
     PlayerCardComponent,
+    // feature/team
+    TeamSearchFilterGeneralComponent,
+    TeamSearchFilterFinancialComponent,
+    TeamSearchFilterInventaryComponent,
+    TeamInfoComponent,
+    TeamPreviewComponent,
+    // feature/scheme
+    SchemeInfoComponent,
+    SchemeTeamRemoveModalComponent,
+    // feature/invite
+    InviteTeamPlayerCancelModalComponent,
+    // feature/request
+    RequestTeamPlayerAcceptModalComponent,
+    RequestTeamPlayerDeclineModalComponent,
     // pipes
     TimePipe,
     DayPipe
   ],
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
     FontAwesomeModule,
@@ -61,18 +133,49 @@ import { TimePipe, DayPipe } from './pipes';
     IconTooltipComponent,
     TitleComponent,
     InfoPanelComponent,
-    PlayerInfoPanelComponent,
+    StatusComponent,
+    EnumComponent,
+    BackComponent,
+    PanelComponent,
+    CircleComponent,
     NoDataComponent,
     BadgeComponent,
     StatsSkillsComponent,
     StatsTotalComponent,
+    AvailabilityEditComponent,
+    AvailabilityFormComponent,
+    AvailabilityListComponent,
+    ChangesCheckModalComponent,
+    ExclamationModalComponent,
+    // extends
     CarouselSliderComponent,
+    ShirtCarouselSliderContentComponent,
+    FormationCarouselSliderContentComponent,
+    TabLabelCommonComponent,
+    AvatarInputPlayersModalBodyComponent,
+    AvatarInputTeamsModalBodyComponent,
+    AvatarInputTeamPlayersModalBodyComponent,
+    // feature/player
+    PlayerInfoComponent,
+    PlayerPreviewComponent,
     GeneralFilterComponent,
     FootballFilterComponent,
     StatsFilterComponent,
     PlayerRowComponent,
     PlayerRowContentComponent,
     PlayerCardComponent,
+    // feature/team
+    TeamSearchFilterGeneralComponent,
+    TeamInfoComponent,
+    TeamPreviewComponent,
+    // feature/scheme
+    SchemeInfoComponent,
+    SchemeTeamRemoveModalComponent,
+    // feature/invite
+    InviteTeamPlayerCancelModalComponent,
+    // feature/request
+    RequestTeamPlayerAcceptModalComponent,
+    RequestTeamPlayerDeclineModalComponent,
     // pipes
     TimePipe,
     DayPipe

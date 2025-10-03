@@ -1,9 +1,10 @@
-import { EMPTY, Observable, of, throwError } from "rxjs";
+import { Observable, of, throwError } from "rxjs";
 import { PlayerInitializer } from "./player.initializer";
 import {
     IGetPlayerByUserResponse,
-    PlayerService,
-    IdentityService
+    PlayerViewService,
+    IdentityService,
+    PlayerService
 } from "@share/services";
 
 describe('Core.Initializer:Player', () => {

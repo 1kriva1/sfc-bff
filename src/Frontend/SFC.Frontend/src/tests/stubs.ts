@@ -240,7 +240,13 @@ export const ENUM_SERVICE: Partial<EnumService> = {
             { key: 3, value: 'Postponed', icon: faPowerOff },
             { key: 4, value: 'Closed', icon: faBan }
         ],
-        shirts: []
+        shirts: [],
+        formationPositions: [],
+        formations: [],
+        formationType: [],
+        inviteStatuses: [],
+        requestStatuses: [],
+        teamPlayerStatuses: []
     }
 };
 

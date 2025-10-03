@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="content">
+        <sfc-back *ngIf="backNavigationModel" [model]="backNavigationModel"></sfc-back>
+        
+        <div class="title">
+            <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+                [tooltip]="Localization.TITLE.TOOLTIP" [icon]="faQuestionCircle" [sfcComponentSize] [customSize]="1.5">
+            </sfc-title>
+        </div>
+
+        <div class="parts">
+            <div class="part left">
+                <sfc-side-menu [model]="menu"></sfc-side-menu>
+                
+                <div class="sub-part">
+                    <sfc-team-player-view-main></sfc-team-player-view-main>
+                </div>
+            </div>
+
+            <div class="part center">
+                <router-outlet></router-outlet>
+            </div>
+
+            <div class="part right">
+                <sfc-team-player-view-preview></sfc-team-player-view-preview>
+            </div>
+        </div>
+    </div>
+</div>

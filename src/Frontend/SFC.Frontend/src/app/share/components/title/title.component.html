@@ -1,12 +1,23 @@
 <div class="container">
-    <div class="title">
-        <div class="label">
-            <p *ngIf="label">{{label}}</p>
-            <span *ngIf="description">{{description}}</span>
+    <div class="content">
+        <div class="title">
+            <div class="label">
+                <p *ngIf="label">{{label}}</p>
+                <span *ngIf="description">{{description}}</span>
+            </div>
+
+            <sfc-icon-tooltip *ngIf="icon && tooltip" [tooltip]="tooltip" [icon]="icon"></sfc-icon-tooltip>
+
+            <sfc-collapse-expand *ngIf="collapseExpand" [expand]="expand" [labelExpand]="CommonConstants.EMPTY_STRING"
+                [labelCollapse]="CommonConstants.EMPTY_STRING" (click)="expand = !expand" [sfcComponentSize]
+                [customSize]="0.8">
+            </sfc-collapse-expand>
         </div>
 
-        <sfc-icon-tooltip *ngIf="icon" [tooltip]="tooltip" [icon]="icon"></sfc-icon-tooltip>
-    </div>
+        <sfc-delimeter *ngIf="delimeter"></sfc-delimeter>
 
-    <sfc-delimeter *ngIf="delimeter"></sfc-delimeter>
+        <div class="expand" [sfcIf]="expand">
+            <ng-content></ng-content>
+        </div>
+    </div>
 </div>

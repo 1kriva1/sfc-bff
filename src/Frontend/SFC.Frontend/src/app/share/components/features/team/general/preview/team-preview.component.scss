@@ -1,0 +1,45 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "common";
+
+:host {
+  width: 100%;
+
+  .container {
+    @include part;
+
+    .content {
+      @include center-column;
+
+      padding: 0.5em 0;
+
+      .team {
+        @include center-column;
+
+        width: 100%;
+
+        sfc-tags {
+          padding: 0.5em 0;
+        }
+
+        .players {
+          @include center-column;
+
+          margin: 0.5em 0;
+
+          span {
+            @include text-bold;
+
+            padding-top: 0.5em;
+          }
+        }
+
+        .description {
+          @include text-bold;
+
+          margin: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { isNullOrEmptyString, isObject } from 'ngx-sfc-common';
-import { CommonConstants } from '../../constants';
 import { CookieService as Storage } from 'ngx-cookie-service';
+import { isNullOrEmptyString, isObject } from 'ngx-sfc-common';
+import { CoreConstants } from '../../constants';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +29,6 @@ export class CookieService {
   }
 
   private keyValue(key: string): string {
-    return `${CommonConstants.APPLICATION_PREFIX}-${key}`;
+    return `${CoreConstants.APPLICATION_PREFIX}-${key}`;
   }
 }

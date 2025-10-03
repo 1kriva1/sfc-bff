@@ -1,0 +1,38 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "mixins";
+
+:host {
+  @include host(pointer);
+
+  .container {
+    @include center-column;
+
+    padding: 0.5em 0.1em;
+    height: 5em;
+
+    .content {
+      .label {
+        @include theme-value(color, $color-default, $color-dark);
+
+        text-align: center;
+        font-weight: bold;
+        font-size: 0.8em;
+        padding-bottom: 0.5em;
+        letter-spacing: 3px;
+        user-select: none;
+      }
+
+      .dots {
+        @include center-column;
+
+        .row {
+          @include center;
+
+          sfc-dot {
+            margin: 0.2em 0.3em;
+          }
+        }
+      }
+    }
+  }
+}

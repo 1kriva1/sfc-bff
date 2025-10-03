@@ -1,0 +1,36 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "common";
+
+:host {
+  .container {
+    @include part;
+
+    .content {
+      .progress {
+        @include center-column;
+
+        padding: 0.5em 0;
+
+        p {
+          @include text-center-bold($font-size:0.8em);
+
+          margin: 0;
+        }
+
+        h3 {
+          @include text-center-bold($color-hover-default, 1em);
+
+          letter-spacing: 0.2em;
+          margin: 0.2em 0;
+        }
+
+        span {
+          @include text-center($color-7);
+
+          padding-top: 0.5em;
+        }
+      }
+    }
+  }
+}

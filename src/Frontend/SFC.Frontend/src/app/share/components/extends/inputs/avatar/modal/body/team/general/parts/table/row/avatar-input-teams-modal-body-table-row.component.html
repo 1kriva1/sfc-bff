@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="content">
+        <div class="columns">
+            <ng-container *ngFor="let column of columns">
+                <ng-container [ngSwitch]="column.field">
+                    <ng-container *ngSwitchCase="Column.Select">
+                        <div class="column select" [style.width]="column.calculatedWidth">
+                            <sfc-checkmark [active]="selected" (click)="onSelect()" [type]="CheckmarkType.Circle"
+                                [sfcComponentSize] [customSize]="1.2">
+                            </sfc-checkmark>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Rating">
+                        <div class="column rating" [style.width]="column.calculatedWidth">
+                            <sfc-team-info [radius]="Constants.LOGO_RADIUS" [logo]="true" [info]="false"
+                                [model]="teamInfo">
+                            </sfc-team-info>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Team">
+                        <div class="column team" [style.width]="column.calculatedWidth">
+                            <sfc-team-info [radius]="Constants.LOGO_RADIUS" [logo]="false" [info]="true"
+                                [model]="teamInfo">
+                            </sfc-team-info>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Description">
+                        <div class="column description" [style.width]="column.calculatedWidth">
+                            <span *ngIf="viewModel.description">{{viewModel.description}}</span>
+                            <sfc-no-data *ngIf="!viewModel.description"></sfc-no-data>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Status">
+                        <div class="column status" [style.width]="column.calculatedWidth">
+                            <sfc-status [label]="viewModel.status.value"></sfc-status>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="content">
+        <div class="label">
+            <span>{{formation.label}}</span>
+        </div>
+
+        <div class="dots">
+            <div *ngFor="let row of rows" class="row">
+                <sfc-dot *ngFor="let _ of row | sfcRepeat" [active]="active"></sfc-dot>
+            </div>
+        </div>
+    </div>    
+</div>

@@ -1,3 +1,5 @@
+@import "../variables";
+
 @mixin title() {
   color: $color-default;
   font-size: 0.6em;
@@ -15,5 +17,68 @@
 
   sfc-no-data {
     color: $color-default;
+  }
+}
+
+@mixin table {
+  sfc-table {
+    ::ng-deep > .container {
+      width: auto;
+      margin: 0;
+
+      .table-loader {
+        @include theme-value(background-color, $background-container-default, $background-container-dark);
+      }
+
+      .columns-container {
+        .columns-actions {
+          .left {
+            sfc-columns-toggle {
+              .container .label {
+                text-transform: none;
+              }
+            }
+          }
+
+          .right {
+            sfc-toggle-switcher {
+              font-size: 0.8em;
+            }
+          }
+        }
+
+        .columns {
+          .column {
+            sfc-default-table-column {
+              .container {
+                text-transform: none;
+              }
+            }
+          }
+        }
+      }
+
+      .rows-container {
+        sfc-load-container {
+          .container {
+            sfc-bounce-loader {
+              .preloader {
+                @include theme-value(background-color, $background-container-default, $background-container-dark);
+              }
+            }
+
+            .content {
+              overflow: visible;
+
+              .items {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

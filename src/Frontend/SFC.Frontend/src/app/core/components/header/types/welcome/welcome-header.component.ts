@@ -2,13 +2,13 @@ import { Component, HostBinding, HostListener, Inject, OnInit } from '@angular/c
 import { Router } from '@angular/router';
 import { faSignIn, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { WINDOW, ButtonType } from 'ngx-sfc-common';
-import { RoutKey } from '../../../../enums';
 import { buildPath } from '../../../../utils';
 import { WelcomeHeaderConstants } from './welcome-header.constants';
 import { WelcomeHeaderPart } from './welcome-header.enum';
 import { HeaderService } from '../../services/header.service';
 import { IHeaderNavigationModel } from '../base/header-navigation.model';
-import { IdentityConstants } from '@share/services/identity/identity.constants';
+import { IdentityConstants } from '@share/services/identity/constants/identity.constants';
+import { WelcomeRoute } from '@share/enums';
 
 @Component({
   selector: 'sfc-welcome-header',
@@ -65,6 +65,6 @@ export class WelcomeHeaderComponent implements OnInit {
 
   private navigate(fragment: string): void {
     this.headerService.set(false);
-    this.router.navigate([buildPath(RoutKey.Welcome)], { fragment });
+    this.router.navigate([buildPath(WelcomeRoute.Welcome)], { fragment });
   }
 }

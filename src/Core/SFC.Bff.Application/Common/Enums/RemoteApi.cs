@@ -2,5 +2,10 @@ namespace SFC.Bff.Application.Common.Enums;
 public enum RemoteApi
 {
     Data,
-    Player
+    Player,
+    Team,
+    Invite,
+    Request,
+    Scheme,
+    Identity
 }

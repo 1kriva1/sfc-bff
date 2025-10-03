@@ -1,0 +1,34 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "mixins";
+@import "common";
+
+:host {
+  .container {
+    .content {
+      @include center-column;
+
+      .title {
+        @include text-bold;
+
+        margin: 0.5em 0;
+      }
+
+      .component {
+        @include center;
+
+        .circle {
+          @include circle(1em, $color-0);
+
+          display: inline-block;
+          margin: 0 0.5em;
+        }
+
+        .label {
+          font-size: 0.8em;
+          font-weight: bold;
+          color: $color-default;
+        }
+      }
+    }
+  }
+}

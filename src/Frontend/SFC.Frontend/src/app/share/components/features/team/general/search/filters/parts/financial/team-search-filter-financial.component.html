@@ -1,0 +1,14 @@
+<div class="container" [formGroupName]="TeamSearchFilterPart.Financial">
+    <div class="content">
+        <div class="rows">
+            <div class="row">
+                <div class="column">
+                    <sfc-radio-input id="free-play" formControlName="freePlay" [items]="Constants.FREE_PLAY_RADIO_ITEMS"
+                        [direction]="Direction.Vertical" [label]="Localization.INPUT.FREE_PLAY.LABEL"
+                        [helperText]="Localization.INPUT.FREE_PLAY.HELPER_TEXT">
+                    </sfc-radio-input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

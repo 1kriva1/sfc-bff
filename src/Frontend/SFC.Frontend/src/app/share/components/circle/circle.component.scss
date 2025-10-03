@@ -1,0 +1,12 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+
+:host {
+  .container {
+    .content {
+      .circle {
+        @include circle;
+      }
+    }
+  }
+}

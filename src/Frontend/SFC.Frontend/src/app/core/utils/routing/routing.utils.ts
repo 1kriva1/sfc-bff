@@ -1,9 +1,74 @@
-import { CommonConstants } from "../../constants";
+import { ActivatedRouteSnapshot, Navigation, NavigationExtras, Route } from "@angular/router";
+import { IBackNavigationModel } from "@core/models";
+import { isNullOrEmptyString } from "ngx-sfc-common";
+import { CoreConstants, RouteConstants } from "../../constants";
 
 export function buildPath(key: string): string {
-    return `/${key}`
+    return `/${key}`;
 }
 
 export function buildTitle(title: string): string {
-    return `${CommonConstants.APPLICATION_PREFIX.toUpperCase()} - ${title}`
+    return `${CoreConstants.APPLICATION_PREFIX.toUpperCase()} - ${title}`;
+}
+
+export function getUrlSegment(url: string, index: number | null = null): string {
+    const segments: string[] = url.split('?')[0].split('/');
+    return index !== null ? segments[index] : segments.pop()!
+}
+
+export function buildFallbackRoute(redirectTo: string): Route {
+    return {
+        path: RouteConstants.DEFAULT_ROUTE_PATH,
+        redirectTo: redirectTo,
+        pathMatch: 'full'
+    }
+}
+
+export function getRouteId(route: ActivatedRouteSnapshot, idRoutePathName: string = RouteConstants.ID_ROUTE_PATH): number {
+    const id: string | null = route.paramMap.get(idRoutePathName);
+
+    if (isNullOrEmptyString(id) && route.parent) {
+        return getRouteId(route.parent, idRoutePathName);
+    }
+
+    if (isNullOrEmptyString(id)) {
+        throw new Error(`Route parameter: ${idRoutePathName} is missing.`);
+    }
+
+    return +id!;
+}
+
+export function buildNavigationExtras(key: string, value: any, navigationExtras: NavigationExtras | null = null): NavigationExtras {
+    navigationExtras = navigationExtras ?? { state: {} };
+
+    if (!navigationExtras.state) {
+        navigationExtras.state = {};
+    }
+
+    navigationExtras.state[key] = value;
+
+    return navigationExtras;
+}
+
+export function addNavigationExtras(value: [string, any][], navigationExtras: NavigationExtras | null = null): NavigationExtras {
+    value.forEach(item => buildNavigationExtras(item[0], item[1], navigationExtras));
+    return navigationExtras!;
+}
+
+export function getValueFromNavigationExtras(key: string, navigation: Navigation | null): any {
+    return navigation?.extras.state ? navigation?.extras.state![key] : null;
+}
+
+export function buildBackNavigationExtras(url: string, label: string): NavigationExtras {
+    const model: IBackNavigationModel = { url, label };
+
+    return buildNavigationExtras(RouteConstants.BACK_NAVIGATION_ROUTE_PATH_STATE_VALUE_KEY, model)
+}
+
+export function getBackNavigationModel(navigation: Navigation | null): IBackNavigationModel | null {
+    return getValueFromNavigationExtras(RouteConstants.BACK_NAVIGATION_ROUTE_PATH_STATE_VALUE_KEY, navigation);
+}
+
+export function getRouteData<T>(snapshot: ActivatedRouteSnapshot, key: string, defaultValue: T | null = null): T | null {
+    return snapshot.data[key]?.result || defaultValue;
 }

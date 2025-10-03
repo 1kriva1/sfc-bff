@@ -94,8 +94,7 @@
                             [description]="Localization.INPUT.NAME.TITLE.DESCRIPTION" [delimeter]="false">
                         </sfc-title>
 
-                        <sfc-text-input id="name" formControlName="name" [sfcFocusInput]="true"
-                            [showPlaceholderOnFocus]="true" [label]="''"
+                        <sfc-text-input id="name" formControlName="name" [showPlaceholderOnFocus]="true" [label]="''"
                             [placeholder]="Localization.INPUT.NAME.PLACEHOLDER" [bordered]="false" [sfcComponentSize]
                             [customSize]="4">
                         </sfc-text-input>
@@ -109,7 +108,8 @@
                             [types]="[ButtonType.Rounded, ButtonType.Filled]" [sfcComponentSize] [customSize]="0.9">
                         </sfc-button>
 
-                        <sfc-modal *sfcModalOpenOnClick="modalButton.elementRef.nativeElement"
+                        <sfc-modal
+                            *sfcModalOpenOnClick="{id: FiltersConstants.PLAYERS_FILTERS_MODAL_ID, elements:modalButton.elementRef.nativeElement}"
                             [hideOnClickOutside]="true" [hideOnEsc]="false"
                             [defaultHeaderModel]="filtersModalHeaderModel"
                             [defaultFooterModel]="filtersModalFooterModel">
@@ -122,9 +122,9 @@
                     </div>
 
                     <sfc-table #table [columns]="columns" [predicate$]="predicate$" [loader]="loader.bind(this)"
-                        [pagination]="pagination" [position]="Position.Center" [showColumns]="true"
+                        [pagination]="TableConstants.PAGINATION" [position]="Position.Center" [showColumns]="true"
                         [columnsToggle]="true" [showTotal]="true" [showLoading]="showLoading"
-                        [paginationCount]="Constants.PAGINATION_COUNT" [paginationLimits]="true"
+                        [paginationCount]="TableConstants.PAGINATION_COUNT" [paginationLimits]="true"
                         [showColumnsLabel]="TableLocalization.COLUMNS_SHOW_LABEL"
                         [hideColumnsLabel]="TableLocalization.COLUMNS_HIDE_LABEL"
                         [totalLabel]="TableLocalization.TOTAL_LABEL" [dataListLabel]="TableLocalization.DATA_LIST_LABEL"

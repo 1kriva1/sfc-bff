@@ -1,0 +1,26 @@
+@import "page/mixins";
+
+:host {
+  @include page;
+
+  .container {
+    .content {
+      .parts {
+        .part {
+          &.left {
+            display: flex;
+            width: 32%;
+          }
+
+          &.center {
+            width: 46%;
+          }
+
+          &.right {
+            width: 22%;
+          }
+        }
+      }
+    }
+  }
+}

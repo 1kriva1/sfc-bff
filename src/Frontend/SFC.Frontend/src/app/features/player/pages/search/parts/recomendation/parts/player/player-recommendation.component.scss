@@ -6,7 +6,7 @@
     @include center;
 
     /* stylelint-disable no-descending-specificity */
-    sfc-player-info-panel {
+    sfc-player-info {
       ::ng-deep > .container {
         .info {
           sfc-stars {

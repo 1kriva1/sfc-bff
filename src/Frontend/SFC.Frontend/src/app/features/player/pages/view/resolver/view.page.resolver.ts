@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve, Router } from "@angular/router";
 import { isNullOrEmptyString, LoaderService } from "ngx-sfc-common";
 import { catchError, EMPTY, switchMap, Observable, of, finalize, tap } from "rxjs";
-import { RoutKey } from "@core/enums";
 import { BaseErrorResponse, IResolverModel } from "@core/models";
 import { buildPath } from "@core/utils";
 import { EnumService } from "@share/services";
@@ -10,6 +9,7 @@ import { PlayerService } from "../../../services/player/player.service";
 import { mapPlayerModel } from "../mapper/view.page.mapper";
 import { IPlayerModel } from "../mapper/models";
 import { IGetPlayerResponse } from "../../../services/player/models/get";
+import { HomeRoute } from "@share/enums";
 
 @Injectable({ providedIn: 'root' })
 export class ViewPageResolver implements Resolve<IResolverModel<IPlayerModel>> {
@@ -35,7 +35,7 @@ export class ViewPageResolver implements Resolve<IResolverModel<IPlayerModel>> {
                 };
             }),
             catchError((error: BaseErrorResponse) => {
-                this.router.navigate([buildPath(RoutKey.Home)]);
+                this.router.navigate([buildPath(HomeRoute.Home)]);
                 return of({ result: null, success: false, message: error.Message });
             }),
             finalize(() => this.loaderService.hide())

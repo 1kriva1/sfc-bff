@@ -8,21 +8,35 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { of } from 'rxjs';
 import { DataService } from '../data/data.service';
-import { IGetDataResponse } from '../data/models/get-data.response';
+import { IGetDataResponse } from '../data/models/get/get-data.response';
+import { IGetInviteDataResponse } from '../invite';
+import { InviteDataService } from '../invite/data/invite-data.service';
+import { IGetRequestDataResponse } from '../request';
+import { RequestDataService } from '../request/data/request-data.service';
+import { IGetSchemeDataResponse } from '../scheme';
+import { SchemeDataService } from '../scheme/data/scheme-data.service';
+import { IGetTeamDataResponse } from '../team';
+import { TeamDataService } from '../team/data/team-data.service';
 import { EnumService } from './enum.service';
-import { IEnumsModel } from './models/enums.model';
+import { IEnumsModel } from './models/enum/enums.model';
 
 describe('Share.Service:Enum', () => {
     let service: EnumService;
-    let dataServiceStub: Partial<DataService> = {
-        get: () => of()
-    };
+    let dataServiceStub: Partial<DataService> = { get: () => of() };
+    let inviteDataServiceStub: Partial<InviteDataService> = { get: () => of() };
+    let requestDataServiceStub: Partial<RequestDataService> = { get: () => of() };
+    let teamDataServiceStub: Partial<TeamDataService> = { get: () => of() };
+    let schemeDataServiceStub: Partial<SchemeDataService> = { get: () => of() };
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
             providers: [
-                { provide: DataService, useValue: dataServiceStub }
+                { provide: DataService, useValue: dataServiceStub },
+                { provide: InviteDataService, useValue: inviteDataServiceStub },
+                { provide: RequestDataService, useValue: requestDataServiceStub },
+                { provide: TeamDataService, useValue: teamDataServiceStub },
+                { provide: SchemeDataService, useValue: schemeDataServiceStub },
             ]
         });
 
@@ -35,6 +49,10 @@ describe('Share.Service:Enum', () => {
 
     fit('Should return values', (done) => {
         dataServiceStub.get = () => of(buildDataResponse());
+        inviteDataServiceStub.get = () => of(buildIGetInviteDataResponse());
+        requestDataServiceStub.get = () => of(buildIGetRequestDataResponse());
+        teamDataServiceStub.get = () => of(buildIGetTeamDataResponse());
+        schemeDataServiceStub.get = () => of(buildIGetSchemeDataResponse());
 
         service.load().subscribe((model: IEnumsModel) => {
             expect(model).toEqual(buildEnumsModel());
@@ -60,6 +78,61 @@ describe('Share.Service:Enum', () => {
             StatSkills: [{ Id: 0, Title: 'Mental' }],
             StatTypes: [{ Id: 0, Title: 'SprintSpeed', Category: 0, Skill: 0 }],
             WorkingFoots: [{ Id: 0, Title: 'Right' }],
+            Shirts: [
+                { Id: 0, Title: 'Blue' },
+                { Id: 1, Title: 'Pink' },
+                { Id: 2, Title: 'Black' },
+                { Id: 3, Title: 'Red' },
+                { Id: 4, Title: 'Yellow' },
+                { Id: 5, Title: 'Purple' },
+                { Id: 6, Title: 'Orange' },
+                { Id: 7, Title: 'Brown' },
+                { Id: 8, Title: 'Green' }
+            ],
+            Errors: null,
+            Success: true,
+            Message: 'Success'
+        };
+    }
+
+    function buildIGetInviteDataResponse(): IGetInviteDataResponse {
+        return {
+            InviteStatuses: [],
+            Errors: null,
+            Success: true,
+            Message: 'Success'
+        };
+    }
+
+    function buildIGetRequestDataResponse(): IGetRequestDataResponse {
+        return {
+            RequestStatuses: [],
+            Errors: null,
+            Success: true,
+            Message: 'Success'
+        };
+    }
+
+    function buildIGetSchemeDataResponse(): IGetSchemeDataResponse {
+        return {
+            FormationPositions: [],
+            Formations: [],
+            SchemeTypes: [],
+            Errors: null,
+            Success: true,
+            Message: 'Success'
+        };
+    }
+
+    function buildIGetTeamDataResponse(): IGetTeamDataResponse {
+        return {
+            TeamPlayerStatuses: [],
+            TeamStatuses: [
+                { Id: 0, Title: 'Temporary' },
+                { Id: 1, Title: 'New' },
+                { Id: 2, Title: 'Active' },
+                { Id: 3, Title: 'Postponed' }
+            ],
             Errors: null,
             Success: true,
             Message: 'Success'
@@ -71,12 +144,12 @@ describe('Share.Service:Enum', () => {
             footballPositions: [{
                 key: 0,
                 value: 'Goalkeeper',
-                image: `app/core/assets/images/enums/position/0.png`
+                image: `app/share/assets/images/enums/position/0.png`
             }],
             gameStyles: [{
                 key: 0,
                 value: 'Attacking',
-                image: `app/core/assets/images/enums/game-style/0.png`
+                image: `app/share/assets/images/enums/game-style/0.png`
             }],
             statCategories: [{
                 key: 0,
@@ -95,7 +168,7 @@ describe('Share.Service:Enum', () => {
             workingFoots: [{
                 key: 0,
                 value: 'Right',
-                image: `app/core/assets/images/enums/foot/0.png`
+                image: `app/share/assets/images/enums/foot/0.png`
             }],
             badgeTypes: [
                 { key: 0, value: 'Badge_0', icon: faStar, description: 'Has posted more than 1000 posts on their profile' },
@@ -120,22 +193,27 @@ describe('Share.Service:Enum', () => {
             ],
             teamStatuses: [
                 { key: 0, value: 'Temporary', icon: faAsterisk },
-                { key: 1, value: 'New', icon: faSun },
-                { key: 2, value: 'Active', icon: faFutbol },
-                { key: 3, value: 'Postponed', icon: faPowerOff },
-                { key: 4, value: 'Closed', icon: faBan }
+                { key: 1, value: 'New', icon: faFutbol },
+                { key: 2, value: 'Active', icon: faPowerOff },
+                { key: 3, value: 'Postponed', icon: faBan }
             ],
             shirts: [
-                { key: 0, value: 'Blue', image: 'app/core/assets/images/enums/shirts/0.png' },
-                { key: 1, value: 'Pink', image: 'app/core/assets/images/enums/shirts/1.png' },
-                { key: 2, value: 'Black', image: 'app/core/assets/images/enums/shirts/2.png' },
-                { key: 3, value: 'Red', image: 'app/core/assets/images/enums/shirts/3.png' },
-                { key: 4, value: 'Yellow', image: 'app/core/assets/images/enums/shirts/4.png' },
-                { key: 5, value: 'Purple', image: 'app/core/assets/images/enums/shirts/5.png' },
-                { key: 6, value: 'Orange', image: 'app/core/assets/images/enums/shirts/6.png' },
-                { key: 7, value: 'Brown', image: 'app/core/assets/images/enums/shirts/7.png' },
-                { key: 8, value: 'Green', image: 'app/core/assets/images/enums/shirts/8.png' }
-            ]
+                { key: 0, value: 'Blue', image: 'app/share/assets/images/enums/shirts/0.png' },
+                { key: 1, value: 'Pink', image: 'app/share/assets/images/enums/shirts/1.png' },
+                { key: 2, value: 'Black', image: 'app/share/assets/images/enums/shirts/2.png' },
+                { key: 3, value: 'Red', image: 'app/share/assets/images/enums/shirts/3.png' },
+                { key: 4, value: 'Yellow', image: 'app/share/assets/images/enums/shirts/4.png' },
+                { key: 5, value: 'Purple', image: 'app/share/assets/images/enums/shirts/5.png' },
+                { key: 6, value: 'Orange', image: 'app/share/assets/images/enums/shirts/6.png' },
+                { key: 7, value: 'Brown', image: 'app/share/assets/images/enums/shirts/7.png' },
+                { key: 8, value: 'Green', image: 'app/share/assets/images/enums/shirts/8.png' }
+            ],
+            formationPositions: [],
+            formations: [],
+            formationType: [],
+            inviteStatuses: [],
+            requestStatuses: [],
+            teamPlayerStatuses: []
         };
     }
 });

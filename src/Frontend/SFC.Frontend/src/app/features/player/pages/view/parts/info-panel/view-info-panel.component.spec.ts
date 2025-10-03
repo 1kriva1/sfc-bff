@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { TitleComponent } from "@share/components";
-import { DelimeterComponent } from "ngx-sfc-common";
+import { DelimeterComponent, IfDirective } from "ngx-sfc-common";
 import { ViewInfoPanelComponent } from "./view-info-panel.component";
 
 @Component({
@@ -27,6 +27,7 @@ describe('Features.Player.Page:View.Part:ViewInfoPanel', () => {
         await TestBed.configureTestingModule({
             imports: [FontAwesomeModule],
             declarations: [
+                IfDirective,
                 DelimeterComponent,
                 TitleComponent,
                 ViewInfoPanelComponent,

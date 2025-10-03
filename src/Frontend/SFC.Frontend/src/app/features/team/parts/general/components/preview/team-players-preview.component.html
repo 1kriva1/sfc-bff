@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="content">
+        <sfc-title [label]="title" [description]="description" [collapseExpand]="true">
+            <div class="list" *ngIf="model$ | async as models">
+                <sfc-toggle-switcher [active]="active" [leftModel]="leftToggleModel" [rightModel]="rightToggleModel"
+                    [sfcComponentSize] [customSize]="0.7" (toggle)="onToggle($event)">
+                </sfc-toggle-switcher>
+
+                <sfc-team-players-preview-list *ngFor="let model of models" [view]="view" [model]="model">
+                </sfc-team-players-preview-list>
+            </div>
+        </sfc-title>
+    </div>
+</div>

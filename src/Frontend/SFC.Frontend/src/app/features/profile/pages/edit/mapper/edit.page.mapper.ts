@@ -10,12 +10,12 @@ import {
 import { IEnumModel } from "@core/types";
 import { getWeekDays } from "@core/utils";
 import { EnumService } from "@share/services";
-import { IStatValueModel } from "@share/models";
-import { convertFromServerStats } from "@share/utils";
+import { convertFromServerStats } from "@share/utils/stats";
 import { StatsValue } from "@share/types";
 import { IEditModel } from "../models/edit.page.model";
 import { IStatsModel } from "../parts/stats/services/stats.model";
 import { IProfileModel } from "./models/profile.model";
+import { IPlayerStatValueModel } from "@share/services/player/general/models/common/player-stat-value.model";
 
 export async function mapPlayerRequest(value: IEditModel, statPoints: IStatsModel)
     : Promise<ICreatePlayerRequest | IUpdatePlayerRequest> {
@@ -62,8 +62,8 @@ export async function mapPlayerRequest(value: IEditModel, statPoints: IStatsMode
         }
     }
 
-    function _convertToServerStats(model: StatsValue): IStatValueModel[] {
-        const result: IStatValueModel[] = [];
+    function _convertToServerStats(model: StatsValue): IPlayerStatValueModel[] {
+        const result: IPlayerStatValueModel[] = [];
 
         Object.keys(model).forEach((key: string) => {
             const stat: any = model[+key];

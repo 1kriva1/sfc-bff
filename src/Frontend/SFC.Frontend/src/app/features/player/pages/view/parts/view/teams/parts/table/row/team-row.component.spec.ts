@@ -10,11 +10,11 @@ import { TeamsTableConstants } from "../teams-table.constants";
 import { TeamRowComponent } from "./team-row.component";
 import { TeamRowConstants } from "./team-row.constants";
 import { ITeamRowModel } from "./team-row.model";
-import { CommonConstants as ApplicationCommonConstants } from '@core/constants/common.constants';
+import { CoreConstants } from '@core/constants';
 import { DebugElement } from "@angular/core";
 import { TeamRowLocalization } from "./team-row.localization";
-import { RoutKey } from "@core/enums";
 import { ActivatedRoute, RouterModule } from "@angular/router";
+import { PlayerRoute } from "@share/enums";
 
 describe('Features.Player.Page:View.Part.Table:TeamRow', () => {
     let component: TeamRowComponent;
@@ -86,7 +86,7 @@ describe('Features.Player.Page:View.Part.Table:TeamRow', () => {
 
             fit('Should have default image', () => {
                 expect(fixture.debugElement.query(By.css('.column.logo > img')).nativeElement.src)
-                    .toContain(ApplicationCommonConstants.DEFAULT_TEAM_B_IMAGE_PATH);
+                    .toContain(CoreConstants.DEFAULT_TEAM_B_IMAGE_PATH);
             });
 
             fit('Should stars has defined values', () => {
@@ -162,14 +162,14 @@ describe('Features.Player.Page:View.Part.Table:TeamRow', () => {
                 fixture.detectChanges();
                 
                 expect(fixture.debugElement.query(By.css('.column.coach > a')).attributes['href'])
-                    .toEqual(`/${RoutKey.Players}/${component.model.coach?.id}`);
+                    .toEqual(`/${PlayerRoute.Players}/${component.model.coach?.id}`);
             });
 
             fit('Should player info panel has defined attributes', () => {
                 component.model.coach = { id: 0, firstName: 'Name', lastName: 'Surname', photo: null };
                 fixture.detectChanges();
 
-                const playerInfoPanelEl = fixture.debugElement.query(By.css('.column.coach > a > sfc-player-info-panel')),
+                const playerInfoPanelEl = fixture.debugElement.query(By.css('.column.coach > a > sfc-player-info')),
                     playerInfoPanelComponent = playerInfoPanelEl.componentInstance;
 
                 expect(playerInfoPanelComponent.radius).toEqual(TeamRowConstants.COACH_AVATAR_RADIUS);

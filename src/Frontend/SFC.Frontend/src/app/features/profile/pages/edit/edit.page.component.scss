@@ -124,10 +124,6 @@
               }
             }
 
-            .errors {
-              @include error-message;
-            }
-
             .progress {
               .item {
                 width: 100%;

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { filter, map, Subscription } from 'rxjs';
 import { faBell, faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faExclamation, faPlus, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { any, ComponentSize, firstOrDefault, hasItem, isDefined, Position } from 'ngx-sfc-common';
@@ -8,15 +9,13 @@ import {
   IAvatarDataModel, IAvatarProgressModel,
   IDropdownMenuItemModel
 } from 'ngx-sfc-components';
-import { filter, map, Subscription } from 'rxjs';
-import { CommonConstants } from '../../../../constants';
-import { RoutKey } from '../../../../enums';
+import { IdentityService, PlayerViewService, EnumService, IPlayerViewModel } from '@share/services';
+import { RouteKey } from '../../../../enums';
 import { buildPath } from '../../../../utils';
+import { CoreConstants } from '../../../../constants';
 import { HeaderService } from '../../services/header.service';
 import { IHeaderNavigationModel } from '../base/header-navigation.model';
-import { EnumService } from '@share/services';
-import { ObservableDataModel } from '../../../../models';
-import { IdentityService, PlayerService, IPlayerByUserProfileModel } from '@share/services';
+import { PlayerRoute, ProfileRoute } from '@share/enums';
 
 @Component({
   selector: 'sfc-authenticated-header',
@@ -38,24 +37,24 @@ export class AuthenticatedHeaderComponent implements OnInit, OnDestroy {
   public navigations: IHeaderNavigationModel[] = [
     {
       label: $localize`:@@core.component.header-authenticated.navigation.players:Players`,
-      click: () => this.navigate(RoutKey.Players)
+      click: () => this.navigate(PlayerRoute.Players)
     },
     {
       label: $localize`:@@core.component.header-authenticated.navigation.games:Games`,
-      click: () => this.navigate(RoutKey.Players)
+      click: () => this.navigate(PlayerRoute.Players)
     },
     {
       label: $localize`:@@core.component.header-authenticated.navigation.teams:Teams`,
-      click: () => this.navigate(RoutKey.Players)
+      click: () => this.navigate(PlayerRoute.Players)
     },
     {
       label: $localize`:@@core.component.header-authenticated.navigation.locations:Locations`,
-      click: () => this.navigate(RoutKey.Players)
+      click: () => this.navigate(PlayerRoute.Players)
     }
   ];
 
   public avatarModel: IAvatarDataModel = {
-    image: CommonConstants.DEFAULT_AVATAR_PATH
+    image: CoreConstants.DEFAULT_AVATAR_PATH
   };
 
   public avatarProgressModel: IAvatarProgressModel = {
@@ -89,7 +88,7 @@ export class AuthenticatedHeaderComponent implements OnInit, OnDestroy {
     label: $localize`:@@core.component.header-authenticated.action.profile:Profile`,
     icon: faUser,
     click: () => {
-      this.router.navigate([`${RoutKey.Profiles}/${this.playerService.playerId.value}/${RoutKey.Edit}`]);
+      this.router.navigate([`${ProfileRoute.Profiles}/${this.playerViewService.playerId.value}/${RouteKey.Edit}`]);
 
       if (this.headerService.open)
         this.headerService.set(false);
@@ -99,7 +98,7 @@ export class AuthenticatedHeaderComponent implements OnInit, OnDestroy {
   private _playerSubscription?: Subscription;
 
   constructor(
-    public playerService: PlayerService,
+    public playerViewService: PlayerViewService,
     private router: Router,
     private headerService: HeaderService,
     private identityService: IdentityService,
@@ -108,34 +107,32 @@ export class AuthenticatedHeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.headerService.set(false);
 
-    this._playerSubscription = this.playerService.player.value$
+    this._playerSubscription = this.playerViewService.player.value$
       .pipe(
-        filter((playerModel: ObservableDataModel<IPlayerByUserProfileModel>) => isDefined(playerModel.data)),
-        map((playerModel: ObservableDataModel<IPlayerByUserProfileModel>) => playerModel.data)
-      ).subscribe((playerModel: IPlayerByUserProfileModel | null) =>
-        this.setAvatarModel(playerModel as IPlayerByUserProfileModel));
+        filter((playerModel: IPlayerViewModel | null) => isDefined(playerModel?.id)),
+      ).subscribe(playerModel =>this.setAvatarModel(playerModel!));
   }
 
   ngOnDestroy(): void {
     this._playerSubscription?.unsubscribe();
   }
 
-  private navigate(key: RoutKey): void {
+  private navigate(key: string): void {
     this.headerService.set(false);
     this.router.navigate([buildPath(key)]);
   }
 
-  private setAvatarModel(model: IPlayerByUserProfileModel): void {
-    const footballPosition = isDefined(model.Football.Position)
+  private setAvatarModel(model: IPlayerViewModel): void {
+    const footballPosition = isDefined(model.profile.football.position)
       ? firstOrDefault(this.enumService.enums.footballPositions,
-        p => p.key == model.Football.Position)
+        p => p.key == model.profile.football.position)
       : null;
 
     this.avatarModel = {
-      firstName: model.General.FirstName,
-      lastName: model.General.LastName,
+      firstName: model.profile.general.firstName,
+      lastName: model.profile.general.lastName,
       title: footballPosition?.value,
-      image: model.General.Photo ?? CommonConstants.DEFAULT_AVATAR_PATH
+      image: model.profile.general.photo ?? CoreConstants.DEFAULT_AVATAR_PATH
     };
 
     if (!hasItem(this.actions, this.profileAction)) {
