@@ -9,11 +9,10 @@
             "include": [ "**/*.cs" ]
         },
         {
-            "name": "npm-lint",
+            "name": "dotnet-build",
             "group": "pre-commit-operations",
-            "command": "npm",
-            "cwd": "src/Frontend/SFC.Frontend",
-            "args": [ "run", "lint:all" ]
+            "command": "dotnet",
+            "args": [ "build", "--no-restore", "--configuration", "Release" ]
         },
         {
             "name": "dotnet-test",
@@ -22,10 +21,31 @@
             "args": [ "test", "--no-restore", "--no-build", "/p:CollectCoverage=true", "/p:CoverletOutput=../coverage/code_coverage", "/p:CoverletOutputFormat=opencover", "/p:Threshold=0", "/p:ThresholdStat=total" ]
         },
         {
-            "name": "reportgenerator-create",
+            "name": "dotnet-reportgenerator-create",
             "group": "pre-push-operations",
             "command": "reportgenerator",
             "args": [ "-reports:tests/coverage/code_coverage.opencover.xml", "-targetdir:tests/coverage/report", "-reporttypes:Html", "-assemblyfilters:+SFC.Bff.Domain;+SFC.Bff.Application;+SFC.Bff.Infrastructure;+SFC.Backend" ]
+        },
+        {
+            "name": "npm-lint",
+            "group": "pre-commit-operations",
+            "command": "npm",
+            "cwd": "src/Frontend/SFC.Frontend",
+            "args": [ "run", "lint:all" ]
+        },
+        {
+            "name": "npm-build",
+            "group": "pre-commit-operations",
+            "command": "npm",
+            "cwd": "src/Frontend/SFC.Frontend",
+            "args": [ "run", "build" ]
+        },
+        {
+            "name": "npm-test",
+            "group": "pre-push-operations",
+            "command": "npm",
+            "cwd": "src/Frontend/SFC.Frontend",
+            "args": [ "run", "test:code-coverage" ]
         }
     ]
 }

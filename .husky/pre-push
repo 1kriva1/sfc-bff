@@ -3,10 +3,16 @@
 
 echo 'Ready to push changes!'
 
-echo 'Running unit tests...'
+echo 'Running dotnet unit tests...'
+
 dotnet husky run --name dotnet-test
 
-echo 'Generate unit tests report...'
+echo 'Generate dotnet unit tests report...'
+
 dotnet husky run --name reportgenerator-create
+
+echo 'Running npm unit tests & code coverage...'
+
+dotnet husky run --npm-test
 
 echo 'Completed pre-push changes'
