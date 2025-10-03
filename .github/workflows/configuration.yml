@@ -44,5 +44,5 @@ jobs:
         working-directory: ./src/Frontend/SFC.Frontend
 
       - name: Npm test
-        run: npm run test:code-coverage
+        run: npm run test:code-coverage:no-browser
         working-directory: ./src/Frontend/SFC.Frontend
