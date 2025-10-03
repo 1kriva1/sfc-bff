@@ -37,9 +37,12 @@ jobs:
 
       - name: Npm install dependencies
         run: npm install
+        working-directory: ./src/Frontend/SFC.Frontend
 
       - name: Npm build
         run: npm run build
+        working-directory: ./src/Frontend/SFC.Frontend
 
       - name: Npm test
         run: npm run test:code-coverage
+        working-directory: ./src/Frontend/SFC.Frontend
