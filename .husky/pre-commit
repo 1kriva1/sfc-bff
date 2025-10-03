@@ -7,6 +7,10 @@ echo 'Format'
 
 dotnet husky run --name dotnet-format-staged-files
 
+echo 'Lint'
+
+dotnet husky run --name npm-lint
+
 echo 'Build'
 
 dotnet build --no-restore --configuration Release

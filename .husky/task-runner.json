@@ -9,6 +9,13 @@
             "include": [ "**/*.cs" ]
         },
         {
+            "name": "npm-lint",
+            "group": "pre-commit-operations",
+            "command": "npm",
+            "cwd": "src/Frontend/SFC.Frontend",
+            "args": [ "run", "lint:all" ]
+        },
+        {
             "name": "dotnet-test",
             "group": "pre-push-operations",
             "command": "dotnet",
