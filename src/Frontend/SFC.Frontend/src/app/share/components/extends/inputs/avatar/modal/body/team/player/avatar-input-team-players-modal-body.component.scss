@@ -1,0 +1,44 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "common";
+@import "inputs";
+@import "table";
+
+:host {
+  .container {
+    .content {
+      form {
+        @include center-column;
+
+        .name {
+          @include name-text-input;
+
+          width: 80%;
+          padding: 2em 0;
+        }
+
+        .main {
+          @include center;
+
+          align-items: baseline;
+
+          .filters {
+            @include collapse-expand-container;
+
+            width: 30%;
+          }
+
+          .table {
+            @include table;
+
+            width: 70%;
+          }
+
+          .filters,
+          .table {
+            margin: 1em 2em;
+          }
+        }
+      }
+    }
+  }
+}

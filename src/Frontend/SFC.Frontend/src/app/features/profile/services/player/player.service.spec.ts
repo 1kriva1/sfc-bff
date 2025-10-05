@@ -52,7 +52,7 @@ describe('Features.Profile.Service:Player', () => {
         const testRequest = httpMock.expectOne(PlayerServiceConstants.URI_PART);
 
         expect(testRequest.request.body).toEqual(request);
-        expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, true));
+        expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, {show: true}));
 
         testRequest.flush(response);
     });
@@ -68,7 +68,7 @@ describe('Features.Profile.Service:Player', () => {
         const testRequest = httpMock.expectOne(`${PlayerServiceConstants.URI_PART}/1`);
 
         expect(testRequest.request.body).toEqual(request);
-        expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, true));
+        expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, {show: true}));
 
         testRequest.flush(null);
     });
@@ -89,7 +89,7 @@ describe('Features.Profile.Service:Player', () => {
         const testRequest = httpMock.expectOne(`${PlayerServiceConstants.URI_PART}/1`);
 
         expect(testRequest.request.body).toEqual(request);
-        expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, true));
+        expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, {show: true}));
 
         testRequest.flush(response);
     });
@@ -110,7 +110,7 @@ describe('Features.Profile.Service:Player', () => {
         const testRequest = httpMock.expectOne(`${PlayerServiceConstants.URI_PART}/1`);
 
         expect(testRequest.request.body).toBeNull();
-        expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, true));
+        expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, {show: true}));
 
         testRequest.flush(response);
     });

@@ -1,0 +1,49 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "../table/styles";
+@import "../filters/styles";
+
+:host {
+  .container {
+    @include center;
+
+    flex-direction: column;
+    width: 100%;
+
+    .filters {
+      width: 100%;
+      margin: 2em 0 1em;
+
+      form {
+        justify-content: center;
+        flex-direction: column;
+
+        .name {
+          padding-bottom: 1em;
+          width: 90%;
+          margin: 0 auto;
+
+          @include players-filters-name;
+        }
+
+        .statuses {
+          margin-bottom: 1em;
+        }
+
+        .modal {
+          @include players-filters-button;
+
+          sfc-modal {
+            @include players-filters-modal;
+          }
+        }
+      }
+    }
+
+    .table {
+      width: 100%;
+
+      @include table;
+    }
+  }
+}

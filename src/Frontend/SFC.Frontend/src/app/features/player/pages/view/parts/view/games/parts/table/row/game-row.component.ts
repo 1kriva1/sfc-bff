@@ -7,9 +7,9 @@ import { ComponentSize, convertDateToTimestamp, Position } from "ngx-sfc-common"
 import { IDropdownMenuItemModel, ITableColumnExtendedModel } from "ngx-sfc-components";
 import { GameRowConstants } from "./game-row.constants";
 import { IGameRowModel } from "./game-row.model";
-import { CommonConstants as ApplicationCommonConstants } from '@core/constants/common.constants';
 import { GameRowLocalization } from "./game-row.localization";
 import { GamesTableColumn } from "../games-table-column.enum";
+import { CoreConstants } from "@core/constants";
 
 @Component({
     selector: 'sfc-game-row',
@@ -25,7 +25,7 @@ export class GameRowComponent {
     Position = Position;
     ComponentSize = ComponentSize;
     Localization = GameRowLocalization;
-    ApplicationCommonConstants = ApplicationCommonConstants;
+    CoreConstants = CoreConstants;
     GamesTableColumn = GamesTableColumn;
 
     convertDateToTimestamp = convertDateToTimestamp;

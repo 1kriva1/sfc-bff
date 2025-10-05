@@ -99,7 +99,7 @@
       }
 
       &.coach {
-        sfc-player-info-panel {
+        sfc-player-info {
           ::ng-deep > .container {
             > .info {
               color: $color-0;
@@ -151,19 +151,19 @@
     }
   }
 
-  &.status-1 {
-    .container {
-      background: $team-status-new-color;
+  // &.status-1 {
+  //   .container {
+  //     background: $team-status-new-color;
 
-      .column {
-        &.status {
-          span.point {
-            background: $color-magenta-1;
-          }
-        }
-      }
-    }
-  }
+  //     .column {
+  //       &.status {
+  //         span.point {
+  //           background: $color-magenta-1;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
   &.status-2 {
     .container {
@@ -179,19 +179,19 @@
     }
   }
 
-  &.status-3 {
-    .container {
-      background: $team-status-postponed-color;
+  // &.status-3 {
+  //   .container {
+  //     background: $team-status-postponed-color;
 
-      .column {
-        &.status {
-          span.point {
-            background: $color-pink-1;
-          }
-        }
-      }
-    }
-  }
+  //     .column {
+  //       &.status {
+  //         span.point {
+  //           background: $color-pink-1;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
   &.status-4 {
     .container {

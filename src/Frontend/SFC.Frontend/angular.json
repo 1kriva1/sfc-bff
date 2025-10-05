@@ -36,8 +36,9 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
+                "src/app",
                 "src/styles",
-                "node_modules"
+                "node_modules"           
               ]
             },
             "styles": [
@@ -54,13 +55,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1.2mb",
+                  "maximumWarning": "1.51mb",
                   "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "86kb",
-                  "maximumError": "100kb"
+                  "maximumWarning": "200kb",
+                  "maximumError": "300kb"
                 }
               ],
               "outputHashing": "all"
@@ -117,8 +118,9 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
+                "src/app",
                 "src/styles",
-                "node_modules"
+                "node_modules"           
               ]
             },
             "styles": [
@@ -139,5 +141,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="content">
+        <sfc-back *ngIf="backNavigationModel" [model]="backNavigationModel"></sfc-back>
+
+        <div class="title">
+            <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+                [tooltip]="Localization.TITLE.TOOLTIP" [icon]="faQuestionCircle" [sfcComponentSize] [customSize]="1.5">
+            </sfc-title>
+        </div>
+
+        <form [formGroup]="form" autocomplete="off">
+            <div class="parts">
+                <div class="part left">
+                    <sfc-side-menu [model]="menu"></sfc-side-menu>
+
+                    <div class="sub-part">
+                        <sfc-scheme-team-main-edit [buildSubmitObservable]="create"
+                            [submitButtonText]="CoreLocalization.CREATE" (postSubmit)="onCreated($event)">
+                        </sfc-scheme-team-main-edit>
+                        <sfc-scheme-team-information-progress [value$]="value$"></sfc-scheme-team-information-progress>
+                        <sfc-scheme-team-formation-progress></sfc-scheme-team-formation-progress>
+                    </div>
+                </div>
+
+                <div class="part center">
+                    <router-outlet></router-outlet>
+                </div>
+
+                <div class="part right">
+                    <sfc-scheme-team-preview [team]="model.team"></sfc-scheme-team-preview>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

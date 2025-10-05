@@ -17,9 +17,9 @@ describe('Core.Utils:Enum', () => {
         });
 
         fit('Should return specific week day', () => {
-            const result = getWeekDays(4);
+            const result = getWeekDays([4]);
 
-            expect(result).toEqual({ key: 4, value: 'Thursday' });
+            expect(result).toEqual([{ key: 4, value: 'Thursday' }]);
         });
 
         fit('Should return specific week days', () => {
@@ -32,9 +32,9 @@ describe('Core.Utils:Enum', () => {
         });
 
         fit('Should not find specific week day', () => {
-            const result = getWeekDays(22);
+            const result = getWeekDays([22]);
 
-            expect(result).toBeNull();
+            expect(result).toEqual([]);
         });
     });
 

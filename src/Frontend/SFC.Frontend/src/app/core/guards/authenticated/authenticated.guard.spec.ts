@@ -1,10 +1,10 @@
 import { Route, Router } from "@angular/router";
 import { Observable, of } from "rxjs";
 import { IdentityService } from "@share/services";
-import { RoutKey } from "../../enums";
 import { CanMatchOnlyAuthenticated } from "./authenticated.guard";
 import { TestBed } from "@angular/core/testing";
 import { buildPath } from "../../utils";
+import { WelcomeRoute } from "@share/enums";
 
 describe('Core.Guard:CanMatchAuthorized', () => {
     const dummyRoute = { path: '/home' } as Route;
@@ -41,7 +41,7 @@ describe('Core.Guard:CanMatchAuthorized', () => {
         TestBed.runInInjectionContext(() => CanMatchOnlyAuthenticated(dummyRoute, []) as Observable<boolean>)
             .subscribe((result: boolean) => {
                 expect(result).toBeFalse();
-                expect(routerSpy.navigate).toHaveBeenCalledWith([buildPath(RoutKey.Welcome)]);
+                expect(routerSpy.navigate).toHaveBeenCalledWith([buildPath(WelcomeRoute.Welcome)]);
                 done();
             });
     });

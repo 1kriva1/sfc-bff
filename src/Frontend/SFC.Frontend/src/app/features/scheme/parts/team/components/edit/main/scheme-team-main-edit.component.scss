@@ -1,0 +1,80 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "components";
+
+:host {
+  .container {
+    @include part;
+
+    .content {
+      .parts {
+        .part {
+          @include center-column;
+
+          margin: 0.5em 0;
+
+          &.info {
+            @include theme-value(color, $color-default, $color-0);
+
+            text-align: center;
+
+            .stars {
+              display: flex;
+              flex-direction: row;
+              align-items: flex-start;
+
+              sfc-icon-tooltip {
+                ::ng-deep .container {
+                  a {
+                    fa-icon {
+                      font-size: 0.7em;
+                    }
+                  }
+                }
+              }
+            }
+
+            h3 {
+              white-space: initial;
+              word-wrap: break-word;
+              max-width: 10em;
+              max-height: 10em;
+              overflow-y: auto;
+              margin: 0.3em 0;
+            }
+          }
+
+          &.submit {
+            sfc-submit-button {
+              width: 100%;
+
+              @include button(false);
+            }
+          }
+
+          &.actions {
+            sfc-delimeter {
+              width: 100%;
+              margin: 0.5em 0;
+            }
+
+            .buttons {
+              flex-flow: row wrap;
+
+              sfc-button {
+                @include button(true, $color-red-0, $color-red-1);
+
+                margin: 0 0.5em;
+              }
+            }
+          }
+        }
+
+        sfc-delimeter {
+          font-weight: bold;
+          font-size: 0.8em;
+        }
+      }
+    }
+  }
+}

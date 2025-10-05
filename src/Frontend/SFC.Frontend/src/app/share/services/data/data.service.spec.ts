@@ -3,9 +3,9 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { HttpMethod } from '@core/enums';
 import { CACHE, LOADER } from '@core/interceptors';
-import { DataServiceConstants } from './data.constants';
+import { DataServiceConstants } from './data-service.constants';
 import { DataService } from './data.service';
-import { IGetDataResponse } from './models/get-data.response';
+import { IGetDataResponse } from './models/get/get-data.response';
 
 describe('Share.Service:Data', () => {
     let service: DataService;
@@ -34,6 +34,7 @@ describe('Share.Service:Data', () => {
             StatSkills: [],
             StatTypes: [],
             WorkingFoots: [],
+            Shirts:[],
             Errors: null,
             Success: true,
             Message: 'Success'
@@ -47,7 +48,7 @@ describe('Share.Service:Data', () => {
         const testRequest = httpMock.expectOne(DataServiceConstants.URI_PART);
 
         expect(testRequest.request.method).toEqual(HttpMethod.GET);
-        expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, true).set(CACHE, true));
+        expect(testRequest.request.context).toEqual(new HttpContext().set(LOADER, {show: true}).set(CACHE, true));
         expect(testRequest.request.body).toBeNull();
 
         testRequest.flush(assertResponse);

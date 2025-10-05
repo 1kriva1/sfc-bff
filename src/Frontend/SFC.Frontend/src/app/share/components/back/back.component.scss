@@ -1,0 +1,23 @@
+@use "ngx-sfc-common/styles/index" as *;
+
+:host {
+  .container {
+    .content {
+      .back {
+        color: $color-yellow-1;
+        transition: color $transition-duration-default $transition-timing-function-default;
+        cursor: pointer;
+
+        span {
+          font-weight: bold;
+          font-size: 0.8em;
+          padding-left: 0.5em;
+        }
+
+        &:hover {
+          color: $color-hover-default;
+        }
+      }
+    }
+  }
+}

@@ -8,6 +8,8 @@ public static class StartupExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
+        ArgumentNullException.ThrowIfNull(builder);
+
         builder.Services.AddInfrastructureServices(builder.Configuration);
 
         builder.Services.AddBffWithEndpoints();
@@ -21,6 +23,8 @@ public static class StartupExtensions
 
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
+        ArgumentNullException.ThrowIfNull(app);
+
         app.UseDefaultFiles();
 
         app.UseStaticFiles();
@@ -40,7 +44,7 @@ public static class StartupExtensions
 
         app.MapRemoteBffApiEndpoint();
 
-        app.MapFallbackToFile(CommonConstants.FALLBACK_FILE_PATH);
+        app.MapFallbackToFile(CommonConstants.FallbackFilePath);
 
         return app;
     }

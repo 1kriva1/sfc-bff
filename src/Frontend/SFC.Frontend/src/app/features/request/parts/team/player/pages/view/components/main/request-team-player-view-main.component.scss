@@ -1,0 +1,98 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "common";
+@import "components";
+
+@mixin request-team-player-status($color) {
+  .container {
+    .content {
+      .parts {
+        .part {
+          &.status {
+            @include status($color);
+          }
+        }
+      }
+    }
+  }
+}
+
+:host {
+  width: 100%;
+
+  .container {
+    @include part;
+
+    .content {
+      @include center-column;
+
+      .parts {
+        width: 100%;
+
+        .part {
+          @include center-column;
+
+          margin: 0.5em 0;
+
+          &.status {
+            @include status($team-player-request-status-actual-color);
+
+            margin: 1em 0;
+          }
+
+          &.arrow {
+            font-size: 2em;
+            color: $color-default;
+          }
+
+          &.actions {
+            sfc-delimeter {
+              width: 100%;
+              margin: 0.5em 0;
+            }
+
+            .buttons {
+              flex-flow: row wrap;
+
+              sfc-button {
+                margin: 0 0.5em;
+
+                &.accept {
+                  @include button(
+                    true,
+                    $team-player-request-status-accepted-color,
+                    $team-player-request-status-accepted-hover-color
+                  );
+                }
+
+                &.decline {
+                  @include button(
+                    true,
+                    $team-player-request-status-declined-color,
+                    $team-player-request-status-declined-hover-color
+                  );
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.request-team-player-status-0 {
+    @include request-team-player-status($team-player-request-status-actual-color);
+  }
+
+  &.request-team-player-status-1 {
+    @include request-team-player-status($team-player-request-status-accepted-color);
+  }
+
+  &.request-team-player-status-2 {
+    @include request-team-player-status($team-player-request-status-declined-color);
+  }
+
+  &.request-team-player-status-3 {
+    @include request-team-player-status($team-player-request-status-canceled-color);
+  }
+}

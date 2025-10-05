@@ -7,8 +7,8 @@ import {
     faChartLine, faChartPie, faPeopleGroup,
     faPersonHalfDress, faFutbol, faAward, faUserPlus
 } from "@fortawesome/free-solid-svg-icons";
-import { IPlayerInfoPanelModel } from "@share/components";
-import { getRaiting } from "@share/utils";
+import { IPlayerInfoModel } from "@share/components/features/player/info/player-info.model";
+import { getRaiting } from "@share/utils/stats";
 import { ComponentSize, getAge, Position } from "ngx-sfc-common";
 import { IDropdownMenuItemModel, INavigationMenuItemModel } from "ngx-sfc-components";
 import { ViewPagePart } from "./enums/view-page-part.enum";
@@ -40,7 +40,7 @@ export class ViewPageComponent implements OnInit {
         }
     ];
 
-    public playerInfoPanelModel!: IPlayerInfoPanelModel;
+    public playerInfoPanelModel!: IPlayerInfoModel;
 
     private currentPart: ViewPagePart = ViewPagePart.General;
 
@@ -69,7 +69,7 @@ export class ViewPageComponent implements OnInit {
         return url.split('/').pop() as ViewPagePart;
     }
 
-    private getPlayerInfoPanelModel(): IPlayerInfoPanelModel {
+    private getPlayerInfoPanelModel(): IPlayerInfoModel {
         return {
             photo: this.model?.general.photo,
             firstName: this.model?.general.firstName,

@@ -27,34 +27,36 @@ public abstract class BaseDelegationAccessTokenRetriever(
 
     public override async Task<AccessTokenResult> GetAccessToken(AccessTokenRetrievalContext context)
     {
-        AccessTokenResult accessTokenResult = await base.GetAccessToken(context);        
+        ArgumentNullException.ThrowIfNull(context);
+
+        AccessTokenResult accessTokenResult = await base.GetAccessToken(context).ConfigureAwait(true);
 
         BearerTokenResult? bearerTokenResult = accessTokenResult as BearerTokenResult;
 
         if (bearerTokenResult is not null)
         {
             string? userId = context.HttpContext?.User.FindFirstValue(JwtRegisteredClaimNames.Sub);
-            return await GetExchangeToken(bearerTokenResult.AccessToken, userId);
+            return await GetExchangeTokenAsync(bearerTokenResult.AccessToken, userId).ConfigureAwait(true);
         }
 
         return accessTokenResult;
     }
 
-    private async Task<AccessTokenResult> GetExchangeToken(string incomingAccessToken, string? userId)
+    private async Task<AccessTokenResult> GetExchangeTokenAsync(string incomingAccessToken, string? userId)
     {
         string clientId = RemoteApi.MapClientId(), accessTokenCacheKey = $"{clientId}_{userId}";
 
-        ClientAccessToken? clientAccessToken = await clientAccessTokenCache.GetAsync(accessTokenCacheKey,
-            new ClientAccessTokenParameters(), default);
+        ClientAccessToken? clientAccessToken =
+            await clientAccessTokenCache.GetAsync(accessTokenCacheKey, new ClientAccessTokenParameters(), default).ConfigureAwait(true);
 
         if (!string.IsNullOrWhiteSpace(clientAccessToken?.AccessToken))
         {
             return new BearerTokenResult(clientAccessToken.AccessToken);
         }
 
-        HttpClient client = _httpClientFactory.CreateClient();
+        using HttpClient client = _httpClientFactory.CreateClient();
 
-        DiscoveryDocumentResponse discoveryDocument = await client.GetDiscoveryDocumentAsync(BffSettings.Authority);
+        DiscoveryDocumentResponse discoveryDocument = await client.GetDiscoveryDocumentAsync(BffSettings.Authority).ConfigureAwait(true);
 
         if (discoveryDocument.IsError)
         {
@@ -68,6 +70,7 @@ public abstract class BaseDelegationAccessTokenRetriever(
             return new AccessTokenRetrievalError($"Token exchanged failed. Remote Api not found by Client Id: {clientId}");
         }
 
+#pragma warning disable CA2000 // Dispose objects before losing scope
         TokenResponse exchangeResponse = await client.RequestTokenExchangeTokenAsync(new TokenExchangeTokenRequest
         {
             Address = discoveryDocument.TokenEndpoint,
@@ -77,7 +80,8 @@ public abstract class BaseDelegationAccessTokenRetriever(
             SubjectToken = incomingAccessToken,
             SubjectTokenType = OidcConstants.TokenTypeIdentifiers.AccessToken,
             Scope = api.TokenExchange.Scopes
-        });
+        }).ConfigureAwait(true);
+#pragma warning restore CA2000 // Dispose objects before losing scope
 
         if (exchangeResponse.IsError)
         {
@@ -89,7 +93,9 @@ public abstract class BaseDelegationAccessTokenRetriever(
             return new AccessTokenRetrievalError("Token exchanged failed. Access token is null");
         }
 
-        await clientAccessTokenCache.SetAsync(accessTokenCacheKey, exchangeResponse.AccessToken, exchangeResponse.ExpiresIn, new ClientAccessTokenParameters());
+        await clientAccessTokenCache
+            .SetAsync(accessTokenCacheKey, exchangeResponse.AccessToken, exchangeResponse.ExpiresIn, new ClientAccessTokenParameters())
+            .ConfigureAwait(true);
 
         return new BearerTokenResult(exchangeResponse.AccessToken);
     }

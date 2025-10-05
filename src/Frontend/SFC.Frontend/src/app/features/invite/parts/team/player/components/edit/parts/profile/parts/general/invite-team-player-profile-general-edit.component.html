@@ -1,0 +1,21 @@
+<div class="container" [formGroupName]="InviteTeamPlayerProfileEditPart.General">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION">
+    </sfc-title>
+
+    <div class="content">
+        <div class="rows">
+            <div class="row">
+                <div class="column comment">
+                    <sfc-text-area-input id="comment" formControlName="comment" [bordered]="true"
+                        [label]="Localization.INPUT.COMMENT.LABEL"
+                        [placeholder]="Localization.INPUT.COMMENT.PLACEHOLDER"
+                        [helperText]="Localization.INPUT.COMMENT.HELPER_TEXT" [validations]="{
+                            'required': ValidationLocalization.REQUIRED,
+                            'maxlength': ValidationLocalization.MAX_LENGTH
+                        }">
+                    </sfc-text-area-input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

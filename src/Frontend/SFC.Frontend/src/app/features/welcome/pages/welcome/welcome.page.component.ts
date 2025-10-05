@@ -10,7 +10,7 @@ import { ITimelineItemModel, TimelineItemPosition } from 'ngx-sfc-components';
 import { buildTitle } from '@core/utils';
 import { IImageSliderItemModel } from '../../components';
 import { WelcomePageLocalization } from './welcome.page.localization';
-import { IdentityConstants } from '@share/services/identity/identity.constants';
+import { IdentityConstants } from '@share/services/identity/constants/identity.constants';
 
 @Component({
   templateUrl: './welcome.page.component.html',

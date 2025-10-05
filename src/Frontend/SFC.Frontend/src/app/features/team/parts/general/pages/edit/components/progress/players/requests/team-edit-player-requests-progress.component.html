@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="content">
+        <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+            [collapseExpand]="true">
+            <sfc-load-container [id]="action" [type]="LoadContainerType.Table" [model]="loadModel" [showEmpty]="false"
+                (handleSuccess)="onLoadSuccess($event)">
+                <div class="parts">
+                    <div class="part total item">
+                        <sfc-progress-circle [progress]="model.total" [total]="model.total">
+                        </sfc-progress-circle>
+                        <span i18n="@@feature.team.general.components.progress.players.requests.total">Such count of
+                            players will be part of your team if accept invite.</span>
+                    </div>
+
+                    <sfc-delimeter [label]="Localization.DELIMETER.LABEL"></sfc-delimeter>
+
+                    <div class="part by-statuses">
+                        <div class="statuses">
+                            <div *ngFor="let status of model.statuses" class="status item">
+                                <sfc-progress-line [labelStart]="status.label" [progress]="status.progress"
+                                    [labelSuffix]="CommonConstants.PERCENTAGE_SYMBOL">
+                                </sfc-progress-line>
+                                <span>{{status.count}} {{CoreLocalization.WITH}}
+                                    {{model.total}} {{Localization.REQUESTS_ARE}} {{status.label}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </sfc-load-container>
+        </sfc-title>
+    </div>
+</div>

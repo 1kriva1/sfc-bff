@@ -2,8 +2,8 @@ import { HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http"
 import { Injectable } from "@angular/core";
 import { HttpConstants } from "../../constants";
 import { Locale } from "../../enums";
+import { CoreConstants } from "../../constants";
 import { StorageService } from "../../services/storage/storage.service";
-import { CommonConstants } from "../../constants";
 
 @Injectable()
 export class LocaleInterceptor implements HttpInterceptor {
@@ -16,7 +16,7 @@ export class LocaleInterceptor implements HttpInterceptor {
         if (request.headers.has(HttpConstants.ACCEPT_LANGUAGE))
             return next.handle(request);
 
-        const userLocale = this.storageService.get<Locale>(CommonConstants.LOCALE_KEY, Locale.English) as Locale,
+        const userLocale = this.storageService.get<Locale>(CoreConstants.LOCALE_KEY, Locale.English) as Locale,
             acceptLanguageRequest = request.clone({
                 headers: request.headers.set(HttpConstants.ACCEPT_LANGUAGE, userLocale == Locale.Ukraine
                     ? this.SERVER_UKRAINE_LOCALE

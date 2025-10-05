@@ -2,25 +2,26 @@ import { inject, Injectable } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, UrlTree, CanActivateFn } from '@angular/router';
 import { isNullOrEmptyString } from 'ngx-sfc-common';
 import { Observable } from 'rxjs';
-import { RoutKey } from '@core/enums';
+import { RouteKey } from '@core/enums';
 import { buildPath } from '@core/utils';
-import { PlayerService } from '@share/services';
+import { PlayerViewService } from '@share/services';
+import { ProfileRoute } from '@share/enums';
 
 @Injectable({ providedIn: 'root' })
 class OnlyUserProfileService {
 
-    constructor(private playerService: PlayerService, private router: Router) { }
+    constructor(private playerViewService: PlayerViewService, private router: Router) { }
 
     public canActivate(route: ActivatedRouteSnapshot)
         : boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
-        if (this.playerService.playerCreated) {
+        if (this.playerViewService.playerCreated) {
             const playerId: string | null = route.paramMap.get('id');
 
             if (isNullOrEmptyString(playerId))
                 return this.redirectToPlayerProfile();
 
-            const storedPlayerId: number = this.playerService.playerId.value!,
+            const storedPlayerId: number = this.playerViewService.playerId.value!,
                 urlPlayerId: number = +playerId!;
 
             return storedPlayerId != urlPlayerId
@@ -28,12 +29,12 @@ class OnlyUserProfileService {
                 : true;
         }
 
-        this.router.navigate([buildPath(`${RoutKey.Profiles}/${RoutKey.Create}`)]);
+        this.router.navigate([buildPath(`${ProfileRoute.Profiles}/${RouteKey.Create}`)]);
         return false;
     }
 
     private redirectToPlayerProfile(): boolean {
-        this.router.navigate([`${RoutKey.Profiles}/${this.playerService.playerId.value}/${RoutKey.Edit}`]);
+        this.router.navigate([`${ProfileRoute.Profiles}/${this.playerViewService.playerId.value}/${RouteKey.Edit}`]);
         return false;
     }
 }

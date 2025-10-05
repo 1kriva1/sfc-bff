@@ -17,7 +17,7 @@ import { CommonConstants, ComponentSize, LoadContainerLoadType, NgxSfcCommonModu
 import { NgxSfcComponentsModule, TableDataType } from "ngx-sfc-components";
 import { NgxSfcInputsModule } from "ngx-sfc-inputs";
 import { of, throwError } from "rxjs";
-import { IGetBadgesItemModel } from "src/app/features/player/services/badge/models/get";
+import { IGetBadgesItemModel } from "../../../../../services/badge/models/get";
 import { BadgeService } from "../../../../../services/badge/badge.service";
 import { BadgesViewComponent } from "./badges-view.component";
 import { BadgesViewConstants } from "./badges-view.constants";

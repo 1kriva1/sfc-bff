@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="content">
+        <form [formGroup]="form" autocomplete="off">
+            <div class="name">
+                <sfc-text-input id="name" formControlName="name" [sfcFocusInput]="false" [showPlaceholderOnFocus]="true"
+                    [label]="CommonConstants.EMPTY_STRING" [placeholder]="Localization.INPUT.NAME.PLACEHOLDER"
+                    [bordered]="false" [sfcComponentSize] [customSize]="2">
+                </sfc-text-input>
+
+                <sfc-delimeter></sfc-delimeter>
+            </div>
+
+            <div class="statuses">
+                <sfc-bubbles-input id="statuses" formControlName="statuses" [items]="statuses" [multiple]="false"
+                    [helperText]="Localization.INPUT.STATUSES.HELPER_TEXT">
+                </sfc-bubbles-input>
+            </div>
+
+            <div class="main">
+                <div class="filters">
+                    <sfc-collapse-expand-container [expand]="true" [labelExpand]="Localization.FILTERS.GENERAL"
+                        [labelCollapse]="Localization.FILTERS.GENERAL" [delimeter]="true">
+                        <sfc-general-filter></sfc-general-filter>
+                    </sfc-collapse-expand-container>
+
+                    <sfc-collapse-expand-container [expand]="false" [labelExpand]="Localization.FILTERS.FOOTBALL"
+                        [labelCollapse]="Localization.FILTERS.FOOTBALL" [delimeter]="true">
+                        <sfc-football-filter></sfc-football-filter>
+                    </sfc-collapse-expand-container>
+
+                    <sfc-collapse-expand-container [expand]="false" [labelExpand]="Localization.FILTERS.STATS"
+                        [labelCollapse]="Localization.FILTERS.STATS" [delimeter]="true">
+                        <sfc-stats-filter></sfc-stats-filter>
+                    </sfc-collapse-expand-container>
+                </div>
+
+                <div class="table">
+                    <sfc-table [columns]="TableColumns" [predicate$]="predicate$" [loader]="loader"
+                        [pagination]="Constants.PAGINATION" [position]="Position.Center" [showColumns]="true"
+                        [columnsToggle]="true" [showTotal]="true" [showLoading]="showLoading" [selectable]="true"
+                        [selectMultiple]="false" [paginationCount]="Constants.PAGINATION_COUNT"
+                        [paginationLimits]="true" [showColumnsLabel]="SearchLocalization.TABLE.COLUMNS_SHOW_LABEL"
+                        [hideColumnsLabel]="SearchLocalization.TABLE.COLUMNS_HIDE_LABEL"
+                        [totalLabel]="SearchLocalization.TABLE.TOTAL_LABEL"
+                        [dataListLabel]="SearchLocalization.TABLE.DATA_LIST_LABEL"
+                        [dataCardsLabel]="SearchLocalization.TABLE.DATA_CARDS_LABEL"
+                        [notFoundLabel]="SearchLocalization.TABLE.NOT_FOUND_LABEL" (selected)="onSelect($event)">
+                        <ng-template [sfcTemplateReference]="TableTemplate.Row" let-row>
+                            <sfc-avatar-input-team-players-modal-body-table-row [model]="row.model" [value]="value"
+                                [columns]="row.columns" [selectOnClick]="selectOnClick" [sfcComponentSize] [customSize]="0.8">
+                            </sfc-avatar-input-team-players-modal-body-table-row>
+                        </ng-template>
+                    </sfc-table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

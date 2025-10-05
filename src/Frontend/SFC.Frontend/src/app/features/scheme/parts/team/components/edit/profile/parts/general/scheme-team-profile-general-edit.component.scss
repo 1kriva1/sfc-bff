@@ -1,0 +1,33 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "inputs";
+
+:host {
+  .container {
+    @include part;
+
+    .content {
+      padding: 1em 0;
+
+      .rows {
+        @include center-column;
+
+        .row {
+          display: flex;
+          width: 100%;
+          padding: 1em 0;
+
+          .column {
+            display: flex;
+            width: 100%;
+            padding: 0 0.5em;
+
+            &.comment {
+              @include text-area-input;
+            }
+          }
+        }
+      }
+    }
+  }
+}

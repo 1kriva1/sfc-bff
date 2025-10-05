@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="profile">
-        <div class="create-profile" *ngIf="!playerService.playerCreated">
+        <div class="create-profile" *ngIf="!playerViewService.playerCreated">
             <a routerLink="/profiles/create">
                 <fa-icon [icon]="faPlus"></fa-icon>
                 <span i18n="@@core.component.header-authenticated.create-profile">Create profile</span>

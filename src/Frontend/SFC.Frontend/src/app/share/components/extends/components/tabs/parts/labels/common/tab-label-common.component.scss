@@ -1,0 +1,49 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "mixins";
+
+:host {
+  @include host(pointer);
+
+  .container {
+    @include center;
+
+    height: 100%;
+
+    .content {
+      @include center-wrap;
+      @include theme-value(color, $color-default, $color-dark);
+
+      width: 100%;
+
+      span {
+        font-size: 0.7em;
+        font-weight: bold;
+      }
+
+      sfc-icon {
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+  &.selected,
+  &:hover {
+    .container {
+      .content {
+        color: $color-hover-default;
+      }
+    }
+  }
+
+  &.selected {
+    .container {
+      .content {
+        padding: 0.5em 0.8em;
+        border: 1px solid $color-hover-default;
+        border-radius: 3em;
+        background: $color-hover-default;
+        color: $color-0;
+      }
+    }
+  }
+}

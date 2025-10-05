@@ -1,0 +1,77 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "mixins";
+@import "table/row";
+
+:host {
+  @include host;
+
+  width: 100%;
+
+  .container {
+    @include row-container;
+
+    .content {
+      .columns {
+        @include row-columns;
+
+        justify-content: space-around;
+
+        .column {
+          @include row-column;
+
+          &.actions {
+            @include action-menu($color-default);
+          }
+        }
+      }
+    }
+  }
+
+  // positions
+  &.position-3,
+  &.position-2,
+  &.position-1,
+  &.position-0 {
+    .container {
+      .content {
+        .columns {
+          .column {
+            &.name {
+              sfc-player-info {
+                ::ng-deep > .container {
+                  > .info {
+                    color: $color-0;
+
+                    p {
+                      color: $color-1;
+                    }
+                  }
+                }
+              }
+            }
+
+            &.actions {
+              @include action-menu($color-dark);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.position-3 {
+    @include row-background($player-position-forward-color, $player-position-forward-color-hover);
+  }
+
+  &.position-2 {
+    @include row-background($player-position-midfielder-color, $player-position-midfielder-color-hover);
+  }
+
+  &.position-1 {
+    @include row-background($player-position-defender-color, $player-position-defender-color-hover);
+  }
+
+  &.position-0 {
+    @include row-background($player-position-goalkeeper-color, $player-position-goalkeeper-color-hover);
+  }
+}

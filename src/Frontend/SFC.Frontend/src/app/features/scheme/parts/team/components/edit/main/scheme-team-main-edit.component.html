@@ -1,0 +1,47 @@
+<div class="container">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"></sfc-title>
+
+    <div class="content"
+        *ngIf="{ name: name$ | async, stars: stars$ | async, schemeInfoModel: schemeInfoModel$ | async} as vm">
+        <div class="parts">
+            <div class="part scheme">
+                <sfc-scheme-info [model]="vm.schemeInfoModel!" [info]="false" [direction]="Direction.Vertical"
+                    [radius]="Constants.AVATAR_RADIUS" [sfcComponentSize] [customSize]="1.3">
+                </sfc-scheme-info>
+            </div>
+
+            <div class="part info">
+                <div class="stars">
+                    <sfc-stars [value]="vm.stars!"></sfc-stars>
+                    <sfc-icon-tooltip [tooltip]="Localization.STARS.TOOLTIP" [position]="Position.Top"
+                        [icon]="faQuestionCircle">
+                    </sfc-icon-tooltip>
+                </div>
+                <h3>{{vm.name}}</h3>
+            </div>
+
+            <div class="part result" *ngIf="result$ | async as result">
+                <sfc-message *ngIf="!result.Success" [type]="NotificationType.Failed" [message]="result.Message">
+                </sfc-message>
+            </div>
+
+            <div class="part submit">
+                <sfc-submit-button #submitButton [text]="submitButtonText"
+                    [types]="[ButtonType.Rounded, ButtonType.Filled]" [disabled]="submitDisabled" [form]="form">
+                </sfc-submit-button>
+            </div>
+
+            <ng-container *ngIf="actions">
+                <div class="part actions">
+                    <sfc-delimeter [label]="CoreLocalization.ACTIONS"></sfc-delimeter>
+
+                    <div class="buttons">
+                        <sfc-button [text]="Localization.ACTION.REMOVE"
+                            [types]="[ButtonType.Rounded, ButtonType.Filled]" [iconBefore]="faBan" [sfcComponentSize]
+                            [customSize]="0.7" (click)="remove()">
+                        </sfc-button>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>

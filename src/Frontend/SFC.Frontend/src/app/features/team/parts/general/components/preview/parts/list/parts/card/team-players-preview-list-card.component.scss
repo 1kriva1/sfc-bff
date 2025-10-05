@@ -1,0 +1,50 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "mixins";
+
+:host {
+  @include host;
+
+  .container {
+    padding: 0.5em 0;
+    position: relative;
+
+    .content {
+      .column {
+        @include column;
+
+        &.photo {
+          sfc-player-info {
+            ::ng-deep > .container {
+              flex-direction: column;
+
+              .info {
+                @include center-column;
+
+                text-align: center;
+                color: $color-default;
+
+                h3 {
+                  font-size: 0.9em;
+                  word-spacing: 100vh;
+                }
+
+                p {
+                  color: $color-default;
+                  margin: 0.2em 0;
+                }
+              }
+            }
+          }
+        }
+
+        &.actions {
+          @include action-menu($color-default);
+
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+      }
+    }
+  }
+}

@@ -20,7 +20,7 @@ export class PlayerService {
         return this.http.post<ICreatePlayerResponse>(
             `${PlayerServiceConstants.URI_PART}`,
             request,
-            { context: new HttpContext().set(LOADER, true) }
+            { context: new HttpContext().set(LOADER, { show: true }) }
         );
     }
 
@@ -28,7 +28,7 @@ export class PlayerService {
         return this.http.put<IUpdatePlayerResponse | null>(
             `${PlayerServiceConstants.URI_PART}/${id}`,
             request,
-            { context: new HttpContext().set(LOADER, true) }
+            { context: new HttpContext().set(LOADER, { show: true }) }
         ).pipe(
             map((response: IUpdatePlayerResponse | null) => response
                 || { Success: true, Errors: null, Message: CommonConstants.EMPTY_STRING })
@@ -38,7 +38,7 @@ export class PlayerService {
     public get(id: number): Observable<IGetPlayerResponse> {
         return this.http.get<IGetPlayerResponse>(
             `${PlayerServiceConstants.URI_PART}/${id}`,
-            { context: new HttpContext().set(LOADER, true) }
+            { context: new HttpContext().set(LOADER, { show: true }) }
         );
     }
 }

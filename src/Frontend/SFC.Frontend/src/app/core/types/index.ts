@@ -1,3 +1,4 @@
-export { IForm } from './form.model';
-export { IEnumModel } from './enum.model';
-export { IValueModel } from './value.model';
+export { IForm } from './form.type';
+export { IEnumModel } from './enum.type';
+export { IValueModel } from './value.type';
+export { ResolverType } from './resolver.type';

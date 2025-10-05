@@ -1,0 +1,1 @@
+export { SchemeInfoComponent } from './info/scheme-info.component'

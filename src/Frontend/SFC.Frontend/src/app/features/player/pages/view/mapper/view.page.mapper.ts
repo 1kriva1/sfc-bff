@@ -1,7 +1,7 @@
 import { IEnumModel } from "@core/types";
 import { getWeekDays } from "@core/utils";
 import { EnumService } from "@share/services";
-import { convertFromServerStats } from "@share/utils";
+import { convertFromServerStats } from "@share/utils/stats";
 import { convertTimestampToDate, isDefined, firstOrDefault, any } from "ngx-sfc-common";
 import { IGetPlayerModel, IProfileModel } from "../../../services/player/models/get";
 import { IPlayerModel } from "./models";

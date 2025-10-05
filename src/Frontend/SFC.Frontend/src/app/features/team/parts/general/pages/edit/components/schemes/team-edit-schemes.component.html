@@ -1,0 +1,44 @@
+<div class="container">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION">
+    </sfc-title>
+
+    <div class="content">
+        <div class="actions">
+            <sfc-button [text]="Localization.BUTTON.CREATE" [iconBefore]="faPlus" [types]="[ButtonType.Rounded]"
+                [sfcComponentSize] [customSize]="0.7" (click)="navigateToCreatePage()">
+            </sfc-button>
+        </div>
+
+        <div class="filters">
+            <form [formGroup]="form" autocomplete="off">
+                <div class="name">
+                    <sfc-text-input id="name" formControlName="name" [sfcFocusInput]="false"
+                        [showPlaceholderOnFocus]="true" [label]="CommonConstants.EMPTY_STRING"
+                        [placeholder]="Localization.INPUT.NAME.PLACEHOLDER" [bordered]="false" [sfcComponentSize]
+                        [customSize]="2">
+                    </sfc-text-input>
+
+                    <sfc-delimeter></sfc-delimeter>
+                </div>
+            </form>
+        </div>
+
+        <div class="table">
+            <sfc-table [columns]="TableConstants.COLUMNS" [predicate$]="predicate$" [loader]="loader"
+                [pagination]="TableConstants.PAGINATION" [position]="Position.Center" [showColumns]="true"
+                [columnsToggle]="true" [showTotal]="true" [showLoading]="showLoading"
+                [paginationCount]="TableConstants.PAGINATION_COUNT" [paginationLimits]="true"
+                [showColumnsLabel]="TableLocalization.COLUMNS_SHOW_LABEL"
+                [hideColumnsLabel]="TableLocalization.COLUMNS_HIDE_LABEL" [totalLabel]="TableLocalization.TOTAL_LABEL"
+                [dataListLabel]="TableLocalization.DATA_LIST_LABEL"
+                [dataCardsLabel]="TableLocalization.DATA_CARDS_LABEL"
+                [notFoundLabel]="TableLocalization.NOT_FOUND_LABEL">
+                <ng-template [sfcTemplateReference]="TableTemplate.Row" let-row>
+                    <sfc-team-edit-scheme-row [model]="row.model.data" [columns]="row.columns" [sfcComponentSize]
+                        [customSize]="0.8">
+                    </sfc-team-edit-scheme-row>
+                </ng-template>
+            </sfc-table>
+        </div>
+    </div>
+</div>

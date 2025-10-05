@@ -1,0 +1,68 @@
+@use "ngx-sfc-common/styles/index" as *;
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      padding: 2em;
+      border: 2px solid $color-default;
+      border-radius: 0.5em;
+      background: $color-green-0;
+      background-image: url("../../../../../assets/images/field.jpg");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+
+      .rows {
+        display: flex;
+        flex-direction: column;
+        height: 40em;
+
+        .row {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          height: stretch;
+
+          &:first-child {
+            height: auto;
+          }
+
+          .column {
+            sfc-avatar-input {
+              ::ng-deep > .container {
+                > .content {
+                  > .component {
+                    font-size: 0.6em;
+
+                    sfc-avatar {
+                      .container {
+                        .avatar-data-container {
+                          .fullname {
+                            color: $color-0;
+                            font-size: 1em !important;
+                          }
+                        }
+                      }
+                    }
+
+                    .icons {
+                      fa-icon {
+                        color: $color-hover-default;
+                      }
+                    }
+                  }
+
+                  .helper-text {
+                    color: $color-hover-default;
+                    font-weight: bold;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

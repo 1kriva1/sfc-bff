@@ -1,0 +1,45 @@
+import { mapPaginationModel } from "@core/mappers";
+import { IFindTeamsRequest } from "@share/services/team/general/models/find/find-teams.request";
+import { empty, IPaginationModel, ISortingModel } from "ngx-sfc-common";
+import { ITeamSearchFilterModel } from "./team-search-filter.model";
+import { ISortingModel as ISortingRequestModel } from "@core/models";
+import { toEnglishLocaleTimeString } from "@core/utils";
+
+export function mapFindTeamsRequest(
+    model: ITeamSearchFilterModel,
+    pagination: IPaginationModel,
+    sorting: ISortingModel | empty): IFindTeamsRequest {
+    return {
+        Pagination: mapPaginationModel(pagination),
+        Sorting: _mapSorting(sorting),
+        Filter: {
+            Profile: {
+                General: {
+                    Name: model.name,
+                    Availability: {
+                        Days: model.general?.availability.days,
+                        From: toEnglishLocaleTimeString(model.general?.availability.from),
+                        To: toEnglishLocaleTimeString(model.general?.availability.to)
+                    },
+                    City: model.general?.city,
+                    Tags: model.general?.tags,
+                    HasLogo: model.general?.hasLogo,
+                    LocationId: model.general?.locationId
+                },
+                Financial: {
+                    FreePlay: model.financial?.freePlay
+                },
+                Inventary: {
+                    Shirts: model.inventary?.shirts
+                }
+            }
+        }
+    }
+
+    function _mapSorting(sorting: ISortingModel | empty): ISortingRequestModel[] {
+        switch (sorting?.id) {
+            default:
+                return [];
+        }
+    }
+}

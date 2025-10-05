@@ -1,0 +1,1 @@
+export { TeamLocalization } from './team.localization';

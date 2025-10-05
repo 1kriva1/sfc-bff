@@ -1,0 +1,48 @@
+@use "ngx-sfc-common/styles/index" as ngx-sfc-common;
+@import "../variables";
+
+@mixin page() {
+  .container {
+    display: flex;
+    justify-content: center;
+
+    sfc-title {
+      ::ng-deep .container {
+        sfc-icon-tooltip {
+          a {
+            font-size: 0.7em;
+          }
+        }
+      }
+    }
+
+    .content {
+      width: 80%;
+
+      .title {
+        sfc-title {
+          ::ng-deep .container {
+            sfc-icon-tooltip {
+              a {
+                font-size: 0.7em;
+              }
+            }
+          }
+        }
+      }
+
+      .parts {
+        display: flex;
+        justify-content: center;
+
+        .part {
+          .sub-part {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

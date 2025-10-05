@@ -1,4 +1,4 @@
-import { IBadgeTypeEnumModel } from "@share/services/enum/models/enums.model";
+import { IBadgeTypeEnumModel } from "@share/services/enum/models/enum/badge-type-enum.model";
 
 export interface IBadgeCardModel {
     points: number;

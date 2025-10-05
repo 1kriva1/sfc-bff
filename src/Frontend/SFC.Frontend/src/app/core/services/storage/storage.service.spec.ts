@@ -37,9 +37,9 @@ describe('Core.Service:Storage', () => {
         const key = 'test',
             value = { value: true };
 
-        service.set('test', value);
+        service.set(key, value);
 
-        const result: any = JSON.parse(service.get(key) as string);
+        const result: any = service.get(key);
 
         expect(result).toEqual(value);
     });
@@ -48,7 +48,7 @@ describe('Core.Service:Storage', () => {
         const key = 'test',
             value = 123;
 
-        service.set('test', value);
+        service.set(key, value);
 
         const result = service.get<string>(key) as string;
 

@@ -11,6 +11,8 @@ public static class AuthenticationExtensions
 {
     public static void AddAuthentication(this WebApplicationBuilder builder)
     {
+        ArgumentNullException.ThrowIfNull(builder);
+
         BffSettings settings = builder.Configuration.GetBffSettings();
 
         builder.Services.AddAuthentication(options =>
@@ -21,7 +23,7 @@ public static class AuthenticationExtensions
         })
         .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
         {
-            options.Cookie.Name = IdentityConstants.COOKIE_NAME;
+            options.Cookie.Name = IdentityConstants.CookieName;
             options.Cookie.SameSite = SameSiteMode.Strict;
         })
         .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
@@ -38,9 +40,9 @@ public static class AuthenticationExtensions
             options.ResponseMode = "query";
 
             options.CallbackPath = new PathString(string.IsNullOrWhiteSpace(settings.CallbackPath)
-                ? IdentityConstants.DEFAULT_CALLBACK_PATH : settings.CallbackPath);
+                ? IdentityConstants.DefaultCallbackPath : settings.CallbackPath);
             options.SignedOutCallbackPath = new PathString(string.IsNullOrWhiteSpace(settings.SignedOutCallbackPath)
-                ? IdentityConstants.DEFAULT_SIGN_OUT_CALLBACK_PATH : settings.SignedOutCallbackPath);
+                ? IdentityConstants.DefaultSignOutCallbackPath : settings.SignedOutCallbackPath);
 
             // allow create UI
             options.Prompt = "create";
@@ -67,7 +69,7 @@ public static class AuthenticationExtensions
             // allow bff redirect to login or registration pages
             options.Events.OnRedirectToIdentityProvider = context =>
             {
-                if (context.HttpContext.Request.Query.TryGetValue(IdentityConstants.QUERY_STRING_PROMPT_KEY, out StringValues prompt))
+                if (context.HttpContext.Request.Query.TryGetValue(IdentityConstants.QueryStringPromptKey, out StringValues prompt))
                 {
                     context.ProtocolMessage.Prompt = prompt;
                 }

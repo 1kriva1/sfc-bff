@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="content">
+        <sfc-delimeter [label]="value.length ? Localization.DELIMETER.EXIST_LABEL : Localization.DELIMETER.EMPTY_LABEL">
+        </sfc-delimeter>
+
+        <div class="items">
+            <div class="item" *ngFor="let date of value | sfcSortBy:sortingPath:SortingDirection.Ascending">
+                <fa-icon [icon]="faCalendarDay"></fa-icon>
+                <span class="day">{{date.day | sfcDay: weekDays}}</span>
+                <span class="label" i18n="@@core.from">from</span>
+                <span class="from">{{date.from | sfcTime:locale:CoreConstants.DATE_TIME_FORMAT_OPTIONS}}</span>
+                <span class="label" i18n="@@core.to">to</span>
+                <span class="to">{{date.to | sfcTime:locale:CoreConstants.DATE_TIME_FORMAT_OPTIONS}}</span>
+                <sfc-button *ngIf="edit" [iconAfter]="faTimes" [types]="[ButtonType.Rounded, ButtonType.Filled]"
+                    [text]="CoreLocalization.REMOVE" [sfcComponentSize]="ComponentSize.Small" (click)="remove(date)">
+                </sfc-button>
+            </div>
+        </div>
+    </div>
+</div>

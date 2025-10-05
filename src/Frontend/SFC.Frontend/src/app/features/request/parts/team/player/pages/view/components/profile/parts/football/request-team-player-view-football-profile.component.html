@@ -1,0 +1,34 @@
+<div class="container">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"></sfc-title>
+
+    <div class="content">
+        <div class="panels">
+            <sfc-panel class="positions" [label]="Localization.POSITIONS.LABEL"
+                [description]="Localization.POSITIONS.DESCRIPTION" [tooltip]="Localization.POSITIONS.TOOLTIP"
+                [icon]="faLocationPin">
+                <div class="content">
+                    <sfc-tags *ngIf="viewModel.positions.length" [tags]="viewModel.positions" [sfcComponentSize]
+                        [customSize]="0.9"></sfc-tags>
+                </div>
+            </sfc-panel>
+
+            <sfc-panel class="number" [label]="Localization.NUMBER.LABEL"
+                [description]="Localization.NUMBER.DESCRIPTION" [tooltip]="Localization.NUMBER.TOOLTIP"
+                [icon]="faHashtag">
+                <div class="content">
+                    <sfc-circle>{{viewModel.number}}</sfc-circle>
+                </div>
+            </sfc-panel>
+
+            <sfc-panel class="main-squad" [label]="Localization.MAIN_SQUAD.LABEL"
+                [description]="Localization.MAIN_SQUAD.DESCRIPTION" [tooltip]="Localization.MAIN_SQUAD.TOOLTIP"
+                [icon]="faQuestion">
+                <div class="content">
+                    <sfc-circle [color]="'#ffce54'" [borderColor]="'#ffce54'">
+                        <fa-icon [icon]="viewModel.mainSquad ? faCheck : faXmark"></fa-icon>
+                    </sfc-circle>
+                </div>
+            </sfc-panel>
+        </div>
+    </div>
+</div>

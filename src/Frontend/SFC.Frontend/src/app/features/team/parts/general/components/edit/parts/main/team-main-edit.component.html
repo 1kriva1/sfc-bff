@@ -1,0 +1,41 @@
+<div class="container" [formGroupName]="TeamEditPart.Main">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"></sfc-title>
+
+    <div class="content" *ngIf="{ name: name$ | async, city: city$ | async, stars: stars$ | async} as vm">
+        <div class="parts">
+            <div class="part logo">
+                <sfc-image-input id="logo" formControlName="logo" [label]="Localization.INPUT.LOGO.LABEL"
+                    [helperText]="Localization.INPUT.LOGO.HELPER_TEXT" [icon]="faCamera" [clearButton]="true"
+                    [hideOnClickOutside]="true" [defaultPhoto]="CoreConstants.DEFAULT_TEAM_A_IMAGE_PATH"
+                    [okLabel]="CoreLocalization.OK" [cancelLabel]="CoreLocalization.CANCEL" [validations]="{
+                        'sfc-format': ValidationLocalization.FILE_FORMAT,
+                        'sfc-file-max-size': logoMaxSizeValidationMessage
+                    }">
+                </sfc-image-input>
+            </div>
+
+            <div class="part info">
+                <div class="stars">
+                    <sfc-stars [value]="vm.stars!"></sfc-stars>
+                    <sfc-icon-tooltip [tooltip]="Localization.STARS.TOOLTIP" [position]="Position.Top"
+                        [icon]="faQuestionCircle">
+                    </sfc-icon-tooltip>
+                </div>
+                <h3>{{vm.name}}</h3>
+                <p><span>{{vm.city}}</span></p>
+            </div>
+
+            <div class="part result" *ngIf="result$ | async as result">
+                <sfc-message *ngIf="!result.Success" [type]="NotificationType.Failed" [message]="result.Message">
+                </sfc-message>
+            </div>
+
+            <div class="part submit">
+                <sfc-submit-button #submitButton [text]="submitButtonText"
+                    [types]="[ButtonType.Rounded, ButtonType.Filled]" [disabled]="submitDisabled" [form]="form">
+                </sfc-submit-button>
+            </div>
+        </div>
+
+    </div>
+</div>

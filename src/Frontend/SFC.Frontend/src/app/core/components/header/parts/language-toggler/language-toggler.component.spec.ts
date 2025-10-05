@@ -2,12 +2,12 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { CookieService } from '../../../../services';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { WINDOW } from 'ngx-sfc-common';
 import { NgxSfcComponentsModule } from 'ngx-sfc-components';
-import { CommonConstants } from '../../../../constants';
+import { CoreConstants } from '../../../../constants';
 import { Locale } from '../../../../enums';
+import { CookieService } from '../../../../services';
 import { LanguageTogglerComponent } from './language-toggler.component';
 import { LanguageTogglerConstants } from './language-toggler.constants';
 
@@ -78,7 +78,7 @@ describe('Core.Component:BaseHeader:LanguageToggler', () => {
     });
 
     fit('Should have language from local storage', () => {
-      localStorage.setItem(`${CommonConstants.APPLICATION_PREFIX}-${CommonConstants.LOCALE_KEY}`, Locale.Ukraine);
+      localStorage.setItem(`${CoreConstants.APPLICATION_PREFIX}-${CoreConstants.LOCALE_KEY}`, Locale.Ukraine);
       component.ngOnInit();
       fixture.detectChanges();
 
@@ -121,16 +121,16 @@ describe('Core.Component:BaseHeader:LanguageToggler', () => {
   describe('Locale', () => {
     fit('Should change locale value', () => {
       spyOn(cookieServiceStub, 'set' as any);
-      expect(localStorage.getItem(`${CommonConstants.APPLICATION_PREFIX}-${CommonConstants.LOCALE_KEY}`)).toBeNull();
+      expect(localStorage.getItem(`${CoreConstants.APPLICATION_PREFIX}-${CoreConstants.LOCALE_KEY}`)).toBeNull();
 
       const uaLangfitemEl: DebugElement = fixture.debugElement.queryAll(By.css('sfc-dropdown-menu-item'))[0];
       uaLangfitemEl.nativeElement.dispatchEvent(new MouseEvent('click'));
       fixture.detectChanges();
 
-      expect(localStorage.getItem(`${CommonConstants.APPLICATION_PREFIX}-${CommonConstants.LOCALE_KEY}`)).toEqual(Locale.Ukraine);
+      expect(localStorage.getItem(`${CoreConstants.APPLICATION_PREFIX}-${CoreConstants.LOCALE_KEY}`)).toEqual(Locale.Ukraine);
       expect(cookieServiceStub.set)
         .toHaveBeenCalledWith(
-          CommonConstants.LOCALE_KEY,
+          CoreConstants.LOCALE_KEY,
           Locale.Ukraine
         );
     });

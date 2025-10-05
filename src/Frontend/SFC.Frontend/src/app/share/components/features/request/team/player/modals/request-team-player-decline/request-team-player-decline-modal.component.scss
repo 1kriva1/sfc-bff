@@ -1,0 +1,58 @@
+@use "ngx-sfc-common/styles/index" as *;
+@use "ngx-sfc-inputs/styles/input.component.mixins.scss" as input;
+@use "ngx-sfc-common/components/button/button.component.mixins.scss" as button;
+@import "index";
+@import "inputs";
+
+:host {
+  sfc-modal {
+    .body {
+      @include center-column;
+
+      user-select: none;
+      max-width: 20em;
+      white-space: pre-wrap;
+      text-align: center;
+
+      fa-icon {
+        color: $color-yellow-1;
+      }
+
+      h3 {
+        span {
+          color: $color-hover-default;
+        }
+      }
+
+      form {
+        width: 90%;
+        margin: 1em 0;
+
+        @include text-area-input;
+
+        sfc-text-area-input {
+          @include input.sfc-input-as-default;
+        }
+      }
+
+      sfc-message {
+        padding-bottom: 0.5em;
+      }
+    }
+
+    .footer {
+      @include center;
+
+      width: 100%;
+
+      ::ng-deep sfc-button {
+        @include button.sfc-button-as-default;
+      }
+
+      sfc-button,
+      sfc-submit-button {
+        padding: 0 0.3em;
+      }
+    }
+  }
+}

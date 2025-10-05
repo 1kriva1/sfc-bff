@@ -1,0 +1,63 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+
+:host {
+  .container {
+    @include part;
+
+    .content {
+      .progress {
+        sfc-delimeter {
+          font-weight: bold;
+          font-size: 0.8em;
+        }
+
+        .parts {
+          .part {
+            @include center-column;
+
+            padding: 0.5em 0;
+
+            span {
+              @include theme-color($color-7, $color-5);
+
+              width: 100%;
+              font-size: 0.7em;
+              padding-top: 0.5em;
+            }
+
+            &.total {
+              align-items: baseline;
+              flex-direction: row;
+
+              .item {
+                @include center-column;
+
+                padding: 0.5em 0;
+
+                span {
+                  text-align: center;
+                }
+              }
+            }
+
+            &.positions {
+              .position {
+                width: 100%;
+                padding: 0.5em 0;
+
+                sfc-progress-line {
+                  ::ng-deep .container {
+                    .labels {
+                      font-size: 0.7em;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

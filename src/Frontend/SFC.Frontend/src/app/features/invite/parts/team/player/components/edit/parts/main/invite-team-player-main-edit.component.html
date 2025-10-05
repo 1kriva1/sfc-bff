@@ -1,0 +1,82 @@
+<div class="container" [formGroupName]="InviteTeamPlayerEditPart.Main">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"></sfc-title>
+
+    <div class="content">
+        <div class="parts">
+
+            <div *ngIf="invite?.status" class="part status">
+                <sfc-status [label]="invite!.status!.value"></sfc-status>
+            </div>
+
+            <div class="part player">
+                <sfc-avatar-input id="playerId" formControlName="playerId" [label]="Localization.INPUT.PLAYER.LABEL"
+                    [helperText]="Localization.INPUT.PLAYER.HELPER_TEXT" [icon]="faUserPlus"
+                    [hideOnClickOutside]="false" [defaultAvatar]="CoreConstants.DEFAULT_AVATAR_PATH"
+                    [applyLabel]="CoreLocalization.OK" [cancelLabel]="CoreLocalization.CANCEL"
+                    [avatarModel]="playerAvatarInputModel" (changeValueModel)="onChangePlayer($event)" [validations]="{
+                        required: ValidationLocalization.REQUIRED,
+                        sfcPlayerAlreadyInTeam: Localization.INPUT.PLAYER.VALIDATION.PLAYER_ALREADY_IN_TEAM,
+                        sfcPlayerAlreadyHadActiveTeamInvite: Localization.INPUT.PLAYER.VALIDATION.PLAYER_ALREADY_HAD_ACTIVE_TEAM_INVITE,
+                        sfcValidationError: ValidationLocalization.VALIDATION_ERROR
+                    }">
+
+                    <ng-template [sfcTemplateReference]="AvatarInputTemplate.Loader">
+                        <sfc-bounce-loader [id]="Constants.INPUT.PLAYER.LOADER.ID"
+                            [sfcComponentSize]="ComponentSize.Small" [background]="true">
+                        </sfc-bounce-loader>
+                    </ng-template>
+
+                    <ng-template [sfcTemplateReference]="AvatarInputTemplate.ModalBody" let-context>
+                        <sfc-avatar-input-players-modal-body [value]="context.value" [selectOnClick]="true"
+                            (selectPlayer)="onSelectPlayer($event, context)">
+                        </sfc-avatar-input-players-modal-body>
+                    </ng-template>
+
+                </sfc-avatar-input>
+            </div>
+
+            <div class="part arrow">
+                <fa-icon [icon]="faAnglesDown"></fa-icon>
+            </div>
+
+            <div class="part team">
+                <sfc-avatar-input id="teamId" formControlName="teamId" [label]="Localization.INPUT.TEAM.LABEL"
+                    [helperText]="Localization.INPUT.TEAM.HELPER_TEXT" [icon]="faUsers" [hideOnClickOutside]="false"
+                    [defaultAvatar]="CoreConstants.DEFAULT_TEAM_A_IMAGE_PATH" [applyLabel]="CoreLocalization.OK"
+                    [cancelLabel]="CoreLocalization.CANCEL" [avatarModel]="teamAvatarInputModel"
+                    (changeValueModel)="onChangeTeam($event)" [validations]="{
+                        required: ValidationLocalization.REQUIRED
+                    }">
+                    <ng-template [sfcTemplateReference]="AvatarInputTemplate.ModalBody" let-context>
+                        <sfc-avatar-input-teams-modal-body [value]="context.value"
+                            (selectTeam)="onSelectTeam($event, context)">
+                        </sfc-avatar-input-teams-modal-body>
+                    </ng-template>
+                </sfc-avatar-input>
+            </div>
+
+            <div class="part result" *ngIf="result$ | async as result">
+                <sfc-message *ngIf="!result.Success" [type]="NotificationType.Failed" [message]="result.Message">
+                </sfc-message>
+            </div>
+
+            <div class="part submit">
+                <sfc-submit-button #submitButton [text]="submitButtonText"
+                    [types]="[ButtonType.Rounded, ButtonType.Filled]" [disabled]="submitDisabled" [form]="form">
+                </sfc-submit-button>
+            </div>
+
+            <ng-container *ngIf="actions">
+                <div class="part actions">
+                    <sfc-delimeter [label]="CoreLocalization.ACTIONS"></sfc-delimeter>
+
+                    <div class="buttons">
+                        <sfc-button [text]="Localization.ACTION.CANCEL"
+                            [types]="[ButtonType.Rounded, ButtonType.Filled]" [iconBefore]="faBan" [sfcComponentSize]
+                            [customSize]="0.7" (click)="cancel()">
+                        </sfc-button>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>

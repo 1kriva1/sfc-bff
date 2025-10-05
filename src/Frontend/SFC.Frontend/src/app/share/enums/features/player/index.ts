@@ -1,0 +1,1 @@
+export { PlayerRoute } from './player-route.enum';

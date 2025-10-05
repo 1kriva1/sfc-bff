@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RoutKey } from '@core/enums';
-import { ChangesCheckGuard } from '@core/guards';
+import { RouteKey } from '@core/enums';
 import { EditPageComponent } from './pages/edit/edit.page.component';
 import { EditPageLocalization } from './pages/edit/edit.page.localization';
 import { CanMatchOnlyNewProfile, CanActivateOnlyUserProfile } from './guards';
@@ -12,21 +11,21 @@ import { EditPageResolver } from './pages/edit/resolver/edit.page.resolver';
 
 const routes: Routes = [
   {
-    path: RoutKey.Create,
+    path: RouteKey.Create,
     component: EditPageComponent,
     title: buildTitle(EditPageLocalization.ROUTER.TITLE.CREATE),
     canMatch: [CanMatchOnlyNewProfile]
   },
   {
-    path: `:id/${RoutKey.Edit}`,
+    path: `:id/${RouteKey.Edit}`,
     component: EditPageComponent,
     resolve: { [EditPageConstants.RESOLVE_KEY]: EditPageResolver },
     canActivate: [CanActivateOnlyUserProfile],
-    canDeactivate: [ChangesCheckGuard]
+    // canDeactivate: [ChangesCheckGuard]
   },
   {
     path: RouteConstants.DEFAULT_ROUTE_PATH,
-    redirectTo: RoutKey.Create,
+    redirectTo: RouteKey.Create,
     pathMatch: 'full'
   }
 ];

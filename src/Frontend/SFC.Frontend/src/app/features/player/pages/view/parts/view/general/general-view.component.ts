@@ -12,7 +12,7 @@ import { ITagModel } from "ngx-sfc-components";
 import { map, Observable } from "rxjs";
 import { GeneralViewLocalization } from "./general-view.localization";
 import { IGeneralViewModel } from "./general-view.model";
-import { CommonConstants as ApplicationCommonConstants } from '@core/constants/common.constants';
+import { CoreConstants } from '@core/constants';
 import { getMonths } from "@core/utils";
 import { ViewPageConstants } from "../../../view.page.constants";
 import { IPlayerModel } from "../../../mapper/models";
@@ -50,7 +50,7 @@ export class GeneralViewComponent implements OnInit {
         private route: ActivatedRoute,
         private storageService: StorageService,
     ) {
-        this.locale = this.storageService.get<Locale>(ApplicationCommonConstants.LOCALE_KEY, Locale.English)!;
+        this.locale = this.storageService.get<Locale>(CoreConstants.LOCALE_KEY, Locale.English)!;
     }
 
     ngOnInit(): void {

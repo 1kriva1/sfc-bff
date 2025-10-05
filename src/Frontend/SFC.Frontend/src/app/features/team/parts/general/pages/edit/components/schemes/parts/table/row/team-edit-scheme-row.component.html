@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="content">
+        <div class="columns">
+            <ng-container *ngFor="let column of columns">
+                <ng-container [ngSwitch]="column.field">
+                    <ng-container *ngSwitchCase="Column.Name">
+                        <div class="column name" [style.width]="column.calculatedWidth">
+                            <span>{{viewModel.name}}</span>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Formation">
+                        <div class="column formation" [style.width]="column.calculatedWidth">
+                            <label>{{viewModel.formation.label}}</label>
+                            <p>({{viewModel.formation.description}})</p>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Comment">
+                        <div class="column comment" [style.width]="column.calculatedWidth">
+                            <p *ngIf="viewModel.comment">{{viewModel.comment}}</p>
+                            <sfc-no-data *ngIf="!viewModel.comment"></sfc-no-data>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Rating">
+                        <div class="column rating" [style.width]="column.calculatedWidth">
+                            <sfc-progress-circle [progress]="viewModel.rating" [total]="100" [sfcComponentSize]
+                                [customSize]="0.8">
+                            </sfc-progress-circle>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Actions">
+                        <div class="column actions" [style.width]="column.calculatedWidth">
+                            <sfc-dropdown-menu [items]="model.actions!" [bordered]="false" [filled]="true"
+                                [position]="[Position.Bottom, Position.Center]" [sfcComponentSize] [customSize]="0.9">
+                            </sfc-dropdown-menu>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,6 @@
 @use "ngx-sfc-common/styles/index" as *;
 @import "mixins";
+@import "components";
 
 :host {
   display: block;

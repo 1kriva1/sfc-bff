@@ -7,11 +7,11 @@ import { getWeekDays } from '@core/utils';
 import { BaseEditComponent } from '../base-edit.component';
 import { StorageService } from '@core/services/storage/storage.service';
 import { Locale } from '@core/enums';
-import { CommonConstants } from '@core/constants';
 import { GeneralEditLocalization } from './general-edit.localization';
 import { EditPagePart } from '../../enums/edit-page-part.enum';
 import { GeneralEditConstants } from './general-edit.constants';
 import { IGeneralEditAvailabilityModel, IGeneralEditModel } from './general-edit.model';
+import { CoreConstants } from '@core/constants';
 
 @Component({
     selector: 'sfc-general-edit',
@@ -69,7 +69,7 @@ export class GeneralEditComponent
 
         this.form.addControl(EditPagePart.General, this.formBuilder.group(generalControls));
 
-        this.locale = this.storageService.get<Locale>(CommonConstants.LOCALE_KEY, Locale.English)!;
+        this.locale = this.storageService.get<Locale>(CoreConstants.LOCALE_KEY, Locale.English)!;
 
         this.birtdayLimits = {
             max: getPreviousDate(now),

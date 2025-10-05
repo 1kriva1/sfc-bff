@@ -1,5 +1,5 @@
 namespace SFC.Bff.Domain.Common;
-public abstract class BaseEntity<I>
+public abstract class BaseEntity<TId>
 {
-    public I Id { get; set; } = default!;
+    public TId Id { get; set; } = default!;
 }

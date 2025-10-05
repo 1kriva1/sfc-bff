@@ -1,0 +1,28 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "common";
+@import "components";
+
+:host {
+  width: 100%;
+
+  .container {
+    @include title-part;
+
+    .content {
+      .panels {
+        display: flex;
+
+        sfc-panel {
+          flex-basis: 100%;
+
+          &.comment {
+            p {
+              @include text;
+            }
+          }
+        }
+      }
+    }
+  }
+}

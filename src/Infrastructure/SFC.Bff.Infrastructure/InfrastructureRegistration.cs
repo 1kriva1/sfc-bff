@@ -8,14 +8,20 @@ public static class InfrastructureRegistration
 {
     public static void AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
+        ArgumentNullException.ThrowIfNull(configuration);
+
         // identity
         services.AddAccessTokenManagement();
 
         // settings
-        services.Configure<BffSettings>(configuration.GetSection(BffSettings.SECTION_KEY));
+        services.Configure<BffSettings>(configuration.GetSection(BffSettings.SectionKey));
 
         // access token deligation retrievers
         services.AddSingleton<DataApiDelegationAccessTokenRetriever>();
         services.AddSingleton<PlayerApiDelegationAccessTokenRetriever>();
+        services.AddSingleton<TeamApiDelegationAccessTokenRetriever>();
+        services.AddSingleton<InviteApiDelegationAccessTokenRetriever>();
+        services.AddSingleton<RequestApiDelegationAccessTokenRetriever>();
+        services.AddSingleton<SchemeApiDelegationAccessTokenRetriever>();
     }
 }

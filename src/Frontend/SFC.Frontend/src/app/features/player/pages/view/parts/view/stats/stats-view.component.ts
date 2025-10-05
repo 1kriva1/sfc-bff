@@ -3,7 +3,7 @@ import { ActivatedRoute, Data } from "@angular/router";
 import { ThemeService } from "@share/components/theme-toggler/services/theme/theme.service";
 import { IStatsMetadataModel } from "@share/models";
 import { EnumService } from "@share/services";
-import { getMetadata, getRaiting, getModel } from "@share/utils";
+import { getMetadata, getRaiting, getModel } from "@share/utils/stats";
 import { ChartConfiguration } from "chart.js";
 import { ComponentSize, Direction, firstOrDefault } from "ngx-sfc-common";
 import { ChartOptionModel, getProgressColorDefaultFunc, getProgressColorDynamicallyFunc } from "ngx-sfc-components";

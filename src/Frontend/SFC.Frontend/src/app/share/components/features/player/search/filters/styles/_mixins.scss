@@ -1,0 +1,94 @@
+@use "ngx-sfc-common/components/delimeter/delimeter.component.mixins.scss" as delimeter;
+@use "ngx-sfc-common/components/collapse-expand/collapse-expand.component.mixins.scss" as collapse-expand;
+@use "ngx-sfc-inputs/styles/input.component.mixins.scss" as input;
+@use "ngx-sfc-inputs/components/tags/tags-input.component.mixins.scss" as tags-input;
+@use "ngx-sfc-inputs/components/range/range-input.component.mixins.scss" as range-input;
+@use "ngx-sfc-inputs/components/bubbles/bubbles-input.component.mixins.scss" as bubbles-input;
+@use "ngx-sfc-inputs/components/radio/radio-input.component.mixins.scss" as radio-input;
+@use "ngx-sfc-inputs/components/stars/stars-input.component.mixins.scss" as stars-input;
+@import "components";
+
+@mixin players-filters-modal {
+  .modal-filters {
+    padding: 0 1em 1em;
+    min-width: 25em;
+
+    ::ng-deep sfc-collapse-expand-container {
+      > .container {
+        padding: 0.5em 0;
+
+        sfc-collapse-expand {
+          width: 100%;
+          font-size: 1em !important;
+
+          @include collapse-expand.sfc-collapse-expand-as-default;
+        }
+
+        sfc-delimeter {
+          @include delimeter.sfc-delimeter-as-default;
+        }
+
+        sfc-text-input {
+          @include input.sfc-input-as-default;
+        }
+
+        sfc-tags-input {
+          @include input.sfc-input-as-default;
+          @include tags-input.sfc-tags-input-as-default;
+        }
+
+        sfc-range-input {
+          @include input.sfc-input-as-default;
+          @include range-input.sfc-range-input-as-default;
+        }
+
+        sfc-bubbles-input {
+          @include input.sfc-input-as-default;
+          @include bubbles-input.sfc-bubbles-input-as-default;
+        }
+
+        sfc-datetime-input {
+          @include input.sfc-input-as-default;
+        }
+
+        sfc-radio-input {
+          @include input.sfc-input-as-default;
+          @include radio-input.sfc-radio-input-as-default;
+        }
+
+        sfc-stars-input {
+          @include input.sfc-input-as-default;
+          @include stars-input.sfc-stars-input-as-default;
+        }
+
+        sfc-select-input {
+          @include input.sfc-input-as-default;
+        }
+      }
+    }
+  }
+}
+
+@mixin players-filters-name {
+  sfc-text-input {
+    ::ng-deep input {
+      border: none !important;
+      box-shadow: none !important;
+    }
+  }
+}
+
+@mixin players-filters-button {
+  sfc-button {
+    @include button(false);
+
+    width: 100%;
+    padding: 1em 0;
+
+    ::ng-deep > {
+      .button {
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
-import { EnumService, IdentityService } from "@share/services";
-import { IEnumsModel } from "@share/services/enum/models/enums.model";
 import { Observable, of } from "rxjs";
+import { EnumService, IdentityService } from "@share/services";
+import { IEnumsModel } from "@share/services/enum/models/enum/enums.model";
 import { DataInitializer } from "./data.initializer";
 
 describe('Core.Initializer:Data', () => {
@@ -35,7 +35,13 @@ describe('Core.Initializer:Data', () => {
             badgeTypes: [],
             gameStatuses: [],
             teamStatuses: [],
-            shirts:[]
+            shirts: [],
+            formationPositions: [],
+            formations: [],
+            inviteStatuses: [],
+            requestStatuses: [],
+            teamPlayerStatuses: [],
+            formationType: []
         };
         identityServiceStub.getIsAuthenticated = () => of(true);
         (enumServiceStub as any).load = () => of(enumsModel);

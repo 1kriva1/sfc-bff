@@ -1,8 +1,8 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { WelcomeRoute } from '@share/enums';
 import { ButtonType, MediaLimits, NgxSfcCommonModule, WINDOW } from 'ngx-sfc-common';
-import { RoutKey } from '../../enums';
 import { CanvasBallDirective } from './directives/ball/canvas-ball.directive';
 import { NotFoundPageComponent } from './not-found.page.component';
 
@@ -54,7 +54,7 @@ describe('Core.Page:NotFound', () => {
 
     fit('Should have appropriate route link for back button', () => {
       expect(fixture.debugElement.query(By.css('.title sfc-button')).attributes['routerLink'])
-        .toEqual(`/${RoutKey.Welcome}`);
+        .toEqual(`/${WelcomeRoute.Welcome}`);
     });
   });
 

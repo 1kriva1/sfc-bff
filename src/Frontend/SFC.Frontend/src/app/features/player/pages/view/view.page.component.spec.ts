@@ -69,7 +69,7 @@ describe('Features.Player.Page:View', () => {
             expect(fixture.nativeElement.querySelector('.left > .actions')).toBeTruthy();
             expect(fixture.nativeElement.querySelector('.left > .actions > sfc-dropdown-menu')).toBeTruthy();
             expect(fixture.nativeElement.querySelector('.left > .info-panel')).toBeTruthy();
-            expect(fixture.nativeElement.querySelector('.left > .info-panel > sfc-player-info-panel')).toBeTruthy();
+            expect(fixture.nativeElement.querySelector('.left > .info-panel > sfc-player-info')).toBeTruthy();
             expect(fixture.nativeElement.querySelector('.left > .menu')).toBeTruthy();
             expect(fixture.nativeElement.querySelector('.left > .menu > sfc-navigation-menu')).toBeTruthy();
             expect(fixture.nativeElement.querySelector('.right')).toBeTruthy();
@@ -129,7 +129,7 @@ describe('Features.Player.Page:View', () => {
                 component.ngOnInit();
                 fixture.detectChanges();
 
-                const playerInfoPanelEl = fixture.debugElement.query(By.css('.left > .info-panel > sfc-player-info-panel')),
+                const playerInfoPanelEl = fixture.debugElement.query(By.css('.left > .info-panel > sfc-player-info')),
                     playerInfoPanelComponent = playerInfoPanelEl.componentInstance;
 
                 expect(playerInfoPanelComponent.radius).toEqual(ViewPageConstants.AVATAR_RADIUS);

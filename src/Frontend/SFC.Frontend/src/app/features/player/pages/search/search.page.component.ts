@@ -3,13 +3,12 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { HeaderService } from "@core/components";
 import { IForm } from "@core/types";
 import { faClock, faLocationDot, faPeopleGroup, faRegistered, faSearch, faUser, faUserGroup, faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import { IInfoPanelModel, IPlayerInfoPanelModel } from "@share/components";
 import {
     ButtonType, ComponentSize, IDefaultModalFooterModel,
     IDefaultModalHeaderModel, ILoadContainerLoaderResultModel,
     ILoadContainerParameters, ILoadContainerPredicateParameters,
     IPaginationModel, isEqual, MediaLimits, ModalService,
-    ModalTemplate, PaginationConstants, Position, ResizeService,
+    ModalTemplate, Position, ResizeService,
     Theme
 } from "ngx-sfc-common";
 import { ExpandedTableRowTemplate, IDropdownMenuItemModel, ITableColumnExtendedModel, TableTemplate } from "ngx-sfc-components";
@@ -21,20 +20,21 @@ import {
     catchError, filter, of, Subject, debounce,
     timer, tap, map, Observable, switchMap, distinctUntilChanged, Subscription
 } from 'rxjs';
-// import { PlayerService } from "../../services/player/player.service";
-import { EnumService, PlayerService } from "@share/services";
+import { EnumService, IFindPlayersRequest, IPlayerItemModel, PlayerService } from "@share/services";
 import { mapPageResponse } from "@core/utils";
 import { INotification, NotificationService } from "@core/services";
 import { MessageSeverity } from "@core/services/message/message-severity.enum";
 import { BaseErrorResponse } from "@core/models";
 import { SearchPageLocalization } from "./search.page.localization";
 import { ThemeService } from "@share/components/theme-toggler/services/theme/theme.service";
-// import { mapGetPlayersRequest, mapSearchPageTableModel } from "./mapper/search.page.mapper";
-import { IFindPlayersRequest, IPlayerItemModel } from "@share/services/player/models/find";
-import { IPlayersTableModel, PlayersTableLocalization } from "@share/components/players/search/table";
-import { RoutKey } from "@core/enums";
+import { IPlayersTableModel, PlayersTableLocalization } from "@share/components/features/player/search/table";
 import { Router } from "@angular/router";
-import { mapFindPlayersRequest, mapPlayerTableModel } from "@share/mappers";
+import { mapFindPlayersRequest, mapPlayerTableModel } from "@share/components/features/player/search/mappers";
+import { IInfoPanelModel } from "@share/components/info-panel/info-panel.model";
+import { PlayerRoute } from "@share/enums";
+import { IPlayerInfoModel } from "@share/components/features/player/info/player-info.model";
+import { PlayersFiltersConstants } from "@share/components/features/player/search/filters/constants/players-filters.constants";
+import { PlayersTableConstants } from "@share/components/features/player/search/table/constants";
 
 @Component({
     templateUrl: './search.page.component.html',
@@ -52,11 +52,11 @@ export class SearchPageComponent
     ComponentSize = ComponentSize;
     Localization = SearchPageLocalization;
     TableLocalization = PlayersTableLocalization;
+    TableConstants = PlayersTableConstants;
+    FiltersConstants = PlayersFiltersConstants;
 
     // table
-    public columns: ITableColumnExtendedModel[] = SearchPageConstants.COLUMNS;
-
-    public pagination: IPaginationModel = { page: PaginationConstants.DEFAULT_PAGE, size: SearchPageConstants.PAGINATION_SIZE };
+    public columns: ITableColumnExtendedModel[] = PlayersTableConstants.COLUMNS;
 
     public predicate$!: Observable<ILoadContainerPredicateParameters | null>;
 
@@ -117,7 +117,7 @@ export class SearchPageComponent
 
                 this.searchForm.setValue(this.searchForm.value, { emitEvent: false });
 
-                this.modalService.toggle();
+                this.modalService.toggle(PlayersFiltersConstants.PLAYERS_FILTERS_MODAL_ID);
             },
             onCancel: () => this.cancelFiltersAndCloseModal(),
         }
@@ -133,7 +133,7 @@ export class SearchPageComponent
         location: true
     };
 
-    public searchRecommendations: IPlayerInfoPanelModel[] = [
+    public searchRecommendations: IPlayerInfoModel[] = [
         {
             photo: null,
             firstName: 'Andrii',
@@ -168,7 +168,7 @@ export class SearchPageComponent
         }
     ];
 
-    public locationRecommendations: IPlayerInfoPanelModel[] = [
+    public locationRecommendations: IPlayerInfoModel[] = [
         // {
         //     photo: null,
         //     firstName: 'Andrii',
@@ -193,7 +193,7 @@ export class SearchPageComponent
             {
                 label: SearchPageLocalization.TABLE.ACTIONS.OPEN_PROFILE,
                 icon: faUser,
-                click: () => this.router.navigate([`${RoutKey.Players}/${player.id}`])
+                click: () => this.router.navigate([`${PlayerRoute.Players}/${player.id}`])
             }
         ];
     }
@@ -225,7 +225,7 @@ export class SearchPageComponent
         this.predicate$ = this.searchForm.valueChanges.pipe(
             filter(() => this.searchForm.valid),
             switchMap((value: ISearchPageModel) => (this.modalService.isOpen ? this.modalSearch$ : of(value))),
-            debounce((value: ISearchPageModel) => (this.initialized ? timer(this.Constants.SEARCH_DEBOUNCE_TIME) : of(value))),
+            debounce((value: ISearchPageModel) => (this.initialized ? timer(PlayersFiltersConstants.SEARCH_DEBOUNCE_TIME) : of(value))),
             distinctUntilChanged(),
             tap((value: ISearchPageModel) => {
                 this.previousFormValue = JSON.parse(JSON.stringify(value));
@@ -255,9 +255,10 @@ export class SearchPageComponent
     }
 
     public loader(parameters: ILoadContainerParameters): Observable<ILoadContainerLoaderResultModel<IPlayersTableModel>> {
-        const request: IFindPlayersRequest = mapFindPlayersRequest(parameters.params?.value,
-            parameters.page, this.pagination.size,
-            parameters.sorting);
+        const pagination: IPaginationModel = { page: parameters.page, size: PlayersTableConstants.PAGINATION.size },
+            request: IFindPlayersRequest = mapFindPlayersRequest(parameters.params?.value,
+                pagination,
+                parameters.sorting);
 
         return this.playerService.find(request, !this.showLoading).pipe(
             mapPageResponse<IPlayerItemModel, IPlayersTableModel>(
@@ -292,6 +293,6 @@ export class SearchPageComponent
             this.searchForm.setValue(previousValue, { emitEvent: false });
         }
 
-        this.modalService.close();
+        this.modalService.close(PlayersFiltersConstants.PLAYERS_FILTERS_MODAL_ID);
     }
 }

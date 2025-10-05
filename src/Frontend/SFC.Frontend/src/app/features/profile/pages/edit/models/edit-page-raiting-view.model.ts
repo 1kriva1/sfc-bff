@@ -1,6 +1,6 @@
 import { IStatsMetadataModel } from "@share/models";
 import { StatsValue } from "@share/types";
-import { getMetadata, getStars } from "@share/utils";
+import { getMetadata, getStars } from "@share/utils/stats";
 import { CommonConstants } from "ngx-sfc-common";
 
 export class EditPageRaitingViewModel {

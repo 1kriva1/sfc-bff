@@ -17,11 +17,13 @@ public static class BffExtensions
 
     public static void MapRemoteBffApiEndpoint(this WebApplication app)
     {
+        ArgumentNullException.ThrowIfNull(app);
+
         BffSettings settings = app.Configuration.GetBffSettings();
 
         app.MapBffManagementEndpoints();
 
-        if (settings.Apis.Count != 0)
+        if (settings.Apis.Any())
         {
             foreach (Api api in settings.Apis)
             {

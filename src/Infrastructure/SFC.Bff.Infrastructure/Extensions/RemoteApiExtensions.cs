@@ -10,8 +10,13 @@ public static class RemoteApiExtensions
     {
         return clientId switch
         {
-            ClientConstants.DATA => RemoteApi.Data,
-            ClientConstants.PLAYER => RemoteApi.Player,
+            ClientConstants.Data => RemoteApi.Data,
+            ClientConstants.Player => RemoteApi.Player,
+            ClientConstants.Team => RemoteApi.Team,
+            ClientConstants.Invite => RemoteApi.Invite,
+            ClientConstants.Request => RemoteApi.Request,
+            ClientConstants.Scheme => RemoteApi.Scheme,
+            ClientConstants.Identity => RemoteApi.Identity,
             _ => throw new NotImplementedException($"Not implemented Remote Api for Client Id: {clientId}")
         };
     }
@@ -20,8 +25,13 @@ public static class RemoteApiExtensions
     {
         return remoteApi switch
         {
-            RemoteApi.Data => ClientConstants.DATA,
-            RemoteApi.Player => ClientConstants.PLAYER,
+            RemoteApi.Data => ClientConstants.Data,
+            RemoteApi.Player => ClientConstants.Player,
+            RemoteApi.Team => ClientConstants.Team,
+            RemoteApi.Invite => ClientConstants.Invite,
+            RemoteApi.Request => ClientConstants.Request,
+            RemoteApi.Scheme => ClientConstants.Scheme,
+            RemoteApi.Identity => ClientConstants.Identity,
             _ => throw new ArgumentOutOfRangeException(nameof(remoteApi), $"Remote Api: {remoteApi} is out of range.")
         };
     }
@@ -30,13 +40,28 @@ public static class RemoteApiExtensions
     {
         RemoteApi api = MapRemoteApi(clientId);
 
-        switch(api)
+        switch (api)
         {
             case RemoteApi.Data:
                 builder.WithAccessTokenRetriever<DataApiDelegationAccessTokenRetriever>();
                 break;
             case RemoteApi.Player:
                 builder.WithAccessTokenRetriever<PlayerApiDelegationAccessTokenRetriever>();
+                break;
+            case RemoteApi.Team:
+                builder.WithAccessTokenRetriever<TeamApiDelegationAccessTokenRetriever>();
+                break;
+            case RemoteApi.Invite:
+                builder.WithAccessTokenRetriever<InviteApiDelegationAccessTokenRetriever>();
+                break;
+            case RemoteApi.Request:
+                builder.WithAccessTokenRetriever<RequestApiDelegationAccessTokenRetriever>();
+                break;
+            case RemoteApi.Scheme:
+                builder.WithAccessTokenRetriever<SchemeApiDelegationAccessTokenRetriever>();
+                break;
+            case RemoteApi.Identity:
+                builder.WithAccessTokenRetriever<IdentityApiDelegationAccessTokenRetriever>();
                 break;
             default:
                 throw new NotImplementedException($"Not implemented Remote Api for Client Id: {clientId}");

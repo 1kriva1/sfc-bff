@@ -1,0 +1,66 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "components";
+
+:host {
+  .container {
+    @include part;
+
+    .content {
+      .parts {
+        .part {
+          @include center-column;
+
+          margin: 0.5em 0;
+
+          &.player {
+            margin: 1.5em 0 0.5em;
+          }
+
+          &.arrow {
+            font-size: 2em;
+            color: $color-default;
+          }
+
+          &.submit {
+            margin: 1.5em 0;
+
+            sfc-submit-button {
+              width: 100%;
+
+              @include button(false);
+            }
+          }
+
+          &.status {
+            @include status($team-player-invite-status-actual-color);
+
+            margin: 1em 0;
+          }
+
+          &.actions {
+            sfc-delimeter {
+              width: 100%;
+              margin: 0.5em 0;
+            }
+
+            .buttons {
+              flex-flow: row wrap;
+
+              @include button(true, $color-red-0, $color-red-1);
+
+              sfc-button {
+                margin: 0 0.5em;
+              }
+            }
+          }
+        }
+
+        sfc-delimeter {
+          font-weight: bold;
+          font-size: 0.8em;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+@import "share/components/features/player/search/base/base-search-players.component";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      width: 100%;
+    }
+  }
+}

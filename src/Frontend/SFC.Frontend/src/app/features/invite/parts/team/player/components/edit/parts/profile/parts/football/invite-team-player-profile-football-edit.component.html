@@ -1,0 +1,36 @@
+<div class="container" [formGroupName]="InviteTeamPlayerProfileEditPart.Football">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION">
+    </sfc-title>
+
+    <div class="content">
+        <div class="rows">
+            <div class="row">
+                <div class="column football-positions">
+                    <sfc-bubbles-input id="football-positions" formControlName="footballPositions"
+                        [items]="footballPositions" [label]="Localization.INPUT.FOOTBALL_POSITIONS.LABEL"
+                        [helperText]="Localization.INPUT.FOOTBALL_POSITIONS.HELPER_TEXT">
+                    </sfc-bubbles-input>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <sfc-checkbox-input id="main-squad" formControlName="mainSquad"
+                        [checkmarkType]="CheckmarkType.Rounded" [sideLabel]="Localization.INPUT.MAIN_SQUAD.SIDE_LABEL"
+                        [helperText]="Localization.INPUT.MAIN_SQUAD.HELPER_TEXT">
+                    </sfc-checkbox-input>
+                </div>
+
+                <div class="column">
+                    <sfc-number-input id="number" formControlName="number"
+                        [label]="Localization.INPUT.NUMBER.LABEL_PLACEHOLDER"
+                        [placeholder]="Localization.INPUT.NUMBER.LABEL_PLACEHOLDER"
+                        [helperText]="Localization.INPUT.NUMBER.HELPER_TEXT" [edit]="true" [fixedActions]="false"
+                        [fixedWidth]="true" [sign]="false" [min]="ValidationConstants.MIN_NUMBER_VALUE"
+                        [max]="ValidationConstants.MAX_NUMBER_VALUE">
+                    </sfc-number-input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

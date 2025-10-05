@@ -1,4 +1,4 @@
-import { Observable } from "rxjs";
+import { ChangesCheckService } from "./changes-check.service";
 
 export interface IChangesCheckGuardModel {
   discardChanges: boolean;
@@ -6,5 +6,5 @@ export interface IChangesCheckGuardModel {
 }
 
 export interface IChangesCheck {
-  guardChanges$: Observable<IChangesCheckGuardModel>;
+  changesCheckService: ChangesCheckService;
 }

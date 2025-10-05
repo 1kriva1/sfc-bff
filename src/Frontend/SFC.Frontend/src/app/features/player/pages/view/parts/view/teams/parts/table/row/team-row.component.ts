@@ -9,7 +9,7 @@ import { ITeamRowModel } from "./team-row.model";
 import { TeamRowConstants } from "./team-row.constants";
 import { TeamRowLocalization } from "./team-row.localization";
 import { TeamsTableColumn } from "../teams-table-column.enum";
-import { CommonConstants as ApplicationCommonConstants } from '@core/constants/common.constants';
+import { CoreConstants } from "@core/constants";
 
 @Component({
     selector: 'sfc-team-row',
@@ -22,7 +22,7 @@ export class TeamRowComponent {
 
     Position = Position;
     ComponentSize = ComponentSize;
-    ApplicationCommonConstants = ApplicationCommonConstants;
+    CoreConstants = CoreConstants;
     TeamsTableColumn = TeamsTableColumn;
     Localization = TeamRowLocalization;
     Constants = TeamRowConstants;

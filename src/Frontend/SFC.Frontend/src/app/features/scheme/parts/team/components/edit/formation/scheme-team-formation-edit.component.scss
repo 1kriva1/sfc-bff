@@ -1,0 +1,64 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "common";
+@import "inputs";
+
+:host {
+  .container {
+    @include part;
+
+    .content {
+      padding: 1em 0;
+
+      .rows {
+        @include center-column;
+
+        .row {
+          display: flex;
+          width: 100%;
+          padding: 0.5em 0;
+
+          .column {
+            display: flex;
+            width: 100%;
+            padding: 0 0.5em;
+          }
+
+          &.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            .column {
+              > &.formation {
+                display: flex;
+                flex-direction: column;
+
+                .title {
+                  @include text-bold($font-size: 1em);
+
+                  .value {
+                    color: $color-hover-default;
+                    letter-spacing: 0.2em;
+                  }
+                }
+
+                .description {
+                  @include text-bold($font-size: 0.7em);
+                }
+              }
+
+              &.type {
+                width: 30%;
+              }
+            }
+          }
+
+          &.formation {
+            @include carousel-input;
+          }
+        }
+      }
+    }
+  }
+}

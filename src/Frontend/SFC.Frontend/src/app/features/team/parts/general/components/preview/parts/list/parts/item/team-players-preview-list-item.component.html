@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="content">
+        <div class="columns">
+            <div class="column photo">
+                <sfc-player-info [radius]="Constants.AVATAR_RADIUS" [info]="false" [model]="avatar"
+                    [sfcComponentSize]="ComponentSize.Small"></sfc-player-info>
+            </div>
+
+            <div class="column name">
+                <sfc-player-info [info]="true" [avatar]="false" [model]="info" [sfcComponentSize]
+                    [customSize]="0.9">
+                </sfc-player-info>
+            </div>
+
+            <div class="column actions" *ngIf="model.actions">
+                <sfc-dropdown-menu [items]="model.actions" [bordered]="false" [filled]="true"
+                    [position]="[Position.Bottom, Position.Center]" [sfcComponentSize] [customSize]="0.8">
+                </sfc-dropdown-menu>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,7 +6,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonType, NgxSfcCommonModule, WINDOW } from 'ngx-sfc-common';
 import { NgxSfcComponentsModule } from 'ngx-sfc-components';
 import { LogoComponent } from '@share/components';
-import { RoutKey } from '../../../../enums';
 import { WelcomeHeaderComponent } from './welcome-header.component';
 import { WelcomeHeaderConstants } from './welcome-header.constants';
 import { WelcomeHeaderPart } from './welcome-header.enum';
@@ -15,7 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderService } from '../../services/header.service';
 import { LanguageTogglerComponent } from '../../parts/language-toggler/language-toggler.component';
 import { BaseHeaderComponent } from '../base/base-header.component';
-import { IdentityConstants } from '@share/services/identity/identity.constants';
+import { IdentityConstants } from '@share/services/identity/constants/identity.constants';
+import { WelcomeRoute } from '@share/enums';
 
 describe('Core.Component:WelcomeHeader', () => {
     let component: WelcomeHeaderComponent;
@@ -89,7 +89,7 @@ describe('Core.Component:WelcomeHeader', () => {
                 fragment = WelcomeHeaderPart.About;
             aboutLink.nativeElement.dispatchEvent(new MouseEvent('click'));
 
-            expect(routerMock.navigate).toHaveBeenCalledWith([`/${RoutKey.Welcome}`], { fragment });
+            expect(routerMock.navigate).toHaveBeenCalledWith([`/${WelcomeRoute.Welcome}`], { fragment });
             expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
         });
 
@@ -104,7 +104,7 @@ describe('Core.Component:WelcomeHeader', () => {
                 fragment = WelcomeHeaderPart.Locations;
             aboutLink.nativeElement.dispatchEvent(new MouseEvent('click'));
 
-            expect(routerMock.navigate).toHaveBeenCalledWith([`/${RoutKey.Welcome}`], { fragment });
+            expect(routerMock.navigate).toHaveBeenCalledWith([`/${WelcomeRoute.Welcome}`], { fragment });
             expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
         });
 
@@ -119,7 +119,7 @@ describe('Core.Component:WelcomeHeader', () => {
                 fragment = WelcomeHeaderPart.Process;
             aboutLink.nativeElement.dispatchEvent(new MouseEvent('click'));
 
-            expect(routerMock.navigate).toHaveBeenCalledWith([`/${RoutKey.Welcome}`], { fragment });
+            expect(routerMock.navigate).toHaveBeenCalledWith([`/${WelcomeRoute.Welcome}`], { fragment });
             expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
         });
 
@@ -134,7 +134,7 @@ describe('Core.Component:WelcomeHeader', () => {
                 fragment = WelcomeHeaderPart.Contact;
             aboutLink.nativeElement.dispatchEvent(new MouseEvent('click'));
 
-            expect(routerMock.navigate).toHaveBeenCalledWith([`/${RoutKey.Welcome}`], { fragment });
+            expect(routerMock.navigate).toHaveBeenCalledWith([`/${WelcomeRoute.Welcome}`], { fragment });
             expect(headerServiceStub.set).toHaveBeenCalledOnceWith(false);
         });
     });

@@ -1,0 +1,43 @@
+@mixin text($color: $color-default, $font-size: 0.7em, $text-transform: none) {
+  font-size: $font-size;
+  color: $color;
+  user-select: none;
+  text-transform: $text-transform;
+}
+
+@mixin text-bold($color: $color-default, $font-size: 0.7em, $text-transform: none) {
+  @include text($color, $font-size, $text-transform);
+
+  font-weight: bold;
+}
+
+@mixin text-center($color: $color-default, $font-size: 0.7em, $text-transform: none) {
+  @include text($color, $font-size, $text-transform);
+
+  text-align: center;
+}
+
+@mixin text-center-bold($color: $color-default, $font-size: 0.7em, $text-transform: none) {
+  @include text-bold($color, $font-size, $text-transform);
+
+  text-align: center;
+}
+
+@mixin collapse-expand-container {
+  sfc-collapse-expand-container {
+    width: 100%;
+    display: block;
+
+    &:nth-child(2) {
+      padding: 0.5em 0;
+    }
+
+    ::ng-deep > .container {
+      align-items: normal;
+
+      sfc-collapse-expand {
+        font-size: 0.9em;
+      }
+    }
+  }
+}

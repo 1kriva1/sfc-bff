@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="content">
+        <form [formGroup]="form" autocomplete="off">
+            <div class="row">
+                <div class="column">
+                    <sfc-bubbles-input id="days" formControlName="days" [label]="Localization.INPUT.DAYS.LABEL"
+                        [helperText]="Localization.INPUT.DAYS.HELPER_TEXT" [items]="days" [validations]="{
+                                                                            'required': ValidationLocalization.REQUIRED
+                                                                          }">
+                    </sfc-bubbles-input>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <sfc-datetime-input id="from-time" formControlName="from" [time]="true" [date]="false"
+                        [label]="Localization.INPUT.FROM.LABEL" [placeholder]="Localization.INPUT.FROM.PLACEHOLDER"
+                        [helperText]="Localization.INPUT.FROM.HELPER_TEXT" [switchOnClick]="true" [fullSize]="true"
+                        [bordered]="true" [hideOnClickOutside]="true" [default]="defaultFromDate" [locale]="locale"
+                        [modalButtonsModel]="modalButtonsModel" [validations]="{
+                                                                                'required': ValidationLocalization.REQUIRED,
+                                                                                'sfc-compare-than': ValidationLocalization.FROM_LESS_TO
+                                                                              }">
+                    </sfc-datetime-input>
+                </div>
+
+                <div class="column">
+                    <sfc-datetime-input id="to-time" formControlName="to" [time]="true" [date]="false"
+                        [label]="Localization.INPUT.TO.LABEL" [placeholder]="Localization.INPUT.TO.PLACEHOLDER"
+                        [helperText]="Localization.INPUT.TO.HELPER_TEXT" [switchOnClick]="true" [fullSize]="true"
+                        [bordered]="true" [hideOnClickOutside]="true" [default]="defaultToDate" [locale]="locale"
+                        [modalButtonsModel]="modalButtonsModel" [validations]="{
+                                                                                'required': ValidationLocalization.REQUIRED,
+                                                                                'sfc-compare-than': ValidationLocalization.TO_MORE_FROM
+                                                                              }">
+                    </sfc-datetime-input>
+                </div>
+            </div>
+
+            <div class="row add">
+                <div *ngIf="form.errors" class="column validation">
+                    <sfc-message [type]="NotificationType.Failed" [message]="form.errors[CommonValidator.Exist]">
+                    </sfc-message>
+                </div>
+
+                <div class="column action">
+                    <sfc-button [disabled]="submitButtonDisabled" [iconAfter]="faPlus"
+                        [types]="[ButtonType.Rounded, ButtonType.Filled]" [text]="CoreLocalization.ADD"
+                        [sfcComponentSize] [customSize]="0.7" (click)="addValue()">
+                    </sfc-button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

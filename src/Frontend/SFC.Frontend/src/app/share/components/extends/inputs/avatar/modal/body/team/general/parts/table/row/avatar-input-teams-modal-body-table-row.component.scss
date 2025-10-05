@@ -1,0 +1,65 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "table/row";
+@import "mixins";
+
+@mixin team-status-row-background($background, $background-hover) {
+  @include row-background($background, $background-hover);
+
+  .container {
+    .content {
+      .columns {
+        .column {
+          &.status {
+            @include row-column-status($background-hover);
+          }
+        }
+      }
+    }
+  }
+}
+
+:host {
+  @include host;
+
+  .container {
+    @include row-container;
+
+    .content {
+      .columns {
+        @include row-columns;
+
+        .column {
+          @include row-column;
+
+          &.select {
+            @include row-column-checkmark-select($color-dark);
+          }
+
+          &.team {
+            @include row-column-team-info($color-dark);
+          }
+
+          &.description {
+            @include row-column-description;
+          }
+        }
+      }
+    }
+  }
+
+  &.team-status-3 {
+    @include team-status-row-background($team-status-closed-color, $team-status-closed-color-hover);
+  }
+
+  &.team-status-2 {
+    @include team-status-row-background($team-status-inactive-color, $team-status-inactive-color-hover);
+  }
+
+  &.team-status-1 {
+    @include team-status-row-background($team-status-active-color, $team-status-active-color-hover);
+  }
+
+  &.team-status-0 {
+    @include team-status-row-background($team-status-temporary-color, $team-status-temporary-color-hover);
+  }
+}

@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="content">
+        <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+            [collapseExpand]="true">
+            <div class="progress" *ngIf="progress$ | async as progress">
+                <div class="parts">
+                    <div class="part total">
+                        <div class="item">
+                            <sfc-progress-circle [progress]="progress.metadata!.count"
+                                [total]="progress.metadata!.count" [getColor]="getTotalPlayersColorFunc">
+                            </sfc-progress-circle>
+                            <span i18n="@@feature.team.general.components.progress.players.squad.total">Total count of
+                                players
+                                in team.</span>
+                        </div>
+
+                        <div class="item">
+                            <sfc-progress-circle [progress]="progress.metadata!.raiting">
+                            </sfc-progress-circle>
+                            <span i18n="@@feature.team.general.components.progress.players.squad.avarage-stats">Avarage
+                                stats
+                                raiting of team players.</span>
+                        </div>
+                    </div>
+
+                    <sfc-delimeter [label]="Localization.DELIMETER.LABEL"></sfc-delimeter>
+
+                    <div class="part positions">
+                        <div class="position" *ngFor="let item of progress.positions">
+                            <sfc-progress-line [labelStart]="item.position.value" [progress]="item.percentage"
+                                [labelSuffix]="CommonConstants.PERCENTAGE_SYMBOL">
+                            </sfc-progress-line>
+                            <span>{{item.count}} {{CoreLocalization.WITH}}
+                                {{progress.metadata!.count}} {{Localization.PLAYERS_ARE}}
+                                {{item.position.value}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </sfc-title>
+    </div>
+</div>

@@ -8,6 +8,8 @@ import { LoggingInterceptor } from "./logging/logging.interceptor";
 import { RetryInterceptor } from "./retry/retry.interceptor";
 import { LocaleInterceptor } from "./locale/locale.interceptor";
 import { CsrfInterceptor } from "./csrf/csrf.interceptor";
+import { NoContentInterceptor } from "./no-content/no-content.interceptor";
+import { ForbiddenInterceptor } from "./forbidden/forbidden.interceptor";
 
 export { CACHE } from "./cache/cache.interceptor";
 export { LOADER } from "./loader/loader.interceptor";
@@ -20,5 +22,7 @@ export const HttpInterceptorProviders = [
     { provide: RequestCache, useClass: RequestCacheWithMap },
     { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LocaleInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: CsrfInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: CsrfInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: NoContentInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ForbiddenInterceptor, multi: true }
 ];

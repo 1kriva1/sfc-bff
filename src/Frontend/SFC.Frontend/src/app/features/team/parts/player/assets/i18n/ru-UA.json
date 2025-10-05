@@ -1,0 +1,12 @@
+{
+    "player.pages.view.route.title": "Team player view",
+    "player.pages.view.title.label": "Team player view",
+    "player.pages.view.title.description": "At this page you can view all information about team player.",
+    "player.pages.view.title.tooltip": "All information about player in team.",
+    "player.pages.view.components.main.title.label": "Team Player",
+    "player.pages.view.components.main.title.description": "All information about team player.",
+    "player.pages.view.components.preview.title.label": "Preview",
+    "player.pages.view.components.preview.title.description": "All information about team player preview.",
+    "player.pages.view.components.profile.parts.general.title.label": "General profile",
+    "player.pages.view.components.profile.parts.general.title.description": "All general information about team player profile."
+}

@@ -1,0 +1,1 @@
+export { IGetTeamDataResponse } from './models/get-team-data.response';

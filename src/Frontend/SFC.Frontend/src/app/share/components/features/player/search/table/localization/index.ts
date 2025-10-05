@@ -1,0 +1,1 @@
+export { PlayersTableLocalization } from './players-table.localization';

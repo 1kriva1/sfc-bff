@@ -1,28 +1,14 @@
 import { WeekDay } from "@angular/common";
-import { any, firstItem, isDefined, where } from "ngx-sfc-common";
+import { any, empty, firstItem, firstOrDefault, isDefined, where } from "ngx-sfc-common";
 import { IEnumModel } from "../../types";
 
-export function getWeekDays(include?: number[] | number | null): IEnumModel<number> | IEnumModel<number>[] {
-    const values: any = getEnumValues(WeekDay, include).map((key: WeekDay) => {
-        switch (key) {
-            case WeekDay.Monday:
-                return { key: key, value: $localize`:@@core.enum.weekday.monday:Monday` };
-            case WeekDay.Tuesday:
-                return { key: key, value: $localize`:@@core.enum.weekday.tuesday:Tuesday` };
-            case WeekDay.Wednesday:
-                return { key: key, value: $localize`:@@core.enum.weekday.wednesday:Wednesday` };
-            case WeekDay.Thursday:
-                return { key: key, value: $localize`:@@core.enum.weekday.thursday:Thursday` };
-            case WeekDay.Friday:
-                return { key: key, value: $localize`:@@core.enum.weekday.friday:Friday` };
-            case WeekDay.Saturday:
-                return { key: key, value: $localize`:@@core.enum.weekday.saturday:Saturday` };
-            case WeekDay.Sunday:
-                return { key: key, value: $localize`:@@core.enum.weekday.sunday:Sunday` };
-        }
-    });
+export function getWeekDay(include: number): IEnumModel<number> {
+    const values: any = getEnumValues(WeekDay, include).map((key: WeekDay) => mapWeekDay(key));
+    return buildEnumResult(values, include) as IEnumModel<number>;
+}
 
-    return buildEnumResult(values, include);
+export function getWeekDays(include?: number[] | empty): IEnumModel<number>[] {
+    return getEnumValues(WeekDay, include).map((key: WeekDay) => mapWeekDay(key));
 }
 
 export function getMonths(include?: number[] | number | null, short: boolean = false): IEnumModel<number> | IEnumModel<number>[] {
@@ -44,6 +30,12 @@ export function getMonths(include?: number[] | number | null, short: boolean = f
     return buildEnumResult(result, include);
 }
 
+export function getEnum(value: number | null, values: IEnumModel<number>[]): IEnumModel<number> | empty {
+    return isDefined(value)
+        ? firstOrDefault(values, item => item.key == value)
+        : null;
+}
+
 function getEnumValues(enumValue: any, include?: number[] | number | null): any {
     return Object.values(enumValue).filter((value) => filterEnumValue(value, include));
 }
@@ -61,4 +53,23 @@ function filterEnumValue(value: any, include?: number[] | number | null) {
 
     return !isNaN(Number(value))
         && (!any(includeValue) || (includeValue as number[]).indexOf(Number(value)) > -1)
+}
+
+function mapWeekDay(key: WeekDay): IEnumModel<number> {
+    switch (key) {
+        case WeekDay.Monday:
+            return { key: key, value: $localize`:@@core.enum.weekday.monday:Monday` };
+        case WeekDay.Tuesday:
+            return { key: key, value: $localize`:@@core.enum.weekday.tuesday:Tuesday` };
+        case WeekDay.Wednesday:
+            return { key: key, value: $localize`:@@core.enum.weekday.wednesday:Wednesday` };
+        case WeekDay.Thursday:
+            return { key: key, value: $localize`:@@core.enum.weekday.thursday:Thursday` };
+        case WeekDay.Friday:
+            return { key: key, value: $localize`:@@core.enum.weekday.friday:Friday` };
+        case WeekDay.Saturday:
+            return { key: key, value: $localize`:@@core.enum.weekday.saturday:Saturday` };
+        case WeekDay.Sunday:
+            return { key: key, value: $localize`:@@core.enum.weekday.sunday:Sunday` };
+    }
 }

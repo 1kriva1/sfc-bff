@@ -3,7 +3,7 @@
         <ng-container [ngSwitch]="column.field">
             <ng-container *ngSwitchCase="GamesTableColumn.Location">
                 <div class="column location" [style.width]="column.calculatedWidth">
-                    <img [src]="model.location.field.photo || ApplicationCommonConstants.DEFAULT_FIELD_IMAGE_PATH">
+                    <img [src]="model.location.field.photo || CoreConstants.DEFAULT_FIELD_IMAGE_PATH">
                     <div class="info">
                         <p>
                             <span class="field">{{model.location.field.name}}</span>
@@ -66,7 +66,7 @@
                 <div class="column result" [style.width]="column.calculatedWidth">
                     <div class="team one">
                         <img [src]="model.result.scoreOne.team.emblem 
-                            || ApplicationCommonConstants.DEFAULT_TEAM_A_IMAGE_PATH">
+                            || CoreConstants.DEFAULT_TEAM_A_IMAGE_PATH">
                         <span class="small">{{model.result.scoreOne.team.shortName}}</span>
                         <span class="full">{{model.result.scoreOne.team.fullName}}</span>
                     </div>
@@ -83,7 +83,7 @@
 
                     <div class="team two">
                         <img [src]="model.result.scoreTwo.team.emblem
-                             || ApplicationCommonConstants.DEFAULT_TEAM_B_IMAGE_PATH">
+                             || CoreConstants.DEFAULT_TEAM_B_IMAGE_PATH">
                         <span class="small">{{model.result.scoreTwo.team.shortName}}</span>
                         <span class="full">{{model.result.scoreTwo.team.fullName}}</span>
                     </div>

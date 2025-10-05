@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { Router, CanMatchFn } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { RoutKey } from '../../enums';
 import { IdentityService } from '@share/services';
 import { buildPath } from '../../utils';
+import { WelcomeRoute } from '@share/enums';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +16,7 @@ class OnlyAuthenticatedService {
         return this.identityService.getIsAuthenticated().pipe(
             map((isAuthenticated: boolean) => {
                 if (!isAuthenticated) {
-                    this.router.navigate([buildPath(RoutKey.Welcome)]);
+                    this.router.navigate([buildPath(WelcomeRoute.Welcome)]);
                     this.identityService.authenticate();
                 }
 

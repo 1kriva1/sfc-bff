@@ -1,0 +1,1 @@
+export { InviteTeamRoutes } from './invite-team-routing.module';

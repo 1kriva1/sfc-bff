@@ -15,7 +15,7 @@ export class PlayerService {
     public get(id: number): Observable<IGetPlayerResponse> {
         return this.http.get<IGetPlayerResponse>(
             `${PlayerServiceConstants.URI_PART}/${id}`,
-            { context: new HttpContext().set(LOADER, true) }
+            { context: new HttpContext().set(LOADER, { show: true }) }
         );
     }
 }

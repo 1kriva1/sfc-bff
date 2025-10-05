@@ -3,31 +3,6 @@
 @import "./variables";
 @import "./table/mixins";
 
-@mixin button($hover: true, $background: $color-yellow-0, $background-hover: $color-yellow-1) {
-  sfc-button {
-    transition: transform 500ms;
-    transform-origin: 50% 0;
-
-    @if $hover {
-      &:hover {
-        transform: scale(1.05);
-      }
-    }
-
-    ::ng-deep {
-      .button {
-        background: $background;
-        border-color: $background;
-
-        &:hover {
-          background: $background-hover;
-          border-color: $background-hover;
-        }
-      }
-    }
-  }
-}
-
 @mixin theme-background() {
   @include theme-value(background, $background-default, $background-dark);
 
@@ -36,15 +11,6 @@
 
 @mixin theme-color($value-common, $value-dark, $selector: "&") {
   @include theme-value(color, $value-common, $value-dark, $selector);
-}
-
-@mixin error-message() {
-  text-align: center;
-  font-weight: bold;
-  color: $color-failed;
-  width: 100%;
-  padding: 0;
-  font-size: 0.8em;
 }
 
 @mixin base-page() {
@@ -133,7 +99,7 @@
 }
 
 @mixin part() {
-  @include theme-value(background, #fcfcfc, #232527);
+  @include theme-value(background, $background-container-default, $background-container-dark);
 
   transition: background $transition-theme-backround-duration $transition-theme-backround-timing-function;
   border-radius: 1em;
@@ -154,7 +120,7 @@
   user-select: none;
 }
 
-@mixin action-menu($color: $color-0) {
+@mixin action-menu($color: $color-0, $color-hover: $color-0) {
   sfc-dropdown-menu {
     ::ng-deep ul > li {
       > .container {
@@ -164,7 +130,19 @@
           .container {
             > .dots-container {
               sfc-dot {
-                @include theme-value(background, $color !important);
+                @include theme-value(background, $color);
+              }
+            }
+          }
+        }
+
+        &:hover {
+          sfc-dots {
+            .container {
+              > .dots-container {
+                sfc-dot {
+                  @include theme-value(background, $color-hover);
+                }
               }
             }
           }
@@ -183,7 +161,9 @@
 }
 
 @mixin circle($size: 1em, $color: $color-green-1) {
-  width: $size;
+  @include square-size($size);
+
+  display: inline-block;
   line-height: $size;
   border-radius: 50%;
   text-align: center;

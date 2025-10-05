@@ -9,7 +9,7 @@ import { StatsService } from './services/stats.service';
 import { StatsEditConstants } from './stats-edit.constants';
 import { StatsEditLocalization } from './stats-edit.localization';
 import { EnumService } from '@share/services';
-import { getModel } from '@share/utils';
+import { getModel } from '@share/utils/stats';
 import { IStatsModel } from '@share/models';
 import { EditPageRaitingViewModel } from '../../models';
 

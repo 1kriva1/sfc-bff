@@ -1,0 +1,88 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "components";
+
+:host {
+  width: 100%;
+
+  .container {
+    @include part;
+
+    .content {
+      .parts {
+        .part {
+          @include center-column;
+
+          margin: 0.5em 0;
+
+          &.logo {
+            sfc-image-input {
+              width: 70%;
+            }
+          }
+
+          &.info {
+            @include theme-value(color, $color-default, $color-0);
+
+            text-align: center;
+
+            .stars {
+              display: flex;
+              flex-direction: row;
+              align-items: flex-start;
+
+              sfc-icon-tooltip {
+                ::ng-deep .container {
+                  a {
+                    fa-icon {
+                      font-size: 0.7em;
+                    }
+                  }
+                }
+              }
+            }
+
+            h3,
+            p {
+              white-space: initial;
+              word-wrap: break-word;
+              max-width: 10em;
+              max-height: 10em;
+              overflow-y: auto;
+            }
+
+            h3 {
+              margin: 0.3em 0;
+            }
+
+            p {
+              @include theme-color($color-8, $color-5);
+
+              font-size: 0.8em;
+              margin: 0;
+
+              span {
+                color: $color-hover-default;
+                font-weight: bold;
+              }
+            }
+          }
+
+          &.result {
+            &:empty {
+              display: none;
+            }
+          }
+
+          &.submit {
+            sfc-submit-button {
+              width: 100%;
+
+              @include button(false);
+            }
+          }
+        }
+      }
+    }
+  }
+}

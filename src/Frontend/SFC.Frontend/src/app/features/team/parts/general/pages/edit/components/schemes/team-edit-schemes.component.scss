@@ -1,0 +1,41 @@
+@use "ngx-sfc-common/styles/index" as *;
+@import "index";
+@import "inputs";
+
+:host {
+  .container {
+    @include part;
+
+    .content {
+      .actions {
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 1em;
+
+        sfc-button {
+          ::ng-deep .button {
+            font-weight: bold;
+          }
+        }
+      }
+
+      .filters {
+        margin: 1em 0;
+
+        form {
+          .name {
+            @include name-text-input;
+
+            padding-bottom: 1em;
+            width: 90%;
+            margin: 0 auto;
+          }
+        }
+      }
+
+      .table {
+        @include table;
+      }
+    }
+  }
+}

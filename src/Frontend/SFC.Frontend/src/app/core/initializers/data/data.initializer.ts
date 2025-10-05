@@ -1,6 +1,5 @@
 import { APP_INITIALIZER, Injectable } from "@angular/core";
-import { IEnumsModel } from "@share/services/enum/models/enums.model";
-import { EnumService, IdentityService } from "@share/services";
+import { EnumService, IdentityService, IEnumsModel } from "@share/services";
 import { EMPTY, Observable, switchMap } from "rxjs";
 
 @Injectable({

@@ -398,7 +398,7 @@ describe('Features.Player.Page:View.Part.View:General', () => {
                     updateModel(model);
 
                     expect(fixture.nativeElement.querySelectorAll('sfc-view-info-panel.positions .content > sfc-delimeter').length)
-                        .toEqual(2);
+                        .toEqual(3);
                 });
 
                 fit('Should delimeter component does not exist', () => {
@@ -408,7 +408,7 @@ describe('Features.Player.Page:View.Part.View:General', () => {
                     updateModel(model);
 
                     expect(fixture.nativeElement.querySelectorAll('sfc-view-info-panel.positions .content > sfc-delimeter').length)
-                        .toEqual(0);
+                        .toEqual(1);
                 });
 
                 fit('Should delimeters have appropriate attributes', () => {
@@ -419,8 +419,8 @@ describe('Features.Player.Page:View.Part.View:General', () => {
 
                     const delimeterEls: DebugElement[] = fixture.debugElement.queryAll(By.css('sfc-view-info-panel.positions .content > sfc-delimeter'));
 
-                    expect(delimeterEls[0].componentInstance.direction).toEqual(Direction.Vertical);
-                    expect(delimeterEls[1].componentInstance.direction).toEqual(Direction.Horizontal);
+                    expect(delimeterEls[0].componentInstance.direction).toEqual(Direction.Horizontal);
+                    expect(delimeterEls[1].componentInstance.direction).toEqual(Direction.Vertical);
                 });
 
                 describe('Main', () => {
@@ -583,7 +583,7 @@ describe('Features.Player.Page:View.Part.View:General', () => {
                     updateModel(model);
 
                     expect(fixture.nativeElement.querySelectorAll('sfc-view-info-panel.size .content > sfc-delimeter').length)
-                        .toEqual(2);
+                        .toEqual(3);
                 });
 
                 fit('Should delimeter component does not exist', () => {
@@ -593,7 +593,7 @@ describe('Features.Player.Page:View.Part.View:General', () => {
                     updateModel(model);
 
                     expect(fixture.nativeElement.querySelectorAll('sfc-view-info-panel.size .content > sfc-delimeter').length)
-                        .toEqual(0);
+                        .toEqual(1);
                 });
 
                 fit('Should delimeters have appropriate attributes', () => {
@@ -604,8 +604,8 @@ describe('Features.Player.Page:View.Part.View:General', () => {
 
                     const delimeterEls: DebugElement[] = fixture.debugElement.queryAll(By.css('sfc-view-info-panel.size .content > sfc-delimeter'));
 
-                    expect(delimeterEls[0].componentInstance.direction).toEqual(Direction.Vertical);
-                    expect(delimeterEls[1].componentInstance.direction).toEqual(Direction.Horizontal);
+                    expect(delimeterEls[0].componentInstance.direction).toEqual(Direction.Horizontal);
+                    expect(delimeterEls[1].componentInstance.direction).toEqual(Direction.Vertical);
                 });
 
                 describe('Height', () => {
@@ -830,7 +830,7 @@ describe('Features.Player.Page:View.Part.View:General', () => {
                     updateModel(model);
 
                     expect(fixture.nativeElement.querySelectorAll('sfc-view-info-panel.working-foot .content > sfc-delimeter').length)
-                        .toEqual(2);
+                        .toEqual(3);
                 });
 
                 fit('Should delimeter component does not exist', () => {
@@ -840,7 +840,7 @@ describe('Features.Player.Page:View.Part.View:General', () => {
                     updateModel(model);
 
                     expect(fixture.nativeElement.querySelectorAll('sfc-view-info-panel.working-foot .content > sfc-delimeter').length)
-                        .toEqual(0);
+                        .toEqual(1);
                 });
 
                 fit('Should delimeters have appropriate attributes', () => {
@@ -851,8 +851,8 @@ describe('Features.Player.Page:View.Part.View:General', () => {
 
                     const delimeterEls: DebugElement[] = fixture.debugElement.queryAll(By.css('sfc-view-info-panel.working-foot .content > sfc-delimeter'));
 
-                    expect(delimeterEls[0].componentInstance.direction).toEqual(Direction.Vertical);
-                    expect(delimeterEls[1].componentInstance.direction).toEqual(Direction.Horizontal);
+                    expect(delimeterEls[0].componentInstance.direction).toEqual(Direction.Horizontal);
+                    expect(delimeterEls[1].componentInstance.direction).toEqual(Direction.Vertical);
                 });
 
                 describe('Working', () => {
