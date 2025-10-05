@@ -55,11 +55,11 @@ describe('Features.Player.View.Utils:Mapper', () => {
 
     fit('Should map birthday', async () => {
         const model = getPlayerModel();
-        model.Profile.General.Birthday = '1992-04-12'
+        model.Profile.General.Birthday = '1992-12-04'
 
         const result: IPlayerModel = await mapPlayerModel(model, ENUM_SERVICE as EnumService);
 
-        expect(result.general.birthday).toEqual(new Date(1992, 3, 12, 3));
+        expect((result.general.birthday as Date).toDateString()).toEqual('Fri Dec 04 1992');
     });
 
     fit('Should map stats', async () => {
