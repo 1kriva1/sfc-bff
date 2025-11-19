@@ -21,7 +21,7 @@ COPY [".", "."]
 RUN apt-get update && \
     apt-get install -y curl && \
     curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
-    apt-get install -y nodejs npm
+    apt-get install -y nodejs
 WORKDIR "/source/src/Backend/SFC.Backend"
 RUN dotnet build "./SFC.Backend.csproj" --configuration $BUILD_CONFIGURATION --property:HUSKY=$HUSKY --output /app/build
 
