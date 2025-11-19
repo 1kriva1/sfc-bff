@@ -1,34 +1,37 @@
-################################################################### Services ###############################################################
+# Input parameters
+param(
+    [string]$Environment = "Development",
+    [string]$ComposeFileName = "compose.Development"
+)
 
-$servicesNames = 'SFC.Data.Api', 'SFC.Identity.Api', 'SFC.Player.Api','SFC.Team.Api','SFC.Invite.Api','SFC.Request.Api','SFC.Scheme.Api'
+$PreScript = "C:/SFC/Bff/sfc-bff/tools/pre-script.ps1"
+$PostScript = "C:/SFC/Bff/sfc-bff/tools/post-script.ps1"
 
-$servicesProcesses = Get-Process -Name $servicesNames -ErrorAction SilentlyContinue
-
-if($servicesProcesses.Count -ne $servicesNames.Count){
-    write-host("Some of required services NOT running.")
-
-    write-host("Stop all services.")
-
-    ForEach ($Process in $servicesProcesses) {
-        $Process.Kill()
-    }
-
-    Start-Sleep -Seconds 5
-
-    Get-Process -Name node | where-object {$_.MainWindowTitle -eq "SFC - Identity service"} | Kill
-
-    write-host("Start all services.")
-
-    wt.exe --window 0 new-tab --profile "Windows PowerShell" PowerShell -file C:\SFC\Bff\sfc-bff\tools\start-services.ps1
-}else {
-    write-host("All required services: $($servicesNames) - already running.")
+Write-Host "Running pre-up script..."
+if (Test-Path $PreScript) {
+    & $PreScript
+    Write-Host "Pre-up script is finished."
+} else {
+    Write-Host "Pre-script not found, skipping."
 }
 
-############################################################################################################################################
+Write-Host "Starting Docker Compose..."
+& "docker-compose" --env-file "C:/SFC/Bff/sfc-bff/environments/api/api.$Environment.env" --file "C:/SFC/Bff/sfc-bff/$ComposeFileName.yaml" --project-directory "C:\SFC\Bff\sfc-bff" up "--detach"
 
-################################################################### Application ############################################################
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "Docker Compose started successfully."
+} else {
+    Write-Host "Docker Compose failed with exit code $LASTEXITCODE."
+    exit 1
+}
 
-$ScriptPath = Split-Path $MyInvocation.InvocationName
-& "$ScriptPath\start-application.ps1"
+Write-Host "Running post-up script..."
+if (Test-Path $PostScript) {
+    & $PostScript
+    Write-Host "Post-up script is finished."
+} else {
+    Write-Host "Post-script not found, skipping."
+}
 
-############################################################################################################################################
+Write-Host "Done!"
+exit 0

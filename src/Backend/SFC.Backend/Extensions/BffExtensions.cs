@@ -1,9 +1,6 @@
 using Duende.Bff.Yarp;
 using SFC.Bff.Infrastructure.Settings;
 using SFC.Bff.Infrastructure.Extensions;
-using SFC.Bff.Application.Common;
-using SFC.Bff.Infrastructure.Delegations;
-using Microsoft.AspNetCore.Builder;
 
 namespace SFC.Bff.Extensions;
 

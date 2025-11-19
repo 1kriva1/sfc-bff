@@ -1,0 +1,178 @@
+name: sfc-bff
+include:
+   - compose.Infrastructure.yaml
+x-entrypoint-volume: &entrypoint_volume
+  type: bind
+  source: entrypoint.sh
+  target: /app/entrypoint.sh
+x-build-args: &build_args
+  args:
+    BUILD_CONFIGURATION: Debug
+x-use-authentication-volume: &use_authentication_volume
+  UseAuthentication: true
+services:
+  sfc-bff:
+    extends:
+      file: compose.Common.yaml
+      service: sfc-bff
+    image: kryvorukandrii/sfc.bff:development
+    build:
+      dockerfile: src/Backend/SFC.Backend/Dockerfile.Development
+      <<: *build_args
+    ports:
+      - "4200:4200"
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["src/Backend/SFC.Backend/SFC.Backend.csproj"]
+    env_file:
+      - environments/api/api.Development.env
+    volumes:
+      - *entrypoint_volume
+      - type: bind
+        source: ../../Configurations/certificates/sfc-bff/sfc-bff.crt
+        target: /https/sfc-bff.crt
+      - type: bind
+        source: ../../Configurations/certificates/sfc-bff/sfc-bff.key
+        target: /https/sfc-bff.key
+  sfc-data:
+    extends:
+      file: compose.Common.yaml
+      service: sfc-data
+    image: kryvorukandrii/sfc.data:development
+    build:
+      dockerfile: ../../Services/sfc-data-service/src/API/SFC.Data.Api/Dockerfile.Development
+      <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["src/API/SFC.Data.Api/SFC.Data.Api.csproj"]
+    env_file:
+      - ../../Services/sfc-data-service/environments/api/api.Development.env
+    environment:
+      *use_authentication_volume
+    healthcheck:
+          start_period: 600s
+    volumes:
+      - *entrypoint_volume
+      -  type: bind
+         source: ../../Services/sfc-data-service
+         target: /app
+  sfc-identity:
+    extends:
+      file: compose.Common.yaml
+      service: sfc-identity
+    image: kryvorukandrii/sfc.identity:development
+    build:
+      dockerfile: ../../Services/sfc-identity-service/src/API/SFC.Identity.Api/Dockerfile.Development
+      <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["src/API/SFC.Identity.Api/SFC.Identity.Api.csproj"]
+    env_file:
+      - ../../Services/sfc-identity-service/environments/api/api.Development.env
+    environment:
+      *use_authentication_volume
+    healthcheck:
+          start_period: 800s
+    volumes:
+      - type: bind
+        source: ../../Services/sfc-identity-service
+        target: /app
+      - type: volume
+        target: /app/src/Client/SFC.Identity.Client/node_modules
+  sfc-player:
+    extends:
+      file: compose.Common.yaml
+      service: sfc-player
+    image: kryvorukandrii/sfc.player:development
+    build:
+      dockerfile: ../../Services/sfc-player-service/src/API/SFC.Player.Api/Dockerfile.Development
+      <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["src/API/SFC.Player.Api/SFC.Player.Api.csproj"]
+    env_file:
+      - ../../Services/sfc-player-service/environments/api/api.Development.env
+    environment:
+      *use_authentication_volume
+    healthcheck:
+          start_period: 800s
+    volumes:
+      -  type: bind
+         source: ../../Services/sfc-player-service
+         target: /app
+  sfc-team:
+    extends:
+      file: compose.Common.yaml
+      service: sfc-team
+    image: kryvorukandrii/sfc.team:development
+    build:
+      dockerfile: ../../Services/sfc-team-service/src/API/SFC.Team.Api/Dockerfile.Development
+      <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["src/API/SFC.Team.Api/SFC.Team.Api.csproj"]
+    env_file:
+      - ../../Services/sfc-team-service/environments/api/api.Development.env
+    environment:
+      *use_authentication_volume
+    healthcheck:
+          start_period: 900s
+    volumes:
+      -  type: bind
+         source: ../../Services/sfc-team-service
+         target: /app
+  sfc-invite:
+    extends:
+      file: compose.Common.yaml
+      service: sfc-invite
+    image: kryvorukandrii/sfc.invite:development
+    build:
+      dockerfile: ../../Services/sfc-invite-service/src/API/SFC.Invite.Api/Dockerfile.Development
+      <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["src/API/SFC.Invite.Api/SFC.Invite.Api.csproj"]
+    env_file:
+      - ../../Services/sfc-invite-service/environments/api/api.Development.env
+    environment:
+      *use_authentication_volume
+    healthcheck:
+          start_period: 800s
+    volumes:
+      -  type: bind
+         source: ../../Services/sfc-invite-service
+         target: /app
+  sfc-request:
+    extends:
+      file: compose.Common.yaml
+      service: sfc-request
+    image: kryvorukandrii/sfc.request:development
+    build:
+      dockerfile: ../../Services/sfc-request-service/src/API/SFC.Request.Api/Dockerfile.Development
+      <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["src/API/SFC.Request.Api/SFC.Request.Api.csproj"]
+    env_file:
+      - ../../Services/sfc-request-service/environments/api/api.Development.env
+    environment:
+      *use_authentication_volume
+    healthcheck:
+          start_period: 800s
+    volumes:
+      -  type: bind
+         source: ../../Services/sfc-request-service
+         target: /app
+  sfc-scheme:
+    extends:
+      file: compose.Common.yaml
+      service: sfc-scheme
+    image: kryvorukandrii/sfc.scheme:development
+    build:
+      dockerfile: ../../Services/sfc-scheme-service/src/API/SFC.Scheme.Api/Dockerfile.Development
+      <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["src/API/SFC.Scheme.Api/SFC.Scheme.Api.csproj"]
+    env_file:
+      - ../../Services/sfc-scheme-service/environments/api/api.Development.env
+    environment:
+      *use_authentication_volume
+    healthcheck:
+          start_period: 900s
+    volumes:
+      -  type: bind
+         source: ../../Services/sfc-scheme-service
+         target: /app

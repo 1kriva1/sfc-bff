@@ -14,7 +14,7 @@ import { Session } from './types/session.type';
 })
 export class IdentityService {
 
-    private session$: Observable<Session> | null = null
+    private session$: Observable<Session> | null = null;
 
     constructor(private http: HttpClient, @Inject(WINDOW) private window: Window) { }
 

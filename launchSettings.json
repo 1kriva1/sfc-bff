@@ -1,0 +1,23 @@
+{
+    "profiles": {
+        // TODO: Client application is not working.
+        "Docker Compose": {
+            "commandName": "DockerCompose",
+            "commandVersion": "1.0",
+            "launchBrowser": false,
+            "serviceActions": {
+                "sfc-bff": "StartDebugging",
+                "sfc-team": "StartWithoutDebugging",
+                "sfc-data": "StartWithoutDebugging",
+                "sfc-identity": "StartWithoutDebugging",
+                "sfc-mssql": "StartWithoutDebugging",
+                "sfc-player": "StartWithoutDebugging",
+                "sfc-rabbitmq": "StartWithoutDebugging",
+                "sfc-redis": "StartWithoutDebugging",
+                "sfc-invite": "StartWithoutDebugging",
+                "sfc-request": "StartWithoutDebugging",
+                "sfc-scheme": "StartWithoutDebugging"
+            }
+        }
+    }
+}

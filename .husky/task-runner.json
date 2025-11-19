@@ -5,20 +5,20 @@
             "name": "dotnet-format-staged-files",
             "group": "pre-commit-operations",
             "command": "dotnet",
-            "args": [ "format", "--verbosity", "diagnostic", "--include", "${staged}" ],
+            "args": [ "format", "SFC.Bff.sln", "--verbosity", "diagnostic", "--include", "${staged}" ],
             "include": [ "**/*.cs" ]
         },
         {
             "name": "dotnet-build",
             "group": "pre-commit-operations",
             "command": "dotnet",
-            "args": [ "build", "--no-restore", "--configuration", "Release" ]
+            "args": [ "build", "SFC.Bff.sln", "--no-restore", "--configuration", "Release" ]
         },
         {
             "name": "dotnet-test",
             "group": "pre-push-operations",
             "command": "dotnet",
-            "args": [ "test", "--no-restore", "--no-build", "/p:CollectCoverage=true", "/p:CoverletOutput=../coverage/code_coverage", "/p:CoverletOutputFormat=opencover", "/p:Threshold=0", "/p:ThresholdStat=total" ]
+            "args": [ "test", "SFC.Bff.sln", "--no-restore", "--no-build", "/p:CollectCoverage=true", "/p:CoverletOutput=../coverage/code_coverage", "/p:CoverletOutputFormat=opencover", "/p:Threshold=0", "/p:ThresholdStat=total" ]
         },
         {
             "name": "dotnet-reportgenerator-create",
