@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.HttpOverrides;
 using SFC.Bff.Application.Common.Constants;
 using SFC.Bff.Infrastructure;
 using SFC.Bff.Middlewares;
@@ -17,6 +18,8 @@ public static class StartupExtensions
         builder.AddAuthentication();
 
         builder.Services.AddAuthorization();
+
+        builder.Services.AddHealthChecks();
 
         return builder.Build();
     }
@@ -41,6 +44,8 @@ public static class StartupExtensions
         {
             app.UseLogIdentityHandler();
         }
+
+        app.MapHealthChecks("/health");
 
         app.MapRemoteBffApiEndpoint();
 

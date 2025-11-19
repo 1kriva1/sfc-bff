@@ -1,15 +1,41 @@
 {
-  "$schema": "https://json.schemastore.org/launchsettings.json",
-  "profiles": {
-    "SFC.Bff": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:7166",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
-      }
-    }
-  }
+    "profiles": {
+        "SFC.Bff": {
+            "commandName": "Project",
+            "launchBrowser": true,
+            "environmentVariables": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy",
+                "ASPNETCORE_URLS": "https://*:7166;http://*:7165",
+                "ASPNETCORE_HTTPS_PORT": "7166",
+                "Kestrel__Certificates__Default__Path": "../../../../../Configurations/certificates/sfc-bff/sfc-bff.pfx"
+            },
+            "dotnetRunMessages": true,
+            "externalUrlConfiguration": true,
+            "applicationUrl": "http://localhost:7165;https://localhost:7166;",
+            "httpPort": 7165,
+            "useSSL": true,
+            "sslPort": 7166,
+            "nativeDebugging": true
+        },
+        //TODO: client not started
+        "Docker": {
+            "commandName": "Docker",
+            "launchBrowser": false,
+            "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+            "environmentVariables": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                //"ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy",
+                "ASPNETCORE_URLS": "https://+:7166;http://+:7165",
+                "ASPNETCORE_HTTPS_PORT": "7166"
+            },
+            "mycontainer": "sfc-bff",
+            "DockerfileRunArguments": "--network sfc-network --volume C:/SFC/Configurations/certificates/sfc-bff/sfc-bff.pfx:/https/sfc-bff.pfx",
+            "httpPort": 7165,
+            "useSSL": true,
+            "sslPort": 7166,
+            "containerName": "sfc-bff"
+        }
+    },
+    "$schema": "https://json.schemastore.org/launchsettings.json"
 }

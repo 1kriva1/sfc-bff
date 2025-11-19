@@ -9,6 +9,6 @@ public static class SettingsExtensions
         ArgumentNullException.ThrowIfNull(configuration);
 
         return configuration.GetSection(BffSettings.SectionKey)
-                        .Get<BffSettings>()!;
+                            .Get<BffSettings>()!;
     }
 }
