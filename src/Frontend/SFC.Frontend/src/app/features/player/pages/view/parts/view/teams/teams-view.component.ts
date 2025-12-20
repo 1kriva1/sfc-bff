@@ -15,7 +15,7 @@ import {
     filter, timer, debounce, tap, catchError
 } from "rxjs";
 import { TeamService } from '../../../../../services/team/team.service';
-import { mapPageResponse } from "@core/utils";
+import { mapPaginationResponse } from "@core/utils";
 import { BaseErrorResponse } from "@core/models";
 import { NotificationService } from "@core/services";
 import { IGetTeamsItemModel, IGetTeamsRequest } from "../../../../../services/team/models/get";
@@ -91,7 +91,7 @@ export class TeamsViewComponent
             parameters.sorting);
 
         return this.teamService.get(request, !this.showLoading).pipe(
-            mapPageResponse<IGetTeamsItemModel, ITeamRowModel>(
+            mapPaginationResponse<IGetTeamsItemModel, ITeamRowModel>(
                 (item: IGetTeamsItemModel) => mapTeamRowModel(item, this.enumService.enums.teamStatuses)
             ),
             catchError((error: BaseErrorResponse) => this.handleError(error))

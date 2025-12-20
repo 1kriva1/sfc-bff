@@ -21,18 +21,12 @@ services:
       <<: *build_args
     ports:
       - "4200:4200"
-    entrypoint: ["/bin/sh", "entrypoint.sh"]
-    command: ["src/Backend/SFC.Backend/SFC.Backend.csproj"]
     env_file:
       - environments/api/api.Development.env
     volumes:
-      - *entrypoint_volume
       - type: bind
-        source: ../../Configurations/certificates/sfc-bff/sfc-bff.crt
-        target: /https/sfc-bff.crt
-      - type: bind
-        source: ../../Configurations/certificates/sfc-bff/sfc-bff.key
-        target: /https/sfc-bff.key
+        source: .
+        target: /app
   sfc-data:
     extends:
       file: compose.Common.yaml

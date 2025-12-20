@@ -10,7 +10,7 @@
       .columns {
         .column {
           &.status {
-            @include row-column-status($background-hover);
+            @include row-status-column($background-hover);
           }
         }
       }
@@ -37,7 +37,7 @@
 
           &.position {
             .enum {
-              @include row-column-enum;
+              @include row-enum-column;
             }
           }
 

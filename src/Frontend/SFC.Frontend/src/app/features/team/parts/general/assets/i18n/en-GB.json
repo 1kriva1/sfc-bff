@@ -87,5 +87,6 @@
     "general.pages.edit.components.schemes.input.name.placeholder": "Type scheme name",
     "general.pages.edit.preview.title": "Team players",
     "general.pages.edit.preview.description": "Information about team players.",
-    "general.pages.edit.changes-modal.text": "Are you sure what leave page without save team changes?"
+    "general.pages.edit.changes-modal.text": "Are you sure what leave page without save team changes?",
+    "general.pages.search.route.title": "Search teams"
 }

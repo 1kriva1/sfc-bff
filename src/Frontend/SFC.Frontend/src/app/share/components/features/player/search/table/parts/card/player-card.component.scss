@@ -2,6 +2,7 @@
 @use "ngx-sfc-common/components/delimeter/delimeter.component.mixins.scss" as delimeter;
 @import "mixins";
 @import "../../styles";
+@import "table/row";
 
 %position {
   display: flex;
@@ -201,7 +202,7 @@
       }
 
       .column {
-        @include column;
+        @include row-column;
         @include common;
 
         flex-direction: column;

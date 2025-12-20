@@ -4,9 +4,8 @@ import { CommonConstants, ILoadContainerModel, ILoadContainerResultModel, LoadCo
 import { EnumService } from '@share/services';
 import { TeamEditPlayerInvitesProgressLocalization } from './team-edit-player-invites-progress.localization';
 import { ITeamEditPlayerInvitesProgressModel } from './team-edit-player-invites-progress.model';
-import { switchReloadWithStart } from '@core/utils/observable/observable.utils';
 import { IEnumModel } from '@core/types';
-import { calculatePercentageWithCount, getRouteId } from '@core/utils';
+import { calculatePercentageWithCount, getRouteId, switchReloadWithStart } from '@core/utils';
 import { ActivatedRoute } from '@angular/router';
 import { CoreLocalization } from '@core/localization';
 import { mapTeamPlayerInviteModel } from '@share/mappers/team-player-invite.mapper';

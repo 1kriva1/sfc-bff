@@ -7,6 +7,7 @@ import { ITeamSearchFilterInventaryModel } from "./team-search-filter-inventary.
 import { IBubbleModel } from "ngx-sfc-inputs";
 import { mapBubbles } from "@share/utils/inputs";
 import { EnumService } from "@share/services";
+import { buildTeamSearchFilterInventaryFormGroup } from "./team-search-filter-inventary.utils";
 
 @Component({
     selector: 'sfc-team-search-filter-inventary',
@@ -31,14 +32,11 @@ export class TeamSearchFilterInventaryComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.buildFormGroup(); 
+        this.buildFormGroup();
     }
 
     private buildFormGroup(): void {
-        const controls: IForm<ITeamSearchFilterInventaryModel> = {
-            shirts: [null]
-        };
-
+        const controls: IForm<ITeamSearchFilterInventaryModel> = buildTeamSearchFilterInventaryFormGroup();
         this.parent.form.addControl(TeamSearchFilterPart.Inventary, this.formBuilder.group(controls));
     }
 }

@@ -1,0 +1,80 @@
+@import "inputs";
+@import "components1";
+@import "table1";
+@import "./variables";
+
+@mixin page-search {
+  .container {
+    .content {
+      margin: $search-page-content-margin;
+
+      .parts {
+        @include center-column;
+
+        .part {
+          @include center;
+
+          width: $search-page-part-width;
+
+          .part-content {
+            display: flex;
+            justify-content: center;
+            width: $search-page-content-width;
+          }
+
+          &.top {
+            background: $search-page-top-background;
+
+            .part-content {
+              .name-tabs {
+                @include center-column;
+
+                width: 100%;
+
+                .name {
+                  @include search-text-input;
+
+                  width: $search-page-input-name-width;
+                }
+
+                .tabs {
+                  @include tabs($search-page-tabs-width);
+
+                  width: 100%;
+                  margin: 5em 0 0;
+                }
+              }
+            }
+          }
+
+          &.bottom {
+            background: $search-page-bottom-background;
+
+            .part-content {
+              .filters {
+                @include collapse-expand-container;
+
+                width: $search-page-filters-width;
+                padding: 2em 1em;
+              }
+
+              .result {
+                width: $search-page-result-width;
+                padding: 2em 3em;
+
+                .filters-preview {
+                  display: flex;
+                  align-items: center;
+                }
+
+                .table {
+                  @include table($color-2, $color-2);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

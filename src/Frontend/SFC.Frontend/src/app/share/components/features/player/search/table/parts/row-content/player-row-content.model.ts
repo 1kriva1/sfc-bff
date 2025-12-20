@@ -1,8 +1,7 @@
 import { IEnumModel } from "@core/types";
 import { IconDefinition } from "@fortawesome/free-regular-svg-icons";
 import { IStatsTypeModel } from "@share/models";
-import { empty } from "ngx-sfc-common";
-import { ITagModel } from "ngx-sfc-components";
+import { empty, ITagModel } from "ngx-sfc-common";
 
 export interface IPlayerRowContentModel {
     freePlayIcon: IconDefinition;

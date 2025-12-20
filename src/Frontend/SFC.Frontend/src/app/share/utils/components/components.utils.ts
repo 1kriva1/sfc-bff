@@ -1,5 +1,5 @@
-import { any, empty } from "ngx-sfc-common";
-import { ISideMenuItemModel, ISideMenuModel, ITagModel } from "ngx-sfc-components";
+import { any, empty, ITagModel } from "ngx-sfc-common";
+import { ISideMenuItemModel, ISideMenuModel } from "ngx-sfc-components";
 import { IEnumModel } from "@core/types";
 import { getWeekDays } from "@core/utils";
 
@@ -25,5 +25,5 @@ export function getTags(tags: string[] | empty): ITagModel[] {
 }
 
 export function getTagsFromEnums(enums: IEnumModel<number>[] | empty): ITagModel[] {
-    return any(enums) ? enums!.map(item => ({ label: item.value, icon: item.icon, imageSrc: item.image })) : [];
+    return any(enums) ? enums!.map(item => ({ label: item.value, icon: item.icon!, imageSrc: item.image! })) : [];
 }

@@ -1,7 +1,6 @@
 import { IEnumModel } from "@core/types";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { empty } from "ngx-sfc-common";
-import { ITagModel } from "ngx-sfc-components";
+import { empty, ITagModel } from "ngx-sfc-common";
 
 export interface IGeneralViewAvailableModel {
     days: ITagModel[];

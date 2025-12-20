@@ -3,4 +3,5 @@ import { IFindTeamsProfileFilterModel } from "./find-teams-profile-filter.model"
 
 export interface IFindTeamsFilterModel {
     Profile?: IFindTeamsProfileFilterModel | empty;
+    Statuses?: number[] | empty;
 }

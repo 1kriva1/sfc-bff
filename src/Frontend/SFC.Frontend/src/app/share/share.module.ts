@@ -34,6 +34,7 @@ import {
   PlayerPreviewComponent,
   PanelComponent,
   CircleComponent,
+  FilterTagsComponent,
   FormationCarouselSliderContentComponent,
   ExclamationModalComponent,
   SchemeInfoComponent,
@@ -53,7 +54,9 @@ import {
   AvatarInputTeamPlayersModalBodyComponent,
   AvatarInputTeamPlayersModalBodyTableRowComponent,
   TeamSearchFilterFinancialComponent,
-  TeamSearchFilterInventaryComponent
+  TeamSearchFilterInventaryComponent,
+  TeamSearchTableRowComponent,
+  TeamSearchTableCardComponent
 } from './components';
 import { TimePipe, DayPipe } from './pipes';
 import { RouterModule } from '@angular/router';
@@ -79,6 +82,7 @@ import { RouterModule } from '@angular/router';
     BackComponent,
     PanelComponent,
     CircleComponent,
+    FilterTagsComponent,
     // extends
     ShirtCarouselSliderContentComponent,
     FormationCarouselSliderContentComponent,
@@ -103,6 +107,8 @@ import { RouterModule } from '@angular/router';
     TeamSearchFilterGeneralComponent,
     TeamSearchFilterFinancialComponent,
     TeamSearchFilterInventaryComponent,
+    TeamSearchTableRowComponent,
+    TeamSearchTableCardComponent,
     TeamInfoComponent,
     TeamPreviewComponent,
     // feature/scheme
@@ -147,6 +153,7 @@ import { RouterModule } from '@angular/router';
     AvailabilityListComponent,
     ChangesCheckModalComponent,
     ExclamationModalComponent,
+    FilterTagsComponent,
     // extends
     CarouselSliderComponent,
     ShirtCarouselSliderContentComponent,
@@ -166,6 +173,10 @@ import { RouterModule } from '@angular/router';
     PlayerCardComponent,
     // feature/team
     TeamSearchFilterGeneralComponent,
+    TeamSearchFilterFinancialComponent,
+    TeamSearchFilterInventaryComponent,
+    TeamSearchTableRowComponent,
+    TeamSearchTableCardComponent,
     TeamInfoComponent,
     TeamPreviewComponent,
     // feature/scheme

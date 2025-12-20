@@ -17,4 +17,5 @@ export class CoreLocalization {
     static get REMOVE(): string { return $localize`:@@core.action.remove:Remove`; }
     static get ACCEPT(): string { return $localize`:@@core.action.accept:Accept`; }
     static get DECLINE(): string { return $localize`:@@core.action.decline:Decline`; }
+    static get RESET(): string { return $localize`:@@core.action.reset:Reset`; }
 }

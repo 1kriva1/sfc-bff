@@ -17,6 +17,9 @@ import {
     TeamEditPlayersRequestComponent, TeamEditPlayersRoute, TeamEditPlayersSquadComponent,
     TeamEditSchemesComponent
 } from "./pages/edit";
+import {
+    TeamSearchPageComponent, TeamSearchPageLocalization
+} from "./pages/search"
 
 export const TeamRoutes: Routes = [
     {
@@ -148,5 +151,10 @@ export const TeamRoutes: Routes = [
                 pathMatch: 'full'
             }
         ]
+    },
+    {
+        path: RouteConstants.DEFAULT_ROUTE_PATH,
+        component: TeamSearchPageComponent,
+        title: buildTitle(TeamSearchPageLocalization.ROUTE.TITLE)
     }
 ];

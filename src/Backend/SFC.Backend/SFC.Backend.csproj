@@ -5,7 +5,7 @@
         <SpaRoot>..\..\Frontend\SFC.Frontend</SpaRoot>
         <!-- Default SPA proxy command -->
         <SpaProxyLaunchCommand>npm run start:sfc.backend</SpaProxyLaunchCommand>
-        <!-- Override when running in container -->
+        <!-- Override SPA proxy command when running in container -->
         <SpaProxyLaunchCommand Condition="'$(DOTNET_RUNNING_IN_CONTAINER)' == 'true'">
             npm run start:container:development
         </SpaProxyLaunchCommand>
@@ -13,7 +13,7 @@
         <SpaProxyServerUrl>https://sfc-bff:4200</SpaProxyServerUrl>
         <RootNamespace>SFC.Bff</RootNamespace>
         <UserSecretsId>49af763d-dacc-42fe-a993-6396bba459d3</UserSecretsId>
-        <HUSKY>True</HUSKY>
+        <HUSKY>true</HUSKY>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -69,7 +69,7 @@
         <None Include="entrypoint.sh" />
     </ItemGroup>
 
-    <Target Name="Husky" BeforeTargets="Restore;CollectPackageReferences" Condition="'$(HUSKY)' == True">
+    <Target Name="Husky" BeforeTargets="Restore;CollectPackageReferences" Condition="'$(HUSKY)' == true">
         <Exec Command="dotnet tool restore" StandardOutputImportance="Low" StandardErrorImportance="High" />
         <Exec Command="dotnet husky install" StandardOutputImportance="Low" StandardErrorImportance="High" WorkingDirectory="..\..\.." />
     </Target>

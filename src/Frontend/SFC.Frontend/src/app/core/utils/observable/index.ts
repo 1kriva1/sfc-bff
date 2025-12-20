@@ -1,9 +1,3 @@
 export {
-    addReload,
-    addReloadWithStart,
-    catchBaseError,
-    catchPageError,
-    combineWithReload,
-    switchReload,
-    switchReloadWithStartAndShare
+    mapPaginationResponse
 } from './observable.utils';

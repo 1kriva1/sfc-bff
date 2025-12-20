@@ -61,7 +61,9 @@ export class TeamInfoComponent implements OnInit {
       filledColor: getProgressColorDefaultFunc(this.rating)
     };
 
-    this.avatarBadges = [{ position: AvatarBadgePosition.RightBottom, label: `${this.rating}` }];
+    if (this.rating > 0) {
+      this.avatarBadges = [{ position: AvatarBadgePosition.RightBottom, label: `${this.rating}` }];
+    }
 
     this.stars = getStars(this.rating, CommonConstants.FULL_PERCENTAGE);
   }

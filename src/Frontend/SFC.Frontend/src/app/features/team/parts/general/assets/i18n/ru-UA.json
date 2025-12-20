@@ -87,5 +87,6 @@
     "general.pages.edit.components.schemes.input.name.placeholder": "Введіть назву схеми",
     "general.pages.edit.preview.title": "Гравці команди",
     "general.pages.edit.preview.description": "Інформація про гравців команди.",
-    "general.pages.edit.changes-modal.text": "Ви впевнені, що хочете залишити сторінку без збереження змін у команді?"
+    "general.pages.edit.changes-modal.text": "Ви впевнені, що хочете залишити сторінку без збереження змін у команді?",
+    "general.pages.search.route.title": "Пошук команд"
 }

@@ -26,6 +26,25 @@
   }
 }
 
+@mixin collapse-expand-container {
+  sfc-collapse-expand-container {
+    width: 100%;
+    display: block;
+
+    &:nth-child(2) {
+      padding: 0.5em 0;
+    }
+
+    ::ng-deep > .container {
+      align-items: normal;
+
+      sfc-collapse-expand {
+        font-size: 0.9em;
+      }
+    }
+  }
+}
+
 @mixin status($background, $color: $color-default) {
   sfc-status {
     ::ng-deep .container {

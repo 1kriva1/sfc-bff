@@ -1,6 +1,7 @@
 @use "ngx-sfc-common/styles/index" as *;
 @import "mixins";
 @import "../../styles";
+@import "table/row";
 
 :host {
   @include host;
@@ -18,7 +19,7 @@
     padding: 1em 0.5em;
 
     .column {
-      @include column;
+      @include row-column;
       @include common;
 
       flex-direction: column;

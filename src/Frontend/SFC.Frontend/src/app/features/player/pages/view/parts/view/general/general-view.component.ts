@@ -7,8 +7,7 @@ import {
     faCakeCandles, faClock, faGamepad, faGift, faHeart, faMoneyBill1,
     faReceipt, faRulerVertical, faShirt, faSocks, faStreetView, faTag, faUserClock, faWallet, faWeightScale
 } from "@fortawesome/free-solid-svg-icons";
-import { any, CommonConstants, ComponentSize, convertDateToTimestamp, Direction, isDefined } from "ngx-sfc-common";
-import { ITagModel } from "ngx-sfc-components";
+import { any, CommonConstants, ComponentSize, convertDateToTimestamp, Direction, isDefined, ITagModel } from "ngx-sfc-common";
 import { map, Observable } from "rxjs";
 import { GeneralViewLocalization } from "./general-view.localization";
 import { IGeneralViewModel } from "./general-view.model";

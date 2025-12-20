@@ -1,0 +1,76 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+
+:host {
+  .container {
+    .content {
+      display: flex;
+      align-items: center;
+
+      &:not(:empty) {
+        padding: 0 0 1em;
+      }
+
+      .label {
+        @include text-bold($color-default, 1.1em);
+
+        margin-right: 0.5em;
+      }
+
+      sfc-tags {
+        ::ng-deep .container {
+          .content {
+            justify-content: flex-start;
+
+            sfc-tag {
+              .container {
+                .content {
+                  background-color: $color-0;
+                  color: $color-default;
+                  padding: 0.5em 1.5em;
+
+                  sfc-close {
+                    font-size: 1em;
+
+                    :not(:hover) {
+                      color: $color-4;
+                    }
+                  }
+                }
+              }
+
+              &:hover {
+                .container {
+                  .content {
+                    color: $color-hover-default;
+                  }
+                }
+              }
+
+              &:last-child {
+                cursor: pointer;
+
+                .container {
+                  .content {
+                    background-color: transparent;
+                    border-color: $color-default;
+                    border-width: 1px;
+                  }
+                }
+
+                &:hover {
+                  .container {
+                    .content {
+                      background-color: transparent;
+                      border-color: $color-hover-default;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

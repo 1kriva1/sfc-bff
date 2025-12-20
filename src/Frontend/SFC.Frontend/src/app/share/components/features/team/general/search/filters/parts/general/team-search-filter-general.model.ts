@@ -2,6 +2,7 @@ import { IAvailabilityLimitModel } from "@share/models/common/availability-limit
 
 export interface ITeamSearchFilterGeneralModel {
     city: string | null;
+    statuses: number[] | null;
     tags: string[] | null;
     availability: IAvailabilityLimitModel;
     hasLogo: boolean | null;

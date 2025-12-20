@@ -1,0 +1,136 @@
+@import "ngx-sfc-common/components/delimeter/delimeter.component.mixins";
+
+@mixin button($hover: true, $background: $color-yellow-0, $background-hover: $color-yellow-1) {
+  sfc-button {
+    &:not(.disabled) {
+      transition: transform 500ms;
+      transform-origin: 50% 0;
+
+      @if $hover {
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+
+      ::ng-deep {
+        .button {
+          background: $background;
+          border-color: $background;
+
+          &:hover {
+            background: $background-hover;
+            border-color: $background-hover;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin collapse-expand-container {
+  sfc-collapse-expand-container {
+    width: 100%;
+    display: block;
+
+    &:nth-child(2) {
+      padding: 0.5em 0;
+    }
+
+    ::ng-deep > .container {
+      align-items: normal;
+
+      sfc-collapse-expand {
+        font-size: 0.9em;
+      }
+    }
+  }
+}
+
+@mixin tabs($width) {
+  sfc-tabs {
+    display: inline-block;
+    width: $width;
+
+    ::ng-deep .container {
+      .tabs-container {
+        .tabs {
+          .tab {
+            sfc-tab-label-line {
+              .container {
+                border: none;
+              }
+            }
+          }
+        }
+      }
+
+      .body-container {
+        margin: 0;
+      }
+    }
+  }
+}
+
+@mixin status($background, $color: $color-default) {
+  sfc-status {
+    ::ng-deep .container {
+      .content {
+        .circle {
+          background: $background;
+        }
+
+        .label {
+          color: $color;
+        }
+      }
+    }
+  }
+}
+
+@mixin title-part {
+  sfc-title {
+    ::ng-deep .container {
+      @include part;
+    }
+  }
+}
+
+@mixin action-menu($color: $color-0, $color-hover: $color-0) {
+  sfc-dropdown-menu {
+    ::ng-deep ul > li {
+      > .container {
+        @include square-size(1.8em);
+
+        sfc-dots {
+          .container {
+            > .dots-container {
+              sfc-dot {
+                @include theme-value(background, $color);
+              }
+            }
+          }
+        }
+
+        &:hover {
+          sfc-dots {
+            .container {
+              > .dots-container {
+                sfc-dot {
+                  @include theme-value(background, $color-hover);
+                }
+              }
+            }
+          }
+        }
+      }
+
+      > .dropdown-container {
+        sfc-dropdown-menu-item {
+          sfc-delimeter {
+            @include sfc-delimeter-as-default;
+          }
+        }
+      }
+    }
+  }
+}

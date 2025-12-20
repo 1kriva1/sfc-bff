@@ -1,8 +1,8 @@
 import { Directive, HostBinding, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { faUserPlus, faUser, faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
-import { any, CommonConstants, ComponentSize, convertDateToTimestamp, getAge, isDefined } from "ngx-sfc-common";
-import { IDropdownMenuItemModel, ITagModel } from "ngx-sfc-components";
+import { any, CommonConstants, ComponentSize, convertDateToTimestamp, getAge, isDefined, ITagModel } from "ngx-sfc-common";
+import { IDropdownMenuItemModel } from "ngx-sfc-components";
 import { Locale } from "@core/enums";
 import { StorageService } from "@core/services";
 import { CoreConstants, UIConstants } from "@core/constants";
