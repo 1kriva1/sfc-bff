@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
@@ -63,14 +63,14 @@ export class TeamEditSchemesComponent extends SearchComponent<
 
     constructor(
         private formBuilder: FormBuilder,
-        private schemeTeamService: SchemeTeamService,
-        private enumService: EnumService,
+        private schemeTeamService: SchemeTeamService,        
         private router: Router,
         modalService: ModalService,
         themeService: ThemeService,
         notificationService: NotificationService,
         reloadService: ReloadService,
         route: ActivatedRoute,
+        private enumService: EnumService
     ) {
         super(modalService, themeService, notificationService, reloadService);
         this.teamId = getRouteId(route.snapshot);

@@ -1,0 +1,9 @@
+@import "ngx-sfc-common/styles";
+@import "components1";
+@import "inputs";
+@import "table1";
+@import "page1";
+
+:host {
+  @include page-search;
+}

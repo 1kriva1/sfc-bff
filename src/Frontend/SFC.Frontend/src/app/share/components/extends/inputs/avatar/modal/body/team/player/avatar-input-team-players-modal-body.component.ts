@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -64,13 +64,13 @@ export class AvatarInputTeamPlayersModalBodyComponent
     public TableColumns: ITableColumnExtendedModel[] = AvatarInputTeamPlayersModalBodyTableConstants.COLUMNS;
 
     constructor(
-        private formBuilder: FormBuilder,
-        private enumService: EnumService,
+        private formBuilder: FormBuilder,        
         private teamPlayerService: TeamPlayerService,
+        private enumService: EnumService,
         modalService: ModalService,
         themeService: ThemeService,
         notificationService: NotificationService,
-        reloadService: ReloadService
+        reloadService: ReloadService,
     ) {
         super(modalService, themeService, notificationService, reloadService);
     }

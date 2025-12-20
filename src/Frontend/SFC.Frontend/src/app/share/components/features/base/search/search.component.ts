@@ -15,11 +15,11 @@ import {
 } from 'rxjs';
 import { BaseErrorResponse, BaseListResponse, BasePaginationRequest } from "@core/models";
 import { NotificationService } from "@core/services";
-import { mapPageResponse } from "@core/utils";
-import { catchPageError } from "@core/utils/observable";
+import { mapPaginationResponse } from "@core/utils";
+import { catchPaginationError } from "@core/utils";
 import { SearchLocalization } from "./search.localization";
 import { SearchConstants } from "./search.constants";
-import { combineWithReloadMultiple } from "@core/utils/observable/observable.utils";
+import { combineWithReloadMultiple } from "@core/utils";
 import { ThemeService } from "@share/components/theme-toggler/services/theme/theme.service";
 
 @Directive()
@@ -148,8 +148,8 @@ export abstract class SearchComponent
 
         return this.search(request, loading)
             .pipe(
-                mapPageResponse<ResponseItemModel, TableItemModel>((item: ResponseItemModel) => this.map(item)),
-                catchError((error: BaseErrorResponse) => catchPageError<TableItemModel>(error, this.notificationService))
+                mapPaginationResponse<ResponseItemModel, TableItemModel>((item: ResponseItemModel) => this.map(item)),
+                catchError((error: BaseErrorResponse) => catchPaginationError<TableItemModel>(error, this.notificationService))
             );
     }
 

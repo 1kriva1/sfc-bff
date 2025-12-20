@@ -6,6 +6,7 @@ import { TeamSearchFlterFinancialLocalization } from "./team-search-filter-finan
 import { TeamSearchFilterPart } from "../../team-search-filter-part.enum";
 import { ITeamSearchFilterFinancialModel } from "./team-search-filter-financial.model";
 import { Direction } from "ngx-sfc-common";
+import { buildTeamSearchFilterFinancialFormGroup } from "./team-search-filter-financial.utils";
 
 @Component({
     selector: 'sfc-team-search-filter-financial',
@@ -33,10 +34,7 @@ export class TeamSearchFilterFinancialComponent implements OnInit {
     }
 
     private buildFormGroup(): void {
-        const controls: IForm<ITeamSearchFilterFinancialModel> = {
-            freePlay: [null]
-        };
-
+        const controls: IForm<ITeamSearchFilterFinancialModel> = buildTeamSearchFilterFinancialFormGroup();
         this.parent.form.addControl(TeamSearchFilterPart.Financial, this.formBuilder.group(controls));
     }
 }

@@ -1,6 +1,7 @@
 @use "ngx-sfc-common/styles/index" as *;
 @import "mixins";
 @import "../../styles";
+@import "table/row";
 
 :host {
   display: inline-block;
@@ -19,7 +20,7 @@
     box-shadow: $box-shadow;
 
     .column {
-      @include column;
+      @include row-column;
       @include common;
 
       .title,

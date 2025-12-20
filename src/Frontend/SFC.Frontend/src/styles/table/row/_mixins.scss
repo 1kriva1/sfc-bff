@@ -1,21 +1,33 @@
 @import "./variables";
 @import "../../components";
 
+@mixin row-host() {
+  @include host;
+}
+
 @mixin row-container() {
-  background: $background-container-default;
-  border-radius: $border-radius;
-  padding: $container-padding;
-  box-shadow: $box-shadow;
+  background: $row-container-background-default;
+  border-radius: $row-container-border-radius;
+  padding: $row-container-padding;
+  box-shadow: $row-container-box-shadow;
 }
 
 @mixin row-background($background, $background-hover) {
-  .container {
-    background: $background;
-  }
+  @include table-content-background($background, $background-hover);
+}
 
-  &:not(.expanded):hover {
-    .container {
-      background: $background-hover;
+@mixin row-background-with-related($background, $background-hover) {
+  @include row-background($background, $background-hover);
+
+  .container {
+    .content {
+      .columns {
+        .column {
+          &.status {
+            @include row-status-column($background-hover);
+          }
+        }
+      }
     }
   }
 }
@@ -26,16 +38,12 @@
 }
 
 @mixin row-column() {
-  @include center-wrap;
-
-  padding: 0 0.2em;
-
-  sfc-no-data {
-    color: $color-default;
-  }
+  @include table-content-column($row-column-margin);
 }
 
-@mixin row-column-enum($color: $color-0) {
+// Columns styles
+
+@mixin row-enum-column($color: $color-0) {
   @include center-column;
 
   color: $color;
@@ -53,6 +61,29 @@
   sfc-no-data {
     font-size: 1em;
     color: $color;
+  }
+}
+
+@mixin row-status-column($background) {
+  @include table-content-status-column($background);
+}
+
+@mixin row-select-column($border-color: $color-default) {
+  @include table-content-select-column($border-color);
+}
+
+@mixin row-description-column($no-data: true, $font-size: 0.8em) {
+  white-space: pre-wrap;
+  color: $color-0;
+  font-size: $font-size;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @if $no-data {
+    sfc-no-data {
+      color: $color-0;
+      font-size: 0.9em;
+    }
   }
 }
 
@@ -74,41 +105,4 @@
   }
 }
 
-@mixin row-column-team-info($color: $color-0) {
-  sfc-team-info {
-    ::ng-deep > .container .content {
-      > .info {
-        color: $color;
-      }
-    }
-  }
-}
-
-@mixin row-column-status($background) {
-  @include status($background, $color-0);
-}
-
-@mixin row-column-checkmark-select($border-color: $color-default) {
-  sfc-checkmark:not(.active) {
-    ::ng-deep > .container {
-      .check {
-        border-color: $border-color;
-      }
-    }
-  }
-}
-
-@mixin row-column-description($no-data: true, $font-size: 0.8em) {
-  white-space: pre-wrap;
-  color: $color-0;
-  font-size: $font-size;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  @if $no-data {
-    sfc-no-data {
-      color: $color-0;
-      font-size: 0.9em;
-    }
-  }
-}
+// End Columns styles

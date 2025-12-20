@@ -1,7 +1,6 @@
 import { IAvailabilityEditFormModel } from "@share/components/availability-edit/availability-edit-form.model";
 import { IPlayerModel } from "@share/models/player/player.model";
-import { empty } from "ngx-sfc-common";
-import { ITagModel } from "ngx-sfc-components";
+import { empty, ITagModel } from "ngx-sfc-common";
 
 export interface ITeamPreviewModel {
     name: string;

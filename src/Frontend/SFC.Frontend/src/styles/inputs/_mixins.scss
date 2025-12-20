@@ -1,8 +1,34 @@
+@import "./variables";
+
 @mixin name-text-input {
   sfc-text-input {
     ::ng-deep input {
       border: none !important;
       box-shadow: none !important;
+    }
+  }
+}
+
+@mixin search-text-input {
+  sfc-text-input {
+    ::ng-deep .container {
+      .input {
+        input {
+          border-radius: 2em;
+          padding: 0.8em 1em;
+          font-weight: bold;
+
+          &::placeholder {
+            font-weight: normal;
+          }
+        }
+      }
+
+      .helper-text {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+      }
     }
   }
 }

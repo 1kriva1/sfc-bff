@@ -16,7 +16,7 @@
           @include row-column;
 
           &.select {
-            @include row-column-checkmark-select($color-dark);
+            @include row-select-column($color-dark);
           }
 
           &.player {
@@ -25,7 +25,7 @@
 
           &.position {
             .enum {
-              @include row-column-enum;
+              @include row-enum-column;
             }
           }
         }
@@ -59,7 +59,7 @@
         .columns {
           .column {
             &.select {
-              @include row-column-checkmark-select($color-default);
+              @include row-select-column($color-default);
             }
 
             &.player {
@@ -68,7 +68,7 @@
 
             &.position {
               .enum {
-                @include row-column-enum($color-default);
+                @include row-enum-column($color-default);
               }
             }
           }

@@ -1,0 +1,63 @@
+$transition-theme-backround-duration: 2s;
+$transition-theme-backround-timing-function: ease;
+$background-container-default: #fcfcfc;
+$background-container-dark: #232527;
+
+// Player Position
+$player-position-goalkeeper-color: $color-red-1;
+$player-position-goalkeeper-color-hover: $color-red-0;
+$player-position-defender-color: $color-magenta-1;
+$player-position-defender-color-hover: $color-magenta-0;
+$player-position-midfielder-color: $color-green-1;
+$player-position-midfielder-color-hover: #96c760;
+$player-position-forward-color: $color-blue-1;
+$player-position-forward-color-hover: $color-blue-0;
+
+// Game Status
+$game-status-new-color: $color-green-1;
+$game-status-upcoming-color: $color-blue-0;
+$game-status-active-color: $color-orange-0;
+$game-status-finished-color: $color-magenta-0;
+$game-status-canceled-color: $color-7;
+
+// Team Status
+$team-status-temporary-color: $color-orange-1;
+$team-status-temporary-color-hover: $color-orange-0;
+$team-status-active-color: $color-blue-1;
+$team-status-active-color-hover: $color-blue-0;
+$team-status-inactive-color: $color-magenta-1;
+$team-status-inactive-color-hover: $color-magenta-0;
+$team-status-closed-color: $color-red-1;
+$team-status-closed-color-hover: $color-red-0;
+
+// Team Player Status
+$team-player-status-active-color: $color-green-3;
+$team-player-status-active-hover-color: $color-green-4;
+$team-player-status-injured-color: $color-blue-0;
+$team-player-status-injured-hover-color: $color-blue-1;
+$team-player-status-retired-color: $color-orange-0;
+$team-player-status-retired-hover-color: $color-orange-1;
+$team-player-status-unavailable-color: $color-magenta-0;
+$team-player-status-unavailable-hover-color: $color-magenta-1;
+$team-player-status-removed-color: $color-red-0;
+$team-player-status-removed-hover-color: $color-red-1;
+
+// Team Player Invite Status
+$team-player-invite-status-actual-color: $color-green-3;
+$team-player-invite-status-actual-hover-color: $color-green-4;
+$team-player-invite-status-accepted-color: $color-blue-0;
+$team-player-invite-status-accepted-hover-color: $color-blue-1;
+$team-player-invite-status-canceled-color: $color-orange-0;
+$team-player-invite-status-canceled-hover-color: $color-orange-1;
+$team-player-invite-status-refused-color: $color-magenta-0;
+$team-player-invite-status-refused-hover-color: $color-magenta-1;
+
+// Team Player Request Status
+$team-player-request-status-actual-color: $color-green-3;
+$team-player-request-status-actual-hover-color: $color-green-4;
+$team-player-request-status-accepted-color: $color-blue-0;
+$team-player-request-status-accepted-hover-color: $color-blue-1;
+$team-player-request-status-canceled-color: $color-orange-0;
+$team-player-request-status-canceled-hover-color: $color-orange-1;
+$team-player-request-status-declined-color: $color-magenta-0;
+$team-player-request-status-declined-hover-color: $color-magenta-1;

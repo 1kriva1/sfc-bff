@@ -6,7 +6,7 @@ import { buildRedirectAction } from "../../actions/actions.utils";
 
 export function buildViewPlayerAction(playerId: number, router: Router): IDropdownMenuItemModel {
     return buildRedirectAction(
-        $localize`:@@share.utils.actions.player.view-profile:View player profile`,
+        $localize`:@@share.utils.features.player.action.view-profile:View player profile`,
         faUser,
         false,
         router,

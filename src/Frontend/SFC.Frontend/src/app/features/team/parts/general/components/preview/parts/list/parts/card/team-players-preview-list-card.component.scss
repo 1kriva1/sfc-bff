@@ -1,5 +1,6 @@
 @use "ngx-sfc-common/styles/index" as *;
 @import "mixins";
+@import "table/row";
 
 :host {
   @include host;
@@ -10,7 +11,7 @@
 
     .content {
       .column {
-        @include column;
+        @include row-column;
 
         &.photo {
           sfc-player-info {

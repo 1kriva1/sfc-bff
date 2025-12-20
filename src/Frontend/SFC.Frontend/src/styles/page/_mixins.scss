@@ -1,5 +1,7 @@
-@use "ngx-sfc-common/styles/index" as ngx-sfc-common;
-@import "../variables";
+@import "common";
+@import "inputs";
+@import "components";
+@import "./variables";
 
 @mixin page() {
   .container {

@@ -21,7 +21,7 @@ import {
     timer, tap, map, Observable, switchMap, distinctUntilChanged, Subscription
 } from 'rxjs';
 import { EnumService, IFindPlayersRequest, IPlayerItemModel, PlayerService } from "@share/services";
-import { mapPageResponse } from "@core/utils";
+import { mapPaginationResponse } from "@core/utils";
 import { INotification, NotificationService } from "@core/services";
 import { MessageSeverity } from "@core/services/message/message-severity.enum";
 import { BaseErrorResponse } from "@core/models";
@@ -261,7 +261,7 @@ export class SearchPageComponent
                 parameters.sorting);
 
         return this.playerService.find(request, !this.showLoading).pipe(
-            mapPageResponse<IPlayerItemModel, IPlayersTableModel>(
+            mapPaginationResponse<IPlayerItemModel, IPlayersTableModel>(
                 (item: IPlayerItemModel) => {
                     const player: IPlayersTableModel = mapPlayerTableModel(item, this.enumService);
                     return player;

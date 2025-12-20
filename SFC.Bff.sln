@@ -58,11 +58,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "hooks", "hooks", "{C854633D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{B28D28B9-BD77-4BF9-9C92-DBCD53A6160C}"
 	ProjectSection(SolutionItems) = preProject
+		tools\down.ps1 = tools\down.ps1
 		tools\generate-service-certificate.sh = tools\generate-service-certificate.sh
 		tools\post-action.cmd = tools\post-action.cmd
 		tools\post-script.ps1 = tools\post-script.ps1
 		tools\pre-script.ps1 = tools\pre-script.ps1
-		tools\start.ps1 = tools\start.ps1
+		tools\up.ps1 = tools\up.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "environments", "environments", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"

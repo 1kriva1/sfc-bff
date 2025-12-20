@@ -1,7 +1,6 @@
 import { IEnumModel } from "@core/types";
 import { StatsValue } from "@share/types";
-import { empty } from "ngx-sfc-common";
-import { ITagModel } from "ngx-sfc-components";
+import { empty, ITagModel } from "ngx-sfc-common";
 
 export interface IPlayerPreviewModel {
     firstName: string;

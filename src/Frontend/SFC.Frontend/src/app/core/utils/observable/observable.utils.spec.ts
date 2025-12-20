@@ -2,7 +2,7 @@ import { HttpHeaders, HttpResponse } from "@angular/common/http";
 import { of } from "rxjs";
 import { HttpConstants } from "../../constants";
 import { BaseListResponse } from "../../models";
-import { mapPageResponse } from "./observable.mapper";
+import { mapPaginationResponse } from "./observable.utils";
 
 describe('Core.Utils: Observable', () => {
     fit('Should map page response', () => {
@@ -16,7 +16,7 @@ describe('Core.Utils: Observable', () => {
             };
 
         of(response as HttpResponse<BaseListResponse<number>>)
-            .pipe(mapPageResponse(mapFunction))
+            .pipe(mapPaginationResponse(mapFunction))
             .subscribe(result => {
                 expect(result).toEqual({
                     items: ['Test: 1', 'Test: 2', 'Test: 3'],

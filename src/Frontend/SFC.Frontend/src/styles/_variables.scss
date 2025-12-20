@@ -24,14 +24,14 @@ $game-status-finished-color: $color-magenta-0;
 $game-status-canceled-color: $color-7;
 
 // Team Status
-$team-status-temporary-color: $color-green-1;
-$team-status-temporary-color-hover: $color-green-0;
+$team-status-temporary-color: $color-orange-1;
+$team-status-temporary-color-hover: $color-orange-0;
 $team-status-active-color: $color-blue-1;
 $team-status-active-color-hover: $color-blue-0;
-$team-status-inactive-color: $color-pink-1;
-$team-status-inactive-color-hover: $color-pink-0;
-$team-status-closed-color: $color-magenta-1;
-$team-status-closed-color-hover: $color-magenta-0;
+$team-status-inactive-color: $color-magenta-1;
+$team-status-inactive-color-hover: $color-magenta-0;
+$team-status-closed-color: $color-red-1;
+$team-status-closed-color-hover: $color-red-0;
 
 // Team Player Status
 $team-player-status-active-color: $color-green-3;

@@ -1,0 +1,107 @@
+@import "./variables";
+
+// Table
+@mixin table(
+  $loader-background-color-default: $background-container-default,
+  $loader-background-color-dark: $background-container-dark
+) {
+  sfc-table {
+    ::ng-deep > .container {
+      width: auto;
+      margin: 0;
+
+      .table-loader {
+        @include theme-value(background-color, $loader-background-color-default, $loader-background-color-dark);
+      }
+
+      .columns-container {
+        .columns-actions {
+          .left {
+            sfc-columns-toggle {
+              .container .label {
+                text-transform: none;
+              }
+            }
+          }
+
+          .right {
+            sfc-toggle-switcher {
+              font-size: 0.8em;
+            }
+          }
+        }
+
+        .columns {
+          .column {
+            sfc-default-table-column {
+              .container {
+                text-transform: none;
+              }
+            }
+          }
+        }
+      }
+
+      .rows-container {
+        sfc-load-container {
+          .container {
+            sfc-bounce-loader {
+              .preloader {
+                @include theme-value(background-color, $loader-background-color-default, $loader-background-color-dark);
+              }
+            }
+
+            .content {
+              overflow: visible;
+
+              .items {
+                display: flex;
+                flex-wrap: wrap;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Content generic styles
+
+@mixin table-content-background($background, $background-hover) {
+  .container {
+    background: $background;
+  }
+
+  &:not(.expanded):hover {
+    .container {
+      background: $background-hover;
+    }
+  }
+}
+
+@mixin table-content-column($margin) {
+  @include center-wrap;
+
+  margin: $margin;
+
+  sfc-no-data {
+    color: $color-default;
+  }
+}
+
+@mixin table-content-status-column($background) {
+  @include status($background, $color-0);
+}
+
+@mixin table-content-select-column($border-color: $color-default) {
+  sfc-checkmark:not(.active) {
+    ::ng-deep > .container {
+      .check {
+        border-color: $border-color;
+      }
+    }
+  }
+}
+
+// End Content generic styles

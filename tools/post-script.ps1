@@ -1,6 +1,17 @@
-Write-Host "Running npm install..."
-Start-Process "npm.cmd" -ArgumentList "install" -WorkingDirectory "C:\SFC\Bff\sfc-bff\src\Frontend\SFC.Frontend" -NoNewWindow -Wait
-Write-Host "Npm install is done!"
+param(
+    [switch]$Link
+)
 
-Write-Host "Start SFC application..."
-Start-Process "npm.cmd" -ArgumentList "run start:sfc.backend" -WorkingDirectory "C:\SFC\Bff\sfc-bff\src\Frontend\SFC.Frontend" -WindowStyle Normal
+Write-Host "Running start-application script..." -ForegroundColor Yellow
+
+$params = @{
+    NewWindow = $true
+}
+
+if ($Link) {
+    $params.Link = $true
+}
+
+sfc-app @params
+
+Write-Host "Start-application script is finished." -ForegroundColor Green

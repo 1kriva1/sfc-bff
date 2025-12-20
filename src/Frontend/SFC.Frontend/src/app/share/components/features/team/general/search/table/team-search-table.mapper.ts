@@ -1,14 +1,13 @@
 import { mapTeamPlayerModel } from "@share/mappers/team-player.mapper";
-import { EnumService } from "@share/services";
+import { EnumService, ITeamServiceModel } from "@share/services";
 import { IAvailabilityModel } from "@share/services/common/availability/availability.model";
-import { ITeamModel } from "@share/services/team/general/models/common/team.model";
 import { mapAvailabilityEditFormModel } from "@share/utils/http";
 import { empty } from "ngx-sfc-common";
 import { IDropdownMenuItemModel } from "ngx-sfc-components";
 import { ITeamSearchTableModel } from "./team-search-table.model";
 
 export function mapTeamSearchTableModel(
-    model: ITeamModel, enumService: EnumService,
+    model: ITeamServiceModel, enumService: EnumService,
     buildActions: ((model: ITeamSearchTableModel) => IDropdownMenuItemModel[]) | empty = null): ITeamSearchTableModel {
     const result: ITeamSearchTableModel = {
         id: model.Id,

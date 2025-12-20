@@ -79,9 +79,9 @@
 }
 
 @mixin players-filters-button {
-  sfc-button {
-    @include button(false);
+  @include button(false);
 
+  sfc-button {
     width: 100%;
     padding: 1em 0;
 

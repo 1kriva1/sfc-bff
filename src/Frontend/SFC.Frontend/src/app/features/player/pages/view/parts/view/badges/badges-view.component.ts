@@ -3,7 +3,7 @@ import { FormBuilder } from "@angular/forms";
 import { BaseErrorResponse } from "@core/models";
 import { NotificationService } from "@core/services";
 import { IForm } from "@core/types";
-import { mapPageResponse } from "@core/utils";
+import { mapPaginationResponse } from "@core/utils";
 import { ThemeService } from "@share/components/theme-toggler/services/theme/theme.service";
 import {
     CommonConstants, ILoadContainerLoaderResultModel, ILoadContainerParameters,
@@ -82,7 +82,7 @@ export class BadgesViewComponent
             parameters.sorting);
 
         return this.badgeService.get(request, !this.showLoading).pipe(
-            mapPageResponse<IGetBadgesItemModel, IBadgeCardModel>(
+            mapPaginationResponse<IGetBadgesItemModel, IBadgeCardModel>(
                 (item: IGetBadgesItemModel) => mapBadgeCardModel(item, this.enumService.enums.badgeTypes)
             ),
             catchError((error: BaseErrorResponse) => this.handleError(error))

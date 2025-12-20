@@ -17,7 +17,7 @@ import { GamesViewLocalization } from "./games-view.localization";
 import { GameService } from '../../../../../services/game/game.service';
 import { IGetGamesRequest, IGetGamesItemModel } from '../../../../../services/game/models/get';
 import { IGamesViewModel } from "./games-view.model";
-import { mapPageResponse } from "@core/utils";
+import { mapPaginationResponse } from "@core/utils";
 import { BaseErrorResponse } from "@core/models";
 import { NotificationService } from "@core/services";
 import { mapGetGamesRequest, mapGameRowModel } from "./mapper/games-view.mapper";
@@ -89,7 +89,7 @@ export class GamesViewComponent
             parameters.sorting);
 
         return this.gameService.get(request, !this.showLoading).pipe(
-            mapPageResponse<IGetGamesItemModel, IGameRowModel>(
+            mapPaginationResponse<IGetGamesItemModel, IGameRowModel>(
                 (item: IGetGamesItemModel) => mapGameRowModel(item, this.enumService.enums.gameStatuses)
             ),
             catchError((error: BaseErrorResponse) => this.handleError(error))

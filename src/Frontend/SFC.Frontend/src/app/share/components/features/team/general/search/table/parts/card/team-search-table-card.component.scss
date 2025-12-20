@@ -1,0 +1,50 @@
+@import "ngx-sfc-common/styles";
+@import "variables1";
+@import "table1/card";
+@import "../mixins";
+
+:host {
+  @include card-host(25%);
+
+  .container {
+    @include card-container;
+
+    .content {
+      .columns {
+        @include card-columns;
+
+        .column {
+          @include card-column;
+
+          &.actions-wrapper {
+            @include card-actions-wrapper-column;
+          }
+
+          &.information {
+            @include team-information-column;
+          }
+
+          &.status {
+            margin: 0.5em 0;
+          }
+        }
+      }
+    }
+  }
+
+  &.team-status-3 {
+    @include card-background-with-related($team-status-closed-color, $team-status-closed-color-hover);
+  }
+
+  &.team-status-2 {
+    @include card-background-with-related($team-status-inactive-color, $team-status-inactive-color-hover);
+  }
+
+  &.team-status-1 {
+    @include card-background-with-related($team-status-active-color, $team-status-active-color-hover);
+  }
+
+  &.team-status-0 {
+    @include card-background-with-related($team-status-temporary-color, $team-status-temporary-color-hover);
+  }
+}

@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="content" *ngIf="tags$ | async as tags">
+        <ng-container *ngIf="tags.length > 0">
+            <span class="label" i18n="@@core.Filters">Filters</span>
+            <sfc-tags [tags]="tags" (remove)="onFilterTagRemove($event)"></sfc-tags>
+        </ng-container>
+    </div>
+</div>

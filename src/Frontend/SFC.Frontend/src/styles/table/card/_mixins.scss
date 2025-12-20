@@ -1,0 +1,77 @@
+@import "./variables";
+@import "../../components";
+@import "../mixins";
+
+@mixin card-host($width) {
+  @include host;
+
+  width: calc($width - 1em);
+}
+
+@mixin card-container() {
+  background: $card-container-background-default;
+  box-shadow: $card-container-box-shadow;
+  border-radius: $card-container-border-radius;
+  padding: $card-container-padding;
+}
+
+@mixin card-background($background, $background-hover) {
+  @include table-content-background($background, $background-hover);
+}
+
+@mixin card-background-with-related($background, $background-hover) {
+  @include card-background($background, $background-hover);
+
+  .container {
+    .content {
+      .columns {
+        .column {
+          &.status {
+            @include card-status-column($background-hover);
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin card-columns() {
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+
+@mixin card-column() {
+  @include table-content-column($card-column-margin);
+}
+
+// Columns styles
+
+@mixin card-status-column($background) {
+  @include table-content-status-column($background);
+}
+
+@mixin card-select-column($border-color: $color-default) {
+  @include table-content-select-column($border-color);
+}
+
+@mixin card-actions-wrapper-column($border-color: $color-default) {
+  width: 100%;
+  position: relative;
+  margin: 0 0 0.5em;
+
+  .actions {
+    @include action-menu($color-0);
+
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .select {
+    @include card-select-column($color-0);
+  }
+}
+
+// End Columns styles

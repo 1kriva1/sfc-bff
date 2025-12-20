@@ -1,6 +1,6 @@
 import { Component, HostBinding, HostListener, OnInit } from "@angular/core";
-import { any, Position } from "ngx-sfc-common";
-import { AvatarBadgePosition, getProgressColorDefaultFunc, ITagModel } from "ngx-sfc-components";
+import { any, Position, ITagModel } from "ngx-sfc-common";
+import { AvatarBadgePosition, getProgressColorDefaultFunc  } from "ngx-sfc-components";
 import { getEnum} from '@core/utils';
 import { PlayerCardSide } from "./player-card-side.enum";
 import { IPlayerCardModel } from "./player-card.model";

@@ -1,9 +1,11 @@
 import { mapPaginationModel } from "@core/mappers";
 import { IFindTeamsRequest } from "@share/services/team/general/models/find/find-teams.request";
-import { empty, IPaginationModel, ISortingModel } from "ngx-sfc-common";
+import { empty, IPaginationModel, ISortingModel, nameof } from "ngx-sfc-common";
 import { ITeamSearchFilterModel } from "./team-search-filter.model";
 import { ISortingModel as ISortingRequestModel } from "@core/models";
 import { toEnglishLocaleTimeString } from "@core/utils";
+import { IFindTeamsGeneralProfileFilterModel } from "@share/services";
+import { TeamSearchTableColumn } from "../table/team-search-table-column.enum";
 
 export function mapFindTeamsRequest(
     model: ITeamSearchFilterModel,
@@ -32,12 +34,15 @@ export function mapFindTeamsRequest(
                 Inventary: {
                     Shirts: model.inventary?.shirts
                 }
-            }
+            },
+            Statuses: model.general.statuses
         }
     }
 
     function _mapSorting(sorting: ISortingModel | empty): ISortingRequestModel[] {
         switch (sorting?.id) {
+            case TeamSearchTableColumn.Information:
+                return [{ Name: nameof<IFindTeamsGeneralProfileFilterModel>('Name'), Direction: sorting.direction }]
             default:
                 return [];
         }

@@ -17,7 +17,8 @@ import {
     TeamEditPlayersSquadComponent, TeamEditSchemeRowComponent, TeamEditSchemesComponent,
     TeamEditSquadProgressComponent, TeamFinancialProfileEditComponent, TeamGeneralProfileEditComponent,
     TeamInformationProgressComponent, TeamMainEditComponent, TeamPlayersPreviewCardItemComponent,
-    TeamPlayersPreviewComponent, TeamPlayersPreviewListItemComponent, TeamProfileEditComponent
+    TeamPlayersPreviewComponent, TeamPlayersPreviewListItemComponent, TeamProfileEditComponent,
+    TeamSearchPageComponent
 } from "./parts/general";
 import {
     TeamPlayerViewGeneralProfileComponent, TeamPlayerViewMainComponent, TeamPlayerViewPageComponent,
@@ -56,6 +57,7 @@ import {
         TeamEditPlayerRequestRowComponent,
         TeamEditSchemesComponent,
         TeamEditSchemeRowComponent,
+        TeamSearchPageComponent,
         // player
         TeamPlayerViewPageComponent,
         TeamPlayerViewMainComponent,

@@ -10,9 +10,19 @@
       .columns {
         .column {
           &.status {
-            @include row-column-status($background-hover);
+            @include row-status-column($background-hover);
           }
         }
+      }
+    }
+  }
+}
+
+@mixin row-column-team-info($color: $color-0) {
+  sfc-team-info {
+    ::ng-deep > .container .content {
+      > .info {
+        color: $color;
       }
     }
   }
@@ -32,7 +42,7 @@
           @include row-column;
 
           &.select {
-            @include row-column-checkmark-select($color-dark);
+            @include row-select-column($color-dark);
           }
 
           &.team {
@@ -40,7 +50,7 @@
           }
 
           &.description {
-            @include row-column-description;
+            @include row-description-column;
           }
         }
       }
