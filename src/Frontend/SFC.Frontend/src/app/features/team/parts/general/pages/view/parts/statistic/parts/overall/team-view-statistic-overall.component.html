@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="content">
+        <div class="parts">
+            <div class="part">
+                <div class="part-content" *ngIf="viewModel$ | async as viewModel">
+                    <div class="panels">
+                        <sfc-info-panel *ngFor="let model of viewModel.panels" [model]="model"></sfc-info-panel>
+                    </div>
+
+                    <div class="charts">
+                        <sfc-panel *ngIf="gamesChartData$ | async as gamesChartData" class="games"
+                            [label]="Localization.PANEL.GAMES.LABEL"
+                            [description]="Localization.PANEL.GAMES.DESCRIPTION" [icon]="faGamepad"
+                            [tooltip]="Localization.PANEL.GAMES.TOOLTIP">
+                            <div class="panel-content">
+                                <sfc-chart [theme]="themeService.theme" [type]="'line'" [data]="gamesChartData"
+                                    [options]="gamesChartOptions" [chartOptions]="DEFAULT_CHART_OPTIONS">
+                                </sfc-chart>
+                                <p>{{Localization.CHART.GAMES.DESCRIPTION}}</p>
+                            </div>
+                        </sfc-panel>
+
+                        <sfc-panel [label]="Localization.PANEL.RESULTS.LABEL"
+                            [description]="Localization.PANEL.RESULTS.DESCRIPTION" [icon]="faTrophy"
+                            [tooltip]="Localization.PANEL.RESULTS.TOOLTIP">
+                            <div class="panel-content">
+                                <sfc-chart [theme]="themeService.theme" [type]="'doughnut'"
+                                    [data]="viewModel.resultsChartData" [options]="resultsChartOptions"
+                                    [chartOptions]="DEFAULT_CHART_OPTIONS">
+                                </sfc-chart>
+                                <p>{{Localization.CHART.RESULTS.DESCRIPTION}}</p>
+                            </div>
+                        </sfc-panel>
+
+                        <sfc-panel [label]="Localization.PANEL.ACTIVITIES.LABEL"
+                            [description]="Localization.PANEL.ACTIVITIES.DESCRIPTION" [icon]="faLocationCrosshairs"
+                            [tooltip]="Localization.PANEL.ACTIVITIES.TOOLTIP">
+                            <div class="panel-content">
+                                <sfc-chart [theme]="themeService.theme" [type]="'polarArea'"
+                                    [data]="viewModel.activitiesChartData" [options]="activitiesChartOptions"
+                                    [chartOptions]="DEFAULT_CHART_OPTIONS">
+                                </sfc-chart>
+                                <p>{{Localization.CHART.ACTIVITIES.DESCRIPTION}}</p>
+                            </div>
+                        </sfc-panel>
+
+                        <sfc-panel [label]="Localization.PANEL.FOULS.LABEL"
+                            [description]="Localization.PANEL.FOULS.DESCRIPTION" [icon]="faBan"
+                            [tooltip]="Localization.PANEL.FOULS.TOOLTIP">
+                            <div class="panel-content">
+                                <sfc-chart [theme]="themeService.theme" [type]="'pie'" [data]="viewModel.foulsChartData"
+                                    [options]="foulsChartOptions" [chartOptions]="DEFAULT_CHART_OPTIONS">
+                                </sfc-chart>
+                                <p>{{Localization.CHART.FOULS.DESCRIPTION}}</p>
+                            </div>
+                        </sfc-panel>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

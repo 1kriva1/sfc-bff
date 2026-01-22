@@ -1,0 +1,1 @@
+export { TeamViewPlayersComponent } from './team-view-players.component';

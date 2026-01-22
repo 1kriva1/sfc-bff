@@ -1,3 +1,2 @@
-export {
-    buildViewTeamAction
-} from './team-action.utils';
+export * from './general';
+export * from './player';

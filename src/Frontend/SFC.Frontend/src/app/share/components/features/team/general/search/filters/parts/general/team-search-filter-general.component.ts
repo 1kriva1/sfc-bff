@@ -3,8 +3,8 @@ import { ControlContainer, FormBuilder, FormGroupDirective } from "@angular/form
 import { IForm } from "@core/types";
 import { Direction } from "ngx-sfc-common";
 import { IBubbleModel } from "ngx-sfc-inputs";
-import { TeamSearchFlterGeneralConstants } from "./team-search-filter-general.constants";
-import { TeamSearchFlterGeneralLocalization } from "./team-search-filter-general.localization";
+import { TeamSearchFilterGeneralConstants } from "./team-search-filter-general.constants";
+import { TeamSearchFilterGeneralLocalization } from "./team-search-filter-general.localization";
 import { TeamSearchFilterPart } from "../../team-search-filter-part.enum";
 import { ITeamSearchFilterGeneralModel } from "./team-search-filter-general.model";
 import { ValidationConstants } from "@share/constants";
@@ -15,7 +15,7 @@ import { StorageService } from "@core/services";
 import { CoreConstants } from "@core/constants";
 import { InputsLocalization } from "@share/localization/inputs.localization";
 import { EnumService } from "@share/services";
-import { buildTeamSearchFilterGeneralFormGroup } from "./team-search-filter-general.utils";
+import { buildTeamSearchFilterGeneralFormControls } from "./team-search-filter-general.utils";
 
 @Component({
     selector: 'sfc-team-search-filter-general',
@@ -35,8 +35,8 @@ export class TeamSearchFilterGeneralComponent implements OnInit {
     ShareLocalization = ShareLocalization;
 
     // component
-    Localization = TeamSearchFlterGeneralLocalization;
-    Constants = TeamSearchFlterGeneralConstants;
+    Localization = TeamSearchFilterGeneralLocalization;
+    Constants = TeamSearchFilterGeneralConstants;
     TeamSearchFilterPart = TeamSearchFilterPart;
 
     public weekDays: IBubbleModel[];
@@ -61,7 +61,7 @@ export class TeamSearchFilterGeneralComponent implements OnInit {
     }
 
     private buildFormGroup(): void {
-        const controls: IForm<ITeamSearchFilterGeneralModel> = buildTeamSearchFilterGeneralFormGroup(this.formBuilder);
+        const controls: IForm<ITeamSearchFilterGeneralModel> = buildTeamSearchFilterGeneralFormControls(this.formBuilder);
         this.parent.form.addControl(TeamSearchFilterPart.General, this.formBuilder.group(controls));
     }
 }

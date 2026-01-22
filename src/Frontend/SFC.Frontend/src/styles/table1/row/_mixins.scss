@@ -44,16 +44,30 @@
 
 // Columns styles
 
+@mixin row-sequence-column() {
+  justify-content: flex-end;
+}
+
 @mixin row-enum-column($color: $color-0) {
   @include center-column;
 
   color: $color;
-  font-size: 0.8em;
+  font-size: 1em;
   font-weight: bold;
   user-select: none;
   text-align: center;
   padding: 0.5em 0;
   text-transform: capitalize;
+
+  sfc-enum {
+    ::ng-deep > .container {
+      .content {
+        span {
+          color: $color;
+        }
+      }
+    }
+  }
 
   sfc-icon {
     font-size: 2em;

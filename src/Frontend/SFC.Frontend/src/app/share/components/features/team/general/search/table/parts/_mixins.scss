@@ -1,9 +1,0 @@
-@mixin team-information-column($color: $color-0) {
-  sfc-team-info {
-    ::ng-deep > .container .content {
-      > .info {
-        color: $color;
-      }
-    }
-  }
-}

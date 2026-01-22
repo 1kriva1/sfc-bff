@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -13,11 +13,11 @@ import { AvatarInputTeamPlayersModalBodyLocalization } from './avatar-input-team
 import { AvatarInputTeamPlayersModalBodyTableConstants } from './parts/table/avatar-input-team-players-modal-body-table.constants';
 import { IAvatarInputTeamPlayersModalBodyEventModel } from './avatar-input-team-players-modal-body-event.model';
 import { SearchComponent } from '@share/components/features/base/search/search.component';
-import { IFindTeamPlayersFilterModel } from '@share/services/team/player/models/find/filters/find-team-players-filter.model';
-import { mapFindTeamPlayersRequest } from '@share/components/features/team/players/search/filters/team-player-search-filter.mapper';
-import { ITeamPlayersFilterModel } from '@share/components/features/team/players/search/filters/team-player-search-filter.model';
+import { IFindTeamPlayersFilterModel } from '@share/services/team/player/general/models/find/filters/find-team-players-filter.model';
+import { mapIFindTeamPlayersRequest } from '@share/components/features/team/players/search/filters/team-player-search-filter.mapper';
+import { ITeamPlayersFilterModel } from '@share/components/features/team/players/search/filters/models/team-player-search-filter.model';
 import { ITeamPlayerSearchTableModel } from '@share/components/features/team/players/search/table/team-player-search-table.model';
-import { ITeamPlayerModel } from '@share/services/team/player/models/common/team-player.model';
+import { ITeamPlayerModel } from '@share/services/team/player/general/models/common/team-player.model';
 import { mapTeamPlayerSearchTableModel } from '@share/components/features/team/players/search/table/team-player-search-table.mapper';
 import { IBubbleModel } from 'ngx-sfc-inputs';
 import { mapBubbles } from '@share/utils/inputs';
@@ -86,7 +86,7 @@ export class AvatarInputTeamPlayersModalBodyComponent
 
     buildRequest(model: ITeamPlayersFilterModel, pagination: IPaginationModel, sorting: ISortingModel | empty)
         : BasePaginationRequest<IFindTeamPlayersFilterModel> {
-        return mapFindTeamPlayersRequest(model, this.excludePlayerIds, pagination, sorting);
+        return mapIFindTeamPlayersRequest(model, this.excludePlayerIds, pagination, sorting);
     }
 
     search(request: BasePaginationRequest<IFindTeamPlayersFilterModel>): Observable<HttpResponse<BaseListResponse<ITeamPlayerModel>>> {

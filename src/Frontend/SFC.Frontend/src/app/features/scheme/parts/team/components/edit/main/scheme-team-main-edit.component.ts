@@ -122,11 +122,11 @@ export class SchemeTeamMainEditComponent<TFormValue extends ISchemeTeamEditFormM
         ]).pipe(
             map(([formation, players]) => {
                 return {
-                    avatar: formation.image,
+                    formation: formation.key,
                     raiting: getPlayersRaiting(players.map(formationPlayer => formationPlayer.player!))
                 }
             })
-        );
+        ); 
 
         this.stars$ = this.schemeTeamFormationEditFieldService.selectedPlayers$.pipe(
             map((formationPlayers: ISchemeTeamFormationPlayerModel[]) =>

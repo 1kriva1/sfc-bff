@@ -42,6 +42,12 @@ export class AvailabilityListComponent {
     @Input()
     edit: boolean = true;
 
+    @Input()
+    delimeter: boolean = true;
+
+    @Input()
+    noData: boolean = false;
+
     /* End Inputs */
 
     /* Outputs */

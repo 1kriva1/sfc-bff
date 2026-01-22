@@ -1,11 +1,11 @@
 import { convertFileFromBase64StringAsync, convertFileToBase64StringAsync } from "@core/utils";
 import { IAvailabilityEditFormModel } from "@share/components/availability-edit/availability-edit-form.model";
 import { mapPlayerTableModel } from "@share/components/features/player/search/mappers";
-import { ITeamPlayerModel } from "@share/models/team/team-player.model";
+import { ITeamPlayerModel } from "@share/models/team/player/team-player.model";
 import { EnumService, IUpdateTeamRequest } from "@share/services";
 import { IAvailabilityModel } from "@share/services/common/availability/availability.model";
-import { ITeamModel } from "@share/services/team/general/models/common/team.model";
-import { ITeamPlayerModel as ITeamPlayerServiceModel } from "@share/services/team/player/models/common/team-player.model";
+import { ITeamModel } from "@share/services/team/general/general/models/common/team.model";
+import { ITeamPlayerModel as ITeamPlayerServiceModel } from "@share/services/team/player/general/models/common/team-player.model";
 import { mapAvailabilityEditFormModel, mapAvailabilityModel } from "@share/utils/http";
 import { TeamEditPageFormModel } from "./team-edit-page-form.model";
 

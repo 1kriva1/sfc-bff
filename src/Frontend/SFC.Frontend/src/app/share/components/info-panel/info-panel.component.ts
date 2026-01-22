@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { faInfo } from '@fortawesome/free-solid-svg-icons';
-import { CommonConstants } from 'ngx-sfc-common';
+import { Color, CommonConstants } from 'ngx-sfc-common';
 import { IInfoPanelModel } from './info-panel.model';
 
 @Component({
@@ -10,12 +10,17 @@ import { IInfoPanelModel } from './info-panel.model';
 })
 export class InfoPanelComponent {
 
+  /* Inputs */
+
   @Input()
   model: IInfoPanelModel = {
-    background: '#fff',
+    background: Color.White_0,
     description: CommonConstants.EMPTY_STRING,
     icon: faInfo,
-    iconBackground: '#e6e6e6',
-    title: CommonConstants.EMPTY_STRING
+    iconBackground: Color.White_1,
+    title: CommonConstants.EMPTY_STRING,
+    value: 0
   };
+
+  /* End Inputs */
 }

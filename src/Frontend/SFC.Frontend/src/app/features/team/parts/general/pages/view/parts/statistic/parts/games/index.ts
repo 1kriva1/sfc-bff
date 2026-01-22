@@ -1,0 +1,1 @@
+export { TeamViewStatisticGamesComponent } from './team-view-statistic-games.component'

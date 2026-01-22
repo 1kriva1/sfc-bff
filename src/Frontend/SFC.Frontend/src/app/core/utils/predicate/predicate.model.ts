@@ -10,6 +10,7 @@ export interface IPredicateModel<TFiltersFormModel> {
 
 export interface IPredicateMetadataModel {
     key: string;
+    path: string;
     value: any;
     mapValue: any;
     label: string;
@@ -24,4 +25,11 @@ export interface IPredicateMapModel {
     image?: string;
     icon?: IconDefinition;
     debounce?: number | empty;
+}
+
+export interface IPredicateMapParametersModel {
+    key: string;
+    path: string;
+    value: any; 
+    enums?: any | empty;
 }

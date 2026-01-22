@@ -1,0 +1,58 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+@import "components1";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      .parts {
+        @include wrap-row;
+
+        .part {
+          @include wrap-column;
+
+          .part-content {
+            @include wrap-row;
+
+            .panels {
+              display: flex;
+              justify-content: space-evenly;
+              flex-wrap: wrap;
+
+              sfc-info-panel {
+                margin: 0.5em;
+                flex-grow: 1;
+              }
+            }
+
+            .charts {
+              @include wrap-row;
+              @include panel;
+
+              sfc-panel {
+                width: 25em;
+
+                .panel-content {
+                  sfc-chart {
+                    display: inline-block;
+                    width: 100%;
+                  }
+
+                  p {
+                    @include text-center($color-7, 0.8em);
+                  }
+                }
+
+                &.games {
+                  flex: 1 1 calc(100% - 0.8em);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

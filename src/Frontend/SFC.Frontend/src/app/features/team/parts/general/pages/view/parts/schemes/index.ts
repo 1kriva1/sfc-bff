@@ -1,0 +1,1 @@
+export { TeamViewSchemesComponent } from './team-view-schemes.component';

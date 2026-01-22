@@ -1,6 +1,16 @@
 export class PlayersFiltersLocalization {
     static get BUTTON(): string { return $localize`:@@share.components.features.players.search.filters.button.text:Show all available filters`; }
 
+    static get INPUT() {
+        return {
+            NAME: {
+                LABEL: $localize`:@@share.components.features.player.search.filters.input.name.label:Name`,
+                PLACEHOLDER: $localize`:@@share.components.features.player.search.filters.input.name.placeholder:Type name...`,
+                HELPER_TEXT: $localize`:@@share.components.features.player.search.filters.input.name.helper-text:Search by player name`
+            }
+        };
+    }
+
     static get MODAL() {
         return {
             HEADER: {

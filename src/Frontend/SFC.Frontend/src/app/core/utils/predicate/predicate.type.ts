@@ -1,4 +1,3 @@
-import { empty } from "ngx-sfc-common";
-import { IPredicateMapModel } from "./predicate.model";
+import { IPredicateMapModel, IPredicateMapParametersModel } from "./predicate.model";
 
-export type MapPredicateModelFunction = (key: string, value: any, enums?: any | empty) => IPredicateMapModel;
+export type MapPredicateModelFunction = (parameters: IPredicateMapParametersModel) => IPredicateMapModel;

@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="content">
+        <div class="parts">
+            <div class="part">
+                <div class="part-content">
+                    <form [formGroup]="predicateForm" autocomplete="off">
+                        <div class="filters">
+                            <sfc-collapse-expand-container [expand]="true" [labelExpand]="Localization.FILTERS.GENERAL"
+                                [labelCollapse]="Localization.FILTERS.GENERAL" [delimeter]="true">
+                                <div class="name">
+                                    <sfc-text-input id="name" formControlName="name"
+                                        [label]="SchemeTeamSearchFilterLocalization.INPUT.NAME.LABEL"
+                                        [placeholder]="SchemeTeamSearchFilterLocalization.INPUT.NAME.PLACEHOLDER"
+                                        [bordered]="true"
+                                        [helperText]="SchemeTeamSearchFilterLocalization.INPUT.NAME.HELPER_TEXT">
+                                    </sfc-text-input>
+                                </div>
+
+                                <sfc-scheme-team-search-filter-general></sfc-scheme-team-search-filter-general>
+                            </sfc-collapse-expand-container>
+
+                            <sfc-collapse-expand-container [expand]="true"
+                                [labelExpand]="Localization.FILTERS.FORMATION"
+                                [labelCollapse]="Localization.FILTERS.FORMATION" [delimeter]="true">
+                                <sfc-scheme-team-search-filter-formation></sfc-scheme-team-search-filter-formation>
+                            </sfc-collapse-expand-container>
+                        </div>
+
+                        <div class="result">
+                            <div class="filters-preview">
+                                <sfc-filter-tags [metadata$]="metadata$" [form]="predicateForm"></sfc-filter-tags>
+                            </div>
+
+                            <div class="table">
+                                <sfc-table [columns]="columns" [predicate$]="predicate$" [loader]="loader"
+                                    [pagination]="TableConstants.PAGINATION" [position]="Position.Center"
+                                    [columnsToggle]="true" [showTotal]="true" [showLoading]="showLoading"
+                                    [paginationCount]="TableConstants.PAGINATION_COUNT" [paginationLimits]="true"
+                                    [showColumnsLabel]="TableLocalization.TABLE.COLUMNS_SHOW_LABEL"
+                                    [hideColumnsLabel]="TableLocalization.TABLE.COLUMNS_HIDE_LABEL"
+                                    [totalLabel]="TableLocalization.TABLE.TOTAL_LABEL"
+                                    [dataListLabel]="TableLocalization.TABLE.DATA_LIST_LABEL"
+                                    [dataCardsLabel]="TableLocalization.TABLE.DATA_CARDS_LABEL"
+                                    [notFoundLabel]="TableLocalization.TABLE.NOT_FOUND_LABEL">
+                                    <ng-template [sfcTemplateReference]="TableTemplate.Row" let-row>
+                                        <sfc-scheme-team-search-table-row [model]="row.model" [columns]="row.columns"
+                                            [sfcComponentSize] [customSize]="0.8">
+                                        </sfc-scheme-team-search-table-row>
+                                    </ng-template>
+
+                                    <ng-template [sfcTemplateReference]="TableTemplate.Card" let-card>
+                                        <sfc-scheme-team-search-table-card [model]="card.model" [columns]="card.columns"
+                                            [sfcComponentSize] [customSize]="0.8">
+                                        </sfc-scheme-team-search-table-card>
+                                    </ng-template>
+                                </sfc-table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

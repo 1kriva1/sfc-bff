@@ -34,7 +34,7 @@ describe('Share.Component:StatsSkills', () => {
     });
 
     fit('Should exist 3 type of skills', () => {
-        component.value = STATS;
+        component.values = [STATS];
         component.ngOnChanges({});
         fixture.detectChanges();
 
@@ -42,7 +42,7 @@ describe('Share.Component:StatsSkills', () => {
     });
 
     fit('Should physical type has appropriate attributes', () => {
-        component.value = STATS;
+        component.values = [STATS];
         component.ngOnChanges({});
         fixture.detectChanges();
 
@@ -58,7 +58,7 @@ describe('Share.Component:StatsSkills', () => {
     });
 
     fit('Should mental type has appropriate attributes', () => {
-        component.value = STATS;
+        component.values = [STATS];
         component.ngOnChanges({});
         fixture.detectChanges();
 
@@ -74,7 +74,7 @@ describe('Share.Component:StatsSkills', () => {
     });
 
     fit('Should skill type has appropriate attributes', () => {
-        component.value = STATS;
+        component.values = [STATS];
         component.ngOnChanges({});
         fixture.detectChanges();
 

@@ -1,28 +1,26 @@
 <div class="container">
-    <div class="element">
-        <sfc-progress-circle [progress]="progress"></sfc-progress-circle>
+    <div class="content">
+        <div class="parts">
+            <div class="part">
+                <sfc-progress-circle [progress]="rating"></sfc-progress-circle>
 
-        <div class="label">
-            <h4 i18n="@@feature.profile.edit.page.total-rating-percentage.label">Total rating
-                (percentage)</h4>
-            <span i18n="@@feature.profile.edit.page.total-rating-percentage.description">Average
-                value from
-                your stats</span>
-        </div>
-    </div>
+                <div class="label">
+                    <h4>{{Localization.AVERAGE.LABEL}}</h4>
+                    <span>{{averageDescription}}</span>
+                </div>
+            </div>
 
-    <sfc-delimeter *ngIf="delimeter" [direction]="Direction.Vertical"></sfc-delimeter>
+            <sfc-delimeter *ngIf="delimeter" [direction]="Direction.Vertical"></sfc-delimeter>
 
-    <div class="element">
-        <sfc-progress-circle [progress]="value" [total]="total" [getColor]="getProgressColorDynamicallyFunc">
-        </sfc-progress-circle>
+            <div class="part">
+                <sfc-progress-circle [progress]="value" [total]="total" [getColor]="getProgressColorDynamicallyFunc">
+                </sfc-progress-circle>
 
-        <div class="label">
-            <h4 i18n="@@feature.profile.edit.page.total-rating-absolute.label">Total rating
-                (absolute value)</h4>
-            <span i18n="@@feature.profile.edit.page.total-rating-absolute.description">Sum of
-                your
-                all stats</span>
+                <div class="label">
+                    <h4>{{Localization.TOTAL.LABEL}}</h4>
+                    <span>{{totalDescription}}</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>

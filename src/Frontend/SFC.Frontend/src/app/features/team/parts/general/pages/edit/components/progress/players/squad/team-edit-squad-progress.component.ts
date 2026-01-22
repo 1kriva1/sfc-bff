@@ -13,7 +13,7 @@ import { IEnumModel } from '@core/types';
 import { CoreLocalization } from '@core/localization';
 import { ShareConstants } from '@share/constants';
 import { TeamEditSquadProgressPlayersLimit } from './team-edit-squad-progress-players-limit.enum';
-import { ITeamPlayerModel } from '@share/models/team/team-player.model';
+import { ITeamPlayerModel } from '@share/models/team/player/team-player.model';
 
 @Component({
     selector: 'sfc-team-edit-squad-progress',

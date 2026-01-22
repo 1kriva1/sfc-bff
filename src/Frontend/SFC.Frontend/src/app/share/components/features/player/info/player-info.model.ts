@@ -1,4 +1,4 @@
-import { IValueModel } from "@core/types";
+import { IEnumModel } from "@core/types";
 import { empty } from "ngx-sfc-common";
 
 export interface IPlayerInfoModel {
@@ -7,6 +7,6 @@ export interface IPlayerInfoModel {
     firstName?: string | empty;
     lastName?: string | empty;
     city?: string | empty;
-    position?: IValueModel<number> | empty;
+    position?: IEnumModel<number> | empty;
     age?: number | empty;
 }

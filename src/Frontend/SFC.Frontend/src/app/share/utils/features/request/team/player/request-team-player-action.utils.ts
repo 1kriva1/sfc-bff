@@ -9,7 +9,7 @@ export function buildRequestTeamPlayerAction(team: ITeamSearchTableModel, router
     return buildRedirectAction(
         $localize`:@@share.utils.features.request.action.create:Create team player request`,
         faPlus,
-        true,
+        false,
         router,
         [`${RequestRoute.Requests}/${TeamRoute.Teams}/${team.id}/${PlayerRoute.Players}/1`],
         team

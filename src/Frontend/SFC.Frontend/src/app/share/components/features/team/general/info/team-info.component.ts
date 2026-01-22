@@ -1,13 +1,18 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { CoreConstants } from '@core/constants/core.constants';
+import { IEnumModel } from '@core/types';
+import { getEnum } from '@core/utils';
+import { EnumService } from '@share/services';
+import { getTags } from '@share/utils';
 import { getStars } from '@share/utils/stats';
-import { CommonConstants, ComponentSize, Direction, isDefined } from 'ngx-sfc-common';
+import { CommonConstants, ComponentSize, Direction, empty, isDefined, ITagModel, Position } from 'ngx-sfc-common';
 import {
   AvatarBadgePosition,
   getProgressColorDefaultFunc,
   IAvatarBadgeModel,
   IAvatarDataModel,
-  IAvatarProgressModel
+  IAvatarProgressModel,
+  IDropdownMenuItemModel
 } from 'ngx-sfc-components';
 import { TeamInfoConstants } from './team-info.constants';
 import { ITeamInfoModel } from './team-info.model';
@@ -19,7 +24,11 @@ import { ITeamInfoModel } from './team-info.model';
 })
 export class TeamInfoComponent implements OnInit {
 
+  // ngx-sfc-common
   ComponentSize = ComponentSize;
+  Position = Position;
+
+  /* Inputs */
 
   @Input()
   radius: number = TeamInfoConstants.LOGO.RADIUS;
@@ -40,15 +49,36 @@ export class TeamInfoComponent implements OnInit {
   @HostBinding('class')
   direction: Direction = Direction.Horizontal;
 
+  /* End Inputs */
+
+  /* Properties */
+
+  @HostBinding('class')
+  private get _status(): string | empty { return this.status ? `${TeamInfoConstants.STATUS_CLASS_PART}-${this.status?.key}` : null };
+
+  /* End Properties */
+
+  /* Fields */
+
   public avatarModel!: IAvatarDataModel;
 
   public avatarProgressModel!: IAvatarProgressModel;
 
-  public avatarBadges!: IAvatarBadgeModel[];
+  public avatarBadges: IAvatarBadgeModel[] = [];
 
   public stars: number = 0;
 
   public rating: number = 0;
+
+  public tags: ITagModel[] = [];
+
+  public status: IEnumModel<number> | empty = null;
+
+  public actions: IDropdownMenuItemModel[] = [];
+
+  /* End Fields */
+
+  constructor(private enumService: EnumService) { }
 
   ngOnInit(): void {
     this.rating = this.model.raiting || 0;
@@ -66,5 +96,13 @@ export class TeamInfoComponent implements OnInit {
     }
 
     this.stars = getStars(this.rating, CommonConstants.FULL_PERCENTAGE);
+
+    this.tags = getTags(this.model.tags);
+
+    if (isDefined(this.model.status)) {
+      this.status = getEnum(this.model.status!, this.enumService.enums.teamStatuses);
+    }
+
+    this.actions = this.model.actions || [];
   }
 }

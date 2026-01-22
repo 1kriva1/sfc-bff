@@ -1,4 +1,4 @@
-import { ITeamModel } from "@share/services/team/general/models/common/team.model";
+import { ITeamModel } from "@share/services/team/general/general/models/common/team.model";
 import { ITeamSchemeFormationModel } from "./team-scheme-formation.model";
 import { ITeamSchemeProfileModel } from "./team-scheme-profile.model";
 

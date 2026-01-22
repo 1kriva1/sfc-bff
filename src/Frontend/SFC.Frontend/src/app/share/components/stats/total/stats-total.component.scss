@@ -1,43 +1,49 @@
-@use "ngx-sfc-common/styles/index" as *;
-@import "mixins";
+@import "ngx-sfc-common/styles";
+@import "common";
 
 :host {
   .container {
-    @include center-wrap;
+    .content {
+      .parts {
+        @include center-wrap;
 
-    height: 100%;
+        height: 100%;
 
-    .element {
-      @include center;
+        .part {
+          @include center-column;
 
-      flex-direction: column;
-      padding: 1em 0.5em;
+          padding: 1em 0.5em;
 
-      .label {
-        text-align: center;
-        padding: 0.3em 0;
+          .label {
+            max-width: 80%;
+            text-align: center;
+            padding: 0.3em 0;
+            margin-top: 0.5em;
 
-        h4 {
-          @include theme-color($color-default, $color-0);
+            h4 {
+              @include theme-color($color-default, $color-0);
 
-          margin: 0;
+              font-size: 1.2em;
+              margin: 0;
+            }
+
+            span {
+              @include theme-color($color-7, $color-5);
+
+              font-size: 0.8em;
+              padding-top: 0.5em;
+            }
+          }
+
+          sfc-progress-circle {
+            display: inline-block;
+          }
         }
 
-        span {
-          @include theme-color($color-7, $color-5);
-
-          font-size: 0.7em;
-          padding-top: 0.5em;
+        sfc-delimeter {
+          height: 7em;
         }
       }
-
-      sfc-progress-circle {
-        display: inline-block;
-      }
-    }
-
-    sfc-delimeter {
-      height: 7em;
     }
   }
 }

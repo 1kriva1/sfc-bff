@@ -1,13 +1,15 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { CoreConstants } from '@core/constants/core.constants';
+import { EnumService, IFormationEnumModel } from '@share/services';
+import { getFormationEnum } from '@share/utils';
 import { getStars } from '@share/utils/stats';
-import { CommonConstants, ComponentSize, Direction, isDefined } from 'ngx-sfc-common';
+import { CommonConstants, ComponentSize, Direction, Position } from 'ngx-sfc-common';
 import {
   AvatarBadgePosition,
   getProgressColorDefaultFunc,
   IAvatarBadgeModel,
   IAvatarDataModel,
-  IAvatarProgressModel
+  IAvatarProgressModel,
+  IDropdownMenuItemModel
 } from 'ngx-sfc-components';
 import { SchemeInfoConstants } from './scheme-info.constants';
 import { ISchemeInfoModel } from './scheme-info.model';
@@ -17,10 +19,13 @@ import { ISchemeInfoModel } from './scheme-info.model';
   templateUrl: './scheme-info.component.html',
   styleUrls: ['./scheme-info.component.scss']
 })
-export class SchemeInfoComponent {
+export class SchemeInfoComponent implements OnInit {
 
   // ngx-sfc-common
   ComponentSize = ComponentSize;
+  Position = Position;
+
+  /* Inputs */
 
   @Input()
   radius: number = SchemeInfoConstants.AVATAR.RADIUS;
@@ -41,25 +46,45 @@ export class SchemeInfoComponent {
   @HostBinding('class')
   direction: Direction = Direction.Horizontal;
 
-  public get avatarModel(): IAvatarDataModel {
-    return {
-      image: this.model.avatar || CoreConstants.DEFAULT_AVATAR_PATH
+  /* End Inputs */
+
+  /* Fields */
+
+  public avatarModel!: IAvatarDataModel;
+
+  public avatarProgressModel!: IAvatarProgressModel;
+
+  public avatarBadges: IAvatarBadgeModel[] = [];
+
+  public formation!: IFormationEnumModel;
+
+  public stars: number = 0;
+
+  public rating: number = 0;
+
+  public actions: IDropdownMenuItemModel[] = [];
+
+  /* End Fields */
+
+  constructor(private enumService: EnumService) { }
+
+  ngOnInit(): void {
+    this.rating = this.model.raiting || 0;
+
+    this.formation = getFormationEnum(this.model.formation, this.enumService.enums.formations)!;
+
+    this.avatarModel = { image: this.formation.image }
+
+    this.avatarProgressModel = {
+      filledColor: getProgressColorDefaultFunc(this.rating)
+    };
+
+    if (this.rating > 0) {
+      this.avatarBadges = [{ position: AvatarBadgePosition.RightBottom, label: `${this.rating}` }];
     }
-  }
 
-  public get avatarProgressModel(): IAvatarProgressModel {
-    return {
-      filledColor: getProgressColorDefaultFunc(this.rating),
-    }
-  }
+    this.stars = getStars(this.rating, CommonConstants.FULL_PERCENTAGE);
 
-  public get avatarBadges(): IAvatarBadgeModel[] {
-    return [{ position: AvatarBadgePosition.RightBottom, label: `${this.model.raiting}` }];
+    this.actions = this.model.actions || [];
   }
-
-  public get stars(): number {
-    return getStars(this.rating, CommonConstants.FULL_PERCENTAGE);
-  }
-
-  public get rating(): number { return this.model.raiting || 0; }
 }

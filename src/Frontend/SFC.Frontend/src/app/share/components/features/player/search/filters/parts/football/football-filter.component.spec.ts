@@ -1,6 +1,6 @@
 import { DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from "@angular/forms";
+import { ControlContainer, FormBuilder, FormGroupDirective, ReactiveFormsModule } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { EnumService } from "@share/services";
@@ -26,6 +26,7 @@ describe('Features.Player.Page:Search.Part.Filter:Football', () => {
             imports: [ReactiveFormsModule, NoopAnimationsModule, NgxSfcCommonModule, NgxSfcInputsModule, ShareModule],
             declarations: [FootballFilterComponent],
             providers: [
+                { provide: ControlContainer, useValue: formGroupDirective },
                 { provide: FormGroupDirective, useValue: formGroupDirective },
                 { provide: EnumService, useValue: ENUM_SERVICE }
             ]
@@ -59,8 +60,8 @@ describe('Features.Player.Page:Search.Part.Filter:Football', () => {
             expect((component as any).form.value)
                 .toEqual({
                     football: {
-                        height: { from: FootballFilterConstants.FROM_HEIGHT_DEFAULT, to: FootballFilterConstants.TO_HEIGHT_DEFAULT },
-                        weight: { from: FootballFilterConstants.FROM_WEIGHT_DEFAULT, to: FootballFilterConstants.TO_WEIGHT_DEFAULT },
+                        height: null,
+                        weight: null,
                         positions: null,
                         workingFoot: null,
                         gameStyles: null,
@@ -115,7 +116,6 @@ describe('Features.Player.Page:Search.Part.Filter:Football', () => {
                     expect(input.componentInstance.placeholder).toEqual(FootballFilterLocalization.INPUT.WORKING_FOOT.PLACEHOLDER);
                     expect(input.componentInstance.defaultItemLabel).toEqual(FootballFilterLocalization.INPUT.WORKING_FOOT.DEFAULT_ITEM_LABEL);
                     expect(input.componentInstance.multiple).toBeFalse();
-                    expect(input.componentInstance.showDefaultItem).toBeTrue();
                     expect(input.componentInstance.bordered).toBeTrue();
                     expect(input.componentInstance.data).toEqual(component.enumService.enums.workingFoots);
                 });

@@ -28,7 +28,9 @@ export class GeneralFilterLocalization {
             YEARS: {
                 LABEL: $localize`:@@feature.player.search.page.filter.general.input.years.label:Years range`,
                 HELPER_TEXT: $localize`:@@feature.player.search.page.filter.general.input.years.helper-text:Find players by age range`,
-                MULTIPLE_LABEL_PART_1: $localize`:@@core.from:From`,
+                FILTERS_FROM_LABEL: $localize`:@@share.components.features.player.search.filter.general.input.years.filters-from:Years from`,
+                FILTERS_TO_LABEL: $localize`:@@share.components.features.player.search.filter.general.input.years.filters-to:Years to`,
+                MULTIPLE_LABEL_PART_1: $localize`:@@core.From:From`,
                 MULTIPLE_LABEL_PART_2: $localize`:@@core.to:To`,
                 MULTIPLE_LABEL_PART_3: $localize`:@@core.years:years`
             },

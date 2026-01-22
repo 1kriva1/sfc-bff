@@ -13,6 +13,24 @@ export function buildPlaceholder(value: string): string {
     return `[${value}]`
 }
 
+export function buildPropertyPath(...keys: string[]): string {
+    return keys.join('.');
+}
+
+export function getPropertyPartByIndex(path: string, index: number = 0): string | empty {
+    const parts: string[] = path.split('.');
+
+    if (parts.length - 1 >= index) {
+        return parts[index];
+    }
+
+    return null;
+}
+
+export function removePropertyPart(path: string, part: string): string {
+    return path.slice(`${part}.`.length);
+}
+
 export function buildPreviewValue(value: string, placeholder: string): string {
     return isNullOrEmptyString(value) ? buildPlaceholder(placeholder) : value;
 }

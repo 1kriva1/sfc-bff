@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ITeamModel } from '@share/models/team/team.model';
+import { ITeamModel } from '@share/models/team/general/team.model';
 import { empty } from 'ngx-sfc-common';
 
 @Component({

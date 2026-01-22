@@ -1,6 +1,6 @@
 import { DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from "@angular/forms";
+import { ControlContainer, FormBuilder, FormGroupDirective, ReactiveFormsModule } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { Locale } from "@core/enums";
@@ -32,6 +32,7 @@ describe('Features.Player.Page:Search.Part.Filter:General', () => {
             imports: [ReactiveFormsModule, NoopAnimationsModule, NgxSfcCommonModule, NgxSfcInputsModule, ShareModule],
             declarations: [GeneralFilterComponent],
             providers: [
+                { provide: ControlContainer, useValue: formGroupDirective }, 
                 { provide: FormGroupDirective, useValue: formGroupDirective },
                 { provide: StorageService, useValue: storageServiceStub }
             ]
@@ -49,9 +50,8 @@ describe('Features.Player.Page:Search.Part.Filter:General', () => {
 
         fit('Should have main elements', () => {
             expect(fixture.nativeElement.querySelector('.container')).toBeTruthy();
-            expect(fixture.nativeElement.querySelectorAll('.row').length).toEqual(7);
-            expect(fixture.nativeElement.querySelector('.row.photo-and-free')).toBeTruthy();
-            expect(fixture.nativeElement.querySelectorAll('.column').length).toEqual(7);
+            expect(fixture.nativeElement.querySelectorAll('.row').length).toEqual(8);
+            expect(fixture.nativeElement.querySelectorAll('.column').length).toEqual(8);
         });
     });
 
@@ -70,7 +70,7 @@ describe('Features.Player.Page:Search.Part.Filter:General', () => {
                         tags: null,
                         freePlay: null,
                         hasPhoto: null,
-                        years: { from: GeneralFilterConstants.FROM_YEARS_DEFAULT, to: GeneralFilterConstants.TO_YEARS_DEFAULT },
+                        years: null,
                         availability: { days: null, from: null, to: null }
                     }
                 });
@@ -280,28 +280,6 @@ describe('Features.Player.Page:Search.Part.Filter:General', () => {
                     expect(additionalPositionInput.componentInstance.label).toEqual(GeneralFilterLocalization.INPUT.AVAILABLE_DAYS.LABEL);
                     expect(additionalPositionInput.componentInstance.helperText).toEqual(GeneralFilterLocalization.INPUT.AVAILABLE_DAYS.HELPER_TEXT);
                     expect(additionalPositionInput.componentInstance.items).toEqual(component.weekDays);
-                });
-            });
-
-            describe('Has photo', () => {
-                fit('Should have appropriate attributes', () => {
-                    const input: DebugElement = fixture.debugElement.query(By.css('.row.photo-and-free > .column > sfc-radio-input#has-photo'));
-
-                    expect(input.componentInstance.label).toEqual(GeneralFilterLocalization.INPUT.HAS_PHOTO.LABEL);
-                    expect(input.componentInstance.helperText).toEqual(GeneralFilterLocalization.INPUT.HAS_PHOTO.HELPER_TEXT);
-                    expect(input.componentInstance.items).toEqual(GeneralFilterConstants.HAS_PHOTO_RADIO_ITEMS);
-                    expect(input.componentInstance.direction).toEqual(Direction.Vertical);
-                });
-            });
-
-            describe('Free play', () => {
-                fit('Should have appropriate attributes', () => {
-                    const input: DebugElement = fixture.debugElement.query(By.css('.row.photo-and-free > .column > sfc-radio-input#free-play'));
-
-                    expect(input.componentInstance.label).toEqual(GeneralFilterLocalization.INPUT.FREE_PLAY.LABEL);
-                    expect(input.componentInstance.helperText).toEqual(GeneralFilterLocalization.INPUT.FREE_PLAY.HELPER_TEXT);
-                    expect(input.componentInstance.items).toEqual(GeneralFilterConstants.FREE_PLAY_RADIO_ITEMS);
-                    expect(input.componentInstance.direction).toEqual(Direction.Vertical);
                 });
             });
         });

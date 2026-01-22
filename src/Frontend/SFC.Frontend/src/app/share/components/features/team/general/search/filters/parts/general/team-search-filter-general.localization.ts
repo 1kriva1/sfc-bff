@@ -1,5 +1,5 @@
-export class TeamSearchFlterGeneralLocalization {
-    static get INPUT() {
+export class TeamSearchFilterGeneralLocalization {
+    static get INPUT() { 
         return {
             CITY: {
                 LABEL: $localize`:@@core.city:City`,

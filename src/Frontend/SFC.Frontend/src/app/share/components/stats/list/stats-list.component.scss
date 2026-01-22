@@ -1,0 +1,57 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+
+:host {
+  .container {
+    .content {
+      .stats {
+        display: flex;
+        flex-wrap: wrap;
+
+        .stat {
+          flex-grow: 1;
+          margin: 1em;
+          width: 10em;
+
+          .title {
+            @include center;
+
+            flex-direction: column;
+
+            h3 {
+              @include theme-value(color, $color-default, $color-dark);
+
+              text-transform: uppercase;
+              text-align: center;
+              margin-top: 0.5em;
+              font-size: 0.9em;
+            }
+
+            span {
+              font-weight: bold;
+              font-size: 1.8em;
+            }
+          }
+
+          .lines {
+            .line {
+              padding: 0.5em 0;
+
+              sfc-progress-line {
+                ::ng-deep > .container {
+                  .labels {
+                    span {
+                      &:last-child {
+                        font-size: 1.5em;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

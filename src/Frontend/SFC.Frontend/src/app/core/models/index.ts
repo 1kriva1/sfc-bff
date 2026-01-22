@@ -5,6 +5,8 @@ export { IResolverModel } from './resolver.model';
 export { IPageModel } from './page.model';
 export { ILimitModel } from './limit.model';
 export { IBackNavigationModel } from './back-navigation.model';
+export { IBuildActionParameters } from './build-action-parameters.model'
+export { IIdModel } from './id.model'
 // http
 export { BasePaginationRequest } from './http/base-pagination.request';
 export { BaseResponse } from './http/base.response';
@@ -16,3 +18,4 @@ export { ISortingModel } from './http/sorting.model';
 export { IPageMetadataModel } from './http/page-metadata.model';
 export { IPageLinksModel } from './http/page-links.model';
 export { IValueModel } from './http/value.model';
+export { IIdModel as IIdServiceModel } from './http/id.model';

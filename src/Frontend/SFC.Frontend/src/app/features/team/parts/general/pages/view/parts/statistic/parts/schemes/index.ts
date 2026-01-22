@@ -1,0 +1,1 @@
+export { TeamViewStatisticSchemesComponent } from './team-view-statistic-schemes.component'

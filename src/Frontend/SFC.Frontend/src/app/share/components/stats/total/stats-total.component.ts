@@ -1,28 +1,63 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { getProgressColorDynamicallyFunc } from 'ngx-sfc-components';
-import { ComponentSize, Direction } from 'ngx-sfc-common';
+import { ComponentSize, Direction, sum } from 'ngx-sfc-common';
+import { StatsValue } from '@share/types';
+import { getAverageStatsValue, getMetadata, getRaiting } from '@share/utils';
+import { IStatsMetadataModel } from '@share/models';
+import { StatsTotalLocalization } from './stats-total.localization';
 
 @Component({
     selector: 'sfc-stats-total',
     templateUrl: './stats-total.component.html',
     styleUrls: ['./stats-total.component.scss']
 })
-export class StatsTotalComponent {
+export class StatsTotalComponent implements OnInit {
 
+    // ngx-sfc-common
     ComponentSize = ComponentSize;
     Direction = Direction;
 
+    // ngx-sfc-components
     getProgressColorDynamicallyFunc = getProgressColorDynamicallyFunc;
 
-    @Input()
-    progress: number = 0;
+    // component
+    Localization = StatsTotalLocalization;
+
+    /* Inputs */
 
     @Input()
-    value: number = 0;
+    values: StatsValue[] = [];
 
     @Input()
-    total: number = 0;
+    delimeter: boolean = false;
 
     @Input()
-    delimeter: boolean = false;    
+    averageDescription: string = StatsTotalLocalization.AVERAGE.DESCRIPTION;
+
+    @Input()
+    totalDescription: string = StatsTotalLocalization.TOTAL.DESCRIPTION;
+
+    /* End Inputs */
+
+    /* Fields */
+
+    public rating: number = 0;
+
+    public value: number = 0;
+
+    public total: number = 0;
+
+    /* End Fields */
+
+    ngOnInit(): void {
+        const averageStatsValue: StatsValue = getAverageStatsValue(this.values),
+            metadata: { [key: string]: IStatsMetadataModel } = getMetadata(averageStatsValue),
+            metadataValues: IStatsMetadataModel[] = Object.values(metadata);
+
+        this.rating = getRaiting(averageStatsValue);
+
+        this.value = sum(metadataValues, (model: IStatsMetadataModel) => model.value);
+
+        this.total = sum(metadataValues, (model: IStatsMetadataModel) => model.total);        
+    }
 }

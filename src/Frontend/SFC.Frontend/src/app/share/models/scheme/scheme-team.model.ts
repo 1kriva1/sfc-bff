@@ -1,7 +1,7 @@
 import { IFormationPositionEnumModel } from "@share/services/enum/models/enum/formation-position-enum.model";
 import { empty } from "ngx-sfc-common";
 import { IPlayerModel } from "../player/player.model";
-import { ITeamModel } from "../team/team.model";
+import { ITeamModel } from "../team/general/team.model";
 
 export interface ISchemeTeamFormationPlayerPositionModel {
     index: number;

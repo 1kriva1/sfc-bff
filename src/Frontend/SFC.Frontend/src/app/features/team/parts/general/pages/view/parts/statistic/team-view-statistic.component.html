@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="content">
+        <div class="parts">
+            <div class="part top">
+                <div class="part-content">
+                    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+                        [delimeter]="false">
+                    </sfc-title>
+
+                    <form [formGroup]="form" autocomplete="off">
+                        <sfc-select-input id="part" formControlName="part"
+                            [helperText]="Localization.INPUT.PART.HELPER_TEXT" [data]="parts" [showDefaultItem]="false"
+                            [bordered]="true" [sfcComponentSize] [customSize]="0.9"
+                            (changeValue)="onPartChange($event)">
+                        </sfc-select-input>
+                    </form>
+                </div>
+            </div>
+
+            <sfc-delimeter></sfc-delimeter>
+
+            <div class="part bottom">
+                <div class="part-content">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

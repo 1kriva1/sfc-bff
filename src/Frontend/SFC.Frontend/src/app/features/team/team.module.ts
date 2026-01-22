@@ -9,20 +9,51 @@ import { ShareModule } from "@share/share.module";
 import { TeamRoutingModule } from "./team-routing.module";
 import { TeamPlayerRemoveModalComponent } from "./components";
 import {
-    PlayersPreviewListComponent, TeamAvailabilityProfileEditComponent, TeamCreatePageComponent,
-    TeamCreatePlayersComponent, TeamCreatePlayersInviteComponent, TeamCreatePlayersInviteRowComponent,
-    TeamEditPageComponent, TeamEditPlayerInviteRowComponent, TeamEditPlayerInvitesProgressComponent,
-    TeamEditPlayerRequestRowComponent, TeamEditPlayerRequestsProgressComponent, TeamEditPlayersComponent,
-    TeamEditPlayersInviteComponent, TeamEditPlayerSquadRowComponent, TeamEditPlayersRequestComponent,
-    TeamEditPlayersSquadComponent, TeamEditSchemeRowComponent, TeamEditSchemesComponent,
-    TeamEditSquadProgressComponent, TeamFinancialProfileEditComponent, TeamGeneralProfileEditComponent,
-    TeamInformationProgressComponent, TeamMainEditComponent, TeamPlayersPreviewCardItemComponent,
-    TeamPlayersPreviewComponent, TeamPlayersPreviewListItemComponent, TeamProfileEditComponent,
-    TeamSearchPageComponent
+    PlayersPreviewListComponent, 
+    TeamAvailabilityProfileEditComponent, 
+    TeamCreatePageComponent,
+    TeamCreatePlayersComponent, 
+    TeamCreatePlayersInviteComponent, 
+    TeamCreatePlayersInviteRowComponent,
+    TeamEditPageComponent, 
+    TeamEditPlayerInviteRowComponent, 
+    TeamEditPlayerInvitesProgressComponent,
+    TeamEditPlayerRequestRowComponent, 
+    TeamEditPlayerRequestsProgressComponent, 
+    TeamEditPlayersComponent,
+    TeamEditPlayersInviteComponent, 
+    TeamEditPlayerSquadRowComponent, 
+    TeamEditPlayersRequestComponent,
+    TeamEditPlayersSquadComponent, 
+    TeamEditSchemeRowComponent, 
+    TeamEditSchemesComponent,
+    TeamEditSquadProgressComponent, 
+    TeamFinancialProfileEditComponent, 
+    TeamGeneralProfileEditComponent,
+    TeamInformationProgressComponent, 
+    TeamMainEditComponent, 
+    TeamPlayersPreviewCardItemComponent,
+    TeamPlayersPreviewComponent, 
+    TeamPlayersPreviewListItemComponent, 
+    TeamProfileEditComponent,
+    TeamSearchPageComponent,
+    TeamViewOverviewComponent,
+    TeamViewPageComponent,
+    TeamViewPlayersComponent,
+    TeamViewSchemesComponent,
+    TeamViewStatisticComponent,
+    TeamViewStatisticGamesComponent,
+    TeamViewStatisticOverallComponent,
+    TeamViewStatisticPlayersComponent,
+    TeamViewStatisticSchemesComponent,
+    TeamViewStatsComponent
 } from "./parts/general";
 import {
-    TeamPlayerViewGeneralProfileComponent, TeamPlayerViewMainComponent, TeamPlayerViewPageComponent,
-    TeamPlayerViewPreviewComponent, TeamPlayerViewProfileComponent
+    TeamPlayerViewGeneralProfileComponent, 
+    TeamPlayerViewMainComponent, 
+    TeamPlayerViewPageComponent,
+    TeamPlayerViewPreviewComponent, 
+    TeamPlayerViewProfileComponent
 } from "./parts/player";
 
 @NgModule({
@@ -30,6 +61,7 @@ import {
         // components
         TeamPlayerRemoveModalComponent,
         // general
+        // page/create
         TeamCreatePageComponent,
         TeamCreatePlayersComponent,
         TeamCreatePlayersInviteComponent,
@@ -45,6 +77,7 @@ import {
         PlayersPreviewListComponent,
         TeamPlayersPreviewListItemComponent,
         TeamPlayersPreviewCardItemComponent,
+        // page/edit
         TeamEditPageComponent,
         TeamEditPlayerInvitesProgressComponent,
         TeamEditPlayerRequestsProgressComponent,
@@ -57,8 +90,21 @@ import {
         TeamEditPlayerRequestRowComponent,
         TeamEditSchemesComponent,
         TeamEditSchemeRowComponent,
+        // page/search
         TeamSearchPageComponent,
+        // page/view
+        TeamViewPageComponent,
+        TeamViewOverviewComponent,
+        TeamViewPlayersComponent,
+        TeamViewSchemesComponent,
+        TeamViewStatsComponent,
+        TeamViewStatisticComponent,
+        TeamViewStatisticOverallComponent,
+        TeamViewStatisticPlayersComponent,
+        TeamViewStatisticGamesComponent,
+        TeamViewStatisticSchemesComponent,
         // player
+        // page/view
         TeamPlayerViewPageComponent,
         TeamPlayerViewMainComponent,
         TeamPlayerViewProfileComponent,

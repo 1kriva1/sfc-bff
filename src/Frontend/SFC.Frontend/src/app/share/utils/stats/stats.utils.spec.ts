@@ -21,9 +21,9 @@ describe('Share.Utils: Stats', () => {
         const statValue = getStats();
         expect(getTypes(statValue, ENUM_SERVICE.enums?.statTypes!, ENUM_SERVICE.enums?.statSkills!))
             .toEqual([
-                { label: 'Physical', total: 800, value: 400 },
-                { label: 'Mental', total: 200, value: 100 },
-                { label: 'Skill', total: 1900, value: 950 }
+                { label: 'Physical', total: 800, value: 400, description: 'This is a test description. In future description will be defined on server side (with localization).' },
+                { label: 'Mental', total: 200, value: 100, description: 'This is a test description. In future description will be defined on server side (with localization).' },
+                { label: 'Skill', total: 1900, value: 950, description: 'This is a test description. In future description will be defined on server side (with localization).' }
             ]);
     });
 

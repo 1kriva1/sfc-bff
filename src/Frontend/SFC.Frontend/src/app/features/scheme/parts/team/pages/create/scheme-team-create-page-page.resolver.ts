@@ -5,7 +5,7 @@ import { IResolverModel } from "@core/models";
 import { buildErrorResolverModel, buildResolverModel, getRouteId } from "@core/utils";
 import { EnumService, IGetTeamResponse, TeamService } from "@share/services";
 import { ISchemeTeamCreatePageResolveModel } from "./models/scheme-team-create-page-resolve.model";
-import { mapTeamModel } from "@share/mappers/team.mapper";
+import { mapTeamModel } from "@share/mappers/team/general/team.mapper";
 import { TeamConstants } from "@share/constants";
 
 export const SchemeTeamCreatePageResolver: ResolveFn<IResolverModel<ISchemeTeamCreatePageResolveModel>> =

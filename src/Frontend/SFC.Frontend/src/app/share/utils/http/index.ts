@@ -1,1 +1,5 @@
-export { mapAvailabilityModel, mapAvailabilityEditFormModel } from './http.utils'
+export {
+    mapAvailabilityModel,
+    mapAvailabilityEditFormModel,
+    mapLimitSearchModel
+} from './http.utils'

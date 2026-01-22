@@ -2,9 +2,8 @@ import { CommonConstants, sum, where } from "ngx-sfc-common";
 import { getProgressColorDefaultFunc } from "ngx-sfc-components";
 import { IEnumModel } from "@core/types";
 import { StatsConstants } from "../../constants/stats.constants";
-import { IStatsTypeModel } from "../../models/common/stats-type.model";
-import { IStatsModel } from "../../models/common/stats.model";
-import { IPlayerModel, IStatsMetadataModel } from "../../models";
+import { IStatsModel } from "../../models/common/stats/stats.model";
+import { IPlayerModel, IStatsMetadataModel, IStatsTypeModel } from "../../models";
 import { StatsValue } from "../../types";
 import { IStatTypeEnumModel } from "../../services/enum/models/enum/stat-type-enum.model";
 import { IPlayerStatValueModel } from "../../services";
@@ -39,7 +38,7 @@ export function getRaiting(value: StatsValue): number {
                 });
             }, initial);
 
-    return Math.ceil(result.value / result.total * CommonConstants.FULL_PERCENTAGE);
+    return Math.ceil(result.value / (result.total || 1) * CommonConstants.FULL_PERCENTAGE);
 }
 
 export function getStatsRaiting(value: StatsValue[]): number {
@@ -81,6 +80,7 @@ export function getTypes(
 
         result.push({
             label: skill,
+            description: 'This is a test description. In future description will be defined on server side (with localization).',
             total: skillTypes.length * CommonConstants.FULL_PERCENTAGE,
             value: value
         });
@@ -140,5 +140,43 @@ export function convertFromServerStats(
             ({ ...controlAccumulator, [item.Type]: item.Value }), {})
     });
 
+    return result;
+}
+
+export function getAverageStatsValue(values: StatsValue[]): StatsValue {
+    const sums: Record<number, Record<number, number>> = {};
+    const counts: Record<number, Record<number, number>> = {};
+
+    for (const stats of values) {
+        for (const catKey in stats) {
+            const categoryId = Number(catKey);
+            const types = stats[categoryId];
+            if (!types) continue;
+
+            if (!sums[categoryId]) sums[categoryId] = {};
+            if (!counts[categoryId]) counts[categoryId] = {};
+
+            for (const typeKey in types) {
+                const typeId = Number(typeKey);
+                const value = types[typeId];
+                if (Number.isFinite(value)) {
+                    sums[categoryId][typeId] = (sums[categoryId][typeId] ?? 0) + value;
+                    counts[categoryId][typeId] = (counts[categoryId][typeId] ?? 0) + 1;
+                }
+            }
+        }
+    }
+
+    // Build the averaged result in the original shape
+    const result: StatsValue = {};
+    for (const catKey in sums) {
+        const categoryId = Number(catKey);
+        result[categoryId] = {};
+        for (const typeKey in sums[categoryId]) {
+            const typeId = Number(typeKey);
+            const count = counts[categoryId][typeId] ?? 0;
+            result[categoryId][typeId] = count === 0 ? 0 : Math.ceil(sums[categoryId][typeId] / count);
+        }
+    }
     return result;
 }

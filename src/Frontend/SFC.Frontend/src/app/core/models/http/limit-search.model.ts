@@ -1,4 +1,4 @@
 export interface ILimitSearchModel<T> {
-    From: T;
-    To: T;
+    From?: T;
+    To?: T;
 }

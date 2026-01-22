@@ -58,7 +58,7 @@ export class TeamEditPlayerRequestRowComponent implements OnInit {
         const raiting = getRaiting(this.model.player.stats);
 
         this.viewModel = {
-            position: getEnum(this.model.player.football.position, this.enumService.enums.footballPositions),
+            position: getEnum(this.model.player.football.position!, this.enumService.enums.footballPositions),
             status: this.model.status
         };
 

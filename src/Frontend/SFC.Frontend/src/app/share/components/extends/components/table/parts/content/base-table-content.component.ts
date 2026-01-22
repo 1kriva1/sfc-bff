@@ -1,9 +1,11 @@
 import { Directive, HostBinding, Input, OnInit } from "@angular/core";
+import { IIdModel } from "@core/models";
 import { CheckmarkType, empty, firstOrDefault, Position } from "ngx-sfc-common";
 import { ITableColumnExtendedModel, ITableModel, TableColumnType, TableSelectService } from "ngx-sfc-components";
 
 @Directive()
-export class BaseTableContentComponent<TData, TViewModel> implements OnInit {
+export class BaseTableContentComponent<TData extends IIdModel<any>, TViewModel>
+    implements OnInit {
 
     // ngx-sfc-common
     CheckmarkType = CheckmarkType;
@@ -31,17 +33,21 @@ export class BaseTableContentComponent<TData, TViewModel> implements OnInit {
     /* Class Bindings */
 
     @HostBinding('class')
-    protected status: string | null = null;
+    protected statusClass: string | null = null;
 
     /* End Class Bindings */
 
     /* Properties */
 
-    public get selected(): boolean { return this.model.selected!; }
+    public get selected(): boolean { return this.model.selected! || this.data.id == this.value; }
+
+    public get sequence(): number | null { return this.sequenceColumn ? this.model.sequence : null }
 
     public selectColumn: ITableColumnExtendedModel | empty = null;
 
     public actionsColumn: ITableColumnExtendedModel | empty = null;
+
+    public sequenceColumn: ITableColumnExtendedModel | empty = null;
 
     protected get data(): TData { return this.model.data; }
 
@@ -50,6 +56,7 @@ export class BaseTableContentComponent<TData, TViewModel> implements OnInit {
     constructor(private selectedService: TableSelectService) { }
 
     ngOnInit(): void {
+        this.sequenceColumn = this.getColumnByType(TableColumnType.Sequence);
         this.selectColumn = this.getColumnByType(TableColumnType.Selectable);
         this.actionsColumn = this.getColumnByType(TableColumnType.Action);
     }

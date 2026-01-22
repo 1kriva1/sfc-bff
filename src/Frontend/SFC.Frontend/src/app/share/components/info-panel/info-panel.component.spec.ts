@@ -28,8 +28,9 @@ describe('Share.Component: InfoPanel', () => {
             background: '#fff',
             description: CommonConstants.EMPTY_STRING,
             icon: faInfo,
-            iconBackground: '#e6e6e6',
-            title: CommonConstants.EMPTY_STRING
+            iconBackground: '#e6e9ed',
+            title: CommonConstants.EMPTY_STRING,
+            value: 0
         });
     });
 
@@ -40,7 +41,7 @@ describe('Share.Component: InfoPanel', () => {
 
     fit('Should icon has background style', () => {
         expect(fixture.nativeElement.querySelector('fa-icon').style.background)
-            .toEqual('rgb(230, 230, 230)');
+            .toEqual('rgb(230, 233, 237)');
     });
 
     fit('Should have defined icon value', () => {
@@ -48,11 +49,6 @@ describe('Share.Component: InfoPanel', () => {
         fixture.detectChanges();
 
         expect(fixture.nativeElement.querySelector('fa-icon svg').classList).toContain('fa-star');
-    });
-
-    fit('Should have defined description', () => {
-        expect(fixture.nativeElement.querySelector('.info > span').innerText)
-            .toEqual(component.model.description);
     });
 
     fit('Should have defined title', () => {

@@ -1,5 +1,5 @@
 import { IPlayerModel } from "@share/services/player/general/models/common/player.model";
-import { ITeamModel } from "@share/services/team/general/models/common/team.model";
+import { ITeamModel } from "@share/services/team/general/general/models/common/team.model";
 import { empty } from "ngx-sfc-common";
 
 export interface ITeamPlayerInviteModel {

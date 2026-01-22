@@ -1,0 +1,78 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+@import "variables1";
+@import "table1/row";
+@import "../../../../info/team-player-info.component.mixins";
+
+:host {
+  @include row-host;
+
+  .container {
+    @include row-container;
+
+    .content {
+      .columns {
+        @include row-columns;
+
+        .column {
+          @include row-column;
+
+          &.sequence {
+            @include row-sequence-column;
+          }
+
+          &.select {
+            @include row-select-column($color-0);
+          }
+
+          &.information {
+            @include team-player-info($color-0);
+          }
+
+          &.position {
+            @include row-enum-column;
+          }
+
+          &.activity {
+            @include center-column;
+
+            gap: 0;
+
+            p {
+              margin: 0.5em;
+
+              @include text-bold($color-0);
+            }
+          }
+
+          &.actions {
+            @include action-menu($color-0);
+          }
+        }
+      }
+    }
+  }
+
+  &.team-player-status-0 {
+    @include row-background-with-related($team-player-status-active-color, $team-player-status-active-hover-color);
+  }
+
+  &.team-player-status-1 {
+    @include row-background-with-related($team-player-status-injured-color, $team-player-status-injured-hover-color);
+  }
+
+  &.team-player-status-2 {
+    @include row-background-with-related($team-player-status-retired-color, $team-player-status-retired-hover-color);
+  }
+
+  &.team-player-status-3 {
+    @include row-background-with-related(
+      $team-player-status-unavailable-color,
+      $team-player-status-unavailable-hover-color
+    );
+  }
+
+  &.team-player-status-4 {
+    @include row-background-with-related($team-player-status-removed-color, $team-player-status-removed-hover-color);
+  }
+}

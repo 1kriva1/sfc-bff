@@ -1,9 +1,9 @@
 import { empty } from "ngx-sfc-common";
+import { IDropdownMenuItemModel } from "ngx-sfc-components";
 
-export interface ISchemeInfoModel {
+export interface ISchemeInfoModel {    
     name?: string | empty;
-    description?: string | empty;
-    label?: string | empty;
-    avatar?: string | empty;
+    formation: number;  
     raiting?: number | empty;
+    actions?: IDropdownMenuItemModel[] | empty;
 }

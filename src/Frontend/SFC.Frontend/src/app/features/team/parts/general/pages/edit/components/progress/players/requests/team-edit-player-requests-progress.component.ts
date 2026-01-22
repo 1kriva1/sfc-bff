@@ -9,7 +9,7 @@ import { calculatePercentageWithCount, getRouteId, switchReloadWithStart } from 
 import { ActivatedRoute } from '@angular/router';
 import { CoreLocalization } from '@core/localization';
 import { ITeamPlayerRequestModel as ITeamPlayerRequestServiceModel } from '@share/services/request/team/player/models/common/team-player-request.model';
-import { mapTeamPlayerRequestModel } from '@share/mappers/team-player-request.mapper';
+import { mapTeamPlayerRequestModel } from '@share/mappers/request/team-player-request.mapper';
 import { ITeamPlayerRequestModel } from '@share/models/request/team-player-request.model';
 import { RequestAction } from '@share/enums';
 @Component({

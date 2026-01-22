@@ -16,7 +16,7 @@ import { ITeamMainEditFormModel } from './team-main-edit-form.model';
 import { ITeamEditFormModel } from '../../team-edit-form.model';
 import { ValidationLocalization } from '@share/localization';
 import { CoreLocalization } from '@core/localization';
-import { ITeamPlayerModel } from '@share/models/team/team-player.model';
+import { ITeamPlayerModel } from '@share/models/team/player/team-player.model';
 import { ITeamGeneralProfileEditFormModel } from '../profile/parts/general/team-general-profile-edit-form.model';
 
 @Component({

@@ -1,0 +1,95 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+@import "components1";
+@import "table1";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      .parts {
+        @include wrap-row;
+
+        .part {
+          .part-content {
+            @include wrap-column;
+          }
+
+          &.left {
+            flex: 2;
+
+            .part-content {
+              @include panel;
+
+              sfc-panel {
+                .panel-content {
+                  p {
+                    @include text-center($color-7, 0.8em);
+                  }
+                }
+
+                &.totals {
+                  .panel-content {
+                    display: flex;
+                    align-items: baseline;
+
+                    .progress {
+                      @include center-wrap-column(0);
+
+                      .label {
+                        max-width: 80%;
+                        text-align: center;
+                        padding: 0.3em 0;
+
+                        h4 {
+                          @include theme-color($color-default, $color-0);
+
+                          font-size: 1.2em;
+                          margin: 0;
+                        }
+
+                        span {
+                          @include theme-color($color-7, $color-5);
+
+                          font-size: 0.8em;
+                          margin-top: 0.5em;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          &.right {
+            flex: 3;
+
+            .part-content {
+              sfc-panel {
+                .panel-content {
+                  .filters {
+                    display: flex;
+                    justify-content: flex-end;
+
+                    sfc-select-input {
+                      display: block;
+                      width: 30%;
+                    }
+                  }
+
+                  .result {
+                    .table {
+                      @include table($color-2, $color-2);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

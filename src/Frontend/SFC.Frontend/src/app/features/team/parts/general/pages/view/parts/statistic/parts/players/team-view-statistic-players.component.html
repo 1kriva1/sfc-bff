@@ -1,0 +1,97 @@
+<div class="container">
+    <div class="content">
+        <div class="parts">
+            <div class="part left">
+                <div class="part-content" *ngIf="viewModel$ | async as viewModel">
+                    <sfc-panel class="totals" [label]="Localization.PANEL.TOTALS.LABEL"
+                        [description]="Localization.PANEL.TOTALS.DESCRIPTION" [icon]="faPeopleGroup"
+                        [tooltip]="Localization.PANEL.TOTALS.TOOLTIP">
+                        <div class="panel-content">
+                            <div class="progress">
+                                <sfc-progress-circle [progress]="viewModel.total.all" [total]="viewModel.total.all"
+                                    [sfcComponentSize] [customSize]="1.3">
+                                </sfc-progress-circle>
+
+                                <div class="label">
+                                    <h4>{{Localization.PROGRESS.TOTAL.ALL.LABEL}}</h4>
+                                    <span>{{Localization.PROGRESS.TOTAL.ALL.DESCRIPTION}}</span>
+                                </div>
+                            </div>
+
+                            <div class="progress">
+                                <sfc-progress-circle [progress]="viewModel.total.active"
+                                    [total]="viewModel.total.active" [sfcComponentSize] [customSize]="1.3">
+                                </sfc-progress-circle>
+
+                                <div class="label">
+                                    <h4>{{Localization.PROGRESS.TOTAL.ACTIVE.LABEL}}</h4>
+                                    <span>{{Localization.PROGRESS.TOTAL.ACTIVE.DESCRIPTION}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </sfc-panel>
+
+                    <sfc-panel class="statuses" [label]="Localization.PANEL.STATUSES.LABEL"
+                        [description]="Localization.PANEL.STATUSES.DESCRIPTION" [icon]="faFontAwesomeFlag"
+                        [tooltip]="Localization.PANEL.STATUSES.TOOLTIP">
+                        <div class="panel-content">
+                            <sfc-chart [theme]="themeService.theme" [type]="'bar'" [data]="viewModel.statusesChartData"
+                                [options]="statusesChartOptions" [chartOptions]="DEFAULT_CHART_OPTIONS">
+                            </sfc-chart>
+                            <p>{{Localization.CHART.STATUSES.DESCRIPTION}}</p>
+                        </div>
+                    </sfc-panel>
+
+                    <sfc-panel class="positions" [label]="Localization.PANEL.POSITIONS.LABEL"
+                        [description]="Localization.PANEL.POSITIONS.DESCRIPTION" [icon]="faMapPin"
+                        [tooltip]="Localization.PANEL.POSITIONS.TOOLTIP">
+                        <div class="panel-content">
+                            <sfc-chart [theme]="themeService.theme" [type]="'pie'" [data]="viewModel.positionsChartData"
+                                [options]="positionsChartOptions" [chartOptions]="DEFAULT_CHART_OPTIONS">
+                            </sfc-chart>
+                            <p>{{Localization.CHART.POSITIONS.DESCRIPTION}}</p>
+                        </div>
+                    </sfc-panel>
+                </div>
+            </div>
+
+            <div class="part right">
+                <div class="part-content">
+                    <sfc-panel class="top" [label]="Localization.PANEL.TOP.LABEL"
+                        [description]="Localization.PANEL.TOP.DESCRIPTION" [icon]="faStopwatch"
+                        [tooltip]="Localization.PANEL.TOP.TOOLTIP">
+                        <div class="panel-content">
+                            <form [formGroup]="predicateForm" autocomplete="off">
+                                <div class="filters">
+                                    <sfc-select-input id="activity" formControlName="activity"
+                                        [helperText]="Localization.INPUT.ACTIVITY.HELPER_TEXT" [data]="activities"
+                                        [multiple]="false" [showDefaultItem]="false" [bordered]="true"
+                                        [sfcComponentSize] [customSize]="0.9" (changeValue)="onActivityChange($event)">
+                                    </sfc-select-input>
+                                </div>
+                                <div class="result">
+                                    <div class="table">
+                                        <sfc-table [columns]="columns" [predicate$]="predicate$" [loader]="loader"
+                                            [pagination]="TableConstants.PAGINATION" [position]="Position.Center"
+                                            [showColumns]="false" [dataToggle]="false" [sequence]="true"
+                                            [showLoading]="showLoading" [loadType]="LoadContainerLoadType.Button"
+                                            [loadMoreLabel]="CoreLocalization.MORE"
+                                            [paginationCount]="TableConstants.PAGINATION_COUNT"
+                                            [totalLabel]="TableLocalization.TABLE.TOTAL_LABEL"
+                                            [notFoundLabel]="TableLocalization.TABLE.NOT_FOUND_LABEL">
+                                            <ng-template [sfcTemplateReference]="TableTemplate.Row" let-row>
+                                                <sfc-team-player-search-table-row [model]="row.model"
+                                                    [columns]="row.columns" [sfcComponentSize] [customSize]="0.8">
+                                                </sfc-team-player-search-table-row>
+                                            </ng-template>
+                                        </sfc-table>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </sfc-panel>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

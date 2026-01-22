@@ -1,0 +1,17 @@
+<div class="container" [formGroupName]="SchemeTeamSearchFilterPart.General">
+    <div class="content">
+        <div class="rows">
+            <div class="row">
+                <div class="column">
+                    <sfc-text-area-input id="comment" formControlName="comment"
+                        [label]="Localization.INPUT.COMMENT.LABEL"
+                        [placeholder]="Localization.INPUT.COMMENT.PLACEHOLDER" [bordered]="true"
+                        [helperText]="Localization.INPUT.COMMENT.HELPER_TEXT" [validations]="{
+                            maxlength: ValidationLocalization.MAX_LENGTH
+                        }">
+                    </sfc-text-area-input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

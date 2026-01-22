@@ -11,17 +11,6 @@ import { buildModalAction, buildRedirectAction } from "@share/utils/actions/acti
 import { ModalService } from "ngx-sfc-common";
 import { TeamModal } from "../components/modals/team-modal.enum";
 
-export function buildViewTeamPlayerAction(playerId: number, teamId: number, router: Router, state: any = null) {
-    return buildRedirectAction(
-        $localize`:@@feature.team.utils.actions.team.player.view-profile:View team player profile`,
-        faInfoCircle,
-        true,
-        router,
-        [`${TeamRoute.Teams}/${teamId}/${PlayerRoute.Players}/${playerId}`],
-        state
-    );
-}
-
 export function buildRemoveTeamPlayerAction(player: IPlayersTableModel, modalService: ModalService) {
     return buildModalAction(
         $localize`:@@feature.team.utils.actions.team.player.remove:Remove from team`,
@@ -96,17 +85,6 @@ export function buildDeclineTeamPlayerRequestAction(request: ITeamPlayerRequestM
         modalService,
         RequestTeamPlayerModal.Decline,
         request
-    );
-}
-
-export function buildViewTeamSchemeAction(teamId: number, schemeId: number, router: Router, state: any = null) {
-    return buildRedirectAction(
-        $localize`:@@feature.team.utils.actions.team.scheme.view-profile:View team scheme profile`,
-        faInfoCircle,
-        false,
-        router,
-        [`${SchemeRoute.Schemes}/${schemeId}/${TeamRoute.Teams}/${teamId}`],
-        state
     );
 }
 

@@ -1,0 +1,1 @@
+export { TeamViewStatisticOverallComponent } from './team-view-statistic-overall.component'

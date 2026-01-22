@@ -9,7 +9,7 @@ import {
 } from "@core/utils";
 import { EnumService, TeamService } from "@share/services";
 import { ResolverType } from "@core/types/resolver.type";
-import { mapTeamModel } from "@share/mappers/team.mapper";
+import { mapTeamModel } from "@share/mappers/team/general/team.mapper";
 import { InviteTeamPlayerConstants } from "@share/constants/features/invite";
 import { TeamConstants } from "@share/constants";
 import { PageState } from "@core/enums";

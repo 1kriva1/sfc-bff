@@ -30,13 +30,14 @@ import { ITeamGeneralProfileEditFormModel } from "../../components/edit/parts/pr
 import { ITeamAvailabilityProfileEditFormModel } from "../../components/edit/parts/profile/parts/availability/team-availability-profile-edit-form.model";
 import { ITeamFinancialProfileEditFormModel } from "../../components/edit/parts/profile/parts/financial/team-financial-profile-edit-form.model";
 import { TeamEditPlayersRoute } from "./components/players/team-edit-players-route.enum";
-import { ITeamPlayerModel } from "@share/models/team/team-player.model";
-import { ITeamPlayerModel as ITeamPlayerServiceModel } from "@share/services/team/player/models/common/team-player.model";
+import { ITeamPlayerModel } from "@share/models/team/player/team-player.model";
+import { ITeamPlayerModel as ITeamPlayerServiceModel } from "@share/services/team/player/general/models/common/team-player.model";
 import { ITeamPlayersPreviewModel } from "../../components/preview/team-players-preview.model";
 import { buildViewPlayerAction } from "@share/utils/features/player/player-action.utils";
 import { TeamLocalization } from "../../../../localization/team.localization";
-import { buildRemoveTeamPlayerAction, buildViewTeamPlayerAction } from "../../../../utils/team-actions.utils";
+import { buildRemoveTeamPlayerAction } from "../../../../utils/team-actions.utils";
 import { InviteAction, RequestAction, SchemeAction, TeamAction } from "@share/enums";
+import { buildViewTeamPlayerAction } from "@share/utils";
 
 @Component({
     templateUrl: './team-edit-page.component.html',

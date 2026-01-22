@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="content">
+        <div class="stats">
+            <div class="stat" *ngFor="let stat of model; let i = index">
+                <div class="header" *ngIf="metadata[stat.key] as model">
+                    <div class="title">
+                        <span [style.color]="model.color">{{model.average}}</span>
+                        <h3>{{stat.label}}</h3>
+                    </div>
+                </div>
+
+                <div class="lines">
+                    <div class="line" *ngFor="let statItem of stat.items; let i = index">
+                        <sfc-progress-line [progress]="stats[stat.key][statItem.key]" [labelStart]="statItem.label"
+                            [hideEnd]="false">
+                        </sfc-progress-line>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

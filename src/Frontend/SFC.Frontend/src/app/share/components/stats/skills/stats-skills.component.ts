@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { StatsValue } from '../../../types';
 import { IStatsTypeModel } from '../../../models';
 import { EnumService } from '../../../services';
-import { getTypes } from '../../../utils/stats';
+import { getAverageStatsValue, getTypes } from '../../../utils/stats';
 import { getProgressColorDynamicallyFunc } from 'ngx-sfc-components';
 
 @Component({
@@ -12,16 +12,26 @@ import { getProgressColorDynamicallyFunc } from 'ngx-sfc-components';
 })
 export class StatsSkillsComponent implements OnChanges {
 
+    // ngx-sfc-components
     getProgressColorDynamicallyFunc = getProgressColorDynamicallyFunc;
 
+    /* Inputs */
+
     @Input()
-    value: StatsValue = {};
+    values: StatsValue[] = [];
+
+    /* End Inputs */
+
+    /* Fields */
 
     public types: IStatsTypeModel[] = [];
+
+    /* End Fields */
 
     constructor(private enumService: EnumService) { }
 
     ngOnChanges(_: SimpleChanges): void {
-        this.types = getTypes(this.value, this.enumService.enums.statTypes, this.enumService.enums.statSkills);
+        const averageStatsValue: StatsValue = getAverageStatsValue(this.values);
+        this.types = getTypes(averageStatsValue, this.enumService.enums.statTypes, this.enumService.enums.statSkills);
     }
 }

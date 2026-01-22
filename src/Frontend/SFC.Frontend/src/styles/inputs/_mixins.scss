@@ -75,3 +75,33 @@
     }
   }
 }
+
+@mixin select-input($item-font-size: 1em, $load-more-button-font-size: 1em) {
+  sfc-select-input {
+    ::ng-deep .container {
+      .content {
+        sfc-load-container {
+          .container {
+            .content {
+              .items {
+                sfc-select-item {
+                  div {
+                    span {
+                      font-size: $item-font-size;
+                    }
+                  }
+                }
+              }
+
+              .actions {
+                sfc-load-more-button {
+                  font-size: $load-more-button-font-size;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

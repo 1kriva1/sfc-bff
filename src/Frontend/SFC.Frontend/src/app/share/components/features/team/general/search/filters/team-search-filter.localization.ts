@@ -1,4 +1,4 @@
-export class TeamSearchFlterLocalization {
+export class TeamSearchFilterLocalization {
     static get INPUT() {
         return {
             NAME: {

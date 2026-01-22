@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="content">
+        <div class="parts">
+            <div class="part left">
+
+                <div class="part-content">
+                    <div class="rows">
+                        <div class="row">
+                            <div class="columns">
+                                <div class="column">
+                                    <sfc-panel class="description" [label]="Localization.PANEL.DESCRIPTION.LABEL"
+                                        [description]="Localization.PANEL.DESCRIPTION.DESCRIPTION" [icon]="faD"
+                                        [tooltip]="Localization.PANEL.DESCRIPTION.TOOLTIP">
+                                        <div class="panel-content">
+                                            <p *ngIf="description">{{description}}</p>
+                                            <sfc-no-data *ngIf="!description"></sfc-no-data>
+                                        </div>
+                                    </sfc-panel>
+                                </div>
+
+                                <div class="column">
+                                    <sfc-panel class="captain" [label]="Localization.PANEL.CAPTAIN.LABEL"
+                                        [description]="Localization.PANEL.CAPTAIN.DESCRIPTION" [icon]="faC"
+                                        [tooltip]="Localization.PANEL.CAPTAIN.TOOLTIP">
+                                        <div class="panel-content">
+                                            <sfc-no-data></sfc-no-data>
+                                        </div>
+                                    </sfc-panel>
+                                </div>
+
+                                <div class="column">
+                                    <sfc-panel class="stadium" [label]="Localization.PANEL.STADIUM.LABEL"
+                                        [description]="Localization.PANEL.STADIUM.DESCRIPTION" [icon]="faLocationDot"
+                                        [tooltip]="Localization.PANEL.STADIUM.TOOLTIP">
+                                        <div class="panel-content">
+                                            <sfc-no-data></sfc-no-data>
+                                        </div>
+                                    </sfc-panel>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="columns">
+                                <div class="column">
+                                    <sfc-panel class="availability" [label]="Localization.PANEL.AVAILABILITY.LABEL"
+                                        [description]="Localization.PANEL.AVAILABILITY.DESCRIPTION" [icon]="faClock"
+                                        [tooltip]="Localization.PANEL.AVAILABILITY.TOOLTIP">
+                                        <div class="panel-content">
+                                            <sfc-availability-list [value]="availability" [edit]="false"
+                                                [delimeter]="false" [noData]="true" [sfcComponentSize] [customSize]="1">
+                                            </sfc-availability-list>
+                                        </div>
+                                    </sfc-panel>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="part right">
+                <div class="part-content">
+                    <div class="rows">
+                        <div class="row">
+                            <div class="columns">
+                                <div class="column">
+                                    <sfc-panel class="shirts" [label]="Localization.PANEL.SHIRTS.LABEL"
+                                        [description]="Localization.PANEL.SHIRTS.DESCRIPTION" [icon]="faShirt"
+                                        [tooltip]="Localization.PANEL.SHIRTS.TOOLTIP">
+                                        <div class="panel-content">
+                                            <sfc-tags *ngIf="shirtTags.length" [tags]="shirtTags" [sfcComponentSize]
+                                                [customSize]="1">
+                                            </sfc-tags>
+                                            <sfc-no-data *ngIf="!shirtTags.length"></sfc-no-data>
+                                        </div>
+                                    </sfc-panel>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="columns">
+                                <div class="column">
+                                    <sfc-panel class="free-play" [label]="Localization.PANEL.FREE_PLAY.LABEL"
+                                        [description]="Localization.PANEL.FREE_PLAY.DESCRIPTION" [icon]="faCoins"
+                                        [tooltip]="Localization.PANEL.FREE_PLAY.TOOLTIP">
+                                        <div class="panel-content">
+                                            <span>{{freePlayLabel}}</span>
+                                        </div>
+                                    </sfc-panel>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

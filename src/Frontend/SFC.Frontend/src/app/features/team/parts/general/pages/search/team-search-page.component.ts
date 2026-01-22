@@ -9,7 +9,7 @@ import {
     ITeamSearchFilterModel, ITeamSearchTableModel,
     mapFindTeamsRequest, mapTeamPredicateMapModel,
     mapTeamSearchTableModel, TeamSearchFilterPart,
-    TeamSearchFlterLocalization,
+    TeamSearchFilterLocalization,
     TeamSearchTableColumn,
     TeamSearchTableLocalization
 } from "@share/components";
@@ -36,13 +36,32 @@ export class TeamSearchPageComponent
     ITeamSearchTableModel> {
 
     // share
-    TeamSearchFlterLocalization = TeamSearchFlterLocalization;
+    TeamSearchFilterLocalization = TeamSearchFilterLocalization;
     TeamSearchFilterPart = TeamSearchFilterPart;
 
     // component
     Localization = TeamSearchPageLocalization;
 
-    /* Base search */
+    /* Page */
+
+    public tabs: ITabModel[] = [
+        {
+            label: TeamSearchPageLocalization.TABS.GENERAL.LABEL,
+            icon: faPeopleGroup,
+            selected: true,
+            data: TeamSearchFilterPart.General
+        },
+        {
+            label: TeamSearchPageLocalization.TABS.FINANCIAL.LABEL,
+            icon: faMoneyBill,
+            data: TeamSearchFilterPart.Financial
+        },
+        {
+            label: TeamSearchPageLocalization.TABS.INVENTARY.LABEL,
+            icon: faCartFlatbed,
+            data: TeamSearchFilterPart.Inventary
+        }
+    ];
 
     public columns: ITableColumnExtendedModel[] = [
         {
@@ -78,26 +97,7 @@ export class TeamSearchPageComponent
         }
     ];
 
-    public tabs: ITabModel[] = [
-        {
-            label: TeamSearchPageLocalization.TABS.GENERAL.LABEL,
-            icon: faPeopleGroup,
-            selected: true,
-            data: TeamSearchFilterPart.General
-        },
-        {
-            label: TeamSearchPageLocalization.TABS.FINANCIAL.LABEL,
-            icon: faMoneyBill,
-            data: TeamSearchFilterPart.Financial
-        },
-        {
-            label: TeamSearchPageLocalization.TABS.INVENTARY.LABEL,
-            icon: faCartFlatbed,
-            data: TeamSearchFilterPart.Inventary
-        }
-    ];
-
-    /* End Base search */
+    /* End Page */
 
     /* Override */
 
@@ -137,7 +137,7 @@ export class TeamSearchPageComponent
         return mapTeamSearchTableModel(team, this.enumService, (team: ITeamSearchTableModel) => this.buildActions(team));
     }
 
-    buildActions(team: ITeamSearchTableModel): IDropdownMenuItemModel[] {
+    private buildActions(team: ITeamSearchTableModel): IDropdownMenuItemModel[] {
         return [
             buildRequestTeamPlayerAction(team, this.router),
             buildViewTeamAction(team.id, this.router)

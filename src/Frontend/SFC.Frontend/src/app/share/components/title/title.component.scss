@@ -1,5 +1,5 @@
-@use "ngx-sfc-common/styles/index" as *;
-@import "mixins";
+@import "ngx-sfc-common/styles";
+@import "mixins1";
 
 :host {
   width: 100%;
@@ -30,10 +30,6 @@
             margin: 0;
             font-size: 0.5em;
           }
-        }
-
-        sfc-icon-tooltip {
-          padding-top: 0.5em;
         }
       }
     }

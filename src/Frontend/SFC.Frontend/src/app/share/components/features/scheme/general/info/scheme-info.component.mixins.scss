@@ -1,0 +1,14 @@
+@mixin scheme-info($color: $color-default) {
+  sfc-scheme-info {
+    ::ng-deep > .container {
+      .content {
+        > .info {
+          h3,
+          p {
+            color: $color;
+          }
+        }
+      }
+    }
+  }
+}

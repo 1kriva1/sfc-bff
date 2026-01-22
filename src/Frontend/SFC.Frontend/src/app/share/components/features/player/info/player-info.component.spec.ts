@@ -94,7 +94,7 @@ describe('Share.Component: PlayerInfo', () => {
             fixture.detectChanges();
 
             expect(fixture.nativeElement.querySelector('div.info > p').innerText)
-                .toEqual('Defender •');
+                .toEqual('Defender • ');
         });
 
         fit('Should have defined age', () => {
@@ -102,7 +102,7 @@ describe('Share.Component: PlayerInfo', () => {
             fixture.detectChanges();
 
             expect(fixture.nativeElement.querySelector('div.info > p').innerText)
-                .toEqual('18 Years •');
+                .toEqual('18 Years • ');
         });
 
         fit('Should have defined city', () => {
