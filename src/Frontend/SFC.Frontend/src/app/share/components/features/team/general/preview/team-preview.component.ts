@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CoreLocalization } from '@core/localization';
 import { IPlayerModel } from '@share/models/player/player.model';
-import { ITeamModel } from '@share/models/team/team.model';
+import { ITeamModel } from '@share/models/team/general/team.model';
 import { getTags } from '@share/utils/components';
 import { CommonConstants, empty } from 'ngx-sfc-common';
 import { TeamPreviewLocalization } from './team-preview.localization';

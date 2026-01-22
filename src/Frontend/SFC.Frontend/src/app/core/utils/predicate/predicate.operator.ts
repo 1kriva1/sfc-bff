@@ -1,6 +1,6 @@
 import { empty, findChangedPropertyKey, firstOrDefault } from 'ngx-sfc-common';
 import { Observable } from 'rxjs';
-import { mapPredicateMetadataModels } from './filter-tags.mapper';
+import { mapPredicateMetadataModels } from './predicate.mapper';
 import { IPredicateMetadataModel, IPredicateModel } from './predicate.model';
 import { MapPredicateModelFunction } from './predicate.type';
 

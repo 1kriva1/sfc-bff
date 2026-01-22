@@ -4,7 +4,7 @@
 
     <div class="content">
         <sfc-availability-edit [value]="value.availability.value || []" (add)="updateFormValue()"
-            (onRemove)="updateFormValue()">
+            (remove)="updateFormValue()">
         </sfc-availability-edit>
     </div>
 </div>

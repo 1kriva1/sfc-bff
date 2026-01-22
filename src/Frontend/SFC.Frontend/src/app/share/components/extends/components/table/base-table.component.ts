@@ -3,22 +3,22 @@ import { AfterViewInit, ChangeDetectorRef, Directive, OnInit } from "@angular/co
 import { FormGroup } from "@angular/forms";
 import { BaseErrorResponse, BaseListResponse, BasePaginationRequest } from "@core/models";
 import { ThemeService } from "@share/components/theme-toggler/services/theme/theme.service";
-import { EnumService, IEnumsModel } from "@share/services";
+import { EnumService } from "@share/services";
 import {
     any,
     deepClone,
     empty, ILoadContainerLoaderResultModel, ILoadContainerParameters, ILoadContainerPredicateParameters,
     IPaginationModel, isDefined, ISortingModel, LoaderFunction, ObservableModel, Position, ReloadService, Theme
 } from "ngx-sfc-common";
-import { TableTemplate } from "ngx-sfc-components";
+import { ITableColumnExtendedModel, TableTemplate } from "ngx-sfc-components";
 import { EMPTY, Observable, startWith, filter, distinctUntilChanged, pairwise, timer, of, debounce, tap, map, catchError } from "rxjs";
 import { TableConstants } from "./table.constants";
 import { TableLocalization } from "./table.localization";
 import {
     catchPaginationError, combineWithReloadMultiple, IPredicateMapModel,
-    IPredicateMetadataModel,
-    IPredicateModel, mapPaginationResponse, mapPredicateModel,
-    MapPredicateModelFunction
+    IPredicateMapParametersModel,
+    IPredicateMetadataModel, IPredicateModel, mapPaginationResponse,
+    mapPredicateModel, MapPredicateModelFunction
 } from "@core/utils";
 import { NotificationService } from "@core/services";
 
@@ -75,20 +75,22 @@ export abstract class BaseTableComponent<TPredicateFormModel, TRequestServiceFil
 
     /* Abstract */
 
+    public abstract columns: ITableColumnExtendedModel[];
+
     protected abstract buildPredicateForm(): FormGroup;
 
     protected abstract buildPaginationRequest(model: TPredicateFormModel, pagination: IPaginationModel, sorting: ISortingModel | empty): BasePaginationRequest<TRequestServiceFiltersModel>;
 
     protected abstract sendPaginationRequest(request: BasePaginationRequest<TRequestServiceFiltersModel>): Observable<HttpResponse<BaseListResponse<TResponseServiceItemModel>>>;
 
-    protected abstract mapTableModel(item: TResponseServiceItemModel): TTableModel;
+    protected abstract mapTableModel(item: TResponseServiceItemModel): TTableModel | TTableModel[];
 
     /* End Abstract */
 
     constructor(
         protected reloadService: ReloadService,
         protected enumService: EnumService,
-        private themeService: ThemeService,
+        public themeService: ThemeService,
         private notificationService: NotificationService,
         private changeDetector: ChangeDetectorRef
     ) { }
@@ -168,7 +170,7 @@ export abstract class BaseTableComponent<TPredicateFormModel, TRequestServiceFil
         this.predicatePreviousFormValue = deepClone(model.previous);
     }
 
-    private mapPredicateModelDefault(key: string, value: any, _enums?: IEnumsModel | empty): IPredicateMapModel {
-        return { label: key, value: value, debounce: null };
+    private mapPredicateModelDefault(parameters: IPredicateMapParametersModel): IPredicateMapModel {
+        return { label: parameters.key, value: parameters.value, debounce: null };
     }
 }

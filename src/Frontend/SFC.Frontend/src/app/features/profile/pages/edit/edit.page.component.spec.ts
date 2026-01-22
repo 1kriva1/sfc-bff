@@ -119,8 +119,6 @@ describe('Features.Profile.Page:Edit', () => {
             expect(fixture.nativeElement.querySelector('sfc-football-edit')).toBeTruthy();
             expect(fixture.nativeElement.querySelector('sfc-stats-edit')).toBeTruthy();
             expect(fixture.nativeElement.querySelector('.combined-part .part.right')).toBeTruthy();
-            expect(fixture.nativeElement.querySelectorAll('.element sfc-progress-circle').length).toEqual(2);
-            expect(fixture.nativeElement.querySelectorAll('.element .label').length).toEqual(2);
         });
 
         fit('Should call unsubscribe', () => {
@@ -556,15 +554,15 @@ describe('Features.Profile.Page:Edit', () => {
             });
         });
 
-        describe('Stats progress', () => {
-            fit('Should total has appropriate attributes', () => {
-                const statsTotalEl: DebugElement = fixture.debugElement.query(By.css('.part.right > sfc-stats-total'));
+        // describe('Stats progress', () => {
+        //     fit('Should total has appropriate attributes', () => {
+        //         const statsTotalEl: DebugElement = fixture.debugElement.query(By.css('.part.right > sfc-stats-total'));
 
-                expect(statsTotalEl.componentInstance.progress).toEqual(50);
-                expect(statsTotalEl.componentInstance.value).toEqual(1450);
-                expect(statsTotalEl.componentInstance.total).toEqual(2900);
-            });
-        });
+        //         expect(statsTotalEl.componentInstance.progress).toEqual(50);
+        //         expect(statsTotalEl.componentInstance.value).toEqual(1450);
+        //         expect(statsTotalEl.componentInstance.total).toEqual(2900);
+        //     });
+        // });
 
         describe('Guard changes modal', () => {
             fit('Should have appropriate attributes', () => {

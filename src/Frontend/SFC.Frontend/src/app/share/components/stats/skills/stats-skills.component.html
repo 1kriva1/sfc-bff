@@ -1,8 +1,11 @@
 <div class="container">
-    <div class="type" *ngFor="let type of types">
-        <h3>{{type.label}}</h3>
-        <sfc-progress-semi-circle [progress]="type.value" [max]="type.total"
-            [getColor]="getProgressColorDynamicallyFunc" [sfcComponentSize] [customSize]="1.5">
-        </sfc-progress-semi-circle>
+    <div class="content">
+        <div class="type" *ngFor="let type of types">
+            <h3>{{type.label}}</h3>
+            <sfc-progress-semi-circle [progress]="type.value" [max]="type.total"
+                [getColor]="getProgressColorDynamicallyFunc" [sfcComponentSize] [customSize]="1.5">
+            </sfc-progress-semi-circle>
+            <p>{{type.description}}</p>
+        </div>
     </div>
 </div>

@@ -1,26 +1,39 @@
 export {
     mapPlayerModel
-} from './player.mapper';
+} from './player/player.mapper';
 
 export {
     mapTeamPlayerInviteModel
-} from './team-player-invite.mapper';
+} from './invite/team-player-invite.mapper';
 
 export {
     mapTeamPlayerRequestModel
-} from './team-player-request.mapper';
+} from './request/team-player-request.mapper';
 
 export {
     mapTeamPlayerModel
-} from './team-player.mapper';
+} from './team/player/team-player.mapper';
 
 export {
     mapTeamSchemeModel
-} from './team-scheme.mapper';
+} from './scheme/team-scheme.mapper';
 
 export {
     mapTeamModel
-} from './team.mapper';
+} from './team/general/team.mapper';
+
+export {
+    mapTeamStatisticModel
+} from './team/general/team-statistic.mapper';
+
+export {
+    mapTeamPlayerStatisticModel,
+    mapTeamPlayerStatisticActivityModel
+} from './team/player/team-player-statistic.mapper';
+
+export {
+    mapTeamGameStatisticModel
+} from './team/game/team-game-statistic.mapper';
 
 export {
     mapEnum,
@@ -33,11 +46,11 @@ export {
     mapTeamStatusEnum,
     mapFormationEnum,
     mapFormationPositionEnum
-} from './enum.mapper';
+} from './enum/enum.mapper';
 
 export {
     mapInviteStatuses,
     mapRequestStatuses,
     mapTeamPlayerStatuses,
     mapTeamStatuses
-} from './enum-icon.mapper';
+} from './enum/enum-icon.mapper';

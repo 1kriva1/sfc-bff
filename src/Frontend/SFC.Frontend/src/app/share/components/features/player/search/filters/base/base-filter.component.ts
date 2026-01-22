@@ -1,9 +1,12 @@
-import { Directive } from "@angular/core";
+import { Directive, Input } from "@angular/core";
 import { FormGroupDirective, FormBuilder, FormGroup } from "@angular/forms";
 import { PlayersFilterPart } from "../enums/players-filter-part.enum";
 
 @Directive()
 export abstract class BaseFilterComponent {
+
+    @Input()
+    build: boolean = true;
 
     // component
     PlayersFilterPart = PlayersFilterPart;

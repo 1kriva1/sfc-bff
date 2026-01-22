@@ -1,0 +1,9 @@
+@mixin theme-color($value-common, $value-dark, $selector: "&") {
+  @include theme-value(color, $value-common, $value-dark, $selector);
+}
+
+@mixin theme-background() {
+  @include theme-value(background, $background-default, $background-dark);
+
+  transition: background $transition-theme-backround-duration $transition-theme-backround-timing-function;
+}

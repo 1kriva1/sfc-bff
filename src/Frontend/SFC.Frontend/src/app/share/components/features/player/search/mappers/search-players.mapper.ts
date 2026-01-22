@@ -7,9 +7,8 @@ import { mapPaginationModel } from "@core/mappers";
 import { IPlayersFilterModel } from '../filters';
 import { IPlayersTableModel, PlayersTableColumn, PlayersTableSorting } from "../table";
 import { EnumService, IFindPlayersFilterModel, IFindPlayersRequest, IPlayerItemModel } from "../../../../../services";
-import { convertFromServerStats } from "../../../../../utils/stats";
+import { convertFromServerStats, mapLimitSearchModel } from "../../../../../utils";
 import { toEnglishLocaleTimeString } from "@core/utils";
-import { mapLimitSearchModel } from "../../../../../utils/inputs";
 
 export function mapFindPlayersRequest(
     model: IPlayersFilterModel,
@@ -67,24 +66,24 @@ export function mapFindPlayersFilterModel(model: IPlayersFilterModel, excludePla
                 PhysicalCondition: model.football?.physicalCondition,
                 Skill: model.football?.skill,
                 Positions: model.football?.positions,
-                WorkingFoot: model.football?.workingFoot?.key!
+                WorkingFoot: model.football?.workingFoot
             }
         },
         Stats: {
             Total: mapLimitSearchModel(model.stats?.total),
             Mental: {
-                From: model.stats?.mental.from,
-                To: model.stats?.mental.to,
+                From: model.stats?.mental?.from,
+                To: model.stats?.mental?.to,
                 Skill: 1
             },
             Physical: {
-                From: model.stats?.physical.from,
-                To: model.stats?.physical.to,
+                From: model.stats?.physical?.from,
+                To: model.stats?.physical?.to,
                 Skill: 0
             },
             Skill: {
-                From: model.stats?.skill.from,
-                To: model.stats?.skill.to,
+                From: model.stats?.skill?.from,
+                To: model.stats?.skill?.to,
                 Skill: 2
             },
             Raiting: model.stats?.raiting

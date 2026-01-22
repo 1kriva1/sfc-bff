@@ -1,0 +1,53 @@
+@import "ngx-sfc-common/styles";
+@import "variables1";
+@import "table1/card";
+@import "../../../../info/team-player-info.component.mixins";
+
+:host {
+  @include card-host(25%);
+
+  .container {
+    @include card-container;
+
+    .content {
+      .columns {
+        @include card-columns;
+
+        .column {
+          @include card-column;
+
+          &.actions-wrapper {
+            @include card-actions-wrapper-column;
+          }
+
+          &.information {
+            @include team-player-info($color-0);
+          }
+        }
+      }
+    }
+  }
+
+  &.team-player-status-0 {
+    @include card-background-with-related($team-player-status-active-color, $team-player-status-active-hover-color);
+  }
+
+  &.team-player-status-1 {
+    @include card-background-with-related($team-player-status-injured-color, $team-player-status-injured-hover-color);
+  }
+
+  &.team-player-status-2 {
+    @include card-background-with-related($team-player-status-retired-color, $team-player-status-retired-hover-color);
+  }
+
+  &.team-player-status-3 {
+    @include card-background-with-related(
+      $team-player-status-unavailable-color,
+      $team-player-status-unavailable-hover-color
+    );
+  }
+
+  &.team-player-status-4 {
+    @include card-background-with-related($team-player-status-removed-color, $team-player-status-removed-hover-color);
+  }
+}

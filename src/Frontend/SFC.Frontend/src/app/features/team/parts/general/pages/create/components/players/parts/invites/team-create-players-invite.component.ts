@@ -17,7 +17,7 @@ import { convertFileToBase64StringAsync } from '@core/utils';
 import { TeamCreatePlayersInviteTableConstants } from './parts/table/team-create-players-invite-table.constants';
 import { ITeamCreatePlayerInviteTableModel } from './parts/table/team-create-players-invite-table.model';
 import { IDropdownMenuItemModel, TableTemplate } from 'ngx-sfc-components';
-import { ITeamModel } from '@share/models/team/team.model';
+import { ITeamModel } from '@share/models/team/general/team.model';
 import { ITeamEditFormModel } from 'src/app/features/team/parts/general/components/edit/team-edit-form.model';
 import { TeamEditComponent } from 'src/app/features/team/parts/general/components/edit/team-edit.component';
 import { TeamCreatePageService } from '../../../../team-create-page.service';

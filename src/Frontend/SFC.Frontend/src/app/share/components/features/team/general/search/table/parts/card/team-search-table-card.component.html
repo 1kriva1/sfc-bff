@@ -32,15 +32,10 @@
                             <sfc-team-info [radius]="Constants.LOGO_RADIUS" [logo]="false" [info]="true" [model]="{
                                     name: viewModel.name,
                                     city: viewModel.city,
-                                    raiting: viewModel.raiting
+                                    raiting: viewModel.raiting,
+                                    status: data.status
                                 }">
                             </sfc-team-info>
-                        </div>
-                    </ng-container>
-
-                    <ng-container *ngSwitchCase="Column.Status">
-                        <div class="column status" [style.width]="column.calculatedWidth">
-                            <sfc-status [label]="viewModel.status.value"></sfc-status>
                         </div>
                     </ng-container>
                 </ng-container>

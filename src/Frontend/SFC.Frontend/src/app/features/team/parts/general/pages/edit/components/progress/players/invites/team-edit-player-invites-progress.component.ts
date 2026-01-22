@@ -8,7 +8,7 @@ import { IEnumModel } from '@core/types';
 import { calculatePercentageWithCount, getRouteId, switchReloadWithStart } from '@core/utils';
 import { ActivatedRoute } from '@angular/router';
 import { CoreLocalization } from '@core/localization';
-import { mapTeamPlayerInviteModel } from '@share/mappers/team-player-invite.mapper';
+import { mapTeamPlayerInviteModel } from '@share/mappers/invite/team-player-invite.mapper';
 import { ITeamPlayerInviteModel } from '@share/models/invite/team-player-invite.model';
 import { IGetAllTeamPlayerInvitesResponse, InviteTeamPlayerService, ITeamPlayerInviteServiceModel } from '@share/services/invite/team/player';
 import { InviteAction } from '@share/enums';

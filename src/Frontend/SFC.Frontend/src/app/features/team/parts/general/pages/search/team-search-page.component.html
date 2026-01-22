@@ -8,9 +8,9 @@
                             <div class="name">
                                 <sfc-text-input id="name" formControlName="name" [showPlaceholderOnFocus]="true"
                                     [label]="CommonConstants.EMPTY_STRING"
-                                    [placeholder]="TeamSearchFlterLocalization.INPUT.NAME.PLACEHOLDER" [bordered]="true"
+                                    [placeholder]="TeamSearchFilterLocalization.INPUT.NAME.PLACEHOLDER" [bordered]="true"
                                     [icon]="faSearch" [sfcComponentSize] [customSize]="1.2"
-                                    [helperText]="TeamSearchFlterLocalization.INPUT.NAME.HELPER_TEXT">
+                                    [helperText]="TeamSearchFilterLocalization.INPUT.NAME.HELPER_TEXT">
                                 </sfc-text-input>
                             </div>
 
@@ -18,7 +18,8 @@
                                 <sfc-tabs #tabsComponent [tabs]="tabs">
                                     <ng-template [sfcTemplateReference]="TabsTemplate.Label" let-label>
                                         <sfc-tab-label-line [selected]="label.selected" [disabled]="label.disabled"
-                                            [label]="label.label" [icon]="label.icon">
+                                            [label]="label.label" [icon]="label.icon" [sfcComponentSize]
+                                            [customSize]="0.9">
                                         </sfc-tab-label-line>
                                     </ng-template>
 
@@ -37,21 +38,21 @@
                         <div class="filters">
                             <sfc-collapse-expand-container [sfcIf]="tabsComponent.data === TeamSearchFilterPart.General"
                                 [expand]="true" [labelExpand]="Localization.FILTERS.GENERAL"
-                                [labelCollapse]="Localization.FILTERS.GENERAL" [delimeter]="false">
+                                [labelCollapse]="Localization.FILTERS.GENERAL" [delimeter]="true">
                                 <sfc-team-search-filter-general></sfc-team-search-filter-general>
                             </sfc-collapse-expand-container>
 
                             <sfc-collapse-expand-container
                                 [sfcIf]="tabsComponent.data === TeamSearchFilterPart.Financial" [expand]="true"
                                 [labelExpand]="Localization.FILTERS.FINANCIAL"
-                                [labelCollapse]="Localization.FILTERS.FINANCIAL" [delimeter]="false">
+                                [labelCollapse]="Localization.FILTERS.FINANCIAL" [delimeter]="true">
                                 <sfc-team-search-filter-financial></sfc-team-search-filter-financial>
                             </sfc-collapse-expand-container>
 
                             <sfc-collapse-expand-container
                                 [sfcIf]="tabsComponent.data === TeamSearchFilterPart.Inventary" [expand]="true"
                                 [labelExpand]="Localization.FILTERS.INVENTARY"
-                                [labelCollapse]="Localization.FILTERS.INVENTARY" [delimeter]="false">
+                                [labelCollapse]="Localization.FILTERS.INVENTARY" [delimeter]="true">
                                 <sfc-team-search-filter-inventary></sfc-team-search-filter-inventary>
                             </sfc-collapse-expand-container>
                         </div>
@@ -63,10 +64,10 @@
 
                             <div class="table">
                                 <sfc-table [columns]="columns" [predicate$]="predicate$" [loader]="loader"
-                                    [pagination]="SearchConstants.PAGINATION" [position]="Position.Center"
+                                    [pagination]="TableConstants.PAGINATION" [position]="Position.Center"
                                     [showColumns]="true" [columnsToggle]="true" [columnsShowOnInit]="true"
                                     [showTotal]="true" [showLoading]="showLoading" [selectable]="false"
-                                    [selectMultiple]="false" [paginationCount]="SearchConstants.PAGINATION_COUNT"
+                                    [selectMultiple]="false" [paginationCount]="TableConstants.PAGINATION_COUNT"
                                     [paginationLimits]="true"
                                     [showColumnsLabel]="TableLocalization.TABLE.COLUMNS_SHOW_LABEL"
                                     [hideColumnsLabel]="TableLocalization.TABLE.COLUMNS_HIDE_LABEL"

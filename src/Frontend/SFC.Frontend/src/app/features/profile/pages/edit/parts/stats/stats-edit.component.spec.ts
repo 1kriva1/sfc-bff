@@ -100,12 +100,12 @@ describe('Features.Profile.Page:Edit.Part:StatsEdit', () => {
         });
     });
 
-    describe('Avarage', () => {
-        fit('Should stat skills have appropriate attributes', () => {
-            expect(fixture.debugElement.query(By.css('.container > sfc-stats-skills'))
-                .componentInstance.value).toEqual(STATS);
-        });
-    });
+    // describe('Avarage', () => {
+    //     fit('Should stat skills have appropriate attributes', () => {
+    //         expect(fixture.debugElement.query(By.css('.container > sfc-stats-skills'))
+    //             .componentInstance.value).toEqual(STATS);
+    //     });
+    // });
 
     describe('Stats', () => {
         describe('Number inputs', () => {

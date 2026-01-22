@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { IPlayerModel } from "@share/models/player/player.model";
-import { ITeamModel } from "@share/models/team/team.model";
+import { ITeamModel } from "@share/models/team/general/team.model";
 import { ObservableBehaviorModel } from "ngx-sfc-common";
 import { map, Observable } from "rxjs";
 import { IInviteTeamPlayerPreviewModel } from "./invite-team-player-preview.model";

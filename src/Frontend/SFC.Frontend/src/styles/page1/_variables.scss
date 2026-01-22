@@ -1,9 +1,19 @@
-$search-page-content-margin: 2em 0 0 0;
-$search-page-content-width: 70%;
-$search-page-part-width: 100%;
-$search-page-top-background: $color-0;
+// share
+$page-content-margin: 2em 0 0 0;
+$page-part-width: 100%;
+$page-part-content-width: 70%;
+$page-part-top-background: $color-0;
+$page-part-bottom-background: $color-2;
+$page-part-bottom-padding: 2em 0;
+$page-top-tabs-margin: 5em 0 0;
+$page-bottom-filters-width: 20%;
+$page-bottom-filters-margin: 0 1em 0 0;
+$page-bottom-result-width: 80%;
+$page-bottom-result-margin: 0 0 0 3em;
+
+// search
 $search-page-input-name-width: 50%;
 $search-page-tabs-width: 30%;
-$search-page-bottom-background: $color-2;
-$search-page-filters-width: 20%;
-$search-page-result-width: 80%;
+
+// view
+$view-page-tabs-width: 40%;

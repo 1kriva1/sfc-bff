@@ -1,7 +1,10 @@
 <div class="container">
     <div class="content">
-        <sfc-delimeter [label]="value.length ? Localization.DELIMETER.EXIST_LABEL : Localization.DELIMETER.EMPTY_LABEL">
+        <sfc-delimeter *ngIf="delimeter"
+            [label]="value.length ? Localization.DELIMETER.EXIST_LABEL : Localization.DELIMETER.EMPTY_LABEL">
         </sfc-delimeter>
+
+        <sfc-no-data *ngIf="!value.length && noData"></sfc-no-data>
 
         <div class="items">
             <div class="item" *ngFor="let date of value | sfcSortBy:sortingPath:SortingDirection.Ascending">

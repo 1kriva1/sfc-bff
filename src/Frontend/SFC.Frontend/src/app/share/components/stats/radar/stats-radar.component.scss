@@ -1,0 +1,12 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+
+:host {
+  .container {
+    .content {
+      p {
+        @include text-center($color-7, 0.8em);
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 @import "ngx-sfc-common/styles";
 @import "variables1";
 @import "table1/card";
-@import "../mixins";
+@import "../../../../info/team-info.component.mixins";
 
 :host {
   @include card-host(25%);
@@ -21,11 +21,7 @@
           }
 
           &.information {
-            @include team-information-column;
-          }
-
-          &.status {
-            margin: 0.5em 0;
+            @include team-info($color-0);
           }
         }
       }

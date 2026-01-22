@@ -14,9 +14,9 @@
 
             <sfc-tags [tags]="model.tags" [sfcComponentSize] [customSize]="0.7"></sfc-tags>
 
-            <sfc-stats-skills [value]="model.stats" [sfcComponentSize] [customSize]="0.5"></sfc-stats-skills>
+            <sfc-stats-skills [values]="[model.stats]" [sfcComponentSize] [customSize]="0.5"></sfc-stats-skills>
         </div>
 
-        <sfc-no-data  *ngIf="!model" [textContent]="Localization.NO_DATA_LABEL"></sfc-no-data>
+        <sfc-no-data *ngIf="!model" [textContent]="Localization.NO_DATA_LABEL"></sfc-no-data>
     </div>
 </div>

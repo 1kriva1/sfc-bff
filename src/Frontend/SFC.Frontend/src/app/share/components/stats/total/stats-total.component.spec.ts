@@ -1,6 +1,7 @@
 import { DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
+import { STATS } from "@test/stubs";
 import { NgxSfcCommonModule } from "ngx-sfc-common";
 import { NgxSfcComponentsModule } from "ngx-sfc-components";
 import { StatsTotalComponent } from "./stats-total.component";
@@ -26,14 +27,14 @@ describe('Share.Component:StatsTotal', () => {
 
     fit('Should have main element', () => {
         expect(fixture.nativeElement.querySelector('.container')).toBeTruthy();
-        expect(fixture.nativeElement.querySelectorAll('.container .element').length).toEqual(2);
-        expect(fixture.nativeElement.querySelectorAll('.container .element sfc-progress-circle').length)
+        expect(fixture.nativeElement.querySelectorAll('.container .content .parts .part').length).toEqual(2);
+        expect(fixture.nativeElement.querySelectorAll('.container .content .parts .part sfc-progress-circle').length)
             .toEqual(2);
-        expect(fixture.nativeElement.querySelectorAll('.container .element .label').length)
+        expect(fixture.nativeElement.querySelectorAll('.container .content .parts .part .label').length)
             .toEqual(2);
-        expect(fixture.nativeElement.querySelectorAll('.container .element .label h4').length)
+        expect(fixture.nativeElement.querySelectorAll('.container .content .parts .part .label h4').length)
             .toEqual(2);
-        expect(fixture.nativeElement.querySelectorAll('.container .element .label span').length)
+        expect(fixture.nativeElement.querySelectorAll('.container .content .parts .part .label span').length)
             .toEqual(2);
     });
 
@@ -52,14 +53,14 @@ describe('Share.Component:StatsTotal', () => {
     });
 
     fit('Should percentage progress have appropriate attributes', () => {
-        component.progress = 50;
+        component.values = [STATS];
         fixture.detectChanges();
 
-        expect(fixture.debugElement.queryAll(By.css('.container .element sfc-progress-circle'))[0]
-            .componentInstance.progress).toEqual(component.progress);
-        expect(fixture.nativeElement.querySelectorAll('.container > .element > .label > h4')[0]
+        expect(fixture.debugElement.queryAll(By.css('.container .content .parts .part sfc-progress-circle'))[0]
+            .componentInstance.progress).toEqual(component.rating);
+        expect(fixture.nativeElement.querySelectorAll('.container > .content > .parts > .part > .label > h4')[0]
             .innerText).toEqual('Total rating (percentage)');
-        expect(fixture.nativeElement.querySelectorAll('.container > .element > .label > span')[0]
+        expect(fixture.nativeElement.querySelectorAll('.container > .content > .parts > .part > .label > span')[0]
             .innerText).toEqual('Average value from your stats');
     });
 
@@ -68,14 +69,14 @@ describe('Share.Component:StatsTotal', () => {
         component.value = 1450;
         fixture.detectChanges();
 
-        const progessEl: DebugElement = fixture.debugElement.queryAll(By.css('.container .element sfc-progress-circle'))[1];
+        const progessEl: DebugElement = fixture.debugElement.queryAll(By.css('.container .content .parts .part sfc-progress-circle'))[1];
 
         expect(progessEl.componentInstance.progress).toEqual(component.value);
         expect(progessEl.componentInstance.total).toEqual(component.total);
         expect(progessEl.componentInstance.getColor).toBeTruthy();
-        expect(fixture.nativeElement.querySelectorAll('.container > .element > .label > h4')[1]
+        expect(fixture.nativeElement.querySelectorAll('.container > .content > .parts > .part > .label > h4')[1]
             .innerText).toEqual('Total rating (absolute value)');
-        expect(fixture.nativeElement.querySelectorAll('.container > .element > .label > span')[1]
+        expect(fixture.nativeElement.querySelectorAll('.container > .content > .parts > .part > .label > span')[1]
             .innerText).toEqual('Sum of your all stats');
     });
 });

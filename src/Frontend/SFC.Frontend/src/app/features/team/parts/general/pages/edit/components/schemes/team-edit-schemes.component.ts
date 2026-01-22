@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
@@ -6,15 +6,15 @@ import { Observable } from 'rxjs';
 import { ModalService, ISortingModel, empty, ReloadService, IPaginationModel, CommonConstants } from 'ngx-sfc-common';
 import { IDropdownMenuItemModel } from 'ngx-sfc-components';
 import { IForm } from '@core/types';
-import { BaseListResponse, BasePaginationRequest } from '@core/models';
+import { BaseListResponse, BasePaginationRequest, IBuildActionParameters } from '@core/models';
 import { NotificationService } from '@core/services';
 import { IFindTeamSchemesFilterModel, SchemeTeamService } from '@share/services';
 import { EnumService } from '@share/services';
 import { RouteKey } from '@core/enums';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { buildBackNavigationExtras, getRouteId } from '@core/utils';
+import { buildActionParameters, buildBackNavigationExtras, getRouteId } from '@core/utils';
 import { ITeamSchemeModel } from '@share/services/scheme/team/models/common/team-scheme.model';
-import { buildEditTeamSchemeAction, buildRemoveTeamSchemeAction, buildViewTeamSchemeAction } from 'src/app/features/team/utils/team-actions.utils';
+import { buildEditTeamSchemeAction, buildRemoveTeamSchemeAction } from 'src/app/features/team/utils/team-actions.utils';
 import { TableLocalization } from '@share/localization/table.localization';
 import { SearchComponent } from '@share/components/features/base/search/search.component';
 import { SchemeAction, SchemeRoute, TeamAction as TeamAction1, TeamRoute } from '@share/enums';
@@ -25,16 +25,14 @@ import { ITeamEditSchemesTableModel } from './parts/table/team-edit-schemes-tabl
 import { mapFindTeamSchemesRequest, mapTeamEditSchemesTableModel } from './team-edit-schemes.mapper';
 import { TeamLocalization } from 'src/app/features/team/localization';
 import { ThemeService } from '@share/components/theme-toggler/services/theme/theme.service';
+import { buildViewSchemeTeamAction } from '@share/utils';
 
 @Component({
     templateUrl: './team-edit-schemes.component.html',
     styleUrls: ['./team-edit-schemes.component.scss']
 })
-export class TeamEditSchemesComponent extends SearchComponent<
-    ITeamEditSchemesFilterModel,
-    IFindTeamSchemesFilterModel,
-    ITeamSchemeModel,
-    ITeamEditSchemesTableModel> {
+export class TeamEditSchemesComponent
+    extends SearchComponent<ITeamEditSchemesFilterModel, IFindTeamSchemesFilterModel, ITeamSchemeModel, ITeamEditSchemesTableModel> {
 
     // icons
     faPlus = faPlus;
@@ -63,7 +61,7 @@ export class TeamEditSchemesComponent extends SearchComponent<
 
     constructor(
         private formBuilder: FormBuilder,
-        private schemeTeamService: SchemeTeamService,        
+        private schemeTeamService: SchemeTeamService,
         private router: Router,
         modalService: ModalService,
         themeService: ThemeService,
@@ -106,11 +104,12 @@ export class TeamEditSchemesComponent extends SearchComponent<
     }
 
     private buildActions(scheme: ITeamEditSchemesTableModel): IDropdownMenuItemModel[] {
-        const actions: IDropdownMenuItemModel[] = [
-            buildEditTeamSchemeAction(scheme.team.id, scheme.id, this.router, this.backNavigationExtras),
-            buildRemoveTeamSchemeAction(this.modalService, scheme),
-            buildViewTeamSchemeAction(scheme.team.id, scheme.id, this.router, this.backNavigationExtras)
-        ];
+        const actionParameters: IBuildActionParameters = buildActionParameters(this.router, this.backNavigationExtras),
+            actions: IDropdownMenuItemModel[] = [
+                buildEditTeamSchemeAction(scheme.team.id, scheme.id, this.router, this.backNavigationExtras),
+                buildRemoveTeamSchemeAction(this.modalService, scheme),
+                buildViewSchemeTeamAction(scheme.team.id, scheme.id, actionParameters)
+            ];
 
         return actions;
     }

@@ -1,0 +1,83 @@
+<div class="container">
+    <div class="content">
+        <div class="parts">
+            <div class="part">
+                <div class="part-content">
+                    <form [formGroup]="predicateForm" autocomplete="off">
+                        <div class="filters">
+                            <sfc-collapse-expand-container [expand]="true"
+                                [labelExpand]="Localization.FILTERS.TEAM_PLAYER_GENERAL"
+                                [labelCollapse]="Localization.FILTERS.TEAM_PLAYER_GENERAL" [delimeter]="true">
+                                <div [formGroupName]="TeamPlayerSearchFilterPart.Player">
+                                    <div class="name">
+                                        <sfc-text-input id="name" formControlName="name"
+                                            [label]="PlayersFiltersLocalization.INPUT.NAME.LABEL"
+                                            [placeholder]="PlayersFiltersLocalization.INPUT.NAME.PLACEHOLDER"
+                                            [bordered]="true"
+                                            [helperText]="PlayersFiltersLocalization.INPUT.NAME.HELPER_TEXT">
+                                        </sfc-text-input>
+                                    </div>
+                                </div>
+
+                                <div [formGroupName]="TeamPlayerSearchFilterPart.TeamPlayer">
+                                    <sfc-team-player-search-filter-general></sfc-team-player-search-filter-general>
+                                </div>
+                            </sfc-collapse-expand-container>
+
+                            <div [formGroupName]="TeamPlayerSearchFilterPart.Player">
+                                <sfc-collapse-expand-container [expand]="true"
+                                    [labelExpand]="Localization.FILTERS.PLAYER_GENERAL"
+                                    [labelCollapse]="Localization.FILTERS.PLAYER_GENERAL" [delimeter]="true">
+                                    <sfc-general-filter [build]="false"></sfc-general-filter>
+                                </sfc-collapse-expand-container>
+
+                                <sfc-collapse-expand-container [expand]="false"
+                                    [labelExpand]="Localization.FILTERS.PLAYER_FOOTBALL"
+                                    [labelCollapse]="Localization.FILTERS.PLAYER_FOOTBALL" [delimeter]="true">
+                                    <sfc-football-filter [build]="false"></sfc-football-filter>
+                                </sfc-collapse-expand-container>
+
+                                <sfc-collapse-expand-container [expand]="false"
+                                    [labelExpand]="Localization.FILTERS.PLAYER_STATS"
+                                    [labelCollapse]="Localization.FILTERS.PLAYER_STATS" [delimeter]="true">
+                                    <sfc-stats-filter [build]="false"></sfc-stats-filter>
+                                </sfc-collapse-expand-container>
+                            </div>
+                        </div>
+
+                        <div class="result">
+                            <div class="filters-preview">
+                                <sfc-filter-tags [metadata$]="metadata$" [form]="predicateForm"></sfc-filter-tags>
+                            </div>
+
+                            <div class="table">
+                                <sfc-table [columns]="columns" [predicate$]="predicate$" [loader]="loader"
+                                    [pagination]="TableConstants.PAGINATION" [position]="Position.Center"
+                                    [columnsToggle]="true" [showTotal]="true" [showLoading]="showLoading"
+                                    [paginationCount]="TableConstants.PAGINATION_COUNT" [paginationLimits]="true"
+                                    [showColumnsLabel]="TableLocalization.TABLE.COLUMNS_SHOW_LABEL"
+                                    [hideColumnsLabel]="TableLocalization.TABLE.COLUMNS_HIDE_LABEL"
+                                    [totalLabel]="TableLocalization.TABLE.TOTAL_LABEL"
+                                    [dataListLabel]="TableLocalization.TABLE.DATA_LIST_LABEL"
+                                    [dataCardsLabel]="TableLocalization.TABLE.DATA_CARDS_LABEL"
+                                    [notFoundLabel]="TableLocalization.TABLE.NOT_FOUND_LABEL">
+                                    <ng-template [sfcTemplateReference]="TableTemplate.Row" let-row>
+                                        <sfc-team-player-search-table-row [model]="row.model" [columns]="row.columns"
+                                            [sfcComponentSize] [customSize]="0.8">
+                                        </sfc-team-player-search-table-row>
+                                    </ng-template>
+
+                                    <ng-template [sfcTemplateReference]="TableTemplate.Card" let-card>
+                                        <sfc-team-player-search-table-card [model]="card.model" [columns]="card.columns"
+                                            [sfcComponentSize] [customSize]="0.8">
+                                        </sfc-team-player-search-table-card>
+                                    </ng-template>
+                                </sfc-table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

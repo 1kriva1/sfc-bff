@@ -3,78 +3,67 @@
 @import "table1";
 @import "./variables";
 
-@mixin page-search {
-  .container {
-    .content {
-      margin: $search-page-content-margin;
+// share
+@mixin page-content {
+  margin: $page-content-margin;
+}
 
-      .parts {
-        @include center-column;
+@mixin page-content-parts {
+  @include center-column;
+}
 
-        .part {
-          @include center;
+@mixin page-content-part {
+  @include center;
 
-          width: $search-page-part-width;
+  width: $page-part-width;
 
-          .part-content {
-            display: flex;
-            justify-content: center;
-            width: $search-page-content-width;
-          }
-
-          &.top {
-            background: $search-page-top-background;
-
-            .part-content {
-              .name-tabs {
-                @include center-column;
-
-                width: 100%;
-
-                .name {
-                  @include search-text-input;
-
-                  width: $search-page-input-name-width;
-                }
-
-                .tabs {
-                  @include tabs($search-page-tabs-width);
-
-                  width: 100%;
-                  margin: 5em 0 0;
-                }
-              }
-            }
-          }
-
-          &.bottom {
-            background: $search-page-bottom-background;
-
-            .part-content {
-              .filters {
-                @include collapse-expand-container;
-
-                width: $search-page-filters-width;
-                padding: 2em 1em;
-              }
-
-              .result {
-                width: $search-page-result-width;
-                padding: 2em 3em;
-
-                .filters-preview {
-                  display: flex;
-                  align-items: center;
-                }
-
-                .table {
-                  @include table($color-2, $color-2);
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+  .part-content {
+    display: flex;
+    justify-content: center;
+    width: $page-part-content-width;
   }
 }
+
+@mixin page-content-part-top {
+  background: $page-part-top-background;
+}
+
+@mixin page-content-part-top-tabs($page-tabs-width) {
+  width: 100%;
+  margin: $page-top-tabs-margin;
+
+  @include tabs($page-tabs-width);
+}
+
+@mixin page-content-part-bottom {
+  background: $page-part-bottom-background;
+  padding: $page-part-bottom-padding;
+}
+
+// search
+@mixin page-content-filters() {
+  width: $page-bottom-filters-width;
+  margin: $page-bottom-filters-margin;
+
+  @include collapse-expand-container;
+
+  sfc-collapse-expand-container {
+    margin-bottom: 1em;
+  }
+}
+
+@mixin page-content-result() {
+  width: $page-bottom-result-width;
+  margin: $page-bottom-result-margin;
+
+  .filters-preview {
+    display: flex;
+    align-items: center;
+  }
+
+  .table {
+    @include table($color-2, $color-2);
+  }
+}
+
+// view

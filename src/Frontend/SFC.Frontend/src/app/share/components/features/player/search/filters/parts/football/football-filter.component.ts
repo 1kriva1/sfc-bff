@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ControlContainer, FormBuilder, FormGroupDirective } from "@angular/forms";
+import { FormBuilder, FormGroupDirective } from "@angular/forms";
+import { CoreConstants } from "@core/constants";
 import { IForm } from "@core/types";
 import { EnumService } from "@share/services";
 import { IBubbleModel } from "ngx-sfc-inputs";
@@ -8,17 +9,17 @@ import { PlayersFilterPart } from "../../enums/players-filter-part.enum";
 import { FootballFilterConstants } from "./football-filter.constants";
 import { FootballFilterLocalization } from "./football-filter.localization";
 import { IFootballFilterModel } from "./football-filter.model";
+import { buildPlayerSearchFilterFootballFormControls } from "./football-filter.utils";
 
 @Component({
     selector: 'sfc-football-filter',
     templateUrl: './football-filter.component.html',
     styleUrls: ['../../base/base-filter.component.scss'],
-    viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
+    viewProviders: [CoreConstants.CONTROL_CONTAINER_PROVIDER]
 })
 export class FootballFilterComponent
     extends BaseFilterComponent
     implements OnInit {
-
         
     Constants = FootballFilterConstants;
     Localization = FootballFilterLocalization;
@@ -31,16 +32,9 @@ export class FootballFilterComponent
     }
 
     ngOnInit(): void {
-        const controls: IForm<IFootballFilterModel> = {
-            height: [{ from: this.Constants.FROM_HEIGHT_DEFAULT, to: this.Constants.TO_HEIGHT_DEFAULT }],
-            weight: [{ from: this.Constants.FROM_WEIGHT_DEFAULT, to: this.Constants.TO_WEIGHT_DEFAULT }],
-            positions: [null],
-            workingFoot: [null],
-            gameStyles: [null],
-            physicalCondition: [null],
-            skill: [null]
-        };
-        this.form.addControl(PlayersFilterPart.Football, this.formBuilder.group(controls));
+        if (this.build) {
+            this.buildFormGroup();
+        }
     }
 
     public POSITIONS: IBubbleModel[] = this.enumService.enums.footballPositions
@@ -55,6 +49,11 @@ export class FootballFilterComponent
 
     public generateWeightRangeLabel(from: number, to: number): string {
         return this.generateSizeRangeLabel(from, to, this.Localization.KG);
+    }
+
+    private buildFormGroup(): void {
+        const controls: IForm<IFootballFilterModel> = buildPlayerSearchFilterFootballFormControls();
+        this.form.addControl(PlayersFilterPart.Football, this.formBuilder.group(controls));
     }
 
     private generateSizeRangeLabel(from: number, to: number, units: string): string {

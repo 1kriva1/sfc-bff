@@ -8,5 +8,6 @@ export {
     getPlayersStars,
     getTypes,
     getMetadata,
+    getAverageStatsValue,
     convertFromServerStats
 } from "./stats.utils";

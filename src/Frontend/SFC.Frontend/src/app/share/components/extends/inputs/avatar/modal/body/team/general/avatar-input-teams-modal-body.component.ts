@@ -7,14 +7,14 @@ import { ITableColumnExtendedModel, ITableSelectEvent } from 'ngx-sfc-components
 import { AvatarInputPlayersModalBodyLocalization } from './avatar-input-teams-modal-body.localization';
 import { SearchComponent } from '@share/components/features/base/search/search.component';
 import { ITeamSearchTableModel } from '@share/components/features/team/general/search/table/team-search-table.model';
-import { ITeamModel } from '@share/services/team/general/models/common/team.model';
-import { IFindTeamsFilterModel } from '@share/services/team/general/models/find/filters/find-teams-filter.model';
+import { ITeamModel } from '@share/services/team/general/general/models/common/team.model';
+import { IFindTeamsFilterModel } from '@share/services/team/general/general/models/find/filters/find-teams-filter.model';
 import { ITeamSearchFilterModel } from '@share/components/features/team/general/search/filters/team-search-filter.model';
 import { AvatarInputTeamsModalBodyTableConstants } from './parts/table/avatar-input-teams-modal-body-table.constants';
 import { IAvatarInputTeamsModalBodyEventModel } from './avatar-input-teams-modal-body-event.model';
 import { EnumService } from '@share/services';
 import { NotificationService } from '@core/services';
-import { TeamService } from '@share/services/team/general/team.service';
+import { TeamService } from '@share/services/team/general/general/team.service';
 import { IForm } from '@core/types';
 import { BaseListResponse, BasePaginationRequest } from '@core/models';
 import { mapFindTeamsRequest } from '@share/components/features/team/general/search/filters/team-search-filter.mapper';

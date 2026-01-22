@@ -36,8 +36,9 @@
                         ],
                         "stylePreprocessorOptions": {
                             "includePaths": [
-                                "src/app",
                                 "src/styles",
+                                "src/app",
+                                "src/app/share",
                                 "node_modules"
                             ]
                         },
@@ -55,8 +56,8 @@
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "1.55mb",
-                                    "maximumError": "2mb"
+                                    "maximumWarning": "2.10mb",
+                                    "maximumError": "3mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",

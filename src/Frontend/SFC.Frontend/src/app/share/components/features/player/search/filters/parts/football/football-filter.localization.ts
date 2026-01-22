@@ -26,11 +26,15 @@ export class FootballFilterLocalization {
             },
             HEIGHT: {
                 LABEL: $localize`:@@feature.player.search.page.filter.football.input.height.label:Height`,
-                HELPER_TEXT: $localize`:@@feature.player.search.page.filter.football.input.height.helper-text:Find players by height range`
+                HELPER_TEXT: $localize`:@@feature.player.search.page.filter.football.input.height.helper-text:Find players by height range`,
+                FILTERS_FROM_LABEL: $localize`:@@share.components.features.player.search.filter.football.input.height.filters-from:Height from`,
+                FILTERS_TO_LABEL: $localize`:@@share.components.features.player.search.filter.football.input.height.filters-to:Height to`
             },
             WEIGHT: {
                 LABEL: $localize`:@@feature.player.search.page.filter.football.input.weight.label:Weight`,
-                HELPER_TEXT: $localize`:@@feature.player.search.page.filter.football.input.weight.helper-text:Find players by weight range`
+                HELPER_TEXT: $localize`:@@feature.player.search.page.filter.football.input.weight.helper-text:Find players by weight range`,
+                FILTERS_FROM_LABEL: $localize`:@@share.components.features.player.search.filter.football.input.weight.filters-from:Weight from`,
+                FILTERS_TO_LABEL: $localize`:@@share.components.features.player.search.filter.football.input.weight.filters-to:Weight to`
             },
             SKILL: {
                 LABEL: $localize`:@@feature.player.search.page.filter.football.input.skill.label:Skill`,

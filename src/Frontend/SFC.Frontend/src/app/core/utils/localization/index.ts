@@ -1,4 +1,5 @@
 export {
     getShortMonth,
-    getLongMonth
+    getLongMonth,
+    getLongMonthById
 } from './localization.utils';

@@ -1,4 +1,4 @@
-import { IAvailabilityLimitModel } from "@share/models/common/availability-limit.model";
+import { IAvailabilityLimitModel } from "@share/models/common/availability/availability-limit.model";
 
 export interface ITeamSearchFilterGeneralModel {
     city: string | null;

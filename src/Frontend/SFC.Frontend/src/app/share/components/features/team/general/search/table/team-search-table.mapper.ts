@@ -1,4 +1,4 @@
-import { mapTeamPlayerModel } from "@share/mappers/team-player.mapper";
+import { mapTeamPlayerModel } from "@share/mappers/team/player/team-player.mapper";
 import { EnumService, ITeamServiceModel } from "@share/services";
 import { IAvailabilityModel } from "@share/services/common/availability/availability.model";
 import { mapAvailabilityEditFormModel } from "@share/utils/http";

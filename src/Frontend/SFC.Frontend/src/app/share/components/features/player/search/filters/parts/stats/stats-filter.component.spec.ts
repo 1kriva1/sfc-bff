@@ -1,6 +1,6 @@
 import { DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { FormBuilder, FormGroupDirective, ReactiveFormsModule } from "@angular/forms";
+import { ControlContainer, FormBuilder, FormGroupDirective, ReactiveFormsModule } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { ShareModule } from "@share/share.module";
@@ -24,6 +24,7 @@ describe('Features.Player.Page:PlayersSearch.Part.Filter: Stats', () => {
             imports: [ReactiveFormsModule, NoopAnimationsModule, NgxSfcCommonModule, NgxSfcInputsModule, ShareModule],
             declarations: [StatsFilterComponent],
             providers: [
+                { provide: ControlContainer, useValue: formGroupDirective },
                 { provide: FormGroupDirective, useValue: formGroupDirective }
             ]
         }).compileComponents();
@@ -56,10 +57,10 @@ describe('Features.Player.Page:PlayersSearch.Part.Filter: Stats', () => {
             expect((component as any).form.value)
                 .toEqual({
                     stats: {
-                        total: { from: StatsFilterConstants.FROM_STATS_DEFAULT, to: StatsFilterConstants.TO_STATS_DEFAULT },
-                        physical: { from: StatsFilterConstants.FROM_STATS_DEFAULT, to: StatsFilterConstants.TO_STATS_DEFAULT },
-                        mental: { from: StatsFilterConstants.FROM_STATS_DEFAULT, to: StatsFilterConstants.TO_STATS_DEFAULT },
-                        skill: { from: StatsFilterConstants.FROM_STATS_DEFAULT, to: StatsFilterConstants.TO_STATS_DEFAULT },
+                        total: null,
+                        physical: null,
+                        mental: null,
+                        skill: null,
                         raiting: null
                     }
                 });

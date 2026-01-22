@@ -16,16 +16,17 @@ import { mapBubbles } from '@share/utils/inputs';
 import { TeamEditPlayersSquadTableConstants } from './parts/table/team-edit-players-squad-table.constants';
 import { ITeamEditPlayersSquadTableModel } from './parts/table/team-edit-players-squad-table.model';
 import { buildViewPlayerAction } from '@share/utils/features/player/player-action.utils';
-import { buildRemoveTeamPlayerAction, buildViewTeamPlayerAction } from 'src/app/features/team/utils/team-actions.utils';
+import { buildRemoveTeamPlayerAction } from 'src/app/features/team/utils/team-actions.utils';
 import { TeamLocalization } from 'src/app/features/team/localization/team.localization';
 import { buildBackNavigationExtras, getRouteId } from '@core/utils';
-import { ITeamPlayerModel } from '@share/services/team/player/models/common/team-player.model';
+import { ITeamPlayerModel } from '@share/services/team/player/general/models/common/team-player.model';
 import { isTeamPlayerActive } from 'src/app/features/team/utils/team.utils';
 import { TeamEditPlayersSquadLocalization } from './team-edit-players-squad.localization';
 import { ITeamEditPlayersSquadFilterModel } from './team-edit-players-squad-form.model';
 import { mapFindTeamPlayersRequest, mapTeamEditPlayersSquadTableModel } from './team-edit-players-squad.mapper';
 import { TeamAction } from '@share/enums';
 import { ThemeService } from '@share/components/theme-toggler/services/theme/theme.service';
+import { buildViewTeamPlayerAction } from '@share/utils';
 
 @Component({
     templateUrl: './team-edit-players-squad.component.html',

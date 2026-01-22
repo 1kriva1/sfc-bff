@@ -1,13 +1,23 @@
 <div class="container">
     <div class="content">
-        <sfc-avatar *ngIf="logo" [radius]="radius" [stroke]="stroke" [progress]="rating" [data]="avatarModel"
-            [progressModel]="avatarProgressModel" [badges]="avatarBadges">
-        </sfc-avatar>
+        <div *ngIf="logo" class="logo">
+            <sfc-avatar [radius]="radius" [stroke]="stroke" [progress]="rating" [data]="avatarModel"
+                [progressModel]="avatarProgressModel" [badges]="avatarBadges">
+            </sfc-avatar>
+        </div>
 
         <div *ngIf="info" class="info">
             <h3>{{model.name}}</h3>
             <span>{{model.city}}</span>
             <sfc-stars [value]="stars" [sfcComponentSize]="ComponentSize.Small"></sfc-stars>
+            <sfc-tags *ngIf="tags.length" [tags]="tags" [sfcComponentSize]="ComponentSize.Small"></sfc-tags>
+            <sfc-status *ngIf="status" [label]="status.value"></sfc-status>
+        </div>
+
+        <div *ngIf="actions.length" class="actions">
+            <sfc-dropdown-menu [items]="actions" [bordered]="false" [filled]="true"
+                [position]="[Position.Bottom, Position.Center]" [sfcComponentSize]="ComponentSize.Small">
+            </sfc-dropdown-menu>
         </div>
     </div>
 </div>

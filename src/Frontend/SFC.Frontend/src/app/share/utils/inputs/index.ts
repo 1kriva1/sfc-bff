@@ -1,7 +1,11 @@
 export {
-    mapBubbles,
-    mapSelectItems,
-    mapLimitSearchModel,
+    // bubbles
+    mapBubbles,    
     mapWeekDayBubbles,
-    mapSelectItem
+    // select
+    mapSelectItem,    
+    mapSelectItems,
+    mapFormationSelectItems,
+    // range
+    generateMultipleLabel
 } from './inputs.utils';

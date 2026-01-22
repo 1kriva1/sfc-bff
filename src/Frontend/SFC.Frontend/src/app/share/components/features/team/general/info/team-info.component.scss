@@ -1,16 +1,30 @@
-@use "ngx-sfc-common/styles/index" as *;
-@import "mixins";
+@import "ngx-sfc-common/styles";
+@import "variables1";
+@import "common";
+@import "components1";
+
+@mixin team-info-status($background) {
+  .container {
+    .content {
+      .info {
+        @include status($background, $color-default);
+      }
+    }
+  }
+}
 
 :host {
   .container {
     @include center;
 
     .content {
+      display: flex;
+
       .info {
         @include center-column;
         @include theme-value(color, $color-default, $color-0);
 
-        margin: 0 0.5em;
+        margin: 0 1.5em;
         text-align: center;
 
         h3,
@@ -35,6 +49,19 @@
           margin: 0;
           user-select: none;
         }
+
+        sfc-tags {
+          max-width: 30em;
+          margin-top: 0.5em;
+        }
+
+        sfc-status {
+          margin-top: 0.5em;
+        }
+      }
+
+      .actions {
+        @include action-menu($color-default);
       }
     }
   }
@@ -53,5 +80,21 @@
         flex-direction: row;
       }
     }
+  }
+
+  &.team-status-3 {
+    @include team-info-status($team-status-closed-color);
+  }
+
+  &.team-status-2 {
+    @include team-info-status($team-status-inactive-color);
+  }
+
+  &.team-status-1 {
+    @include team-info-status($team-status-active-color);
+  }
+
+  &.team-status-0 {
+    @include team-info-status($team-status-temporary-color);
   }
 }

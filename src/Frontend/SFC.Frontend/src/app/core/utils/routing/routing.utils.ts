@@ -1,6 +1,6 @@
-import { ActivatedRouteSnapshot, Navigation, NavigationExtras, Route } from "@angular/router";
-import { IBackNavigationModel } from "@core/models";
-import { isNullOrEmptyString } from "ngx-sfc-common";
+import { ActivatedRoute, ActivatedRouteSnapshot, Navigation, NavigationExtras, Route, Router } from "@angular/router";
+import { IBackNavigationModel, IBuildActionParameters } from "@core/models";
+import { isDefined, isNullOrEmptyString, isNumeric, where } from "ngx-sfc-common";
 import { CoreConstants, RouteConstants } from "../../constants";
 
 export function buildPath(key: string): string {
@@ -14,6 +14,16 @@ export function buildTitle(title: string): string {
 export function getUrlSegment(url: string, index: number | null = null): string {
     const segments: string[] = url.split('?')[0].split('/');
     return index !== null ? segments[index] : segments.pop()!
+}
+
+export function getUrlSegments(url: string, start?: number, end?: number): string[] {
+    const segments: string[] = url.split('?')[0].split('/');
+    return segments.slice(start, end);
+}
+
+export function getPartUrlSegments(url: string): string[] {
+    const segments: string[] = getUrlSegments(url);
+    return where(segments, segment => !isNumeric(segment)) || [];
 }
 
 export function buildFallbackRoute(redirectTo: string): Route {
@@ -71,4 +81,34 @@ export function getBackNavigationModel(navigation: Navigation | null): IBackNavi
 
 export function getRouteData<T>(snapshot: ActivatedRouteSnapshot, key: string, defaultValue: T | null = null): T | null {
     return snapshot.data[key]?.result || defaultValue;
+}
+
+export function getDataFromRoute<T>(route: ActivatedRoute, key: string, defaultValue: T | null = null): T | null {
+    return route.snapshot.data[key]?.result || defaultValue;
+}
+
+export function getDataFromParentRoute<T>(route: ActivatedRoute, key: string, defaultValue: T | null = null): T | null {
+    if (route.parent) {
+        return route.parent!.snapshot.data[key]?.result || defaultValue;
+    }
+
+    return defaultValue;
+}
+
+export function getDataFromRouteRecursively<T>(route: ActivatedRoute, key: string): T | null {
+    let data: T | null = getDataFromRoute<T>(route, key);
+
+    if (isDefined(data)) {
+        return data;
+    }
+
+    if (route.parent) {
+        return getDataFromRouteRecursively<T>(route.parent, key);
+    }
+
+    return data;
+}
+
+export function buildActionParameters(router: Router, state: any = undefined): IBuildActionParameters {
+    return { router, state }
 }

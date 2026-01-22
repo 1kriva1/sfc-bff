@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="content">
+        <div class="parts">
+            <div class="part top">
+                <div class="part-content">
+                    <div class="rows">
+                        <div class="row">
+                            <div class="columns">
+                                <div class="column radar">
+                                    <sfc-panel [label]="Localization.PANEL.RADAR.LABEL"
+                                        [description]="Localization.PANEL.RADAR.DESCRIPTION" [icon]="faChartSimple"
+                                        [tooltip]="Localization.PANEL.RADAR.TOOLTIP">
+                                        <div class="panel-content">
+                                            <sfc-stats-radar [values]="stats"
+                                                [label]="Localization.PANEL.RADAR.CHART_LABEL">
+                                            </sfc-stats-radar>
+                                        </div>
+                                    </sfc-panel>
+                                </div>
+
+                                <div class="column values">
+                                    <sfc-panel class="total" [label]="Localization.PANEL.TOTAL.LABEL"
+                                        [description]="Localization.PANEL.TOTAL.DESCRIPTION" [icon]="faStar"
+                                        [tooltip]="Localization.PANEL.TOTAL.TOOLTIP">
+                                        <div class="panel-content">
+                                            <sfc-stats-total [values]="stats" [delimeter]="false"
+                                                [averageDescription]="Localization.PANEL.TOTAL.AVERAGE_DESCRIPTION"
+                                                [totalDescription]="Localization.PANEL.TOTAL.TOTAL_DESCRIPTION">
+                                            </sfc-stats-total>
+                                        </div>
+                                    </sfc-panel>
+
+                                    <sfc-panel class="skills" [label]="Localization.PANEL.SKILLS.LABEL"
+                                        [description]="Localization.PANEL.SKILLS.DESCRIPTION" [icon]="faBrain"
+                                        [tooltip]="Localization.PANEL.SKILLS.TOOLTIP">
+                                        <div class="panel-content">
+                                            <sfc-stats-skills [values]="stats"></sfc-stats-skills>
+                                        </div>
+                                    </sfc-panel>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="part bottom">
+                <div class="part-content">
+                    <div class="rows">
+                        <div class="row">
+                            <div class="columns">
+                                <div class="column stats">
+                                    <sfc-panel [label]="Localization.PANEL.LIST.LABEL"
+                                        [description]="Localization.PANEL.LIST.DESCRIPTION" [icon]="faChartSimple"
+                                        [tooltip]="Localization.PANEL.LIST.TOOLTIP">
+                                        <div class="panel-content">
+                                            <sfc-stats-list [values]="stats"></sfc-stats-list>
+                                        </div>
+                                    </sfc-panel>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

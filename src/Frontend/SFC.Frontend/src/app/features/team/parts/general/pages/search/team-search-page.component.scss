@@ -1,9 +1,55 @@
 @import "ngx-sfc-common/styles";
-@import "components1";
 @import "inputs";
-@import "table1";
 @import "page1";
 
 :host {
-  @include page-search;
+  .container {
+    .content {
+      @include page-content;
+
+      .parts {
+        @include page-content-parts;
+
+        .part {
+          @include page-content-part;
+
+          &.top {
+            @include page-content-part-top;
+
+            .part-content {
+              .name-tabs {
+                @include center-column;
+
+                width: 100%;
+
+                .name {
+                  @include search-text-input;
+
+                  width: $search-page-input-name-width;
+                }
+
+                .tabs {
+                  @include page-content-part-top-tabs($search-page-tabs-width);
+                }
+              }
+            }
+          }
+
+          &.bottom {
+            @include page-content-part-bottom;
+
+            .part-content {
+              .filters {
+                @include page-content-filters;
+              }
+
+              .result {
+                @include page-content-result;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

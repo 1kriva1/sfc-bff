@@ -1,5 +1,5 @@
 import { mapPaginationModel } from "@core/mappers";
-import { IFindTeamsRequest } from "@share/services/team/general/models/find/find-teams.request";
+import { IFindTeamsRequest } from "@share/services/team/general/general/models/find/find-teams.request";
 import { empty, IPaginationModel, ISortingModel, nameof } from "ngx-sfc-common";
 import { ITeamSearchFilterModel } from "./team-search-filter.model";
 import { ISortingModel as ISortingRequestModel } from "@core/models";

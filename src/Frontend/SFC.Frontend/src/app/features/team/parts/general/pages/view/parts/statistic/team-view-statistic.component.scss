@@ -1,0 +1,38 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      .parts {
+        @include wrap-column;
+
+        .part {
+          width: 100%;
+
+          &.top {
+            .part-content {
+              @include wrap-row;
+
+              sfc-title {
+                flex: 6;
+              }
+
+              form {
+                display: flex;
+                justify-content: flex-end;
+                flex: 1;
+
+                sfc-select-input {
+                  display: inline-block;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

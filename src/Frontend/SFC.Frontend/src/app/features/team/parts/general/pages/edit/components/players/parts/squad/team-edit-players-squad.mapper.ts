@@ -5,8 +5,8 @@ import { ISortingModel as ISortingRequestModel } from "@core/models";
 import { PlayersTableSorting } from "@share/components/features/player/search/table";
 import { ITeamEditPlayersSquadTableModel } from "./parts/table/team-edit-players-squad-table.model";
 import { mapFindPlayersFilterModel } from "@share/components/features/player/search/mappers/search-players.mapper";
-import { ITeamPlayerModel } from "@share/services/team/player/models/common/team-player.model";
-import { mapTeamPlayerModel } from "@share/mappers/team-player.mapper";
+import { ITeamPlayerModel } from "@share/services/team/player/general/models/common/team-player.model";
+import { mapTeamPlayerModel } from "@share/mappers/team/player/team-player.mapper";
 import { ITeamEditPlayersSquadFilterModel } from "./team-edit-players-squad-form.model";
 import { TeamEditPlayersSquadTableColumn } from "./parts/table/team-edit-players-squad-table-column.enum";
 

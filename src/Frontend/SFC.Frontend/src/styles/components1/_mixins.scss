@@ -1,5 +1,7 @@
 @import "ngx-sfc-common/components/delimeter/delimeter.component.mixins";
 
+// ngx-sfc-common
+
 @mixin button($hover: true, $background: $color-yellow-0, $background-hover: $color-yellow-1) {
   sfc-button {
     &:not(.disabled) {
@@ -32,10 +34,6 @@
     width: 100%;
     display: block;
 
-    &:nth-child(2) {
-      padding: 0.5em 0;
-    }
-
     ::ng-deep > .container {
       align-items: normal;
 
@@ -45,6 +43,10 @@
     }
   }
 }
+
+// End ngx-sfc-common
+
+// ngx-sfc-components
 
 @mixin tabs($width) {
   sfc-tabs {
@@ -67,30 +69,6 @@
       .body-container {
         margin: 0;
       }
-    }
-  }
-}
-
-@mixin status($background, $color: $color-default) {
-  sfc-status {
-    ::ng-deep .container {
-      .content {
-        .circle {
-          background: $background;
-        }
-
-        .label {
-          color: $color;
-        }
-      }
-    }
-  }
-}
-
-@mixin title-part {
-  sfc-title {
-    ::ng-deep .container {
-      @include part;
     }
   }
 }
@@ -134,3 +112,72 @@
     }
   }
 }
+
+// End ngx-sfc-components
+
+// share
+
+@mixin status($background, $color: $color-default) {
+  sfc-status {
+    ::ng-deep .container {
+      .content {
+        .circle {
+          background: $background;
+        }
+
+        .label {
+          color: $color;
+        }
+      }
+    }
+  }
+}
+
+@mixin title-part {
+  sfc-title {
+    ::ng-deep .container {
+      @include part;
+    }
+  }
+}
+
+@mixin no-data {
+  sfc-no-data {
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1em;
+  }
+}
+
+@mixin panel {
+  sfc-panel {
+    flex: 1;
+
+    ::ng-deep > .container {
+      height: 100%;
+      box-sizing: border-box;
+      background: $color-0;
+
+      .header {
+        sfc-title {
+          .container {
+            .content {
+              .title {
+                sfc-icon-tooltip {
+                  font-size: 0.8em;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .panel-content {
+      @include text($color-default, 0.8em);
+      @include no-data;
+    }
+  }
+}
+
+// End share

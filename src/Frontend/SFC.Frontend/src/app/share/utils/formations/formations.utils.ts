@@ -14,6 +14,11 @@ export function getFormationLabel(value: number[][]): string {
     return value.map(row => row.length).join('-');
 }
 
+export function getFormationTotalPlayers(value: number | null, values: IFormationEnumModel[]): number {
+    const formation: IFormationEnumModel = getFormationEnum(value, values)!;
+    return formation.value.reduce((sum, subArray) => sum + subArray.length, 0);
+}
+
 export function getFormationType(value: number, values: IEnumModel<number>[]): IEnumModel<number> | empty {
     return firstOrDefault(values, type => type.key === value);
 }

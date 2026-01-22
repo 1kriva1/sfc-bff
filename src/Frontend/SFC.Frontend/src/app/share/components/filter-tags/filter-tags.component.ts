@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { CoreLocalization } from '@core/localization';
 import { IPredicateMetadataModel } from '@core/utils';
-import { addItem, any, ITagModel, updatePropertyByKey } from 'ngx-sfc-common';
+import { addItem, any, ITagModel, updatePropertyByPath } from 'ngx-sfc-common';
 import { EMPTY, map, Observable } from 'rxjs';
 
 @Component({
@@ -38,7 +38,7 @@ export class FilterTagsComponent implements OnInit {
         this.tags$ = this.metadata$.pipe(
             map((metadata: IPredicateMetadataModel[]) => {
                 const tags: ITagModel[] = metadata.map((item: IPredicateMetadataModel) => ({
-                    key: item.key,
+                    key: item.path,
                     label: `${item.label}: ${item.mapValue}`,
                     args: item.value,
                     imageSrc: item.image,
@@ -56,7 +56,7 @@ export class FilterTagsComponent implements OnInit {
     }
 
     public onFilterTagRemove(model: ITagModel): void {
-        const newFormValue = updatePropertyByKey(this.form.value, model.key, null, model.args);
+        const newFormValue: any = updatePropertyByPath<any>(this.form.value, model.key, null, model.args);
         this.form.patchValue(newFormValue, { emitEvent: true });
     }
 

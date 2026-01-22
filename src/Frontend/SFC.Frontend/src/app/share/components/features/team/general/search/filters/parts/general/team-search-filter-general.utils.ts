@@ -6,7 +6,7 @@ import { Compare, nameof } from "ngx-sfc-common";
 import { compareThan, maxArrayLength } from "ngx-sfc-inputs";
 import { ITeamSearchFilterGeneralModel } from "./team-search-filter-general.model";
 
-export function buildTeamSearchFilterGeneralFormGroup(formBuilder: FormBuilder): IForm<ITeamSearchFilterGeneralModel> {
+export function buildTeamSearchFilterGeneralFormControls(formBuilder: FormBuilder): IForm<ITeamSearchFilterGeneralModel> {
     const availabilityControls: IForm<IAvailabilityLimitModel> = {
         days: [null],
         from: [null, [compareThan(nameof<IAvailabilityLimitModel>('to'), Compare.Less)]],

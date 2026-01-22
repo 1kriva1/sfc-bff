@@ -1,0 +1,17 @@
+@import "ngx-sfc-common/styles";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      .parts {
+        .part {
+          .part-content {
+            @include wrap-row(0.8em);
+          }
+        }
+      }
+    }
+  }
+}

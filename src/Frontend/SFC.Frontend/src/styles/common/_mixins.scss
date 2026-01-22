@@ -1,3 +1,5 @@
+/* Text */
+
 @mixin text($color: $color-default, $font-size: 0.7em, $text-transform: none) {
   font-size: $font-size;
   color: $color;
@@ -22,3 +24,33 @@
 
   text-align: center;
 }
+
+/* End Text */
+
+/* Theme */
+
+@mixin theme-color($value-common, $value-dark, $selector: "&") {
+  @include theme-value(color, $value-common, $value-dark, $selector);
+}
+
+/* End Theme */
+
+/* Layout */
+
+@mixin row() {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5em 0.5em;
+
+  &:last-child {
+    margin: 1.5em 0.5em 0.5em;
+  }
+}
+
+@mixin column() {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+/* End Layout */

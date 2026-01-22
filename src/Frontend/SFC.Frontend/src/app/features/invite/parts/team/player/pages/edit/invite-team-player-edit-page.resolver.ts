@@ -4,7 +4,7 @@ import { catchError, Observable, of, map } from "rxjs";
 import { BaseErrorResponse, IResolverModel } from "@core/models";
 import { buildErrorResolverModel, buildResolverModel, getRouteId } from "@core/utils";
 import { EnumService, IGetTeamPlayerInviteResponse, InviteTeamPlayerService } from "@share/services";
-import { mapTeamPlayerInviteModel } from "@share/mappers/team-player-invite.mapper";
+import { mapTeamPlayerInviteModel } from "@share/mappers/invite/team-player-invite.mapper";
 import { ITeamPlayerInviteModel } from "@share/models/invite/team-player-invite.model";
 import { PlayerConstants, TeamConstants } from "@share/constants";
 

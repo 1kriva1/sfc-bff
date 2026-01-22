@@ -1,0 +1,70 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+@import "components1";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      .parts {
+        @include wrap-row;
+
+        .part {
+          @include wrap-column;
+
+          .part-content {
+            .rows {
+              @include wrap-column;
+
+              .row {
+                @include center;
+
+                .columns {
+                  @include wrap-row;
+
+                  width: 100%;
+
+                  .column {
+                    display: flex;
+                    flex-grow: 1;
+
+                    @include panel;
+
+                    sfc-panel {
+                      &.description {
+                        .panel-content {
+                          p {
+                            margin: 0;
+                          }
+                        }
+                      }
+
+                      &.availability {
+                        .panel-content {
+                          sfc-availability-list {
+                            ::ng-deep .container {
+                              @include no-data;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          &.left {
+            flex: 3;
+          }
+
+          &.right {
+            flex: 1;
+          }
+        }
+      }
+    }
+  }
+}

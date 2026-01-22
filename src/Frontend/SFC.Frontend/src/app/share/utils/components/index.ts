@@ -1,6 +1,16 @@
 export {
-    getDays,
+    // side menu
     setMenuActiveItem,
+    // tabs
+    setTabsSelectedItem,
+    setTabsSelectedItemByIds,
+    // tags
     getTags,
-    getTagsFromEnums
+    getTagsFromEnums,
+    getTagsFromValues,
+    getDaysTags,
+    // chart
+    getMonthTick,
+    getMonthTooltipTitle,
+    getMonthYearLabels
 } from './components.utils';

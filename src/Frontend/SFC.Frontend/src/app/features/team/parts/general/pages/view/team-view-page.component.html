@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="content">
+        <div class="parts">
+            <div class="part top">
+                <div class="part-content">
+                    <div class="logo">
+                        <sfc-team-info [model]="infoModel" [radius]="Constants.LOGO_RADIUS"
+                            [direction]="Direction.Horizontal" [sfcComponentSize] [customSize]="1.5">
+                        </sfc-team-info>
+                    </div>
+
+                    <div class="tabs">
+                        <sfc-tabs [tabs]="tabs" (selected)="onTabSelected($event)">
+                            <ng-template [sfcTemplateReference]="TabsTemplate.Label" let-label>
+                                <sfc-tab-label-line [selected]="label.selected" [disabled]="label.disabled"
+                                    [label]="label.label" [icon]="label.icon" [sfcComponentSize] [customSize]="0.9">
+                                </sfc-tab-label-line>
+                            </ng-template>
+
+                            <ng-template [sfcTemplateReference]="TabsTemplate.Slider" let-data>
+                                <sfc-tab-label-line-slider [count]="data.count" [index]="data.index">
+                                </sfc-tab-label-line-slider>
+                            </ng-template>
+                        </sfc-tabs>
+                    </div>
+                </div>
+            </div>
+
+            <div class="part bottom">
+                <div class="part-content">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

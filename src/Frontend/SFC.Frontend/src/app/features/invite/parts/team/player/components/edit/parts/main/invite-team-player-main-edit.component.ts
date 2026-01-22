@@ -15,7 +15,7 @@ import { IInviteTeamPlayerEditFormModel } from '../../invite-team-player-edit-fo
 import { IAvatarInputPlayersModalBodyEventModel } from '@share/components/extends/inputs/avatar/modal/body/player/avatar-input-players-modal-body-event.model';
 import { IAvatarInputTeamsModalBodyEventModel } from '@share/components/extends/inputs/avatar/modal/body/team/general/avatar-input-teams-modal-body-event.model';
 import { IPlayerModel } from '@share/models/player/player.model';
-import { ITeamModel } from '@share/models/team/team.model';
+import { ITeamModel } from '@share/models/team/general/team.model';
 import { InviteTeamPlayerPreviewService } from '../../../preview/invite-team-player-preview.service';
 import { getClickObservableFromElementReference } from '@core/utils';
 import { ITeamPlayerInviteModel } from '@share/models/invite/team-player-invite.model';

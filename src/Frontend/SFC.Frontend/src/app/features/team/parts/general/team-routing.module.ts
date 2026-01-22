@@ -4,24 +4,55 @@ import { RouteKey } from "@core/enums";
 import { CanMatchOnlyAuthenticated, CanMatchOnlyCreatedProfile, ChangesCheckGuard } from "@core/guards";
 import { buildTitle } from "@core/utils";
 import {
-    TeamAvailabilityProfileEditComponent, TeamFinancialProfileEditComponent, TeamGeneralProfileEditComponent,
-    TeamProfileEditComponent, TeamProfileEditRoute
+    TeamAvailabilityProfileEditComponent, 
+    TeamFinancialProfileEditComponent, 
+    TeamGeneralProfileEditComponent,
+    TeamProfileEditComponent, 
+    TeamProfileEditRoute
 } from "./components";
 import {
-    TeamCreatePageComponent, TeamCreatePageLocalization, TeamCreatePageRoute,
-    TeamCreatePlayersComponent, TeamCreatePlayersInviteComponent, TeamCreatePlayersRoute
+    TeamCreatePageComponent, 
+    TeamCreatePageLocalization, 
+    TeamCreatePageRoute,
+    TeamCreatePlayersComponent, 
+    TeamCreatePlayersInviteComponent, 
+    TeamCreatePlayersRoute
 } from "./pages/create";
 import {
-    TeamEditPageComponent, TeamEditPageConstants, TeamEditPageResolver,
-    TeamEditPageRoute, TeamEditPlayersComponent, TeamEditPlayersInviteComponent,
-    TeamEditPlayersRequestComponent, TeamEditPlayersRoute, TeamEditPlayersSquadComponent,
+    TeamEditPageComponent, 
+    TeamEditPageConstants, 
+    TeamEditPageResolver,
+    TeamEditPageRoute, 
+    TeamEditPlayersComponent, 
+    TeamEditPlayersInviteComponent,
+    TeamEditPlayersRequestComponent, 
+    TeamEditPlayersRoute, 
+    TeamEditPlayersSquadComponent,
     TeamEditSchemesComponent
 } from "./pages/edit";
 import {
-    TeamSearchPageComponent, TeamSearchPageLocalization
+    TeamSearchPageComponent, 
+    TeamSearchPageLocalization
 } from "./pages/search"
+import { 
+    TeamViewOverviewComponent, 
+    TeamViewPageComponent, 
+    TeamViewPageConstants, 
+    TeamViewPageResolver, 
+    TeamViewPageRoute, 
+    TeamViewPlayersComponent, 
+    TeamViewSchemesComponent, 
+    TeamViewStatisticComponent, 
+    TeamViewStatisticGamesComponent, 
+    TeamViewStatisticOverallComponent, 
+    TeamViewStatisticPlayersComponent, 
+    TeamViewStatisticRoute, 
+    TeamViewStatisticSchemesComponent, 
+    TeamViewStatsComponent 
+} from "./pages/view";
 
 export const TeamRoutes: Routes = [
+    // page/create
     {
         path: RouteKey.Create,
         component: TeamCreatePageComponent,
@@ -79,6 +110,7 @@ export const TeamRoutes: Routes = [
             }
         ]
     },
+    // page/edit
     {
         path: `:${RouteConstants.ID_ROUTE_PATH}/${RouteKey.Edit}`,
         component: TeamEditPageComponent,
@@ -152,6 +184,74 @@ export const TeamRoutes: Routes = [
             }
         ]
     },
+    // page/view
+    {
+        path: `:${RouteConstants.ID_ROUTE_PATH}`,
+        component: TeamViewPageComponent,
+        resolve: { [TeamViewPageConstants.RESOLVE_KEY]: TeamViewPageResolver },
+        canActivate: [CanMatchOnlyAuthenticated, CanMatchOnlyCreatedProfile],
+        children: [
+            {
+                path: TeamViewPageRoute.Overview,
+                data: { layout: LayoutConstants.ONLY_HEADER_LAYOUT_MODEL },
+                component: TeamViewOverviewComponent
+            },
+            {
+                path: TeamViewPageRoute.Players,
+                data: { layout: LayoutConstants.ONLY_HEADER_LAYOUT_MODEL },
+                component: TeamViewPlayersComponent
+            },
+            {
+                path: TeamViewPageRoute.Schemes,
+                data: { layout: LayoutConstants.ONLY_HEADER_LAYOUT_MODEL },
+                component: TeamViewSchemesComponent
+            },
+            {
+                path: TeamViewPageRoute.Stats,
+                data: { layout: LayoutConstants.ONLY_HEADER_LAYOUT_MODEL },
+                component: TeamViewStatsComponent
+            },
+            {
+                path: TeamViewPageRoute.Statistic,
+                data: { layout: LayoutConstants.ONLY_HEADER_LAYOUT_MODEL },
+                component: TeamViewStatisticComponent,
+                children: [
+                    {
+                        path: TeamViewStatisticRoute.Overall,
+                        data: { layout: LayoutConstants.ONLY_HEADER_LAYOUT_MODEL },
+                        component: TeamViewStatisticOverallComponent
+                    },
+                    {
+                        path: TeamViewStatisticRoute.Players,
+                        data: { layout: LayoutConstants.ONLY_HEADER_LAYOUT_MODEL },
+                        component: TeamViewStatisticPlayersComponent
+                    },
+                    {
+                        path: TeamViewStatisticRoute.Games,
+                        data: { layout: LayoutConstants.ONLY_HEADER_LAYOUT_MODEL },
+                        component: TeamViewStatisticGamesComponent
+                    },
+                    {
+                        path: TeamViewStatisticRoute.Schemes,
+                        data: { layout: LayoutConstants.ONLY_HEADER_LAYOUT_MODEL },
+                        component: TeamViewStatisticSchemesComponent
+                    },
+                    {
+                        path: RouteConstants.DEFAULT_ROUTE_PATH,
+                        redirectTo: TeamViewStatisticRoute.Overall,
+                        pathMatch: 'full'
+                    }
+                ]
+            },
+            {
+                path: RouteConstants.DEFAULT_ROUTE_PATH,
+                redirectTo: TeamViewPageRoute.Overview,
+                pathMatch: 'full'
+            }
+        ]
+    },
+    // default
+    // page/search
     {
         path: RouteConstants.DEFAULT_ROUTE_PATH,
         component: TeamSearchPageComponent,

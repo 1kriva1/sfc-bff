@@ -1,11 +1,14 @@
-@import "mixins";
+@import "ngx-sfc-common/styles";
+@import "variables1";
 
 :host {
   .container {
     display: flex;
     flex-direction: column;
+    border-radius: 1em;
+    padding: 1em 2em;
 
-    @include part;
+    @include theme-value(background, $background-container-default, $background-container-dark);
 
     .header {
       sfc-title {
@@ -13,8 +16,12 @@
           .title {
             flex-wrap: nowrap;
 
+            .label {
+              margin-right: 1em;
+            }
+
             sfc-icon-tooltip {
-              padding: 0.5em 0.3em;
+              margin-left: 1em;
             }
           }
         }

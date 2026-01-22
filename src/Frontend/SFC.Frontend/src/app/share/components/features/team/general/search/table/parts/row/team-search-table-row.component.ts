@@ -25,12 +25,6 @@ export class TeamSearchTableRowComponent
     Constants = TeamSearchTableRowConstants;
     Column = TeamSearchTableColumn;
 
-    /* Properties */
-
-    public override get selected(): boolean { return super.selected || this.data.id == this.value; }
-
-    /* End Properties */
-
     constructor(private enumService: EnumService, selectedService: TableSelectService) {
         super(selectedService);
     }
@@ -50,6 +44,6 @@ export class TeamSearchTableRowComponent
             actions: this.data.actions || []
         };
 
-        this.status = this.buildStatusClass(TeamSearchTableConstants.STATUS_CLASS_PART, this.data.status);
+        this.statusClass = this.buildStatusClass(TeamSearchTableConstants.STATUS_CLASS_PART, this.data.status);
     }
 }

@@ -1,6 +1,9 @@
 export {
-    IPredicateMapModel, IPredicateMetadataModel, IPredicateModel
+    IPredicateMapModel, 
+    IPredicateMetadataModel, 
+    IPredicateModel, 
+    IPredicateMapParametersModel
 } from './predicate.model';
 export { MapPredicateModelFunction } from './predicate.type';
-export { mapPredicateMetadataModels } from './filter-tags.mapper';
+export { mapPredicateMetadataModels } from './predicate.mapper';
 export { mapPredicateModel } from './predicate.operator';

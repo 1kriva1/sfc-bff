@@ -24,7 +24,7 @@
                     [description]="Localization.AVARAGE.DESCRIPTION" [delimeter]="true">
                 </sfc-title>
 
-                <sfc-stats-skills [value]="vm.stats"></sfc-stats-skills>
+                <sfc-stats-skills [values]="[vm.stats]"></sfc-stats-skills>
             </div>
 
             <div class="total">
@@ -32,7 +32,7 @@
                     [description]="Localization.TOTAL.DESCRIPTION" [delimeter]="true">
                 </sfc-title>
 
-                <sfc-stats-total [progress]="vm.progress" [value]="vm.value" [total]="vm.total" [delimeter]="false">
+                <sfc-stats-total [values]="[vm.stats]" [delimeter]="false">
                 </sfc-stats-total>
             </div>
         </div>

@@ -56,7 +56,17 @@ import {
   TeamSearchFilterFinancialComponent,
   TeamSearchFilterInventaryComponent,
   TeamSearchTableRowComponent,
-  TeamSearchTableCardComponent
+  TeamSearchTableCardComponent,
+  TeamPlayerSearchFilterGeneralComponent,
+  TeamPlayerSearchTableRowComponent,
+  TeamPlayerInfoComponent,
+  TeamPlayerSearchTableCardComponent,
+  SchemeTeamSearchFilterGeneralComponent,
+  SchemeTeamSearchFilterFormationComponent,
+  SchemeTeamSearchTableRowComponent,
+  SchemeTeamSearchTableCardComponent,
+  StatsRadarComponent,
+  StatsListComponent
 } from './components';
 import { TimePipe, DayPipe } from './pipes';
 import { RouterModule } from '@angular/router';
@@ -70,11 +80,6 @@ import { RouterModule } from '@angular/router';
     InfoPanelComponent,
     NoDataComponent,
     BadgeComponent,
-    StatsSkillsComponent,
-    StatsTotalComponent,
-    AvailabilityEditComponent,
-    AvailabilityFormComponent,
-    AvailabilityListComponent,
     ChangesCheckModalComponent,
     ExclamationModalComponent,
     StatusComponent,
@@ -83,6 +88,15 @@ import { RouterModule } from '@angular/router';
     PanelComponent,
     CircleComponent,
     FilterTagsComponent,
+    // stats
+    StatsSkillsComponent,
+    StatsTotalComponent,
+    StatsRadarComponent,
+    StatsListComponent,
+    // availability
+    AvailabilityEditComponent,
+    AvailabilityFormComponent,
+    AvailabilityListComponent,   
     // extends
     ShirtCarouselSliderContentComponent,
     FormationCarouselSliderContentComponent,
@@ -111,9 +125,19 @@ import { RouterModule } from '@angular/router';
     TeamSearchTableCardComponent,
     TeamInfoComponent,
     TeamPreviewComponent,
+    // feature/team/player
+    TeamPlayerSearchFilterGeneralComponent,
+    TeamPlayerSearchTableRowComponent,
+    TeamPlayerSearchTableCardComponent,
+    TeamPlayerInfoComponent,
     // feature/scheme
     SchemeInfoComponent,
+    // feature/scheme/team
     SchemeTeamRemoveModalComponent,
+    SchemeTeamSearchFilterGeneralComponent,
+    SchemeTeamSearchFilterFormationComponent,
+    SchemeTeamSearchTableRowComponent,
+    SchemeTeamSearchTableCardComponent,
     // feature/invite
     InviteTeamPlayerCancelModalComponent,
     // feature/request
@@ -145,15 +169,19 @@ import { RouterModule } from '@angular/router';
     PanelComponent,
     CircleComponent,
     NoDataComponent,
-    BadgeComponent,
-    StatsSkillsComponent,
-    StatsTotalComponent,
-    AvailabilityEditComponent,
-    AvailabilityFormComponent,
-    AvailabilityListComponent,
+    BadgeComponent, 
     ChangesCheckModalComponent,
     ExclamationModalComponent,
     FilterTagsComponent,
+    // stats
+    StatsSkillsComponent,
+    StatsTotalComponent,
+    StatsRadarComponent,
+    StatsListComponent,
+    // availability
+    AvailabilityEditComponent,
+    AvailabilityFormComponent,
+    AvailabilityListComponent,    
     // extends
     CarouselSliderComponent,
     ShirtCarouselSliderContentComponent,
@@ -179,9 +207,19 @@ import { RouterModule } from '@angular/router';
     TeamSearchTableCardComponent,
     TeamInfoComponent,
     TeamPreviewComponent,
+    // feature/team/player
+    TeamPlayerSearchFilterGeneralComponent,
+    TeamPlayerSearchTableRowComponent,
+    TeamPlayerSearchTableCardComponent,
+    TeamPlayerInfoComponent,
     // feature/scheme
     SchemeInfoComponent,
+    // feature/scheme/team
     SchemeTeamRemoveModalComponent,
+    SchemeTeamSearchFilterGeneralComponent,
+    SchemeTeamSearchFilterFormationComponent,
+    SchemeTeamSearchTableRowComponent,
+    SchemeTeamSearchTableCardComponent,
     // feature/invite
     InviteTeamPlayerCancelModalComponent,
     // feature/request

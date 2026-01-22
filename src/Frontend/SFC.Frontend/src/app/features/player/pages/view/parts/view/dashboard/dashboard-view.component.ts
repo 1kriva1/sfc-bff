@@ -28,6 +28,7 @@ export class DashboardViewComponent {
     public dataModels: IInfoPanelModel[] = [
         {
             title: DashboardViewLocalization.INFO.GAMES.TITLE,
+            value: 64,
             description: `${64} ${DashboardViewLocalization.INFO.GAMES.DESCRIPTION}`,
             icon: faGamepad,
             background: DashboardViewConstants.COLORS.GAMES,
@@ -35,63 +36,72 @@ export class DashboardViewComponent {
         },
         {
             title: DashboardViewLocalization.INFO.GOALS.TITLE,
-            description: `${14} ${DashboardViewLocalization.INFO.GOALS.DESCRIPTION}`,
+            value: 14,
+            description: `${DashboardViewLocalization.INFO.GOALS.DESCRIPTION}`,
             icon: faFutbol,
             background: DashboardViewConstants.COLORS.GOALS,
             iconBackground: '#48cfad'
         },
         {
             title: DashboardViewLocalization.INFO.ASSISTS.TITLE,
-            description: `${24} ${DashboardViewLocalization.INFO.ASSISTS.DESCRIPTION}`,
+            value: 24,
+            description: `${DashboardViewLocalization.INFO.ASSISTS.DESCRIPTION}`,
             icon: faHandshakeAngle,
             background: DashboardViewConstants.COLORS.ASSISTS,
             iconBackground: '#ac92ec'
         },
         {
             title: DashboardViewLocalization.INFO.RED_CARDS.TITLE,
-            description: `${0} ${DashboardViewLocalization.INFO.RED_CARDS.DESCRIPTION}`,
+            value: 0,
+            description: `${DashboardViewLocalization.INFO.RED_CARDS.DESCRIPTION}`,
             icon: faCircleXmark,
             background: DashboardViewConstants.COLORS.RED_CARDS,
             iconBackground: '#ed5565'
         },
         {
             title: DashboardViewLocalization.INFO.YELLOW_CARDS.TITLE,
-            description: `${2} ${DashboardViewLocalization.INFO.YELLOW_CARDS.DESCRIPTION}`,
+            value: 2,
+            description: `${DashboardViewLocalization.INFO.YELLOW_CARDS.DESCRIPTION}`,
             icon: faTable,
             background: DashboardViewConstants.COLORS.YELLOW_CARDS,
             iconBackground: '#ffce54'
         },
         {
             title: DashboardViewLocalization.INFO.PENALTIES.TITLE,
-            description: `${1} ${DashboardViewLocalization.INFO.PENALTIES.DESCRIPTION}`,
+            value: 1,
+            description: `${DashboardViewLocalization.INFO.PENALTIES.DESCRIPTION}`,
             icon: faHand,
             background: DashboardViewConstants.COLORS.PENALTIES,
             iconBackground: '#ec87c0'
         },
         {
             title: DashboardViewLocalization.INFO.MVP.TITLE,
-            description: `${1} ${DashboardViewLocalization.INFO.MVP.DESCRIPTION}`,
+            value: 1,
+            description: `${DashboardViewLocalization.INFO.MVP.DESCRIPTION}`,
             icon: faRankingStar,
             background: DashboardViewConstants.COLORS.MVP,
             iconBackground: '#a0d468'
         },
         {
             title: DashboardViewLocalization.INFO.CLEAN_SHEETS.TITLE,
-            description: `${0} ${DashboardViewLocalization.INFO.CLEAN_SHEETS.DESCRIPTION}`,
+            value: 0,
+            description: `${DashboardViewLocalization.INFO.CLEAN_SHEETS.DESCRIPTION}`,
             icon: faShield,
             background: DashboardViewConstants.COLORS.CLEAM_SHEETS,
             iconBackground: '#fc6e51'
         },
         {
             title: DashboardViewLocalization.INFO.FREE_KICKS.TITLE,
-            description: `${0} ${DashboardViewLocalization.INFO.FREE_KICKS.DESCRIPTION}`,
+            value: 0,
+            description: `${DashboardViewLocalization.INFO.FREE_KICKS.DESCRIPTION}`,
             icon: faCrosshairs,
             background: DashboardViewConstants.COLORS.FREE_KICKS,
             iconBackground: '#4fc1e9'
         },
         {
             title: DashboardViewLocalization.INFO.TEAMS.TITLE,
-            description: `${2} ${DashboardViewLocalization.INFO.TEAMS.DESCRIPTION} ${1}`,
+            value: 2,
+            description: `${DashboardViewLocalization.INFO.TEAMS.DESCRIPTION} ${1}`,
             icon: faUsersLine,
             background: DashboardViewConstants.COLORS.TEAMS,
             iconBackground: '#a0d468'

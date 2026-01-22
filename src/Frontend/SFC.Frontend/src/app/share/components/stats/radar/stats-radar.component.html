@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="content">
+        <sfc-chart [theme]="themeService.theme" [type]="'radar'" [data]="data" [options]="options"
+            [chartOptions]="chartOptions">
+        </sfc-chart>
+        <p *ngIf="label">{{label}}</p>
+    </div>
+</div>

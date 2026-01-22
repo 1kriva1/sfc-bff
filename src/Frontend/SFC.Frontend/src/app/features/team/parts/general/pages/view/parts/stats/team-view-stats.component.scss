@@ -1,0 +1,92 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+@import "components1";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      .parts {
+        @include wrap-column;
+
+        .part {
+          @include wrap-column;
+
+          .part-content {
+            .rows {
+              @include wrap-column;
+
+              .row {
+                @include center;
+
+                .columns {
+                  @include wrap-row;
+
+                  width: 100%;
+
+                  .column {
+                    @include wrap-column;
+
+                    @include panel;
+
+                    flex-grow: 1;
+                  }
+                }
+              }
+            }
+          }
+
+          &.top {
+            .part-content {
+              .rows {
+                .row {
+                  .columns {
+                    .column {
+                      &.radar {
+                        flex: 2;
+
+                        sfc-panel {
+                          .panel-content {
+                            sfc-stats-radar {
+                              display: inline-block;
+                              width: 30em;
+                            }
+                          }
+                        }
+                      }
+
+                      &.values {
+                        flex: 5;
+
+                        sfc-panel {
+                          &.total {
+                            .panel-content {
+                              sfc-stats-total {
+                                ::ng-deep .container {
+                                  .content {
+                                    .parts {
+                                      .part {
+                                        sfc-progress-circle {
+                                          font-size: 1.5em;
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@
 :host {
   @include theme-value(color, $color-default, $color-dark);
 
-  display: block;
+  display: inline-block;
   font-size: 0.7em;
   font-weight: bold;
   user-select: none;

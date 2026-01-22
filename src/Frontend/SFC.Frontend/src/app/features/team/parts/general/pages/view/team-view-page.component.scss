@@ -1,0 +1,54 @@
+@import "ngx-sfc-common/styles";
+@import "components1";
+@import "page1";
+
+:host {
+  .container {
+    .content {
+      @include page-content;
+
+      .parts {
+        @include page-content-parts;
+
+        .part {
+          @include page-content-part;
+
+          &.top {
+            @include page-content-part-top;
+
+            .part-content {
+              flex-direction: column;
+
+              .logo {
+                display: flex;
+                justify-content: center;
+
+                @include action-menu($color-default);
+
+                sfc-team-info {
+                  ::ng-deep .container {
+                    .content {
+                      .info {
+                        sfc-status {
+                          font-size: 0.8em;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
+              .tabs {
+                @include page-content-part-top-tabs($view-page-tabs-width);
+              }
+            }
+          }
+
+          &.bottom {
+            @include page-content-part-bottom;
+          }
+        }
+      }
+    }
+  }
+}

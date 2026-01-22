@@ -2,8 +2,7 @@ import { Directive } from "@angular/core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { BaseTableComponent } from "@share/components";
 import { CommonConstants } from "ngx-sfc-common";
-import { IDropdownMenuItemModel, ITableColumnExtendedModel, ITabModel, TabsTemplate } from "ngx-sfc-components";
-import { BaseSearchConstants } from "./base-search.constants";
+import { ITabModel, TabsTemplate } from "ngx-sfc-components";
 
 @Directive()
 export abstract class BaseSearchComponent<TPredicateFormModel, TRequestServiceFiltersModel, TResponseServiceItemModel, TTableModel>
@@ -18,16 +17,9 @@ export abstract class BaseSearchComponent<TPredicateFormModel, TRequestServiceFi
     // ngx-sfc-components
     TabsTemplate = TabsTemplate;
 
-    // component
-    SearchConstants = BaseSearchConstants;
+    /* Abstract */    
 
-    /* Abstract */
-
-    public abstract columns: ITableColumnExtendedModel[];
-
-    public abstract tabs: ITabModel[];
-
-    protected abstract buildActions(model: TTableModel): IDropdownMenuItemModel[];
+    public abstract tabs: ITabModel[];    
 
     /* End Abstract */
 }

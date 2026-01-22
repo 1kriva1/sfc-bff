@@ -1,1 +1,7 @@
-export { getFormationEnum, getFormationLabel, getFormationType } from './formations.utils';
+export { 
+    getFormationEnum, 
+    getFormationLabel, 
+    getFormationType,
+    getFormationPositionEnum,
+    getFormationTotalPlayers
+} from './formations.utils';

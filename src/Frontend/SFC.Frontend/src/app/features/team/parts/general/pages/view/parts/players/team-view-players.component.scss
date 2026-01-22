@@ -1,0 +1,36 @@
+@import "ngx-sfc-common/styles";
+@import "components1";
+@import "page1";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      .parts {
+        .part {
+          .part-content {
+            form {
+              display: flex;
+              justify-content: center;
+
+              .filters {
+                @include page-content-filters;
+
+                sfc-collapse-expand-container {
+                  .name {
+                    margin: 1.5em 0.5em 0;
+                  }
+                }
+              }
+
+              .result {
+                @include page-content-result;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

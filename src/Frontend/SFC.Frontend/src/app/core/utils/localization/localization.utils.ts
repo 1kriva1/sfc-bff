@@ -61,3 +61,34 @@ export function getLongMonth(monthKey: string): string {
             return CommonConstants.EMPTY_STRING;
     }
 }
+
+export function getLongMonthById(id: number): string {
+    switch (id) {
+        case 0:
+            return $localize`:@@core.enum.month.january:January`;
+        case 1:
+            return $localize`:@@core.enum.month.february:February`;
+        case 2:
+            return $localize`:@@core.enum.month.march:March`;
+        case 3:
+            return $localize`:@@core.enum.month.april:April`;
+        case 4:
+            return $localize`:@@core.enum.month.may.long:May`;
+        case 5:
+            return $localize`:@@core.enum.month.june:June`;
+        case 6:
+            return $localize`:@@core.enum.month.july:July`;
+        case 7:
+            return $localize`:@@core.enum.month.august:August`;
+        case 8:
+            return $localize`:@@core.enum.month.september:September`;
+        case 9:
+            return $localize`:@@core.enum.month.october:October`;
+        case 10:
+            return $localize`:@@core.enum.month.november:November`;
+        case 11:
+            return $localize`:@@core.enum.month.december:December`;
+        default:
+            return CommonConstants.EMPTY_STRING;
+    }
+}

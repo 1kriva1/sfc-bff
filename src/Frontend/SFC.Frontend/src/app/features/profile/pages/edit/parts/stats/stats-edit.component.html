@@ -3,7 +3,7 @@
     [description]="Localization.TITLE.DESCRIPTION" [tooltip]="Localization.TITLE.TOOLTIP">
   </sfc-title>
 
-  <sfc-stats-skills [value]="vm.stats"></sfc-stats-skills>
+  <sfc-stats-skills [values]="[vm.stats]"></sfc-stats-skills>
 
   <div class="items">
     <div class="part" *ngFor="let stat of statsModel; let i = index">

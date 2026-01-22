@@ -68,22 +68,26 @@ export class SearchPageComponent
     public statistics: IInfoPanelModel[] = [
         {
             title: this.Localization.STATISTIC.REGISTERED.LABEL,
-            description: `${this.Localization.STATISTIC.REGISTERED.DESCRIPTION_1} 100 ${this.Localization.STATISTIC.REGISTERED.DESCRIPTION_2}`,
+            value: 100,
+            description: `${this.Localization.STATISTIC.REGISTERED.DESCRIPTION_1} ${this.Localization.STATISTIC.REGISTERED.DESCRIPTION_2}`,
             icon: faRegistered, background: '#4a89dc', iconBackground: '#5d9cec'
         },
         {
             title: this.Localization.STATISTIC.NEIGHBORS.LABEL,
-            description: `124 ${this.Localization.STATISTIC.NEIGHBORS.DESCRIPTION}`,
+            value: 124,
+            description: `${this.Localization.STATISTIC.NEIGHBORS.DESCRIPTION}`,
             icon: faLocationDot, background: '#2bbbad', iconBackground: '#48cfad'
         },
         {
             title: this.Localization.STATISTIC.AVAILABLE.LABEL,
-            description: `10 ${this.Localization.STATISTIC.AVAILABLE.DESCRIPTION}`,
+            value: 10,
+            description: `${this.Localization.STATISTIC.AVAILABLE.DESCRIPTION}`,
             icon: faClock, background: '#967adc', iconBackground: '#ac92ec'
         },
         {
             title: this.Localization.STATISTIC.FRIENDS.LABEL,
-            description: `${this.Localization.STATISTIC.FRIENDS.DESCRIPTION_1} 0 ${this.Localization.STATISTIC.FRIENDS.DESCRIPTION_2}`,
+            value: 0,
+            description: `${this.Localization.STATISTIC.FRIENDS.DESCRIPTION_1} ${this.Localization.STATISTIC.FRIENDS.DESCRIPTION_2}`,
             icon: faUserGroup, background: '#fcbb42', iconBackground: '#ffce54'
         }
     ];
