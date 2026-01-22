@@ -27,7 +27,6 @@
 
                   .column {
                     @include wrap-column;
-
                     @include panel;
 
                     flex-grow: 1;
