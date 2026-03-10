@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31903.59
+# Visual Studio Version 18
+VisualStudioVersion = 18.2.11415.280
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6748E114-BC71-4FAF-A8D2-E54B74FA3452}"
 EndProject
@@ -104,6 +104,122 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mssql", "mssql", "{413E1A36
 		scripts\mssql\init.sql = scripts\mssql\init.sql
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nginx", "nginx", "{126CC671-4458-4183-86A7-54A2814CA964}"
+	ProjectSection(SolutionItems) = preProject
+		nginx\nginx.conf = nginx\nginx.conf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "conf.d", "conf.d", "{65BB694C-7BAD-4C0B-8BC1-645D7768017E}"
+	ProjectSection(SolutionItems) = preProject
+		nginx\conf.d\redirect.conf = nginx\conf.d\redirect.conf
+		nginx\conf.d\sfc-bff.conf = nginx\conf.d\sfc-bff.conf
+		nginx\conf.d\sfc-data.conf = nginx\conf.d\sfc-data.conf
+		nginx\conf.d\sfc-identity.conf = nginx\conf.d\sfc-identity.conf
+		nginx\conf.d\sfc-invite.conf = nginx\conf.d\sfc-invite.conf
+		nginx\conf.d\sfc-player.conf = nginx\conf.d\sfc-player.conf
+		nginx\conf.d\sfc-request.conf = nginx\conf.d\sfc-request.conf
+		nginx\conf.d\sfc-scheme.conf = nginx\conf.d\sfc-scheme.conf
+		nginx\conf.d\sfc-team.conf = nginx\conf.d\sfc-team.conf
+		nginx\conf.d\upstreams.conf = nginx\conf.d\upstreams.conf
+		nginx\conf.d\_proxy-common.conf = nginx\conf.d\_proxy-common.conf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "helm", "helm", "{4779C608-DAAF-4C11-BFBF-D29FAB8CC015}"
+	ProjectSection(SolutionItems) = preProject
+		helm\.helmignore = helm\.helmignore
+		helm\Chart.yaml = helm\Chart.yaml
+		helm\values.yaml = helm\values.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{ADA3BD61-8F80-45C5-B418-DE078DE100CE}"
+	ProjectSection(SolutionItems) = preProject
+		helm\templates\cluster-service.yaml = helm\templates\cluster-service.yaml
+		helm\templates\config-map.yaml = helm\templates\config-map.yaml
+		helm\templates\deployment.yaml = helm\templates\deployment.yaml
+		helm\templates\ingress-secret.yaml = helm\templates\ingress-secret.yaml
+		helm\templates\ingress-tls-secret.yaml = helm\templates\ingress-tls-secret.yaml
+		helm\templates\ingress.yaml = helm\templates\ingress.yaml
+		helm\templates\network-policy.yaml = helm\templates\network-policy.yaml
+		helm\templates\pod-disruption-budget.yaml = helm\templates\pod-disruption-budget.yaml
+		helm\templates\role-binding.yaml = helm\templates\role-binding.yaml
+		helm\templates\role.yaml = helm\templates\role.yaml
+		helm\templates\secret.yaml = helm\templates\secret.yaml
+		helm\templates\service-account.yaml = helm\templates\service-account.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "charts", "charts", "{C96D835B-5441-4147-99F8-1B3672D2DE6C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "redis", "redis", "{2051C0EE-08F1-449A-9B18-26FAB24C0F0C}"
+	ProjectSection(SolutionItems) = preProject
+		helm\charts\redis\Chart.yaml = helm\charts\redis\Chart.yaml
+		helm\charts\redis\values.yaml = helm\charts\redis\values.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{E98349B6-1560-4FA0-A9ED-829CB2141B11}"
+	ProjectSection(SolutionItems) = preProject
+		helm\charts\redis\templates\redis.cluster-service.yaml = helm\charts\redis\templates\redis.cluster-service.yaml
+		helm\charts\redis\templates\redis.config-map.yaml = helm\charts\redis\templates\redis.config-map.yaml
+		helm\charts\redis\templates\redis.network-policy.yaml = helm\charts\redis\templates\redis.network-policy.yaml
+		helm\charts\redis\templates\redis.persistent-volume.yaml = helm\charts\redis\templates\redis.persistent-volume.yaml
+		helm\charts\redis\templates\redis.pod-disruption-budget.yaml = helm\charts\redis\templates\redis.pod-disruption-budget.yaml
+		helm\charts\redis\templates\redis.secret.yaml = helm\charts\redis\templates\redis.secret.yaml
+		helm\charts\redis\templates\redis.stateful-set.yaml = helm\charts\redis\templates\redis.stateful-set.yaml
+		helm\charts\redis\templates\redis.storage-class.yaml = helm\charts\redis\templates\redis.storage-class.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mssql", "mssql", "{0E9D1189-AEC2-46A6-9E3C-4A9BBF1EFD99}"
+	ProjectSection(SolutionItems) = preProject
+		helm\charts\mssql\Chart.yaml = helm\charts\mssql\Chart.yaml
+		helm\charts\mssql\values.yaml = helm\charts\mssql\values.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rabbitmq", "rabbitmq", "{DE553D4A-CAB7-4A8D-B075-6AC5C4A001A4}"
+	ProjectSection(SolutionItems) = preProject
+		helm\charts\rabbitmq\Chart.yaml = helm\charts\rabbitmq\Chart.yaml
+		helm\charts\rabbitmq\values.yaml = helm\charts\rabbitmq\values.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{FA7A462C-7BB4-4F33-9343-11BEF9F33EC5}"
+	ProjectSection(SolutionItems) = preProject
+		helm\charts\common\Chart.yaml = helm\charts\common\Chart.yaml
+		helm\charts\common\values.yaml = helm\charts\common\values.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{BBC16307-A82A-4FDF-B78A-CB3344995D73}"
+	ProjectSection(SolutionItems) = preProject
+		helm\charts\common\templates\limit-range.yaml = helm\charts\common\templates\limit-range.yaml
+		helm\charts\common\templates\namespace.yaml = helm\charts\common\templates\namespace.yaml
+		helm\charts\common\templates\network-policy.yaml = helm\charts\common\templates\network-policy.yaml
+		helm\charts\common\templates\resource-quota.yaml = helm\charts\common\templates\resource-quota.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{273E7B68-20D8-41CA-B9C8-E21678429EFD}"
+	ProjectSection(SolutionItems) = preProject
+		helm\charts\mssql\templates\mssql.cluster-service.yaml = helm\charts\mssql\templates\mssql.cluster-service.yaml
+		helm\charts\mssql\templates\mssql.config-map.yaml = helm\charts\mssql\templates\mssql.config-map.yaml
+		helm\charts\mssql\templates\mssql.job-config-map.yaml = helm\charts\mssql\templates\mssql.job-config-map.yaml
+		helm\charts\mssql\templates\mssql.job-network-policy.yaml = helm\charts\mssql\templates\mssql.job-network-policy.yaml
+		helm\charts\mssql\templates\mssql.job.yaml = helm\charts\mssql\templates\mssql.job.yaml
+		helm\charts\mssql\templates\mssql.network-policy.yaml = helm\charts\mssql\templates\mssql.network-policy.yaml
+		helm\charts\mssql\templates\mssql.persistent-volume.yaml = helm\charts\mssql\templates\mssql.persistent-volume.yaml
+		helm\charts\mssql\templates\mssql.pod-disruption-budget.yaml = helm\charts\mssql\templates\mssql.pod-disruption-budget.yaml
+		helm\charts\mssql\templates\mssql.secret.yaml = helm\charts\mssql\templates\mssql.secret.yaml
+		helm\charts\mssql\templates\mssql.stateful-set.yaml = helm\charts\mssql\templates\mssql.stateful-set.yaml
+		helm\charts\mssql\templates\mssql.storage-class.yaml = helm\charts\mssql\templates\mssql.storage-class.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{27BAD043-9D23-4EAC-A957-08CB4C8163B2}"
+	ProjectSection(SolutionItems) = preProject
+		helm\charts\rabbitmq\templates\rabbitmq.cluster-service.yaml = helm\charts\rabbitmq\templates\rabbitmq.cluster-service.yaml
+		helm\charts\rabbitmq\templates\rabbitmq.config-map.yaml = helm\charts\rabbitmq\templates\rabbitmq.config-map.yaml
+		helm\charts\rabbitmq\templates\rabbitmq.network-policy.yaml = helm\charts\rabbitmq\templates\rabbitmq.network-policy.yaml
+		helm\charts\rabbitmq\templates\rabbitmq.persistent-volume.yaml = helm\charts\rabbitmq\templates\rabbitmq.persistent-volume.yaml
+		helm\charts\rabbitmq\templates\rabbitmq.pod-disruption-budget.yaml = helm\charts\rabbitmq\templates\rabbitmq.pod-disruption-budget.yaml
+		helm\charts\rabbitmq\templates\rabbitmq.secret.yaml = helm\charts\rabbitmq\templates\rabbitmq.secret.yaml
+		helm\charts\rabbitmq\templates\rabbitmq.stateful-set.yaml = helm\charts\rabbitmq\templates\rabbitmq.stateful-set.yaml
+		helm\charts\rabbitmq\templates\rabbitmq.storage-class.yaml = helm\charts\rabbitmq\templates\rabbitmq.storage-class.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -167,6 +283,19 @@ Global
 		{858BFBB9-BF91-4566-AD12-20735BC90C05} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{95E56FA7-A29E-47C6-B303-0D1EC2B0CBA0} = {5CFB1D4F-9C45-4C97-AC14-A3553B809711}
 		{413E1A36-B570-4E2C-99D2-6A9D461432A5} = {95E56FA7-A29E-47C6-B303-0D1EC2B0CBA0}
+		{126CC671-4458-4183-86A7-54A2814CA964} = {5CFB1D4F-9C45-4C97-AC14-A3553B809711}
+		{65BB694C-7BAD-4C0B-8BC1-645D7768017E} = {126CC671-4458-4183-86A7-54A2814CA964}
+		{4779C608-DAAF-4C11-BFBF-D29FAB8CC015} = {5CFB1D4F-9C45-4C97-AC14-A3553B809711}
+		{ADA3BD61-8F80-45C5-B418-DE078DE100CE} = {4779C608-DAAF-4C11-BFBF-D29FAB8CC015}
+		{C96D835B-5441-4147-99F8-1B3672D2DE6C} = {4779C608-DAAF-4C11-BFBF-D29FAB8CC015}
+		{2051C0EE-08F1-449A-9B18-26FAB24C0F0C} = {C96D835B-5441-4147-99F8-1B3672D2DE6C}
+		{E98349B6-1560-4FA0-A9ED-829CB2141B11} = {2051C0EE-08F1-449A-9B18-26FAB24C0F0C}
+		{0E9D1189-AEC2-46A6-9E3C-4A9BBF1EFD99} = {C96D835B-5441-4147-99F8-1B3672D2DE6C}
+		{DE553D4A-CAB7-4A8D-B075-6AC5C4A001A4} = {C96D835B-5441-4147-99F8-1B3672D2DE6C}
+		{FA7A462C-7BB4-4F33-9343-11BEF9F33EC5} = {C96D835B-5441-4147-99F8-1B3672D2DE6C}
+		{BBC16307-A82A-4FDF-B78A-CB3344995D73} = {FA7A462C-7BB4-4F33-9343-11BEF9F33EC5}
+		{273E7B68-20D8-41CA-B9C8-E21678429EFD} = {0E9D1189-AEC2-46A6-9E3C-4A9BBF1EFD99}
+		{27BAD043-9D23-4EAC-A957-08CB4C8163B2} = {DE553D4A-CAB7-4A8D-B075-6AC5C4A001A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E566C187-4DFE-42EC-BCD8-17B1038973DD}

@@ -1,0 +1,111 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sfc-rabbitmq-stateful-set
+  namespace: sfc
+  labels:
+    app.kubernetes.io/name: sfc-rabbitmq
+    app.kubernetes.io/component: infrastructure
+    app.kubernetes.io/part-of: sfc
+    app.kubernetes.io/instance: production
+    app.kubernetes.io/version: "4"
+    app.kubernetes.io/managed-by: kubectl
+  annotations:
+    owner: "krivorukandrey@gmail.com"
+    purpose: "Stateful Set for Rabbit MQ component in SFC application"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: sfc-rabbitmq
+  replicas: {{ .Values.replicas }}
+  serviceName: sfc-rabbitmq
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: sfc-rabbitmq
+        app.kubernetes.io/component: infrastructure
+        app.kubernetes.io/part-of: sfc
+        app.kubernetes.io/instance: production
+    spec:
+      automountServiceAccountToken: false
+      terminationGracePeriodSeconds: 90
+      containers:
+        - name: sfc-rabbitmq
+          image: docker.io/rabbitmq:4-management
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: port
+              protocol: TCP
+              containerPort: 5672
+            - name: management-port
+              protocol: TCP
+              containerPort: 15672          
+          envFrom:
+            - secretRef:
+                name: sfc-rabbitmq-secret
+          volumeMounts:
+            - name: sfc-rabbitmq-volume
+              mountPath: /var/lib/rabbitmq
+            - name: sfc-rabbitmq-config
+              mountPath: /etc/rabbitmq/rabbitmq.conf
+              subPath: rabbitmq.conf          
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-lc", "rabbitmqctl stop"]          
+          startupProbe:
+            exec:
+              command: ["/bin/sh", "-lc", "rabbitmq-diagnostics -q ping"]
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            timeoutSeconds: 20
+            successThreshold: 1
+            failureThreshold: 60          
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  rabbitmq-diagnostics -q check_running && \
+                  rabbitmq-diagnostics -q check_port_connectivity --timeout 3 --address 127.0.0.1
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 30
+            successThreshold: 1
+            failureThreshold: 6
+          livenessProbe:
+            exec:
+              command: ["/bin/sh", "-lc", "rabbitmq-diagnostics -q node_health_check"]
+            initialDelaySeconds: 5
+            periodSeconds: 20
+            timeoutSeconds: 20
+            successThreshold: 1
+            failureThreshold: 3          
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+      volumes:
+        - name: sfc-rabbitmq-config
+          configMap:
+            name: sfc-rabbitmq-config-map
+  volumeClaimTemplates:
+    - metadata:
+        name: sfc-rabbitmq-volume
+        labels:
+          app.kubernetes.io/name: sfc-rabbitmq
+          app.kubernetes.io/part-of: sfc
+          app.kubernetes.io/instance: production
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: sfc-rabbitmq-storage-class
+        resources:
+          requests:
+            storage: 2Gi
+        volumeMode: Filesystem

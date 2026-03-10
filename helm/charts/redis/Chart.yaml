@@ -1,0 +1,10 @@
+apiVersion: v2
+name: sfc-redis
+description: "Redis component in SFC application"
+keywords:
+  - Street Football Club
+  - Infrastructure
+  - Redis
+type: application
+version: 1.0.0
+appVersion: "8.4.0"

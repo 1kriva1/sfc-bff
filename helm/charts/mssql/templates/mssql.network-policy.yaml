@@ -1,0 +1,53 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: sfc-mssql-network-policy
+  namespace: sfc
+  labels:
+    app.kubernetes.io/name: sfc-mssql
+    app.kubernetes.io/component: policy
+    app.kubernetes.io/part-of: sfc
+    app.kubernetes.io/instance: production
+    app.kubernetes.io/managed-by: kubectl
+  annotations:
+    owner: "krivorukandrey@gmail.com"
+    purpose: "Network policy for MS SQL component in SFC application"
+spec:
+  policyTypes:
+    - Ingress
+    - Egress
+  podSelector: 
+    matchLabels:
+      app.kubernetes.io/name: sfc-mssql
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: sfc        
+        podSelector:
+          matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:                
+                - sfc-data
+                - sfc-identity
+                - sfc-player
+                - sfc-team
+                - sfc-invite
+                - sfc-request
+                - sfc-scheme
+      ports:
+        - protocol: TCP
+          port: 1433
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: sfc        
+        podSelector:
+          matchLabels:
+            app.kubernetes.io/name: sfc-mssql
+            app.kubernetes.io/component: job
+      ports:
+        - protocol: TCP
+          port: 1433
+  egress: []

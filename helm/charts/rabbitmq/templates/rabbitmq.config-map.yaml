@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sfc-rabbitmq-config-map
+  namespace: sfc  
+  labels:
+    app.kubernetes.io/name: sfc-rabbitmq
+    app.kubernetes.io/component: configuration
+    app.kubernetes.io/part-of: sfc
+    app.kubernetes.io/instance: production
+    app.kubernetes.io/managed-by: kubectl
+  annotations:
+    owner: "krivorukandrey@gmail.com"
+    purpose: "Configuration map for Rabbit MQ component in SFC application"
+immutable: true
+data:  
+  rabbitmq.conf: |    
+    ## AMQP listener
+    listeners.tcp.default = 5672
+
+    ## Management UI
+    management.tcp.port = 15672
+
+    ## Logging
+    log.console = true
+    log.console.level = debug
+    log.file = /var/log/rabbitmq/rabbit.log
+    log.file.level = debug

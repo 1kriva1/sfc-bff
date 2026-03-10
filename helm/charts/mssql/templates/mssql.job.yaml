@@ -1,0 +1,88 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sfc-mssql-job
+  namespace: sfc
+  labels:
+    app.kubernetes.io/name: sfc-mssql
+    app.kubernetes.io/component: job
+    app.kubernetes.io/part-of: sfc
+    app.kubernetes.io/instance: production
+    app.kubernetes.io/managed-by: kubectl
+  annotations:
+    owner: "krivorukandrey@gmail.com"
+    purpose: "Initialize job for MS SQL component in SFC application"
+spec:
+  backoffLimit: 6
+  ttlSecondsAfterFinished: 600 # wait 10 min before delete job and it pod after completion
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: sfc-mssql
+        app.kubernetes.io/component: job
+        app.kubernetes.io/part-of: sfc
+        app.kubernetes.io/instance: production
+    spec:
+      restartPolicy: OnFailure
+      automountServiceAccountToken: false
+      containers:
+        - name: sfc-mssql-init
+          image: mcr.microsoft.com/mssql/server:2025-latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sfc-mssql-secret
+                  key: SA_PASSWORD
+            - name: SFC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sfc-mssql-secret
+                  key: SFC_PASSWORD
+          volumeMounts:
+            - name: sfc-mssql-job-config-map
+              mountPath: /init
+              readOnly: true
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -eu
+
+              MSSQL_HOST="sfc-mssql"
+              MSSQL_PORT="1433"
+              SQLCMD="/opt/mssql-tools18/bin/sqlcmd"
+
+              echo "Waiting for SQL Server at ${MSSQL_HOST}:${MSSQL_PORT}..."
+              until ${SQLCMD} -C -S ${MSSQL_HOST},${MSSQL_PORT} -U sa -P "$SA_PASSWORD" -Q "SELECT 1" -b >/dev/null 2>&1; do
+                echo "  ...not ready yet; retrying in 5s"
+                sleep 5
+              done
+              echo "SQL Server is ready. Applying init scripts..."
+
+              # 1) Create Hangfire DB (idempotent)
+              ${SQLCMD} -C -S ${MSSQL_HOST},${MSSQL_PORT} -U sa -P "$SA_PASSWORD" -b -i /init/create-hangfire.sql
+
+              # 2) Create login 'sfc' (idempotent), pass password via sqlcmd variable
+              ${SQLCMD} -C -S ${MSSQL_HOST},${MSSQL_PORT} -U sa -P "$SA_PASSWORD" -b \
+                -v SFC_PASSWORD="$SFC_PASSWORD" \
+                -i /init/create-sfc-login.sql
+
+              echo "Init scripts completed."          
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
+      volumes:
+        - name: sfc-mssql-job-config-map
+          configMap:
+            name: sfc-mssql-job-config-map
+            items:
+              - key: create-hangfire.sql
+                path: create-hangfire.sql
+              - key: create-sfc-login.sql
+                path: create-sfc-login.sql
