@@ -506,3 +506,7 @@ coverage/
 
 # Angular builds
 **/wwwroot/
+
+# Helm
+*.tgz
+helm/*.lock

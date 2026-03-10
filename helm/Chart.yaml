@@ -1,0 +1,31 @@
+apiVersion: v2
+name: sfc
+description: "SFC application"
+keywords:
+  - Street Football Club
+  - Application
+type: application
+version: 1.0.0
+appVersion: "0.0.0"
+dependencies:
+  - name: sfc-identity
+    version: 1.0.0
+    repository: "file://../../../Services/sfc-identity-service/helm"
+  - name: sfc-data
+    version: 1.0.0
+    repository: "file://../../../Services/sfc-data-service/helm"
+  - name: sfc-player
+    version: 1.0.0
+    repository: "file://../../../Services/sfc-player-service/helm"
+  - name: sfc-team
+    version: 1.0.0
+    repository: "file://../../../Services/sfc-team-service/helm"
+  - name: sfc-invite
+    version: 1.0.0
+    repository: "file://../../../Services/sfc-invite-service/helm"
+  - name: sfc-request
+    version: 1.0.0
+    repository: "file://../../../Services/sfc-request-service/helm"
+  - name: sfc-scheme
+    version: 1.0.0
+    repository: "file://../../../Services/sfc-scheme-service/helm"

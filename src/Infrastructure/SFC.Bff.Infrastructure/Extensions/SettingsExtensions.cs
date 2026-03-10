@@ -11,4 +11,12 @@ public static class SettingsExtensions
         return configuration.GetSection(BffSettings.SectionKey)
                             .Get<BffSettings>()!;
     }
+
+    public static RedisSettings GetRedisSettings(this IConfiguration configuration)
+    {
+        ArgumentNullException.ThrowIfNull(configuration);
+
+        return configuration.GetSection(RedisSettings.SectionKey)
+                        .Get<RedisSettings>()!;
+    }
 }

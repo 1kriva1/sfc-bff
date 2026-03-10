@@ -8,6 +8,7 @@
                 "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy",
                 "ASPNETCORE_URLS": "https://*:7166;http://*:7165",
                 "ASPNETCORE_HTTPS_PORT": "7166",
+                "ConnectionStrings__Redis": "localhost:6379",
                 "Kestrel__Certificates__Default__Path": "../../../../../Configurations/certificates/sfc-bff/sfc-bff.pfx"
             },
             "dotnetRunMessages": true,

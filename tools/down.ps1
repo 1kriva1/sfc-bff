@@ -36,5 +36,14 @@ StopProcess -CommandLine "build ngx-sfc-components --watch"
 # Stop angular ngx-inputs projects
 StopProcess -CommandLine "build ngx-sfc-inputs --watch"
 
+$IISService = Get-Service -Name W3SVC
+
+if ($IISService.Status -ne 'Running') {
+    Write-Output "IIS is stopped. Starting service..."
+    Start-Service -Name W3SVC
+} else {
+    Write-Output "IIS is already running."
+}
+
 Write-Host "Done!" -ForegroundColor Green
 exit 0

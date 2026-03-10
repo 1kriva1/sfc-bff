@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sfc-bff
+  namespace: sfc
+  labels:
+    app.kubernetes.io/name: sfc-bff
+    app.kubernetes.io/component: network
+    app.kubernetes.io/part-of: sfc
+    app.kubernetes.io/instance: production
+    app.kubernetes.io/managed-by: kubectl
+  annotations:
+    owner: "krivorukandrey@gmail.com"
+    purpose: "Internal ClusterIP service for Bff component in SFC application"
+spec:
+  selector:
+    app.kubernetes.io/name: sfc-bff
+  type: ClusterIP
+  ports:
+    - name: sfc-bff-cluster-service-http-port
+      protocol: TCP
+      port: 7165
+      targetPort: 7165
+    - name: sfc-bff-cluster-service-https-port
+      protocol: TCP
+      port: 7166
+      targetPort: 7166
+  internalTrafficPolicy: Cluster

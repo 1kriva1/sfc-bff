@@ -1,0 +1,9 @@
+apiVersion: v2
+name: sfc-common
+description: "Common configurations in SFC application"
+keywords:
+  - Street Football Club
+  - Configuration
+type: application
+version: 1.0.0
+appVersion: "0.0.0"

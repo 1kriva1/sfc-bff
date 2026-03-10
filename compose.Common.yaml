@@ -131,6 +131,9 @@ services:
       sfc-mssql:
         condition: service_healthy
         restart: true
+      sfc-redis:
+        condition: service_healthy
+        restart: true
       sfc-rabbitmq:
         condition: service_healthy
         restart: true

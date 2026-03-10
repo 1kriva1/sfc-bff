@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sfc-mssql-job-config-map
+  namespace: sfc
+  labels:
+    app.kubernetes.io/name: sfc-mssql
+    app.kubernetes.io/component: configuration
+    app.kubernetes.io/part-of: sfc
+    app.kubernetes.io/instance: production
+    app.kubernetes.io/managed-by: kubectl
+  annotations:
+    owner: "krivorukandrey@gmail.com"
+    purpose: "Configuration map for MS SQL component in SFC application for running initialize job"
+data:
+  create-hangfire.sql: |
+    BEGIN TRY
+        IF NOT EXISTS (
+            SELECT name 
+            FROM sys.databases 
+            WHERE name = N'Hangfire'
+        )
+        BEGIN
+            CREATE DATABASE Hangfire;
+            PRINT 'Database "Hangfire" created successfully.';
+        END
+        ELSE
+        BEGIN
+            PRINT 'Database "Hangfire" already exists.';
+        END
+    END TRY
+    BEGIN CATCH
+        PRINT 'Error occurred while creating the database.';
+        PRINT ERROR_MESSAGE();
+        PRINT ERROR_NUMBER();
+        PRINT ERROR_SEVERITY();
+        PRINT ERROR_STATE();
+        PRINT ERROR_LINE();
+    END CATCH
+
+  create-sfc-login.sql: |
+    BEGIN TRY
+        IF NOT EXISTS (
+            SELECT name  
+            FROM master.sys.server_principals
+            WHERE name = N'sfc'
+        )
+        BEGIN
+            CREATE LOGIN sfc WITH PASSWORD = N'$(SFC_PASSWORD)';
+            EXEC sp_addsrvrolemember @loginame = N'sfc', @rolename = N'sysadmin';
+            PRINT 'Login "sfc" created and added to sysadmin role.';
+        END
+        ELSE
+        BEGIN
+            PRINT 'Login "sfc" already exists.';
+        END
+    END TRY
+    BEGIN CATCH
+        PRINT 'Error occurred while creating login or assigning role.';
+        PRINT ERROR_MESSAGE();
+        PRINT ERROR_NUMBER();
+        PRINT ERROR_SEVERITY();
+        PRINT ERROR_STATE();
+        PRINT ERROR_LINE();
+    END CATCH

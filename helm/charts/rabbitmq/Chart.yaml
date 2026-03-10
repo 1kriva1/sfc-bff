@@ -1,0 +1,10 @@
+apiVersion: v2
+name: sfc-rabbitmq
+description: "Rabbit MQ component in SFC application"
+keywords:
+  - Street Football Club
+  - Infrastructure
+  - Rabbit MQ
+type: application
+version: 1.0.0
+appVersion: "4"

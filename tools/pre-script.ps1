@@ -14,6 +14,16 @@ function Build {
     dotnet build $ProjectPath --configuration Debug
 }
 
+
+$IISService = Get-Service -Name W3SVC
+
+if ($IISService.Status -eq 'Running') {
+    Write-Output "IIS is running. Stopping service..."
+    Stop-Service -Name W3SVC -Force
+} else {
+    Write-Output "IIS is not running."
+}
+
 if ($Build) {
     $servicesPath = "C:/SFC/Services"
 

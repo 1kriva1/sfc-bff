@@ -4,6 +4,14 @@ include:
 x-build-args: &build_args
   args:
     BUILD_CONFIGURATION: Release
+x-entrypoint-common-volume: &entrypoint_common_volume
+  type: bind
+  source: ${PWD}/entrypoint.Common.sh
+  target: /app/entrypoint.Common.sh
+x-entrypoint-volume: &entrypoint_volume
+  type: bind
+  source: ${PWD}/entrypoint.sh
+  target: /app/entrypoint.sh
 services:
   sfc-bff:
     extends:
@@ -13,8 +21,13 @@ services:
     build:
       dockerfile: src/Backend/SFC.Backend/Dockerfile
       <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["SFC.Backend"]
     env_file:
       - environments/api/api.Production.env
+    volumes:
+      - *entrypoint_common_volume
+      - *entrypoint_volume
   sfc-data:
     extends:
       file: compose.Common.yaml
@@ -23,8 +36,13 @@ services:
     build:
       dockerfile: ../../Services/sfc-data-service/src/API/SFC.Data.Api/Dockerfile
       <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["SFC.Data.Api"]
     env_file:
       - ../../Services/sfc-data-service/environments/api/api.Production.env
+    volumes:
+      - *entrypoint_common_volume
+      - *entrypoint_volume
   sfc-identity:
     extends:
       file: compose.Common.yaml
@@ -33,8 +51,13 @@ services:
     build:
       dockerfile: ../../Services/sfc-identity-service/src/API/SFC.Identity.Api/Dockerfile
       <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["SFC.Identity.Api"]
     env_file:
       - ../../Services/sfc-identity-service/environments/api/api.Production.env
+    volumes:
+      - *entrypoint_common_volume
+      - *entrypoint_volume
   sfc-player:
     extends:
       file: compose.Common.yaml
@@ -43,8 +66,13 @@ services:
     build:
       dockerfile: ../../Services/sfc-player-service/src/API/SFC.Player.Api/Dockerfile
       <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["SFC.Player.Api"]
     env_file:
       - ../../Services/sfc-player-service/environments/api/api.Production.env
+    volumes:
+      - *entrypoint_common_volume
+      - *entrypoint_volume
   sfc-team:
     extends:
       file: compose.Common.yaml
@@ -53,8 +81,13 @@ services:
     build:
       dockerfile: ../../Services/sfc-team-service/src/API/SFC.Team.Api/Dockerfile
       <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["SFC.Team.Api"]
     env_file:
       - ../../Services/sfc-team-service/environments/api/api.Production.env
+    volumes:
+      - *entrypoint_common_volume
+      - *entrypoint_volume
   sfc-invite:
     extends:
       file: compose.Common.yaml
@@ -63,8 +96,13 @@ services:
     build:
       dockerfile: ../../Services/sfc-invite-service/src/API/SFC.Invite.Api/Dockerfile
       <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["SFC.Invite.Api"]
     env_file:
       - ../../Services/sfc-invite-service/environments/api/api.Production.env
+    volumes:
+      - *entrypoint_common_volume
+      - *entrypoint_volume
   sfc-request:
     extends:
       file: compose.Common.yaml
@@ -73,8 +111,13 @@ services:
     build:
       dockerfile: ../../Services/sfc-request-service/src/API/SFC.Request.Api/Dockerfile
       <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["SFC.Request.Api"]
     env_file:
       - ../../Services/sfc-request-service/environments/api/api.Production.env
+    volumes:
+      - *entrypoint_common_volume
+      - *entrypoint_volume
   sfc-scheme:
     extends:
       file: compose.Common.yaml
@@ -83,5 +126,10 @@ services:
     build:
       dockerfile: ../../Services/sfc-scheme-service/src/API/SFC.Scheme.Api/Dockerfile
       <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["SFC.Scheme.Api"]
     env_file:
       - ../../Services/sfc-scheme-service/environments/api/api.Production.env
+    volumes:
+      - *entrypoint_common_volume
+      - *entrypoint_volume
