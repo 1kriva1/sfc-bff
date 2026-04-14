@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {
-  faArrowLeft, faAsterisk, faCamera, faIdCard, faPeopleGroup, faTriangleExclamation
+  faArrowLeft, faAsterisk, faCamera, faFutbol, faIdCard, faPeopleGroup, faTriangleExclamation
 } from '@fortawesome/free-solid-svg-icons';
 import {
   CommonConstants, IDefaultModalFooterModel, IDefaultModalHeaderModel,
@@ -41,7 +41,7 @@ import { IEditModel } from './models/edit.page.model';
 import { EditPagePersonalViewModel, EditPageProgressViewModel, EditPageRaitingViewModel, IEditPageViewModel } from './models';
 import { ICreatePlayerRequest, ICreatePlayerResponse, IUpdatePlayerRequest, IUpdatePlayerResponse } from '../../services/player/models';
 import { CoreConstants } from '@core/constants';
-import { PlayerRoute, ProfileRoute, TeamRoute } from '@share/enums';
+import { GameRoute, PlayerRoute, ProfileRoute, TeamRoute } from '@share/enums';
 
 @Component({
   templateUrl: './edit.page.component.html',
@@ -278,9 +278,15 @@ export class EditPageComponent
         label: EditPageLocalization.ACTION.CREATE_TEAM,
         icon: faPeopleGroup,
         click: () => this.router.navigate([`${TeamRoute.Teams}/${RouteKey.Create}`]),
+      },
+      createGameActionItem: IDropdownMenuItemModel = {
+        label: EditPageLocalization.ACTION.CREATE_GAME,
+        icon: faFutbol,
+        click: () => this.router.navigate([`${GameRoute.Games}/${RouteKey.Create}`]),
         delimeter: true
       };
     this.ACTION_ITEMS.push(createTeamActionItem);
+    this.ACTION_ITEMS.push(createGameActionItem);
     this.ACTION_ITEMS.push(profileActionItem);
   }
 

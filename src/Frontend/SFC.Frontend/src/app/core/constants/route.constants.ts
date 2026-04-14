@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { RouteKey } from "../enums";
+import { IScrollModel } from "../models";
 
 export class RouteConstants {
     static DEFAULT_ROUTE_PATH: string = '';
@@ -11,4 +12,5 @@ export class RouteConstants {
         redirectTo: RouteKey.Create,
         pathMatch: 'full'
     }];
+    static DISABLED_AUTO_SCROLL_MODEL: IScrollModel = { disableAutoScroll: true };
 }

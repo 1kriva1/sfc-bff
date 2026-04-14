@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="content">
+        <div class="step" [style.--step-color]="model.color">
+            <fa-icon *ngIf="invalid" class="invalid" [icon]="faCircleExclamation"></fa-icon>
+
+            <sfc-circle [borderColor]="model.color" [size]="Constants.DEFAULT_CIRCLE_SIZE">
+                <div class="circle-content">
+                    <fa-icon [icon]="model.icon"></fa-icon>
+                </div>
+            </sfc-circle>
+
+            <ng-container *ngIf="progress$ | async as progress">
+                <sfc-progress-line [sfcShowHideElement]="progress.value"
+                    [progress]="progress.progress ? progress.progress.percentage : 0" [hideEnd]="true">
+                </sfc-progress-line>
+            </ng-container>
+
+            <span class="label">{{model.name}}</span>
+        </div>
+
+        <sfc-delimeter *ngIf="delimeter" [direction]="Direction.Horizontal"></sfc-delimeter>
+    </div>
+</div>

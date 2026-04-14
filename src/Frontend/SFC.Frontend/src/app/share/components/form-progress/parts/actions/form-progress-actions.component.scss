@@ -1,0 +1,27 @@
+@import "ngx-sfc-common/styles";
+
+:host {
+  .container {
+    .content {
+      .result {
+        text-align: center;
+        margin: 0 0 1em;
+
+        &:empty {
+          display: none;
+        }
+      }
+
+      .actions {
+        @include center;
+
+        width: 100%;
+
+        sfc-button,
+        sfc-submit-button {
+          margin: 0 0.5em;
+        }
+      }
+    }
+  }
+}

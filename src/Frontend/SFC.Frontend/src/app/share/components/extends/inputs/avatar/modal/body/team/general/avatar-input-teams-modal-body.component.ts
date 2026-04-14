@@ -1,38 +1,30 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { ModalService, ISortingModel, empty, ReloadService, IPaginationModel, CommonConstants, isDefined } from 'ngx-sfc-common';
-import { ITableColumnExtendedModel, ITableSelectEvent } from 'ngx-sfc-components';
-import { AvatarInputPlayersModalBodyLocalization } from './avatar-input-teams-modal-body.localization';
-import { SearchComponent } from '@share/components/features/base/search/search.component';
-import { ITeamSearchTableModel } from '@share/components/features/team/general/search/table/team-search-table.model';
-import { ITeamModel } from '@share/services/team/general/general/models/common/team.model';
-import { IFindTeamsFilterModel } from '@share/services/team/general/general/models/find/filters/find-teams-filter.model';
-import { ITeamSearchFilterModel } from '@share/components/features/team/general/search/filters/team-search-filter.model';
-import { AvatarInputTeamsModalBodyTableConstants } from './parts/table/avatar-input-teams-modal-body-table.constants';
-import { IAvatarInputTeamsModalBodyEventModel } from './avatar-input-teams-modal-body-event.model';
-import { EnumService } from '@share/services';
-import { NotificationService } from '@core/services';
-import { TeamService } from '@share/services/team/general/general/team.service';
-import { IForm } from '@core/types';
-import { BaseListResponse, BasePaginationRequest } from '@core/models';
-import { mapFindTeamsRequest } from '@share/components/features/team/general/search/filters/team-search-filter.mapper';
-import { mapTeamSearchTableModel } from '@share/components/features/team/general/search/table/team-search-table.mapper';
-import { ThemeService } from '@share/components/theme-toggler/services/theme/theme.service';
+import { HttpResponse } from "@angular/common/http";
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { BasePaginationRequest, BaseListResponse } from "@core/models";
+import { NotificationService } from "@core/services";
+import { IForm } from "@core/types";
+import { faSortAmountDown, faSortAmountUp } from "@fortawesome/free-solid-svg-icons";
+import { IPaginationModel, ISortingModel, empty, ReloadService, SortingDirection, CommonConstants, isDefined } from "ngx-sfc-common";
+import { ITableColumnExtendedModel, ITableSelectEvent, TableColumnType } from "ngx-sfc-components";
+import { Observable } from "rxjs";
+import { IAvatarInputTeamsModalBodyEventModel } from "./avatar-input-teams-modal-body-event.model";
+import { AvatarInputPlayersModalBodyLocalization } from "./avatar-input-teams-modal-body.localization";
+import { AvatarInputTeamsModalBodyTableConstants } from "./parts/table/avatar-input-teams-modal-body-table.constants";
+import { BaseTableComponent } from "../../../../../../../extends/components/table/base-table.component";
+import { ITeamSearchFilterModel, ITeamSearchTableModel, mapFindTeamsRequest, mapTeamPredicateMapModel, mapTeamSearchTableModel, TeamSearchTableColumn, TeamSearchTableLocalization } from "../../../../../../../../components/features/team";
+import { IFindTeamsFilterModel, ITeamServiceModel, TeamService } from "../../../../../../../../services/team";
+import { EnumService } from "../../../../../../../../services";
+import { ThemeService } from "../../../../../../../../components/theme-toggler/services/theme/theme.service";
+import { MapPredicateModelFunction } from "@core/utils";
 
 @Component({
     selector: 'sfc-avatar-input-teams-modal-body',
     templateUrl: './avatar-input-teams-modal-body.component.html',
-    styleUrls: ['./avatar-input-teams-modal-body.component.scss'],
-    providers: [ModalService]
+    styleUrls: ['./avatar-input-teams-modal-body.component.scss']
 })
 export class AvatarInputTeamsModalBodyComponent
-    extends SearchComponent<
-    ITeamSearchFilterModel,
-    IFindTeamsFilterModel,
-    ITeamModel,
-    ITeamSearchTableModel> {
+    extends BaseTableComponent<ITeamSearchFilterModel, IFindTeamsFilterModel, ITeamServiceModel, ITeamSearchTableModel> {
 
     // ngx-sfc-common
     CommonConstants = CommonConstants;
@@ -47,22 +39,63 @@ export class AvatarInputTeamsModalBodyComponent
     @Output()
     selectTeam: EventEmitter<IAvatarInputTeamsModalBodyEventModel> = new EventEmitter<IAvatarInputTeamsModalBodyEventModel>();
 
-    // TODO: issue with localization and non property value in separate constants file
-    public TableColumns: ITableColumnExtendedModel[] = AvatarInputTeamsModalBodyTableConstants.COLUMNS;
+    /* Table */
+
+    public columns: ITableColumnExtendedModel[] = [
+        {
+            name: CommonConstants.EMPTY_STRING,
+            field: TeamSearchTableColumn.Select,
+            type: TableColumnType.Selectable,
+            width: 10
+        },
+        {
+            name: TeamSearchTableLocalization.COLUMN.RATING,
+            field: TeamSearchTableColumn.Rating
+        },
+        {
+            name: TeamSearchTableLocalization.COLUMN.NAME,
+            field: TeamSearchTableColumn.Information,
+            sorting: {
+                enabled: true,
+                active: true,
+                direction: SortingDirection.Ascending,
+                icons: [
+                    { direction: SortingDirection.Ascending, icon: faSortAmountUp },
+                    { direction: SortingDirection.Descending, icon: faSortAmountDown }
+                ]
+            }
+        },
+        {
+            name: TeamSearchTableLocalization.COLUMN.STATUS,
+            field: TeamSearchTableColumn.Status
+        },
+        {
+            name: TeamSearchTableLocalization.COLUMN.PLAYERS_COUNT,
+            field: TeamSearchTableColumn.Players
+        }
+    ];
+
+    /* End Table */
+
+    /* Override */
+
+    protected override mapPredicateModel: MapPredicateModelFunction = mapTeamPredicateMapModel;
+
+    /* End Override */
 
     constructor(
         private formBuilder: FormBuilder,
         private teamService: TeamService,
-        private enumService: EnumService,
-        modalService: ModalService,
+        enumService: EnumService,
         themeService: ThemeService,
         notificationService: NotificationService,
-        reloadService: ReloadService
+        reloadService: ReloadService,
+        changeDetector: ChangeDetectorRef
     ) {
-        super(modalService, themeService, notificationService, reloadService);
+        super(reloadService, enumService, themeService, notificationService, changeDetector);
     }
 
-    buildFilterForm(): FormGroup {
+    protected buildPredicateForm(): FormGroup {
         const controls: IForm<ITeamSearchFilterModel> = {
             name: [null]
         };
@@ -70,16 +103,16 @@ export class AvatarInputTeamsModalBodyComponent
         return this.formBuilder.group(controls);
     }
 
-    buildRequest(model: ITeamSearchFilterModel, pagination: IPaginationModel, sorting: ISortingModel | empty)
+    protected buildPaginationRequest(model: ITeamSearchFilterModel, pagination: IPaginationModel, sorting: ISortingModel | empty)
         : BasePaginationRequest<IFindTeamsFilterModel> {
         return mapFindTeamsRequest(model, pagination, sorting);
     }
 
-    search(request: BasePaginationRequest<IFindTeamsFilterModel>): Observable<HttpResponse<BaseListResponse<ITeamModel>>> {
+    protected sendPaginationRequest(request: BasePaginationRequest<IFindTeamsFilterModel>): Observable<HttpResponse<BaseListResponse<ITeamServiceModel>>> {
         return this.teamService.find(request, false);
     }
 
-    map(item: ITeamModel): ITeamSearchTableModel {
+    protected mapTableModel(item: ITeamServiceModel): ITeamSearchTableModel {
         return mapTeamSearchTableModel(item, this.enumService);
     }
 

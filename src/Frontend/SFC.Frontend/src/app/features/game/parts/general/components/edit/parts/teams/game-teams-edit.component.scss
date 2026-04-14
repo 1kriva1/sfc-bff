@@ -1,0 +1,37 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+
+:host {
+  .container {
+    .content {
+      padding: 2em 0;
+
+      .parts {
+        @include center-column;
+
+        .part {
+          @include center;
+
+          align-items: baseline;
+          justify-content: space-evenly;
+          width: 100%;
+
+          &.tip {
+            @include text-center($color-7, 0.6em);
+
+            max-width: 50%;
+            margin: 1em 0 3em;
+          }
+
+          &.delimeter {
+            margin: 0 0 1em;
+
+            sfc-delimeter {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

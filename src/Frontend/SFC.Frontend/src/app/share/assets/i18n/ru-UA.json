@@ -1,7 +1,7 @@
 {
   "Invite": "Запрошення",
   "Request": "Запит",
-  "Team-scheme": "Схема команди",  
+  "Team-scheme": "Схема команди",
   "Players": "Гравці",
   "Schemes": "Схеми",
   "Games": "Ігри",
@@ -24,6 +24,9 @@
   "validation.to-more-from": "Значення 'До' має бути більше, ніж значення 'Від'.",
   "validation.availability.part-1": "У вас вже заплановано час на",
   "validation.error": "Не вдалося виконати перевірку.",
+  "validation.not-equal": "Мають бути неоднакові.",
+  "validation.min": "Мінімальне допустиме значення ",
+  "validation.max": "Максимальне допустиме значення ",
   "component.theme-toggler.tooltip": "Перемкнути тему веб-сайту",
   "components.back.label": "Назад",
   "components.modals.changes-check.text": "Ви впевнені, що хочете залишити сторінку без збереження змін?",

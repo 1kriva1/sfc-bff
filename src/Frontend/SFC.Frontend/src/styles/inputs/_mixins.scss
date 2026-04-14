@@ -105,3 +105,21 @@
     }
   }
 }
+
+@mixin sfc-autocomplete-input($loader-background) {
+  sfc-autocomplete-input {
+    ::ng-deep .container {
+      .content {
+        sfc-load-container {
+          .container {
+            sfc-bounce-loader {
+              .preloader {
+                @include theme-value(background, $loader-background, $loader-background);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="content">
+        <div class="items" *ngIf="progress$ | async as progress">
+            <div class="item">
+                <sfc-progress-line [labelStart]="Localization.PROGRESS.TEAMS.LABEL_START"
+                    [progress]="progress.teams.progress.percentage" [labelSuffix]="CommonConstants.PERCENTAGE_SYMBOL">
+                </sfc-progress-line>
+                <span>{{progress.teams.progress.filled}} {{Localization.OF}}
+                    {{progress.teams.progress.properties}} {{Localization.FILLED}}</span>
+            </div>
+
+            <div class="item">
+                <sfc-progress-line [labelStart]="Localization.PROGRESS.GENERAL.LABEL_START"
+                    [progress]="progress.general.progress.percentage" [labelSuffix]="CommonConstants.PERCENTAGE_SYMBOL">
+                </sfc-progress-line>
+                <span>{{progress.general.progress.filled}} {{Localization.OF}}
+                    {{progress.general.progress.properties}} {{Localization.FILLED}}</span>
+            </div>
+
+            <div class="item">
+                <sfc-progress-line [labelStart]="Localization.PROGRESS.INVENTARY.LABEL_START"
+                    [progress]="progress.inventary.progress.percentage"
+                    [labelSuffix]="CommonConstants.PERCENTAGE_SYMBOL">
+                </sfc-progress-line>
+                <span>{{progress.inventary.progress.filled}} {{Localization.OF}}
+                    {{progress.inventary.progress.properties}} {{Localization.FILLED}}</span>
+            </div>
+
+            <div class="item">
+                <sfc-progress-line [labelStart]="Localization.PROGRESS.FINANCIAL.LABEL_START"
+                    [progress]="progress.financial.progress.percentage"
+                    [labelSuffix]="CommonConstants.PERCENTAGE_SYMBOL">
+                </sfc-progress-line>
+                <span>{{progress.financial.progress.filled}} {{Localization.OF}}
+                    {{progress.financial.progress.properties}} {{Localization.FILLED}}</span>
+            </div>
+        </div>
+
+    </div>
+</div>

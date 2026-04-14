@@ -1,41 +1,54 @@
-@use "ngx-sfc-common/styles/index" as *;
-@import "components";
-@import "inputs";
-@import "table";
+@import "ngx-sfc-common/styles";
+@import "components1";
+@import "page1";
 
 :host {
+  width: 100%;
+
   .container {
     .content {
-      form {
-        @include center-column;
+      .parts {
+        .part {
+          .part-content {
+            form {
+              @include center-column;
 
-        .name {
-          @include name-text-input;
+              .name {
+                @include name-text-input;
 
-          width: 80%;
-          padding: 2em 0;
-        }
+                width: 80%;
+                padding: 2em 0;
+              }
 
-        .main {
-          @include center;
+              .main {
+                @include center;
 
-          align-items: baseline;
+                align-items: baseline;
+                padding: 1em 2em;
 
-          .filters {
-            @include collapse-expand-container;
+                .filters {
+                  @include page-content-filters;
 
-            width: 30%;
-          }
+                  width: 30%;
 
-          .table {
-            @include table;
+                  sfc-collapse-expand-container {
+                    .name {
+                      margin: 1.5em 0.5em 0;
+                    }
+                  }
+                }
 
-            width: 70%;
-          }
+                .result {
+                  @include page-content-result;
 
-          .filters,
-          .table {
-            margin: 1em 2em;
+                  width: 70%;
+
+                  sfc-team-search-table-card {
+                    width: 30%;
+                  }
+                }
+              }
+            }
           }
         }
       }

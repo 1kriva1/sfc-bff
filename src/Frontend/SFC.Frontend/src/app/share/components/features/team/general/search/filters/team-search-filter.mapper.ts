@@ -35,7 +35,7 @@ export function mapFindTeamsRequest(
                     Shirts: model.inventary?.shirts
                 }
             },
-            Statuses: model.general.statuses
+            Statuses: model.general?.statuses
         }
     }
 

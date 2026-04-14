@@ -37,7 +37,14 @@ export class TeamInfoComponent implements OnInit {
   stroke: number = TeamInfoConstants.LOGO.STROKE;
 
   @Input()
-  model: ITeamInfoModel = {};
+  set model(value: ITeamInfoModel) {
+    this._model = value;
+    this.setData();
+  }
+  get model(): ITeamInfoModel {
+    return this._model;
+  }
+  private _model: ITeamInfoModel = {};
 
   @Input()
   logo: boolean = true;
@@ -46,7 +53,6 @@ export class TeamInfoComponent implements OnInit {
   info: boolean = true;
 
   @Input()
-  @HostBinding('class')
   direction: Direction = Direction.Horizontal;
 
   /* End Inputs */
@@ -54,7 +60,19 @@ export class TeamInfoComponent implements OnInit {
   /* Properties */
 
   @HostBinding('class')
-  private get _status(): string | empty { return this.status ? `${TeamInfoConstants.STATUS_CLASS_PART}-${this.status?.key}` : null };
+  private get _hostClasses(): string {
+    const classes: string[] = [];
+
+    if (this.direction) {
+      classes.push(this.direction);
+    }
+
+    if (this.status) {
+      classes.push(`${TeamInfoConstants.STATUS_CLASS_PART}-${this.status.key}`);
+    }
+
+    return classes.join(' ');
+  }
 
   /* End Properties */
 
@@ -81,6 +99,10 @@ export class TeamInfoComponent implements OnInit {
   constructor(private enumService: EnumService) { }
 
   ngOnInit(): void {
+    this.setData();
+  }
+
+  private setData(): void {
     this.rating = this.model.raiting || 0;
 
     this.avatarModel = {

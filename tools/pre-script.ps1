@@ -39,7 +39,7 @@ if ($Build) {
             foreach ($solution in $solutions) {
                 $folderPath = Split-Path $solution.FullName -Parent
                 $solutionPathWithoutExt = [System.IO.Path]::ChangeExtension($solution.Name, $null)
-                $buildProjectName = "$solutionPathWithoutExt" + "API"
+                $buildProjectName = "$solutionPathWithoutExt" + "Api"
                 $buildProjectPath = "$folderPath/src/API/$buildProjectName/$buildProjectName.csproj"
 
                 Build -ProjectName $buildProjectName -ProjectPath $buildProjectPath

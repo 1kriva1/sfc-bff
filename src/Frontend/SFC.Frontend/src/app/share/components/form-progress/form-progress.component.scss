@@ -1,0 +1,13 @@
+@import "ngx-sfc-common/styles";
+
+:host {
+  .container {
+    .content {
+      .steps {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+      }
+    }
+  }
+}

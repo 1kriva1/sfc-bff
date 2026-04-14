@@ -1,0 +1,128 @@
+<div class="container" [formGroupName]="GameProfileEditPart.General">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+        [icon]="faQuestionCircle" [tooltip]="Localization.TITLE.TOOLTIP" [sfcComponentSize] [customSize]="1"
+        [delimeter]="true">
+    </sfc-title>
+
+    <div class="content">
+        <div class="parts">
+            <div class="part inputs">
+                <div class="rows">
+                    <div class="row">
+                        <div class="columns">
+                            <div class="column name">
+                                <sfc-text-input id="name" formControlName="name" [label]="Localization.INPUT.NAME.LABEL"
+                                    [placeholder]="Localization.INPUT.NAME.PLACEHOLDER"
+                                    [helperText]="Localization.INPUT.NAME.HELPER_TEXT" [bordered]="true" [validations]="{
+                                                    'required': ValidationLocalization.REQUIRED,
+                                                    'maxlength': ValidationLocalization.MAX_LENGTH
+                                                }">
+                                </sfc-text-input>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="columns">
+                            <div class="column description">
+                                <sfc-text-area-input id="description" formControlName="description" [bordered]="true"
+                                    [label]="Localization.INPUT.DESCRIPTION.LABEL"
+                                    [placeholder]="Localization.INPUT.DESCRIPTION.PLACEHOLDER"
+                                    [helperText]="Localization.INPUT.DESCRIPTION.HELPER_TEXT" [validations]="{
+                                                    'maxlength': ValidationLocalization.MAX_LENGTH
+                                                }">
+                                </sfc-text-area-input>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="columns">
+                            <div class="column date">
+                                <sfc-datetime-input id="date" formControlName="date" [time]="false"
+                                    [label]="Localization.INPUT.DATE.LABEL"
+                                    [placeholder]="Localization.INPUT.DATE.PLACEHOLDER"
+                                    [helperText]="Localization.INPUT.DATE.HELPER_TEXT" [switchOnClick]="true"
+                                    [fullSize]="true" [hideOnClickOutside]="true" [locale]="locale" [bordered]="true"
+                                    [modalButtonsModel]="ComponentsConstants.DATE_INPUT_MODAL_BUTTONS_MODEL"
+                                    [validations]="{
+                                                    'required': ValidationLocalization.REQUIRED
+                                                }">
+                                </sfc-datetime-input>
+                            </div>
+
+                            <div class="column time">
+                                <sfc-datetime-input id="from" formControlName="from" [time]="true" [date]="false"
+                                    [label]="Localization.INPUT.FROM.LABEL"
+                                    [placeholder]="Localization.INPUT.FROM.PLACEHOLDER"
+                                    [helperText]="Localization.INPUT.FROM.HELPER_TEXT" [switchOnClick]="true"
+                                    [fullSize]="true" [bordered]="true" [hideOnClickOutside]="true" [locale]="locale"
+                                    [modalButtonsModel]="ComponentsConstants.DATE_INPUT_MODAL_BUTTONS_MODEL"
+                                    [validations]="{
+                                        'required': ValidationLocalization.REQUIRED,
+                                        'sfc-compare-than': ValidationLocalization.FROM_LESS_TO
+                                        }">
+                                </sfc-datetime-input>
+                            </div>
+
+                            <div class="column time">
+                                <sfc-datetime-input id="to" formControlName="to" [time]="true" [date]="false"
+                                    [label]="Localization.INPUT.TO.LABEL"
+                                    [placeholder]="Localization.INPUT.TO.PLACEHOLDER"
+                                    [helperText]="Localization.INPUT.TO.HELPER_TEXT" [switchOnClick]="true"
+                                    [fullSize]="true" [bordered]="true" [hideOnClickOutside]="true" [locale]="locale"
+                                    [modalButtonsModel]="ComponentsConstants.DATE_INPUT_MODAL_BUTTONS_MODEL"
+                                    [validations]="{
+                                        'required': ValidationLocalization.REQUIRED,
+                                        'sfc-compare-than': ValidationLocalization.TO_MORE_FROM
+                                        }">
+                                </sfc-datetime-input>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="columns">
+                            <div class="column stadium">
+                                <sfc-autocomplete-input id="stadium" formControlName="stadium"
+                                    [label]="Localization.INPUT.STADIUM.LABEL"
+                                    [placeholder]="Localization.INPUT.STADIUM.PLACEHOLDER"
+                                    [helperText]="Localization.INPUT.STADIUM.HELPER_TEXT" [loader]="stadiumsLoader"
+                                    [bordered]="true">
+                                </sfc-autocomplete-input>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="columns">
+                            <div class="column tags">
+                                <sfc-tags-input id="tags" formControlName="tags" [label]="Localization.INPUT.TAGS.LABEL"
+                                    [placeholder]="Localization.INPUT.TAGS.PLACEHOLDER"
+                                    [helperText]="Localization.INPUT.TAGS.HELPER_TEXT" [bordered]="true"
+                                    [newTagPlaceholder]="InputsLocalization.ADD_TAG"
+                                    [maxTagLength]="ValidationConstants.MAX_TAG_VALUE_LENGTH" [validations]="{
+                                                'sfc-empty': ValidationLocalization.EMPTY,
+                                                'sfc-duplicate': ValidationLocalization.DUPLICATE,
+                                                'sfc-tags-length': tagMaxLengthValidationMessage(ValidationConstants.MAX_TAG_VALUE_LENGTH),
+                                                'sfc-max-array-length': ValidationLocalization.TAGS_LENGTH
+                                            }">
+                                </sfc-tags-input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="part delimeter">
+                <sfc-delimeter></sfc-delimeter>
+            </div>
+
+            <div class="part actions">
+                <sfc-form-progress-actions [key]="Constants.PROGRESS_KEY" [form]="generalForm">
+                </sfc-form-progress-actions>
+            </div>
+        </div>
+
+    </div>
+</div>

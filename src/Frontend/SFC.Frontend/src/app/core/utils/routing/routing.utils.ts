@@ -2,6 +2,7 @@ import { ActivatedRoute, ActivatedRouteSnapshot, Navigation, NavigationExtras, R
 import { IBackNavigationModel, IBuildActionParameters } from "@core/models";
 import { isDefined, isNullOrEmptyString, isNumeric, where } from "ngx-sfc-common";
 import { CoreConstants, RouteConstants } from "../../constants";
+import { OneTimeAccessService } from "../../guards/allow-access/one-time-access.guard";
 
 export function buildPath(key: string): string {
     return `/${key}`;
@@ -111,4 +112,17 @@ export function getDataFromRouteRecursively<T>(route: ActivatedRoute, key: strin
 
 export function buildActionParameters(router: Router, state: any = undefined): IBuildActionParameters {
     return { router, state }
+}
+
+export function getDeepestRoute(route: ActivatedRoute): ActivatedRoute {
+    while (route.firstChild) {
+        route = route.firstChild;
+    }
+
+    return route;
+}
+
+export function navigateWithOneTimeAccess(router: Router, oneTimeAccessService: OneTimeAccessService, command: string): Promise<boolean> {
+    oneTimeAccessService.grantAccess(command);
+    return router.navigate([command]);
 }

@@ -6,4 +6,5 @@ export * from './scheme';
 export * from './welcome';
 export * from './home';
 export * from './profile';
+export * from './game';
 export { Feature } from './feature.enum';

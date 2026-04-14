@@ -72,6 +72,7 @@ export class EditPageLocalization {
     };
     static ACTION = {
         CREATE_TEAM: $localize`:@@feature.profile.edit.page.action.create-team:Create team`,
+        CREATE_GAME: $localize`:@@feature.profile.edit.page.action.create-game:Create game`,
         OPEN_VIEW: $localize`:@@feature.profile.edit.page.action.open-view:Open view`,
     };
 }

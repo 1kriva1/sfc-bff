@@ -11,6 +11,7 @@ export { BackComponent } from './back/back.component';
 export { PanelComponent } from './panel/panel.component';
 export { CircleComponent } from './circle/circle.component';
 export { FilterTagsComponent } from './filter-tags/filter-tags.component';
+export * from './form-progress';
 export * from './availability-edit';
 export * from "./stats";
 export * from './modals';

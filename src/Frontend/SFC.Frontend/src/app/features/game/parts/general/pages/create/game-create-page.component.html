@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="content">
+        <form [formGroup]="form" autocomplete="off">
+            <div class="parts">
+                <div class="part top">
+                    <div class="part-content">
+                        <div class="preview">
+                            <sfc-game-preview-main [form]="form"></sfc-game-preview-main>
+                        </div>
+
+                        <div class="steps">
+                            <sfc-form-progress [form]="form"></sfc-form-progress>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="part bottom">
+                    <div class="part-content">
+                        <div class="routes">
+                            <router-outlet></router-outlet>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

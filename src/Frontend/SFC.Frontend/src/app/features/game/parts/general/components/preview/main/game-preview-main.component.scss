@@ -1,0 +1,66 @@
+@import "ngx-sfc-common/styles";
+@import "variables1";
+@import "common";
+@import "components1";
+
+:host {
+  .container {
+    .content {
+      .parts {
+        @include center-column;
+
+        .part {
+          &.teams {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            margin: 4em 0 1em;
+
+            .info {
+              @include center-column;
+
+              min-width: 50%;
+              margin: 0 3em;
+
+              .versus {
+                @include text-bold($color-yellow-0, 2em);
+              }
+
+              .date-time {
+                @include center-column;
+
+                .date {
+                  @include text-bold($color-default, 1em);
+
+                  margin: 0.2em 0;
+
+                  .day {
+                    color: $color-green-1;
+                  }
+                }
+
+                .time {
+                  @include text-bold($color-yellow-0);
+
+                  .from,
+                  .to {
+                    color: $color-8;
+                  }
+                }
+              }
+
+              @include status($game-status-new-color);
+            }
+          }
+
+          &.tip {
+            @include text-center($color-7, 0.6em);
+
+            max-width: 30%;
+            margin: 1em 0 3em;
+          }
+        }
+      }
+    }
+  }
+}

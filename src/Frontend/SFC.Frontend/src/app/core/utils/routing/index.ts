@@ -15,5 +15,7 @@ export {
     getDataFromRouteRecursively,
     buildBackNavigationExtras,
     getBackNavigationModel,
-    buildActionParameters
+    buildActionParameters,
+    getDeepestRoute,
+    navigateWithOneTimeAccess
 } from './routing.utils';

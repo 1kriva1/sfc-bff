@@ -26,6 +26,14 @@ export function markControlTouchedAndDirty(form: FormGroup, name: string): Abstr
     return control;
 }
 
+
+export function hasInvalidAndDirtyControl(form: FormGroup): boolean {
+    return Object.values(form.controls).some(
+        control => control.invalid && control.dirty
+    );
+}
+
+
 export function getControl(name: string, controls: any): AbstractControl | empty {
     for (let control in controls) {
         if (controls.hasOwnProperty(control)) {

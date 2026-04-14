@@ -4,7 +4,9 @@ import { faAdversal, faAlgolia } from '@fortawesome/free-brands-svg-icons';
 import {
     faStar, faBook, faCar, faHockeyPuck, faRainbow, faBellSlash,
     faSpellCheck, faSliders, faTruckMoving, faSun, faClock, faFutbol,
-    faBan, faHourglassEnd, faAsterisk, faPowerOff
+    faBan, faHourglassEnd, faAsterisk, faPowerOff,
+    faFlagCheckered,
+    faBaby
 } from '@fortawesome/free-solid-svg-icons';
 import { of } from 'rxjs';
 import { DataService } from '../data/data.service';
@@ -19,6 +21,8 @@ import { IGetTeamDataResponse } from '../team';
 import { TeamDataService } from '../team/data/team-data.service';
 import { EnumService } from './enum.service';
 import { IEnumsModel } from './models/enum/enums.model';
+import { GameDataService } from '../game/data/game-data.service';
+import { IGetGameDataResponse } from '../game';
 
 describe('Share.Service:Enum', () => {
     let service: EnumService;
@@ -27,6 +31,7 @@ describe('Share.Service:Enum', () => {
     let requestDataServiceStub: Partial<RequestDataService> = { get: () => of() };
     let teamDataServiceStub: Partial<TeamDataService> = { get: () => of() };
     let schemeDataServiceStub: Partial<SchemeDataService> = { get: () => of() };
+    let gameDataServiceStub: Partial<GameDataService> = { get: () => of() };
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -37,6 +42,7 @@ describe('Share.Service:Enum', () => {
                 { provide: RequestDataService, useValue: requestDataServiceStub },
                 { provide: TeamDataService, useValue: teamDataServiceStub },
                 { provide: SchemeDataService, useValue: schemeDataServiceStub },
+                { provide: GameDataService, useValue: gameDataServiceStub }
             ]
         });
 
@@ -49,10 +55,12 @@ describe('Share.Service:Enum', () => {
 
     fit('Should return values', (done) => {
         dataServiceStub.get = () => of(buildDataResponse());
-        inviteDataServiceStub.get = () => of(buildIGetInviteDataResponse());
-        requestDataServiceStub.get = () => of(buildIGetRequestDataResponse());
-        teamDataServiceStub.get = () => of(buildIGetTeamDataResponse());
-        schemeDataServiceStub.get = () => of(buildIGetSchemeDataResponse());
+        inviteDataServiceStub.get = () => of(buildGetInviteDataResponse());
+        requestDataServiceStub.get = () => of(buildGetRequestDataResponse());
+        teamDataServiceStub.get = () => of(buildGetTeamDataResponse());
+        schemeDataServiceStub.get = () => of(buildGetSchemeDataResponse());
+        schemeDataServiceStub.get = () => of(buildGetSchemeDataResponse());
+        gameDataServiceStub.get = () => of(buildGetGameDataResponse());
 
         service.load().subscribe((model: IEnumsModel) => {
             expect(model).toEqual(buildEnumsModel());
@@ -95,7 +103,7 @@ describe('Share.Service:Enum', () => {
         };
     }
 
-    function buildIGetInviteDataResponse(): IGetInviteDataResponse {
+    function buildGetInviteDataResponse(): IGetInviteDataResponse {
         return {
             InviteStatuses: [],
             Errors: null,
@@ -104,7 +112,7 @@ describe('Share.Service:Enum', () => {
         };
     }
 
-    function buildIGetRequestDataResponse(): IGetRequestDataResponse {
+    function buildGetRequestDataResponse(): IGetRequestDataResponse {
         return {
             RequestStatuses: [],
             Errors: null,
@@ -113,7 +121,7 @@ describe('Share.Service:Enum', () => {
         };
     }
 
-    function buildIGetSchemeDataResponse(): IGetSchemeDataResponse {
+    function buildGetSchemeDataResponse(): IGetSchemeDataResponse {
         return {
             FormationPositions: [],
             Formations: [],
@@ -124,7 +132,7 @@ describe('Share.Service:Enum', () => {
         };
     }
 
-    function buildIGetTeamDataResponse(): IGetTeamDataResponse {
+    function buildGetTeamDataResponse(): IGetTeamDataResponse {
         return {
             TeamPlayerStatuses: [],
             TeamStatuses: [
@@ -132,6 +140,36 @@ describe('Share.Service:Enum', () => {
                 { Id: 1, Title: 'New' },
                 { Id: 2, Title: 'Active' },
                 { Id: 3, Title: 'Postponed' }
+            ],
+            Errors: null,
+            Success: true,
+            Message: 'Success'
+        };
+    }
+
+    function buildGetGameDataResponse(): IGetGameDataResponse {
+        return {
+            GameStatuses: [
+                {
+                    Id: 0,
+                    Title: 'New'
+                },
+                {
+                    Id: 1,
+                    Title: 'Upcoming'
+                },
+                {
+                    Id: 2,
+                    Title: 'Active'
+                },
+                {
+                    Id: 3,
+                    Title: 'Finished'
+                },
+                {
+                    Id: 4,
+                    Title: 'Canceled'
+                }
             ],
             Errors: null,
             Success: true,
@@ -185,11 +223,11 @@ describe('Share.Service:Enum', () => {
                 { key: 11, value: 'Badge_11', icon: faTruckMoving, description: 'Has posted more than 1000 posts on their profile' }
             ],
             gameStatuses: [
-                { key: 0, value: 'New', icon: faSun },
+                { key: 0, value: 'New', icon: faBaby },
                 { key: 1, value: 'Upcoming', icon: faClock },
                 { key: 2, value: 'Active', icon: faFutbol },
-                { key: 3, value: 'Canceled', icon: faBan },
-                { key: 4, value: 'Finished', icon: faHourglassEnd },
+                { key: 3, value: 'Finished', icon: faFlagCheckered },
+                { key: 4, value: 'Canceled', icon: faBan },
             ],
             teamStatuses: [
                 { key: 0, value: 'Temporary', icon: faAsterisk },

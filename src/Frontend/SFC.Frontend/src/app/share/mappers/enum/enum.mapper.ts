@@ -5,7 +5,7 @@ import { IEnumModel } from "@core/types";
 import { IStatTypeDataValueModel } from "../../services/data/models/common/stat-type-data-value.model";
 import { IDataValueModel } from "../../services/data/models/common/data-value.model";
 import { IStatTypeEnumModel } from "../../services/enum/models/enum/stat-type-enum.model";
-import { mapInviteStatuses, mapRequestStatuses, mapTeamPlayerStatuses, mapTeamStatuses } from "./enum-icon.mapper";
+import { mapGameStatus, mapInviteStatuses, mapRequestStatuses, mapTeamPlayerStatuses, mapTeamStatuses } from "./enum-icon.mapper";
 import { IFormationDataValueModel, IFormationPositionDataValueModel } from "../../services/scheme/data/models/get-scheme-data.response";
 import { IFormationPositionEnumModel } from "../../services/enum/models/enum/formation-position-enum.model";
 import { IFormationEnumModel } from "../../services/enum/models/enum/formation-enum.model";
@@ -75,4 +75,8 @@ export function mapInviteStatusEnum(value: IDataValueModel): IEnumModel<number> 
 
 export function mapRequestStatusEnum(value: IDataValueModel): IEnumModel<number> {
     return mapIconEnum(value, mapRequestStatuses);
+}
+
+export function mapGameStatusEnum(value: IDataValueModel): IEnumModel<number> {
+    return mapIconEnum(value, mapGameStatus);
 }

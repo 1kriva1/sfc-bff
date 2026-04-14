@@ -5,7 +5,14 @@ import { CommonConstants, isNullOrEmptyString, mergeDeep } from 'ngx-sfc-common'
 import { Locale } from '../../enums';
 import { StorageService, CookieService } from '../../services';
 import { CoreConstants } from '../../constants';
-import { Feature, InviteFeature, RequestFeature, SchemeFeature, TeamFeature } from '@share/enums';
+import {
+    Feature,
+    GameFeature,
+    InviteFeature,
+    RequestFeature,
+    SchemeFeature,
+    TeamFeature
+} from '@share/enums';
 
 @Injectable({
     providedIn: 'root',
@@ -42,7 +49,9 @@ class I18nInitializer {
             requestTranslations = await this.loadFeatureTranslationsAsync(Feature.Request),
             requestTeamPlayerTranslations = await this.loadFeatureTranslationsAsync(Feature.Request, this.buildFeaturePath(RequestFeature.Team, RequestFeature.Player)),
             schemeTranslations = await this.loadFeatureTranslationsAsync(Feature.Scheme),
-            schemeTeamTranslations = await this.loadFeatureTranslationsAsync(Feature.Scheme, this.buildFeaturePath(SchemeFeature.Team));
+            schemeTeamTranslations = await this.loadFeatureTranslationsAsync(Feature.Scheme, this.buildFeaturePath(SchemeFeature.Team)),
+            gameTranslations = await this.loadFeatureTranslationsAsync(Feature.Game),
+            gameGeneralTranslations = await this.loadFeatureTranslationsAsync(Feature.Game, this.buildFeaturePath(GameFeature.General));
 
         const translations = mergeDeep(
             coreTranslationsModule,
@@ -63,7 +72,10 @@ class I18nInitializer {
             requestTeamPlayerTranslations,
             // scheme
             schemeTranslations,
-            schemeTeamTranslations);
+            schemeTeamTranslations,
+            // game
+            gameTranslations,
+            gameGeneralTranslations);
 
         loadTranslations(translations);
     }
