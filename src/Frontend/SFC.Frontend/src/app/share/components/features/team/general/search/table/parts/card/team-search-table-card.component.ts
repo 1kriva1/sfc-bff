@@ -8,7 +8,7 @@ import { IPlayerModel } from "@share/models/player/player.model";
 import { ITeamPlayerModel } from "@share/models";
 import { TeamSearchTableCardConstants } from "./team-search-table-card.constants";
 import { ITeamSearchTableCardModel } from "./team-search-table-card.model";
-import { BaseTableContentComponent } from "@share/components";
+import { BaseTableContentComponent } from "../../../../../../../extends/components/table/parts/content/base-table-content.component";
 import { TeamSearchTableColumn } from "../../team-search-table-column.enum";
 import { TeamSearchTableConstants } from "../../team-search-table.constants";
 

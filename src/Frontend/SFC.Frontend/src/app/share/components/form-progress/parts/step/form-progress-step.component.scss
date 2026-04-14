@@ -1,0 +1,143 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+
+@mixin step-colors($border-color, $background, $icon-color, $label-color) {
+  sfc-circle {
+    ::ng-deep .container {
+      .content {
+        .circle {
+          border-color: $border-color !important;
+          background: $background;
+
+          .circle-content {
+            fa-icon {
+              color: $icon-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .label {
+    color: $label-color;
+  }
+}
+
+:host {
+  .container {
+    .content {
+      @include center;
+
+      .step {
+        position: relative;
+        cursor: default;
+
+        @include center-column;
+
+        margin: 0 0.5em;
+
+        sfc-circle {
+          ::ng-deep .container {
+            .content {
+              .circle {
+                transition:
+                  border-color $transition-duration-default $transition-timing-function-default,
+                  background $transition-duration-default $transition-timing-function-default;
+
+                .circle-content {
+                  @include center-column;
+
+                  fa-icon {
+                    font-size: 1.8em;
+                    transition:
+                      color $transition-duration-default
+                      $transition-timing-function-default;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        sfc-progress-line {
+          margin: 0 0 0.3em;
+        }
+
+        .label {
+          @include text-center-bold;
+
+          transition: color $transition-duration-default $transition-timing-function-default;
+        }
+
+        .invalid {
+          position: absolute;
+          top: 0;
+          right: -0.5em;
+          color: $color-red-0;
+          font-size: 0.8em;
+        }
+
+        @include step-colors(var(--step-color), transparent, var(--step-color), $color-default);
+      }
+
+      sfc-delimeter {
+        position: relative;
+        top: -0.5em;
+        width: 6em;
+      }
+    }
+  }
+
+  &:hover,
+  &.selected {
+    .container {
+      .content {
+        .step {
+          @include step-colors(var(--step-color), var(--step-color), $color-0, var(--step-color));
+        }
+      }
+    }
+  }
+
+  &.selected {
+    pointer-events: none;
+
+    .container {
+      .content {
+        .step {
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  &.pointer {
+    .container {
+      .content {
+        .step {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &.disabled {
+    pointer-events: none;
+
+    .container {
+      .content {
+        .step {
+          cursor: default;
+
+          @include step-colors(
+            $color-disabled-default,
+            transparent,
+                        $color-disabled-default,
+                        $color-disabled-default
+                    );
+        }
+      }
+    }
+  }
+}

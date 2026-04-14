@@ -169,6 +169,7 @@ export function getAverageStatsValue(values: StatsValue[]): StatsValue {
 
     // Build the averaged result in the original shape
     const result: StatsValue = {};
+    
     for (const catKey in sums) {
         const categoryId = Number(catKey);
         result[categoryId] = {};
@@ -178,5 +179,6 @@ export function getAverageStatsValue(values: StatsValue[]): StatsValue {
             result[categoryId][typeId] = count === 0 ? 0 : Math.ceil(sums[categoryId][typeId] / count);
         }
     }
+
     return result;
 }

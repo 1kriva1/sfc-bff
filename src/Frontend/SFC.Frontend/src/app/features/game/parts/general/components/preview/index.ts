@@ -1,0 +1,1 @@
+export { GamePreviewMainComponent } from './main/game-preview-main.component';

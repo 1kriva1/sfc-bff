@@ -4,25 +4,29 @@
 
 @mixin button($hover: true, $background: $color-yellow-0, $background-hover: $color-yellow-1) {
   sfc-button {
-    &:not(.disabled) {
-      transition: transform 500ms;
-      transform-origin: 50% 0;
+    @include button-inner($hover, $background, $background-hover);
+  }
+}
 
-      @if $hover {
-        &:hover {
-          transform: scale(1.05);
-        }
+@mixin button-inner($hover: true, $background: $color-yellow-0, $background-hover: $color-yellow-1) {
+  &:not(.disabled) {
+    transition: transform 500ms;
+    transform-origin: 50% 0;
+
+    @if $hover {
+      &:hover {
+        transform: scale(1.05);
       }
+    }
 
-      ::ng-deep {
-        .button {
-          background: $background;
-          border-color: $background;
+    ::ng-deep {
+      .button {
+        background: $background;
+        border-color: $background;
 
-          &:hover {
-            background: $background-hover;
-            border-color: $background-hover;
-          }
+        &:hover {
+          background: $background-hover;
+          border-color: $background-hover;
         }
       }
     }

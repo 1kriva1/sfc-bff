@@ -1,5 +1,7 @@
 export {
     fileMaxSizeValidationMessage,
     controlFileMaxSizeValidationMessage,
-    tagMaxLengthValidationMessage
+    tagMaxLengthValidationMessage,
+    minValidationMessage,
+    maxValidationMessage
 } from './validation-messages.utils';

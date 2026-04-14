@@ -5,6 +5,7 @@ import { CanMatchOnlyAnonymous, CanMatchOnlyAuthenticated } from '@core/guards';
 import { NotFoundPageComponent } from '@core/pages';
 import { buildFallbackRoute, buildPath } from '@core/utils';
 import {
+  GameRoute,
   HomeRoute, InviteRoute, PlayerRoute, ProfileRoute,
   RequestRoute, SchemeRoute, TeamRoute, WelcomeRoute
 } from '@share/enums';
@@ -63,6 +64,12 @@ const routes: Routes = [
     data: { layout: LayoutConstants.ONLY_HEADER_LAYOUT_MODEL },
     canMatch: [CanMatchOnlyAuthenticated]
   },
+  {
+    path: GameRoute.Games,
+    loadChildren: () => import('./features/game/game.module').then(m => m.GameModule),
+    data: { layout: LayoutConstants.ONLY_HEADER_LAYOUT_MODEL },
+    canMatch: [CanMatchOnlyAuthenticated]
+  },
   buildFallbackRoute(buildPath(WelcomeRoute.Welcome)),
   {
     path: RouteConstants.NOT_FOUND_ROUTE_PATH,
@@ -76,7 +83,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    scrollPositionRestoration: 'enabled',
+    scrollPositionRestoration: 'disabled',
     anchorScrolling: 'enabled',
     onSameUrlNavigation: 'reload',
     scrollOffset: [0, 64],

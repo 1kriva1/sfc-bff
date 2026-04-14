@@ -19,18 +19,32 @@ export function mapProgress(value$: Observable<any>): Observable<IMapProgressMod
             };
         })
     );
+}
 
-    function _getControlsCount(value: any,
-        predicate: ((value: any) => boolean) | null = null): number {
-        let count = 0;
+export function mapProgressValue(value: any): IMapProgressModel {
+    const properties = _getControlsCount(value),
+        filled = _getControlsCount(value, (item: any) =>
+            Array.isArray(item) ? any(item) : !isNullOrEmptyString(item));
+    return {
+        progress: {
+            properties: properties,
+            filled: filled,
+            percentage: Math.ceil(filled / properties * CommonConstants.FULL_PERCENTAGE)
+        },
+        value: value
+    };
+}
 
-        if (isObject(value) && !isValueModel(value)) {
-            Object.values(value).forEach(prop =>
-                count += _getControlsCount(prop, predicate));
+function _getControlsCount(value: any,
+    predicate: ((value: any) => boolean) | null = null): number {
+    let count = 0;
 
-            return count;
-        }
+    if (isObject(value) && !isValueModel(value)) {
+        Object.values(value).forEach(prop =>
+            count += _getControlsCount(prop, predicate));
 
-        return predicate ? predicate(value) ? 1 : 0 : 1;
+        return count;
     }
+
+    return predicate ? predicate(value) ? 1 : 0 : 1;
 }

@@ -1,0 +1,1 @@
+export { GameLocalization } from './game.localization';

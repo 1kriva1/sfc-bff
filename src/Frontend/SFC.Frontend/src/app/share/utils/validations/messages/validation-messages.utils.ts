@@ -29,3 +29,11 @@ export function controlFileMaxSizeValidationMessage(control: AbstractControl): s
 export function tagMaxLengthValidationMessage(maxLength: number): string {
     return `${ValidationLocalization.TAG_LENGTH} ${maxLength} ${CoreLocalization.CHARACTERS}.`
 }
+
+export function minValidationMessage(min: number): string {
+    return `${ValidationLocalization.MIN_PART_1} ${min}.`
+}
+
+export function maxValidationMessage(max: number): string {
+    return `${ValidationLocalization.MAX_PART_1} ${max}.`
+}

@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="content">
+        <div class="steps" *ngIf="formProgressService.steps$ | async as items">
+            <sfc-form-progress-step *ngFor="let item of items; let last = last" [model]="item.step"
+                [delimeter]="items.length > 1 && !last" [selected]="item.selected" [pristine]="item.pristine"
+                [control]="getStepControl(item.step.key)">
+            </sfc-form-progress-step>
+        </div>
+    </div>
+</div>

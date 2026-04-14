@@ -1,0 +1,49 @@
+<div class="container" [formGroupName]="GameProfileEditPart.Inventary">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+        [icon]="faQuestionCircle" [tooltip]="Localization.TITLE.TOOLTIP" [sfcComponentSize] [customSize]="1"
+        [delimeter]="true">
+    </sfc-title>
+
+    <div class="content">
+        <div class="parts">
+            <div class="part inputs">
+                <div class="rows">
+                    <div class="row">
+                        <div class="columns">
+                            <div class="column shirts-required">
+                                <sfc-checkbox-input id="shirtsRequired" formControlName="shirtsRequired"
+                                    [checkmarkType]="CheckmarkType.Rounded"
+                                    [sideLabel]="Localization.INPUT.SHIRTS_REQUIRED.SIDE_LABEL"
+                                    [helperText]="Localization.INPUT.SHIRTS_REQUIRED.HELPER_TEXT">
+                                </sfc-checkbox-input>
+                            </div>
+
+                            <div class="column shirts-count" [sfcShowHideElement]="(shirtsRequired$ | async) || false">
+                                <sfc-number-input id="shirtsCount" formControlName="shirtsCount"
+                                    [placeholder]="Localization.INPUT.SHIRTS_COUNT.PLACEHOLDER"
+                                    [helperText]="Localization.INPUT.SHIRTS_COUNT.HELPER_TEXT" [edit]="true"
+                                    [fixedActions]="false" [fixedWidth]="true" [sign]="false"
+                                    [min]="ValidationConstants.MIN_NUMBER_VALUE"
+                                    [max]="ValidationConstants.MAX_NUMBER_VALUE" [validations]="{
+                                        required: ValidationLocalization.REQUIRED,
+                                        min: minValidationMessage(Constants.MIN_SHIRTS_COUNT),
+                                        max: maxValidationMessage(Constants.MAX_SHIRTS_COUNT)
+                                    }" [sfcComponentSize] [customSize]="1">
+                                </sfc-number-input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="part delimeter">
+                <sfc-delimeter></sfc-delimeter>
+            </div>
+
+            <div class="part actions">
+                <sfc-form-progress-actions [key]="Constants.PROGRESS_KEY" [form]="inventaryForm">
+                </sfc-form-progress-actions>
+            </div>
+        </div>
+    </div>
+</div>

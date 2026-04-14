@@ -24,7 +24,7 @@ services:
       - sfc-network
   sfc-redis:
     container_name: sfc-redis
-    image: docker.io/redis:latest
+    image: docker.io/redis:8.4.0
     env_file:
       - environments/redis/redis.${ASPNETCORE_ENVIRONMENT}.env
     ports:

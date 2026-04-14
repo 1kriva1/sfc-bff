@@ -1,0 +1,18 @@
+import { Component } from '@angular/core';
+import { ControlContainer, FormBuilder, FormGroupDirective } from '@angular/forms';
+import { BaseErrorResponse } from '@core/models';
+import { IGameEditFormModel } from '../../game-edit-form.model';
+import { GameEditComponent } from '../../game-edit.component';
+
+@Component({
+    selector: 'sfc-game-profile-edit',
+    templateUrl: './game-profile-edit.component.html',
+    viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
+})
+export class GameProfileEditComponent<TFormValue extends IGameEditFormModel, TResponse extends BaseErrorResponse>
+    extends GameEditComponent<TFormValue, TResponse> {
+
+    constructor(parent: FormGroupDirective, formBuilder: FormBuilder) {
+        super(parent, formBuilder);
+    }
+}

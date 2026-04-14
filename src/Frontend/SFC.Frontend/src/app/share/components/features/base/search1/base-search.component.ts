@@ -1,6 +1,6 @@
 import { Directive } from "@angular/core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { BaseTableComponent } from "@share/components";
+import { BaseTableComponent } from "../../../extends/components/table/base-table.component";
 import { CommonConstants } from "ngx-sfc-common";
 import { ITabModel, TabsTemplate } from "ngx-sfc-components";
 

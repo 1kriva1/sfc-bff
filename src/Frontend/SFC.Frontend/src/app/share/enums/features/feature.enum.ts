@@ -6,5 +6,6 @@ export enum Feature {
     Team = 'team',
     Invite = 'invite',
     Request = 'request',
-    Scheme = 'scheme'
+    Scheme = 'scheme',
+    Game = 'game'
 }

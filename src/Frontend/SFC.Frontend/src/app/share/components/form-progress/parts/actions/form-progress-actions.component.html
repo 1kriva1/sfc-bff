@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="content">
+        <div class="result" *ngIf="result$ | async as result">
+            <sfc-message *ngIf="!result.Success" [type]="NotificationType.Failed" [message]="result.Message">
+            </sfc-message>
+        </div>
+
+        <div class="actions" *ngIf="viewModel$ | async as actions">
+            <sfc-button *ngIf="actions.previous" [text]="actions.previous.text" [iconBefore]="actions.previous.icon"
+                [types]="[ButtonType.Rounded]" (click)="actions.previous.action()">
+            </sfc-button>
+
+            <sfc-submit-button *ngIf="actions.next" [text]="actions.next.text" [iconAfter]="actions.next.icon"
+                [types]="[ButtonType.Rounded, ButtonType.Filled]" [disabled]="false" [form]="form"
+                (click)="actions.next.action()">
+            </sfc-submit-button>
+        </div>
+    </div>
+</div>

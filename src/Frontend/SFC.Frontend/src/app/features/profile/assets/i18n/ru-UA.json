@@ -86,5 +86,6 @@
   "edit.page.notification.update.title": "Профіль успішно оновлено!",
   "edit.page.notification.update.value": "Ваші зміни прийняті.",
   "edit.page.action.create-team": "Створити команду",
+  "edit.page.action.create-game": "Створити гру",
   "edit.page.action.open-view": "Відкрити картку"
 }

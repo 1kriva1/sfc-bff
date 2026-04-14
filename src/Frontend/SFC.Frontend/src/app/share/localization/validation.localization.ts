@@ -11,4 +11,8 @@ export class ValidationLocalization {
     static get FROM_LESS_TO(): string { return $localize`:@@share.validation.from-less-to:From value must be less than To value.`; }
     static get TO_MORE_FROM(): string { return $localize`:@@share.validation.to-more-from:To value must be more than From value.`; }
     static get VALIDATION_ERROR(): string { return $localize`:@@share.validation.error:Could not perform validation.`; }
+    static get EQUAL(): string { return $localize`:@@share.validation.equal:Must be equal.`; }
+    static get NOT_EQUAL(): string { return $localize`:@@share.validation.not-equal:Must be not equal.`; }
+    static get MIN_PART_1(): string { return $localize`:@@share.validation.min:Minimum allowed value is `; }
+    static get MAX_PART_1(): string { return $localize`:@@share.validation.min:Maximum allowed value is `; }
 }

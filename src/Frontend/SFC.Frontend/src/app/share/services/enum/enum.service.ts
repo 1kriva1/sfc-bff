@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { faAdversal, faAlgolia } from "@fortawesome/free-brands-svg-icons";
 import {
-    faBan, faBellSlash, faBook, faCar, faClock, faFutbol,
-    faHockeyPuck, faHourglassEnd, faRainbow, faSliders,
-    faSpellCheck, faStar, faSun, faTruckMoving
+    faBellSlash, faBook, faCar,
+    faHockeyPuck, faRainbow, faSliders,
+    faSpellCheck, faStar, faTruckMoving
 } from "@fortawesome/free-solid-svg-icons";
 import { forkJoin, map, Observable, tap } from "rxjs";
 import { DataService } from "../data/data.service";
@@ -24,6 +24,8 @@ import {
     mapTeamPlayerStatusEnum,
     mapTeamStatusEnum
 } from "../../mappers";
+import { GameDataService } from "../game";
+import { mapGameStatusEnum } from "../../mappers/enum/enum.mapper";
 
 @Injectable({
     providedIn: 'root'
@@ -53,7 +55,8 @@ export class EnumService {
         private inviteDataService: InviteDataService,
         private requestDataService: RequestDataService,
         private teamDataService: TeamDataService,
-        private schemeDataService: SchemeDataService
+        private schemeDataService: SchemeDataService,
+        private gameDataService: GameDataService,
     ) { }
 
     public load(): Observable<IEnumsModel> {
@@ -62,7 +65,8 @@ export class EnumService {
             invite: this.inviteDataService.get(),
             request: this.requestDataService.get(),
             team: this.teamDataService.get(),
-            scheme: this.schemeDataService.get()
+            scheme: this.schemeDataService.get(),
+            game: this.gameDataService.get()
         }).pipe(
             tap((data: IServicesDataModel) => {
                 this.enums = {
@@ -94,13 +98,7 @@ export class EnumService {
                         { key: 10, value: 'Badge_10', icon: faSliders, description: 'Has posted more than 1000 posts on their profile' },
                         { key: 11, value: 'Badge_11', icon: faTruckMoving, description: 'Has posted more than 1000 posts on their profile' }
                     ],
-                    gameStatuses: [
-                        { key: 0, value: 'New', icon: faSun },
-                        { key: 1, value: 'Upcoming', icon: faClock },
-                        { key: 2, value: 'Active', icon: faFutbol },
-                        { key: 3, value: 'Canceled', icon: faBan },
-                        { key: 4, value: 'Finished', icon: faHourglassEnd },
-                    ]
+                    gameStatuses: data.game.GameStatuses.map(value => mapGameStatusEnum(value)),
                 };
             }),
             map(() => this.enums)

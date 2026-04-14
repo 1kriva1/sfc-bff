@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { TableSelectService } from "ngx-sfc-components";
-import { BaseTableContentComponent, ITeamPlayerSearchTableModel, TeamPlayerSearchTableColumn } from "@share/components";
+import { BaseTableContentComponent } from "../../../../../../../extends/components/table/parts/content/base-table-content.component";
+import { ITeamPlayerSearchTableModel } from "../../team-player-search-table.model";
+import { TeamPlayerSearchTableColumn } from "../../team-player-search-table-column.enum";
 import { ITeamPlayerSearchTableCardModel } from "./team-player-search-table-card.model";
 import { TeamPlayerSearchTableCardConstants } from "./team-player-search-table-card.constants";
 import { TeamPlayerSearchTableConstants } from "../../team-player-search-table.constants";

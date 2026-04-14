@@ -1,5 +1,6 @@
 export { ILayoutModel } from './layout.model';
 export { IThemeModel } from './theme.model';
+export { IScrollModel } from './scroll.model';
 export { IRouteDataModel } from './route-data.model';
 export { IResolverModel } from './resolver.model';
 export { IPageModel } from './page.model';

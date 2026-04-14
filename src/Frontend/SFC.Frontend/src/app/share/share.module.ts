@@ -66,7 +66,10 @@ import {
   SchemeTeamSearchTableRowComponent,
   SchemeTeamSearchTableCardComponent,
   StatsRadarComponent,
-  StatsListComponent
+  StatsListComponent,
+  FormProgressComponent,
+  FormProgressStepComponent,
+  FormProgressActionsComponent
 } from './components';
 import { TimePipe, DayPipe } from './pipes';
 import { RouterModule } from '@angular/router';
@@ -88,6 +91,10 @@ import { RouterModule } from '@angular/router';
     PanelComponent,
     CircleComponent,
     FilterTagsComponent,
+    // form progress
+    FormProgressComponent,
+    FormProgressStepComponent,
+    FormProgressActionsComponent,
     // stats
     StatsSkillsComponent,
     StatsTotalComponent,
@@ -96,7 +103,7 @@ import { RouterModule } from '@angular/router';
     // availability
     AvailabilityEditComponent,
     AvailabilityFormComponent,
-    AvailabilityListComponent,   
+    AvailabilityListComponent,
     // extends
     ShirtCarouselSliderContentComponent,
     FormationCarouselSliderContentComponent,
@@ -169,10 +176,13 @@ import { RouterModule } from '@angular/router';
     PanelComponent,
     CircleComponent,
     NoDataComponent,
-    BadgeComponent, 
+    BadgeComponent,
     ChangesCheckModalComponent,
     ExclamationModalComponent,
     FilterTagsComponent,
+    // form progress
+    FormProgressComponent,
+    FormProgressActionsComponent,
     // stats
     StatsSkillsComponent,
     StatsTotalComponent,
@@ -181,7 +191,7 @@ import { RouterModule } from '@angular/router';
     // availability
     AvailabilityEditComponent,
     AvailabilityFormComponent,
-    AvailabilityListComponent,    
+    AvailabilityListComponent,
     // extends
     CarouselSliderComponent,
     ShirtCarouselSliderContentComponent,

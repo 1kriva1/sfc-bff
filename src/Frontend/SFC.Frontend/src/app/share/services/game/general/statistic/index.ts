@@ -1,0 +1,1 @@
+    export { GameStatisticService } from './game-statistic.service';

@@ -18,10 +18,15 @@ $player-position-forward-color-hover: $color-blue-0;
 
 // Game Status
 $game-status-new-color: $color-green-1;
-$game-status-upcoming-color: $color-blue-0;
-$game-status-active-color: $color-orange-0;
-$game-status-finished-color: $color-magenta-0;
-$game-status-canceled-color: $color-7;
+$game-status-new-color-hover: $color-green-0;
+$game-status-upcoming-color: $color-blue-1;
+$game-status-upcoming-color-hover: $color-blue-0;
+$game-status-active-color: $color-orange-1;
+$game-status-active-color-hover: $color-orange-0;
+$game-status-finished-color: $color-magenta-1;
+$game-status-finished-color-hover: $color-magenta-0;
+$game-status-canceled-color: $color-red-1;
+$game-status-canceled-color-hover: $color-red-0;
 
 // Team Status
 $team-status-temporary-color: $color-orange-1;

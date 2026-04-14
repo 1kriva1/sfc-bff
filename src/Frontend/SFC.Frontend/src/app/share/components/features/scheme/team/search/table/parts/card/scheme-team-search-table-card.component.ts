@@ -5,7 +5,9 @@ import { IPlayerModel } from "@share/models/player/player.model";
 import { ISchemeTeamFormationPlayerModel } from "@share/models";
 import { SchemeTeamSearchTableCardConstants } from "./scheme-team-search-table-card.constants";
 import { ISchemeTeamSearchTableCardModel } from "./scheme-team-search-table-card.model";
-import { BaseTableContentComponent, ISchemeTeamSearchTableModel, SchemeTeamSearchTableColumn } from "@share/components";
+import { BaseTableContentComponent } from "../../../../../../../extends/components/table/parts/content/base-table-content.component";
+import { ISchemeTeamSearchTableModel } from "../../scheme-team-search-table.model";
+import { SchemeTeamSearchTableColumn } from "../../enums/scheme-team-search-table-column.enum";
 import { isDefined, where } from "ngx-sfc-common";
 import { SchemeTeamSearchTableConstants } from "../../scheme-team-search-table.constants";
 
@@ -31,8 +33,8 @@ export class SchemeTeamSearchTableCardComponent
 
         const schemePlayers: IPlayerModel[] = where(
             this.data.formation.players,
-            (schemePlayer: ISchemeTeamFormationPlayerModel) => isDefined(schemePlayer.player))!
-            .map((schemePlayer: ISchemeTeamFormationPlayerModel) => schemePlayer.player!);
+            (schemePlayer: ISchemeTeamFormationPlayerModel) => isDefined(schemePlayer.player))
+            ?.map((schemePlayer: ISchemeTeamFormationPlayerModel) => schemePlayer.player!) || [];
 
         this.viewModel = {
             name: this.data.profile.general.name,
