@@ -12,7 +12,7 @@
             "name": "dotnet-build",
             "group": "pre-commit-operations",
             "command": "dotnet",
-            "args": [ "build", "SFC.Bff.sln", "--no-restore", "--configuration", "Release" ]
+            "args": [ "build", "SFC.Bff.sln", "--configuration", "Release" ]
         },
         {
             "name": "dotnet-test",
