@@ -1,5 +1,5 @@
 import { map, Observable } from "rxjs";
-import { any, CommonConstants, isNullOrEmptyString, isObject } from "ngx-sfc-common";
+import { any, CommonConstants, isNullOrEmptyString, isObject, where } from "ngx-sfc-common";
 import { isValueModel } from "@core/utils";
 import { IMapProgressModel } from "./models/progress.model";
 
@@ -30,6 +30,29 @@ export function mapProgressValue(value: any): IMapProgressModel {
             properties: properties,
             filled: filled,
             percentage: Math.ceil(filled / properties * CommonConstants.FULL_PERCENTAGE)
+        },
+        value: value
+    };
+}
+
+export function mapArrayProgressValue(value: any[]): IMapProgressModel {
+    return {
+        progress: {
+            properties: value.length,
+            filled: value.length,
+            percentage: value.length ? CommonConstants.FULL_PERCENTAGE : 0
+        },
+        value: value
+    };
+}
+
+export function mapArrayItemProgressValue(value: any[], predicate: ((value: any) => boolean)): IMapProgressModel {
+    const filled = where(value, item => predicate(item))?.length || 0;
+    return {
+        progress: {
+            properties: value.length,
+            filled: filled,
+            percentage: Math.ceil(filled / value.length * CommonConstants.FULL_PERCENTAGE)
         },
         value: value
     };

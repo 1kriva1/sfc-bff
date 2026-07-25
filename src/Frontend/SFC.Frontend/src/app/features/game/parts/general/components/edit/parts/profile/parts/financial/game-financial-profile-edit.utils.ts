@@ -1,24 +1,27 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { IForm } from "@core/types";
-import { nameof } from "ngx-sfc-common";
+import { nameof, empty } from "ngx-sfc-common";
 import { GameProfileEditPart } from "../../enums/game-profile-edit-part.enum";
 import { getFormGroup } from "@core/utils";
-import { IGameEditFormModel } from "../../../../game-edit-form.model";
 import { IGameFinancialProfileEditFormModel } from "./game-financial-profile-edit-form.model";
 import { GameFinancialProfileEditConstants } from "./game-financial-profile-edit.constants";
 import { addConditionalValidator } from "ngx-sfc-inputs";
 import { IGameProfileEditFormModel } from "../../game-profile-edit-form.model";
+import { IGameProfileModel } from "@share/models";
+import { IGameEditFormModel } from "../../../../game-edit-form.model";
 
-export function addGameFinancialProfileEditControl(formBuilder: FormBuilder, form: FormGroup): void {
+export function addGameFinancialProfileEditControl(formBuilder: FormBuilder, form: FormGroup, model: IGameProfileModel | empty = null): void {
+    const formModel: IGameFinancialProfileEditFormModel = mapGameFinancialProfileEditFormModel(model);
+
     const controls: IForm<IGameFinancialProfileEditFormModel> = {
-        freeGame: [null],
-        payAmount: [0],
+        freeGame: [formModel.freeGame],
+        payAmount: [formModel.payAmount],
     };
 
-    const formGroup: FormGroup = formBuilder.group(controls),
+    const financialProfileFormGroup: FormGroup = formBuilder.group(controls),
         profileForm: FormGroup = getFormGroup(nameof<IGameEditFormModel>('profile'), form.controls)!
 
-    profileForm.addControl(GameProfileEditPart.Financial, formGroup);
+    profileForm.addControl(GameProfileEditPart.Financial, financialProfileFormGroup);
 
     const financialProfileForm: FormGroup = getFormGroup(nameof<IGameProfileEditFormModel>('financial'), profileForm)!;
 
@@ -32,4 +35,11 @@ export function addGameFinancialProfileEditControl(formBuilder: FormBuilder, for
             Validators.min(GameFinancialProfileEditConstants.MIN_PAY_AMOUNT)
         ]
     );
+}
+
+function mapGameFinancialProfileEditFormModel(model: IGameProfileModel | empty = null): IGameFinancialProfileEditFormModel {
+    return {
+        freeGame: model?.financial.freeGame!,
+        payAmount: model?.financial.payAmount
+    };
 }

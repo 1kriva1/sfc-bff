@@ -24,6 +24,8 @@ export class SchemeTeamSearchTableCardComponent
     Constants = SchemeTeamSearchTableCardConstants;
     Column = SchemeTeamSearchTableColumn;
 
+    protected override get id(): number { return this.data.id; }
+
     constructor(selectedService: TableSelectService) {
         super(selectedService);
     }

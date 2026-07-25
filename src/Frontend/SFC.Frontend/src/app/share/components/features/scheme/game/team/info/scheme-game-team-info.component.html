@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="content">
+        <div *ngIf="avatar" class="avatar">
+            <sfc-avatar [radius]="radius" [stroke]="stroke" [progress]="rating" [data]="avatarModel"
+                [progressModel]="avatarProgressModel" [badges]="avatarBadges">
+            </sfc-avatar>
+        </div>
+
+        <div *ngIf="info" class="info">
+            <h3>{{model.name}}</h3>
+            <sfc-stars [value]="stars" [sfcComponentSize]="ComponentSize.Small"></sfc-stars>
+            <sfc-progress-circle *ngIf="progress" [progress]="model.players || 0" [total]="totalPlayers"
+                [getColor]="getProgressColorDynamicallyFunc" [partition]="true"
+                [sfcComponentSize]="ComponentSize.Small">
+            </sfc-progress-circle>
+            <label>{{formation.label}}</label>
+            <p>{{formation.description}}</p>
+        </div>
+
+        <div *ngIf="actions.length" class="actions">
+            <sfc-dropdown-menu [items]="actions" [bordered]="false" [filled]="true"
+                [position]="[Position.Bottom, Position.Center]" [sfcComponentSize]="ComponentSize.Small">
+            </sfc-dropdown-menu>
+        </div>
+    </div>
+</div>

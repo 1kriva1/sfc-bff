@@ -8,7 +8,7 @@ import { BaseErrorResponse } from "@core/models";
 import { INotification, NotificationService } from "@core/services";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { MessageSeverity } from "@core/services/message/message-severity.enum";
-import { ISchemeTeamModel } from "@share/models/scheme/scheme-team.model";
+import { ISchemeTeamModel } from "@share/models/scheme/team/scheme-team.model";
 import { SchemeTeamModal } from "../scheme-team-modal.enum";
 import { SchemeTeamRemoveModalLocalization } from "./scheme-team-remove-modal.localization";
 import { IRemoveTeamSchemeResponse, SchemeTeamService } from "@share/services";

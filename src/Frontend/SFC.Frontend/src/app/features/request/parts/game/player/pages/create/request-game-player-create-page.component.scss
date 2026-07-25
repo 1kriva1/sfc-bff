@@ -1,0 +1,47 @@
+@import "ngx-sfc-common/styles";
+@import "page1";
+
+:host {
+  .container {
+    .content {
+      @include page-content;
+
+      .parts {
+        @include page-content-parts;
+
+        .part {
+          @include page-content-part;
+
+          &.top {
+            @include page-content-part-top;
+
+            .part-content {
+              flex-direction: column;
+              align-items: center;
+
+              .preview {
+                width: 100%;
+              }
+
+              .steps {
+                margin: 3em 0;
+              }
+            }
+          }
+
+          &.bottom {
+            @include page-content-part-bottom;
+
+            .part-content {
+              @include center-column;
+
+              .routes {
+                width: 60%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

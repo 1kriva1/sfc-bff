@@ -1,0 +1,46 @@
+@import "ngx-sfc-common/styles";
+@import "components1";
+@import "page1";
+@import "inputs";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      .parts {
+        .part {
+          .part-content {
+            .filters {
+              form {
+                justify-content: center;
+                flex-direction: column;
+
+                .name {
+                  padding-bottom: 1em;
+                  width: 90%;
+                  margin: 0 auto;
+
+                  @include name-text-input;
+                }
+              }
+            }
+
+            .result {
+              @include page-content-result;
+
+              width: 100%;
+              margin: 0;
+
+              .table {
+                sfc-game-player-search-table-card {
+                  min-width: calc(50% - 1em);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

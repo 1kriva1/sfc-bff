@@ -1,0 +1,100 @@
+@import "ngx-sfc-common/styles";
+@import "variables1";
+@import "common";
+@import "components1";
+
+@mixin invite-game-team-info-status($background) {
+  .container {
+    .content {
+      .info {
+        @include status($background, $color-default);
+      }
+    }
+  }
+}
+
+:host {
+  .container {
+    @include center;
+
+    .content {
+      display: flex;
+
+      .info {
+        @include center-column;
+        @include theme-value(color, $color-default, $color-0);
+
+        margin: 0 1.5em;
+        text-align: center;
+
+        h3,
+        span {
+          white-space: initial;
+          word-wrap: break-word;
+          overflow-y: auto;
+
+          @include max-size(10em);
+        }
+
+        h3 {
+          font-size: 0.8em;
+          margin: 0.3em 0;
+          text-align: center;
+        }
+
+        span {
+          color: $color-hover-default;
+          font-size: 0.6em;
+          font-weight: bold;
+          margin: 0;
+          user-select: none;
+        }
+
+        sfc-tags {
+          max-width: 30em;
+          margin-top: 0.5em;
+        }
+
+        sfc-status {
+          margin-top: 0.5em;
+        }
+      }
+
+      .actions {
+        @include action-menu($color-default);
+      }
+    }
+  }
+
+  &.vertical {
+    .container {
+      .content {
+        flex-direction: column;
+      }
+    }
+  }
+
+  &.horizontal {
+    .container {
+      .content {
+        flex-direction: row;
+      }
+    }
+  }
+
+  &.invite-game-team-status-0 {
+    @include invite-game-team-info-status($team-player-invite-status-actual-color);
+  }
+
+  &.invite-game-team-status-1 {
+    @include invite-game-team-info-status($team-player-invite-status-accepted-color);
+  }
+
+  &.invite-game-team-status-2 {
+    @include invite-game-team-info-status($team-player-invite-status-canceled-color);
+  }
+
+  &.invite-game-team-status-3 {
+    @include invite-game-team-info-status($team-player-invite-status-refused-color);
+  }
+}

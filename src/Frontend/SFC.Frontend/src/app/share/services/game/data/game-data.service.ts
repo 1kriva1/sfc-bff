@@ -41,6 +41,26 @@ export class GameDataService {
           Id: 4,
           Title: 'Canceled'
         }
+      ],
+      GameTeamStatuses: [
+        {
+          Id: 0,
+          Title: 'In game'
+        },
+        {
+          Id: 1,
+          Title: 'Out of game'
+        }
+      ],
+      GamePlayerStatuses: [
+         {
+          Id: 0,
+          Title: 'In game'
+        },
+        {
+          Id: 1,
+          Title: 'Out of game'
+        }
       ]
     } as IGetGameDataResponse);
   }

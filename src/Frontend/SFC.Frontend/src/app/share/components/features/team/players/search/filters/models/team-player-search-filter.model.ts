@@ -8,7 +8,7 @@ export interface ITeamPlayersFilterModel extends IPlayersFilterModel {
 // End TODO - Legacy
 
 export interface ITeamPlayerSearchFilterModel {
-    name: string | null;
-    player: IPlayersFilterModel;
-    teamPlayer: ITeamPlayerFilterModel;
+    name?: string | null;
+    player?: IPlayersFilterModel;
+    teamPlayer?: ITeamPlayerFilterModel;
 }

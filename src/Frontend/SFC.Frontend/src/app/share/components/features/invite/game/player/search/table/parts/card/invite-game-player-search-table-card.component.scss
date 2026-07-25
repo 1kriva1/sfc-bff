@@ -1,0 +1,58 @@
+@import "ngx-sfc-common/styles";
+@import "variables1";
+@import "table1/card";
+@import "../../../../info/invite-game-player-info.component.mixins";
+
+:host {
+  @include card-host(25%);
+
+  .container {
+    @include card-container;
+
+    .content {
+      .columns {
+        @include card-columns;
+
+        .column {
+          @include card-column;
+
+          &.actions-wrapper {
+            @include card-actions-wrapper-column($color-0);
+          }
+
+          &.information {
+            @include invite-game-player-info($color-0);
+          }
+        }
+      }
+    }
+  }
+
+  &.invite-game-player-status-0 {
+    @include card-background-with-related(
+      $team-player-invite-status-actual-color,
+      $team-player-invite-status-actual-hover-color
+    );
+  }
+
+  &.invite-game-player-status-1 {
+    @include card-background-with-related(
+      $team-player-invite-status-accepted-color,
+      $team-player-invite-status-accepted-hover-color
+    );
+  }
+
+  &.invite-game-player-status-2 {
+    @include card-background-with-related(
+      $team-player-invite-status-canceled-color,
+      $team-player-invite-status-canceled-hover-color
+    );
+  }
+
+  &.invite-game-player-status-3 {
+    @include card-background-with-related(
+      $team-player-invite-status-refused-color,
+      $team-player-invite-status-refused-hover-color
+    );
+  }
+}

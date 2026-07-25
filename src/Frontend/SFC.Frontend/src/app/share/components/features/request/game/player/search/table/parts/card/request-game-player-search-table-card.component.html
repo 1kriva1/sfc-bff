@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="content">
+        <div class="columns">
+            <div *ngIf="selectColumn || actionsColumn" class="column actions-wrapper">
+                <div *ngIf="selectColumn" class="column select">
+                    <sfc-checkmark [active]="selected" (click)="onSelect()" [type]="CheckmarkType.Circle"
+                        [sfcComponentSize] [customSize]="1.2">
+                    </sfc-checkmark>
+                </div>
+
+                <div *ngIf="actionsColumn" class="column actions">
+                    <sfc-dropdown-menu [items]="viewModel.actions!" [bordered]="false" [filled]="true"
+                        [position]="[Position.Bottom, Position.Center]" [sfcComponentSize] [customSize]="1">
+                    </sfc-dropdown-menu>
+                </div>
+            </div>
+
+            <ng-container *ngFor="let column of columns">
+                <ng-container [ngSwitch]="column.field">
+                    <ng-container *ngSwitchCase="Column.Rating">
+                        <div class="column rating">
+                            <sfc-request-game-player-info [radius]="Constants.LOGO_RADIUS" [photo]="true" [info]="false"
+                                [model]="{
+                                    photo: viewModel.photo,
+                                    stats: viewModel.stats
+                                }">
+                            </sfc-request-game-player-info>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Information">
+                        <div class="column information">
+                            <sfc-request-game-player-info [radius]="Constants.LOGO_RADIUS" [photo]="false" [info]="true"
+                                [model]="{
+                                    firstName: viewModel.firstName,
+                                    lastName: viewModel.lastName,
+                                    city: viewModel.city,
+                                    stats: viewModel.stats,
+                                    birthday: viewModel.birthday,
+                                    position: viewModel.position,
+                                    status: viewModel.status
+                                }">
+                            </sfc-request-game-player-info>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</div>

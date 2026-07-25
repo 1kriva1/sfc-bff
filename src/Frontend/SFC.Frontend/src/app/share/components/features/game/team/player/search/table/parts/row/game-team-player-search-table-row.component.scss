@@ -1,0 +1,52 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+@import "variables1";
+@import "table1/row";
+@import "../../../../info/game-team-player-info.component.mixins";
+@import "../../../../../../../game/team/general/info/game-team-info.component.mixins";
+
+:host {
+  @include row-host;
+
+  .container {
+    @include row-container;
+
+    .content {
+      .columns {
+        @include row-columns;
+
+        .column {
+          @include row-column;
+
+          &.sequence {
+            @include row-sequence-column;
+          }
+
+          &.select {
+            @include row-select-column($color-default);
+          }
+
+          &.information {
+            @include game-team-player-info($color-default);
+          }
+
+          &.position {
+            @include row-enum-column;
+          }
+
+          &.team {
+            @include game-team-info($color-default);
+
+            sfc-no-data {
+              color: $color-default;
+            }
+          }
+
+          &.actions {
+            @include action-menu($color-default);
+          }
+        }
+      }
+    }
+  }
+}

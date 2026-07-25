@@ -20,7 +20,7 @@ services:
     env_file:
       - environments/api/api.Development.env
     healthcheck:
-      start_period: 180s
+      start_period: 340s
     volumes:
       - type: bind
         source: .

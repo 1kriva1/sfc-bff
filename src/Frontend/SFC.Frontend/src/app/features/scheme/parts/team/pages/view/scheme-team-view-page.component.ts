@@ -11,7 +11,7 @@ import { setMenuActiveItem } from "@share/utils/components";
 import { SchemeTeamViewPageConstants } from "./scheme-team-view-page.constants";
 import { IBackNavigationModel } from "@core/models";
 import { empty } from "ngx-sfc-common";
-import { ISchemeTeamModel } from "@share/models/scheme/scheme-team.model";
+import { ISchemeTeamModel } from "@share/models";
 
 @Component({
     templateUrl: './scheme-team-view-page.component.html',

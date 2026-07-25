@@ -1,0 +1,38 @@
+@import "ngx-sfc-common/styles";
+@import "variables1";
+@import "common";
+@import "components1";
+
+:host {
+  .container {
+    .content {
+      .parts {
+        @include center-column;
+
+        .part {
+          &.tip {
+            @include text-center($color-7, 0.6em);
+
+            max-width: 30%;
+            margin: 1em 0;
+          }
+
+          &.result {
+            &:empty {
+              display: none;
+            }
+          }
+
+          &.submit {
+            width: 20%;
+            margin: 1em 0 2em;
+
+            sfc-submit-button {
+              @include button-inner(false);
+            }
+          }
+        }
+      }
+    }
+  }
+}

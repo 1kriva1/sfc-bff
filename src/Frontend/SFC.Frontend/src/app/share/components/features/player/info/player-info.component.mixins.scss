@@ -1,0 +1,13 @@
+@mixin player-info($color: $color-default) {
+  sfc-player-info {
+    ::ng-deep > .container .content {
+      > .info {
+        color: $color;
+
+        p {
+          color: $color;
+        }
+      }
+    }
+  }
+}

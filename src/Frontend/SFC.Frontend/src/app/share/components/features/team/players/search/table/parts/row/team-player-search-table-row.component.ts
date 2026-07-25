@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { TableSelectService } from "ngx-sfc-components";
 import { getEnum } from '@core/utils';
 import { EnumService } from "@share/services";
@@ -31,6 +31,9 @@ export class TeamPlayerSearchTableRowComponent
     Constants = TeamPlayerSearchTableRowConstants;
     Column = TeamPlayerSearchTableColumn;
 
+    @Input()
+    radius: number = TeamPlayerSearchTableRowConstants.LOGO_RADIUS;
+
     /* Fields */
 
     public position: IEnumModel<number> | empty = null;
@@ -38,6 +41,8 @@ export class TeamPlayerSearchTableRowComponent
     public status: IEnumModel<number> | empty = null;
 
     /* End Fields */
+
+    protected override get id(): number { return this.data.id; }
 
     constructor(private enumService: EnumService, selectedService: TableSelectService) {
         super(selectedService);

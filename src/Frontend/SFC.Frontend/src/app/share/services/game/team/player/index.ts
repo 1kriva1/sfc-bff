@@ -1,0 +1,13 @@
+export { IGameTeamPlayerModel as IGameTeamPlayerServiceModel } from './models/common/game-team-player.model';
+export { ICreatesGameTeamPlayerModel } from './models/creates/creates-game-team-player.model';
+export { ICreatesGameTeamPlayerRequest } from './models/creates/creates-game-team-player.request';
+export { ICreatesGameTeamPlayerResponse } from './models/creates/creates-game-team-player.response';
+export { IGameTeamPlayerFindFilterModel, IGameTeamPlayerGameTeamPlayerFindFilterModel } from './models/find/filters/game-team-player-find-filter.model';
+export { IGameTeamPlayerFindRequest } from './models/find/game-team-player-find.request';
+export { IGameTeamPlayerFindResponse } from './models/find/game-team-player-find.response';
+export { ICreateGameTeamPlayerResponse } from './models/create/create-game-team-player.response';
+export { IDeleteGameTeamPlayerResponse } from './models/delete/delete-game-team-player.response';
+export { IDeletesGameTeamPlayerModel } from './models/deletes/deletes-game-team-player.model';
+export { IDeletesGameTeamPlayerRequest } from './models/deletes/deletes-game-team-player.request';
+export { IDeletesGameTeamPlayerResponse } from './models/deletes/deletes-game-team-player.response';
+export { GameTeamPlayerService } from './game-team-player.service';

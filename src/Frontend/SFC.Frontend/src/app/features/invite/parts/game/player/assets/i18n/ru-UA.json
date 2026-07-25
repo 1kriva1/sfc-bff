@@ -1,0 +1,8 @@
+{
+    "game.player.pages.create.route.title": "Створення запрошення для гравця в гру",
+    "game.player.pages.create.title.label": "Створити запрошення для нового гравця гру",
+    "game.player.pages.create.title.description": "На цій сторінці ви можете створити нове запрошення для гравця приєднатися до гри.",
+    "game.player.pages.create.title.tooltip": "Цей крок не вимагав багато введення даних. Просто виберіть гравця та опишіть своє запрошення.",
+    "game.player.pages.create.notification.created.title": "Запрошення для гравця гри успішно створено!",
+    "game.player.pages.create.notification.created.value": "Якщо гравець прийме ваше запрошення, він/вона приєднається до вашої гри."    
+}

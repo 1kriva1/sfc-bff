@@ -1,0 +1,20 @@
+<div class="container">
+    <sfc-title [label]="'Localization.TITLE.LABEL'" [description]="'Localization.TITLE.DESCRIPTION'"
+        [tooltip]="Localization.TITLE.TOOLTIP" [icon]="faQuestionCircle" [sfcComponentSize] [customSize]="1.2">
+    </sfc-title>
+
+    <div class="content">
+        <div class="parts">
+            <div class="part scheme" *ngIf="schemeGameTeamInfoModel$ | async as schemeGameTeamInfoModel">
+                <sfc-scheme-game-team-info [radius]="Constants.LOGO_RADIUS" [avatar]="true" [info]="true"
+                    [progress]="true" [model]="schemeGameTeamInfoModel" [direction]="Direction.Vertical"
+                    [sfcComponentSize] [customSize]="1.2">
+                </sfc-scheme-game-team-info>
+            </div>
+
+            <div class="part tip">
+                <span>{{Localization.TIP}}</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,10 +1,10 @@
 import { convertDateToTimestamp, isDefined } from "ngx-sfc-common";
-import { GameCreatePageFormModel } from "./game-create-page-form.model";
 import { ICreateGameRequest } from "@share/services/game";
-import { IGameTeamsEditFormModel } from "../../components/edit/parts/teams/game-teams-edit-form.model";
 import { ICreateGameTeamInvitesModel, ICreateGameTeamInvitesRequest } from "@share/services";
+import { IGameTeamsEditFormModel } from "./components/edit/parts/teams/game-teams-edit-form.model";
+import { IGameCreatePageFormModel } from "./game-create-page-form.model";
 
-export async function mapCreateGameRequestAsync(value: GameCreatePageFormModel): Promise<ICreateGameRequest> {
+export async function mapCreateGameRequestAsync(value: IGameCreatePageFormModel): Promise<ICreateGameRequest> {
     return {
         Game: {
             Profile: {
@@ -12,10 +12,10 @@ export async function mapCreateGameRequestAsync(value: GameCreatePageFormModel):
                     Name: value.profile.general.name,
                     Description: value.profile.general.description,
                     Tags: value.profile.general.tags,
-                    Day: value.profile.general.date,
+                    Date: value.profile.general.date,
                     From: convertDateToTimestamp(value.profile.general.from),
                     To: convertDateToTimestamp(value.profile.general.to),
-                    Stadium: 1
+                    Stadium: null
                 },
                 Financial: {
                     FreeGame: value.profile.financial.freeGame,

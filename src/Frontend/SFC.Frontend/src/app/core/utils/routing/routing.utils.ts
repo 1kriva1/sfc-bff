@@ -27,6 +27,14 @@ export function getPartUrlSegments(url: string): string[] {
     return where(segments, segment => !isNumeric(segment)) || [];
 }
 
+export function findUrlSegments(url: string, part: string, includeMatch = true): string[] {
+    const segments: string[] = url.split('?')[0].split('/'),
+        index: number = segments.findIndex(segment => segment === part);
+
+    return index >= 0 ? segments.slice(includeMatch ? index : index + 1) : [];
+
+}
+
 export function buildFallbackRoute(redirectTo: string): Route {
     return {
         path: RouteConstants.DEFAULT_ROUTE_PATH,
@@ -42,11 +50,12 @@ export function getRouteId(route: ActivatedRouteSnapshot, idRoutePathName: strin
         return getRouteId(route.parent, idRoutePathName);
     }
 
-    if (isNullOrEmptyString(id)) {
-        throw new Error(`Route parameter: ${idRoutePathName} is missing.`);
-    }
+    return isNullOrEmptyString(id) ? null! : +id!;
+}
 
-    return +id!;
+
+export function replaceRouteIdInPath(template: string, value: string | number, paramName: string = RouteConstants.ID_ROUTE_PATH): string {
+    return template.replace(`${paramName}`, String(value));
 }
 
 export function buildNavigationExtras(key: string, value: any, navigationExtras: NavigationExtras | null = null): NavigationExtras {
@@ -110,8 +119,8 @@ export function getDataFromRouteRecursively<T>(route: ActivatedRoute, key: strin
     return data;
 }
 
-export function buildActionParameters(router: Router, state: any = undefined): IBuildActionParameters {
-    return { router, state }
+export function buildActionParameters(router: Router, state: any = undefined, delimeter = false): IBuildActionParameters {
+    return { router, state, delimeter }
 }
 
 export function getDeepestRoute(route: ActivatedRoute): ActivatedRoute {

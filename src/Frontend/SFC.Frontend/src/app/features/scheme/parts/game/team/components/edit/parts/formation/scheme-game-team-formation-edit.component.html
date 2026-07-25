@@ -1,0 +1,64 @@
+<div class="container" [formGroupName]="SchemeGameTeamEditPart.Formation">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+        [icon]="faQuestionCircle" [tooltip]="Localization.TITLE.TOOLTIP" [sfcComponentSize] [customSize]="1"
+        [delimeter]="true">
+    </sfc-title>
+
+    <div class="content">
+        <div class="parts">
+            <div class="part scheme">
+                <div class="header">
+                    <div class="formation" *ngIf="formation$ | async as formation">
+                        <div class="title">
+                            <span class="label">{{Localization.HEADER.FORMATION.TITLE}}: </span>
+                            <span class="value">{{formation.label}} </span>
+                        </div>
+
+                        <span class="description">({{formation.description}})</span>
+                    </div>
+
+                    <div class="type">
+                        <sfc-select-input id="type" formControlName="type" [label]="Localization.INPUT.TYPE.LABEL"
+                            [data]="types" [multiple]="false" [showDefaultItem]="false" [bordered]="true"
+                            [sfcComponentSize] [customSize]="0.9">
+                        </sfc-select-input>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <sfc-scheme-formation-edit-field></sfc-scheme-formation-edit-field>
+                </div>
+
+                <div class="formation">
+                    <div class="column">
+                        <sfc-carousel-input id="formation" formControlName="formation" [multiple]="false"
+                            [helperText]="Localization.INPUT.FORMATION.HELPER_TEXT" [items]="4">
+                            <ng-template *ngFor="let formation of formations" [sfcCarouselInputSlide]="formation.key"
+                                let-slide>
+                                <sfc-carousel-slider [active]="slide.selected" [sfcComponentSize] [customSize]="0.8">
+                                    <sfc-formation-carousel-slider-content [formation]="formation"
+                                        [active]="slide.selected" (click)="onFormationChange(formation.key, $event)">
+                                    </sfc-formation-carousel-slider-content>
+                                </sfc-carousel-slider>
+                            </ng-template>
+                        </sfc-carousel-input>
+                    </div>
+                </div>
+            </div>
+
+            <div class="part delimeter">
+                <sfc-delimeter></sfc-delimeter>
+            </div>
+
+            <div class="part actions" *ngIf="!model?.scheme">
+                <sfc-form-progress-actions [key]="Constants.ProgressKey" [form]="form">
+                </sfc-form-progress-actions>
+            </div>
+        </div>
+    </div>
+
+    <sfc-exclamation-modal [id]="Constants.MODAL.FORMATION_CHANGE.ID" [text]="Localization.MODAL.FORMATION_CHANGE.TEXT"
+        [title]="Localization.MODAL.FORMATION_CHANGE.TITLE"
+        [applyLabel]="Localization.MODAL.FORMATION_CHANGE.BUTTON.APPLY" (apply)="onApply($event)">
+    </sfc-exclamation-modal>
+</div>

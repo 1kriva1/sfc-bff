@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="content">
+        <div class="columns">
+            <div *ngIf="selectColumn" class="column select" [style.width]="selectColumn.calculatedWidth">
+                <sfc-checkmark [active]="selected" (click)="onSelect()" [type]="CheckmarkType.Circle" [sfcComponentSize]
+                    [customSize]="1.2">
+                </sfc-checkmark>
+            </div>
+
+            <ng-container *ngFor="let column of columns">
+                <ng-container [ngSwitch]="column.field">
+                    <ng-container *ngSwitchCase="Column.Rating">
+                        <div class="column raiting" [style.width]="column.calculatedWidth">
+                            <sfc-scheme-game-team-info [radius]="Constants.LOGO_RADIUS" [avatar]="true" [info]="false" [model]="{
+                                    formation: viewModel.formation,
+                                    raiting: viewModel.raiting
+                                }">
+                            </sfc-scheme-game-team-info>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Information">
+                        <div class="column information" [style.width]="column.calculatedWidth">
+                            <sfc-scheme-game-team-info [radius]="Constants.LOGO_RADIUS" [avatar]="false" [info]="true" [model]="{
+                                    name: viewModel.name,                                    
+                                    formation: viewModel.formation,
+                                    raiting: viewModel.raiting
+                                }">
+                            </sfc-scheme-game-team-info>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Comment">
+                        <div class="column comment" [style.width]="column.calculatedWidth">
+                            <p>{{viewModel.comment}}</p>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Players">
+                        <div class="column players" [style.width]="column.calculatedWidth">
+                            <sfc-progress-circle [progress]="viewModel.playersSelected" [partition]="true"
+                                [total]="viewModel.playersTotal">
+                            </sfc-progress-circle>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+
+            <div *ngIf="actionsColumn" class="column actions" [style.width]="actionsColumn.calculatedWidth">
+                <sfc-dropdown-menu [items]="viewModel.actions" [bordered]="false" [filled]="true"
+                    [position]="[Position.Bottom, Position.Center]" [sfcComponentSize] [customSize]="1">
+                </sfc-dropdown-menu>
+            </div>
+        </div>
+    </div>
+</div>

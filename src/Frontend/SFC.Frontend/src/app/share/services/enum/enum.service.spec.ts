@@ -171,6 +171,8 @@ describe('Share.Service:Enum', () => {
                     Title: 'Canceled'
                 }
             ],
+            GamePlayerStatuses: [],
+            GameTeamStatuses: [],
             Errors: null,
             Success: true,
             Message: 'Success'
@@ -251,7 +253,9 @@ describe('Share.Service:Enum', () => {
             formationType: [],
             inviteStatuses: [],
             requestStatuses: [],
-            teamPlayerStatuses: []
+            teamPlayerStatuses: [],
+            gamePlayerStatuses: [],
+            gameTeamStatuses: []
         };
     }
 });

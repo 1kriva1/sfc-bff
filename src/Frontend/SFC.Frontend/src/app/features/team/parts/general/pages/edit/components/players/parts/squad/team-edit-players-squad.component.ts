@@ -17,7 +17,6 @@ import { TeamEditPlayersSquadTableConstants } from './parts/table/team-edit-play
 import { ITeamEditPlayersSquadTableModel } from './parts/table/team-edit-players-squad-table.model';
 import { buildViewPlayerAction } from '@share/utils/features/player/player-action.utils';
 import { buildRemoveTeamPlayerAction } from 'src/app/features/team/utils/team-actions.utils';
-import { TeamLocalization } from 'src/app/features/team/localization/team.localization';
 import { buildBackNavigationExtras, getRouteId } from '@core/utils';
 import { ITeamPlayerModel } from '@share/services/team/player/general/models/common/team-player.model';
 import { isTeamPlayerActive } from 'src/app/features/team/utils/team.utils';
@@ -27,6 +26,7 @@ import { mapFindTeamPlayersRequest, mapTeamEditPlayersSquadTableModel } from './
 import { TeamAction } from '@share/enums';
 import { ThemeService } from '@share/components/theme-toggler/services/theme/theme.service';
 import { buildViewTeamPlayerAction } from '@share/utils';
+import { TeamLocalization } from '@share/localization';
 
 @Component({
     templateUrl: './team-edit-players-squad.component.html',

@@ -1,10 +1,9 @@
-import { Directive, HostBinding, Input, OnInit } from "@angular/core";
-import { IIdModel } from "@core/models";
-import { CheckmarkType, empty, firstOrDefault, Position } from "ngx-sfc-common";
+import { Directive, HostBinding, HostListener, Input, OnInit } from "@angular/core";
+import { CheckmarkType, empty, firstOrDefault, Position, stopAndPreventPropagation, UIClass } from "ngx-sfc-common";
 import { ITableColumnExtendedModel, ITableModel, TableColumnType, TableSelectService } from "ngx-sfc-components";
 
 @Directive()
-export class BaseTableContentComponent<TData extends IIdModel<any>, TViewModel>
+export abstract class BaseTableContentComponent<TData, TViewModel> // TData extends IIdModel<any>
     implements OnInit {
 
     // ngx-sfc-common
@@ -21,6 +20,10 @@ export class BaseTableContentComponent<TData extends IIdModel<any>, TViewModel>
 
     @Input()
     columns: ITableColumnExtendedModel[] = [];
+
+    @Input()
+    @HostBinding('class.' + UIClass.Pointer)
+    selectOnClick: boolean = false;
 
     /* End Inputs */
 
@@ -39,7 +42,7 @@ export class BaseTableContentComponent<TData extends IIdModel<any>, TViewModel>
 
     /* Properties */
 
-    public get selected(): boolean { return this.model.selected! || this.data.id == this.value; }
+    public get selected(): boolean { return this.model.selected! || this.id == this.value; }
 
     public get sequence(): number | null { return this.sequenceColumn ? this.model.sequence : null }
 
@@ -53,6 +56,15 @@ export class BaseTableContentComponent<TData extends IIdModel<any>, TViewModel>
 
     /* End Properties */
 
+    protected abstract get id(): number;
+
+    @HostListener('click', ['$event'])
+    onClick(event: MouseEvent): void {
+        if (this.selectOnClick) {
+            this.onSelect(event);
+        }
+    }
+
     constructor(private selectedService: TableSelectService) { }
 
     ngOnInit(): void {
@@ -61,7 +73,11 @@ export class BaseTableContentComponent<TData extends IIdModel<any>, TViewModel>
         this.actionsColumn = this.getColumnByType(TableColumnType.Action);
     }
 
-    public onSelect(): void {
+    public onSelect(event?: MouseEvent | empty): void {
+        if (event) {
+            stopAndPreventPropagation(event);
+        }
+
         this.selectedService.selectSingle({ index: this.model.sequence, selected: !this.selected, args: this.data });
     }
 

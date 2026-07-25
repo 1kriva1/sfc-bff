@@ -1,0 +1,34 @@
+@import "ngx-sfc-common/styles";
+@import "variables1";
+@import "table1/card";
+@import "../../../../info/scheme-game-team-info.component.mixins";
+
+:host {
+  @include card-host(25%);
+
+  .container {
+    @include card-container;
+
+    .content {
+      .columns {
+        @include card-columns;
+
+        .column {
+          @include card-column;
+
+          &.actions-wrapper {
+            @include card-actions-wrapper-column($color-0);
+          }
+
+          &.information {
+            @include scheme-game-team-info($color-0);
+          }
+        }
+      }
+    }
+  }
+
+  &.scheme-game-team-status-0 {
+    @include card-background-with-related($scheme-status-active-color, $scheme-status-active-hover-color);
+  }
+}

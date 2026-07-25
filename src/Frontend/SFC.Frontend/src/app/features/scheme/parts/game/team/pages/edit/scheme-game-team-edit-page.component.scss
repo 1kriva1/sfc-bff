@@ -1,0 +1,126 @@
+@import "ngx-sfc-common/styles";
+@import "page1";
+
+:host {
+  .container {
+    .content {
+      @include page-content;
+
+      .parts {
+        @include page-content-parts;
+
+        .part {
+          @include page-content-part;
+
+          &.top {
+            @include page-content-part-top;
+
+            .part-content {
+              flex-direction: column;
+              align-items: center;
+
+              .title {
+                width: 100%;
+              }
+
+              .main {
+                position: relative;
+                width: 100%;
+
+                .menu {
+                  position: absolute;
+
+                  sfc-side-menu {
+                    ::ng-deep .container {
+                      overflow: initial;
+
+                      sfc-side-menu-header {
+                        > div {
+                          sfc-hamburger {
+                            font-size: 0.8em;
+                          }
+                        }
+
+                        &.open {
+                          > div {
+                            margin-right: -0.5em;
+                          }
+                        }
+                      }
+
+                      ul {
+                        overflow-y: auto;
+                        overflow-x: hidden;
+                        height: 22em;
+
+                        @include scroll-hide;
+
+                        sfc-side-menu-item {
+                          .container {
+                            sfc-side-menu-item-content {
+                              li {
+                                .item-container {
+                                  .label {
+                                    font-size: 0.8em;
+                                  }
+                                }
+                              }
+                            }
+
+                            .children {
+                              sfc-side-menu-item-content {
+                                li {
+                                  .item-container {
+                                    .label {
+                                      font-size: 0.7em;
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+
+                      &:hover {
+                        ul {
+                          @include scroll-show;
+                        }
+                      }
+                    }
+
+                    &.open {
+                      ::ng-deep .container {
+                        ul {
+                          padding-right: 1em;
+                          margin-right: -1em;
+                        }
+                      }
+                    }
+                  }
+                }
+
+                .preview {
+                  margin: 3em 0 1em;
+                  width: 100%;
+                }
+              }
+            }
+          }
+
+          &.bottom {
+            @include page-content-part-bottom;
+
+            .part-content {
+              @include center-column;
+
+              .routes {
+                width: 70%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+export { IGameResolveModel } from './game-resolve.model';

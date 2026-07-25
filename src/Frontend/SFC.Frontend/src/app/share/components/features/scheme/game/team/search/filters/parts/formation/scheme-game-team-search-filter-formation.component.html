@@ -1,0 +1,26 @@
+<div class="container" [formGroupName]="SchemeGameTeamSearchFilterPart.Formation">
+    <div class="content">
+        <div class="rows">
+            <div class="row">
+                <div class="column formation">
+                    <sfc-select-input id="formation" formControlName="formation"
+                        [label]="Localization.INPUT.FORMATION.LABEL"
+                        [placeholder]="Localization.INPUT.FORMATION.PLACEHOLDER"
+                        [helperText]="Localization.INPUT.FORMATION.HELPER_TEXT" [loadMoreLabel]="CoreLocalization.MORE"
+                        [data]="formations" [size]="formations.length" [multiple]="false" [showDefaultItem]="false"
+                        [bordered]="true">
+                    </sfc-select-input>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <sfc-range-input id="raiting" formControlName="raiting" [label]="Localization.INPUT.RAITING.LABEL"
+                        [helperText]="Localization.INPUT.RAITING.HELPER_TEXT" [multiple]="true" [showValue]="true"
+                        [generateMultipleLabel]="generateRaitingLabel">
+                    </sfc-range-input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

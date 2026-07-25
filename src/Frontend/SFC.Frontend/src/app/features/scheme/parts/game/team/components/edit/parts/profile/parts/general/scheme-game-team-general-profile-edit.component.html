@@ -1,0 +1,51 @@
+<div class="container" [formGroupName]="SchemeGameTeamProfileEditPart.General">
+    <sfc-title [label]="'Localization.TITLE.LABEL'" [description]="'Localization.TITLE.DESCRIPTION'"
+        [icon]="faQuestionCircle" [tooltip]="Localization.TITLE.TOOLTIP" [sfcComponentSize] [customSize]="1"
+        [delimeter]="true">
+    </sfc-title>
+
+    <div class="content">
+        <div class="parts">
+            <div class="part inputs">
+                <div class="rows">
+                    <div class="row">
+                        <div class="columns">
+                            <div class="column name">
+                                <sfc-text-input id="name" formControlName="name" [label]="Localization.INPUT.NAME.LABEL"
+                                    [placeholder]="Localization.INPUT.NAME.PLACEHOLDER"
+                                    [helperText]="Localization.INPUT.NAME.HELPER_TEXT" [bordered]="true" [validations]="{
+                                                    'required': ValidationLocalization.REQUIRED,
+                                                    'maxlength': ValidationLocalization.MAX_LENGTH
+                                                }">
+                                </sfc-text-input>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="columns">
+                            <div class="column comment">
+                                <sfc-text-area-input id="comment" formControlName="comment" [bordered]="true"
+                                    [label]="Localization.INPUT.DESCRIPTION.LABEL"
+                                    [placeholder]="Localization.INPUT.DESCRIPTION.PLACEHOLDER"
+                                    [helperText]="Localization.INPUT.DESCRIPTION.HELPER_TEXT" [validations]="{
+                                                    'maxlength': ValidationLocalization.MAX_LENGTH
+                                                }">
+                                </sfc-text-area-input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="part delimeter">
+                <sfc-delimeter></sfc-delimeter>
+            </div>
+
+            <div class="part actions" *ngIf="!model?.scheme">
+                <sfc-form-progress-actions [key]="Constants.ProgressKey" [form]="generalForm">
+                </sfc-form-progress-actions>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,8 @@
 export { IFormProgressModel } from './models/form-progress.model';
 export { IMapProgressModel } from './models/progress.model';
-export { mapProgress, mapProgressValue } from './progress.utils';
+export {
+    mapProgress,
+    mapProgressValue,
+    mapArrayProgressValue,
+    mapArrayItemProgressValue
+} from './progress.utils';

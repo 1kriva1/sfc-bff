@@ -13,8 +13,8 @@ export function buildPlaceholder(value: string): string {
     return `[${value}]`
 }
 
-export function buildPropertyPath(...keys: string[]): string {
-    return keys.join('.');
+export function buildPropertyPath(...keys: (string | string[])[]): string {
+    return keys.flat().join('.');
 }
 
 export function getPropertyPartByIndex(path: string, index: number = 0): string | empty {
@@ -51,7 +51,7 @@ export function calculatePercentageWithCount(value: any[], count: number): numbe
     return Math.round((count / (value.length || 1) * CommonConstants.FULL_PERCENTAGE));
 }
 
-export async function convertFileToBase64StringAsync(value: File | null): Promise<string | empty> {
+export async function convertFileToBase64StringAsync(value: File | empty): Promise<string | empty> {
     return value ? await convertToBase64String(value) : null;
 }
 

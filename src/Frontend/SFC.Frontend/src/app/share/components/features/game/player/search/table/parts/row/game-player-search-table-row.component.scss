@@ -1,0 +1,60 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+@import "variables1";
+@import "table1/row";
+@import "../../../../info/game-player-info.component.mixins";
+@import "../../../../../team/general/info/game-team-info.component.mixins";
+
+:host {
+  @include row-host;
+
+  .container {
+    @include row-container;
+
+    .content {
+      .columns {
+        @include row-columns;
+
+        .column {
+          @include row-column;
+
+          &.sequence {
+            @include row-sequence-column;
+          }
+
+          &.select {
+            @include row-select-column($color-0);
+          }
+
+          &.information {
+            @include game-player-info($color-0);
+          }
+
+          &.position {
+            @include row-enum-column;
+          }
+
+          &.team {
+            @include game-team-info($color-0);
+
+            sfc-no-data {
+              color: $color-0;
+            }
+          }
+
+          &.actions {
+            @include action-menu($color-0);
+          }
+        }
+      }
+    }
+  }
+
+  &.game-player-status-0 {
+    @include row-background-with-related($game-player-status-in-game-color, $game-player-status-in-game-hover-color);
+  }
+
+  &.game-player-status-1 {
+    @include row-background-with-related($game-player-status-out-game-color, $game-player-status-out-game-hover-color);
+  }
+}

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router';
 import { NgxSfcCommonModule } from 'ngx-sfc-common';
 import { NgxSfcComponentsModule } from 'ngx-sfc-components';
 import { NgxSfcInputsModule } from 'ngx-sfc-inputs';
@@ -50,7 +51,6 @@ import {
   PlayerRowContentComponent,
   PlayerCardComponent,
   AvatarInputTeamsModalBodyComponent,
-  AvatarInputTeamsModalBodyTableRowComponent,
   AvatarInputTeamPlayersModalBodyComponent,
   AvatarInputTeamPlayersModalBodyTableRowComponent,
   TeamSearchFilterFinancialComponent,
@@ -69,10 +69,53 @@ import {
   StatsListComponent,
   FormProgressComponent,
   FormProgressStepComponent,
-  FormProgressActionsComponent
+  FormProgressActionsComponent,
+  GameTeamSearchFilterGeneralComponent,
+  GameTeamSearchFilterFinancialComponent,
+  GameTeamSearchTableRowComponent,
+  GameTeamSearchFilterInventaryComponent,
+  GameTeamSearchTableCardComponent,
+  AvatarInputGameTeamsModalBodyComponent,
+  GameTeamInfoComponent,
+  InviteGamePlayerSearchFilterGeneralComponent,
+  InviteGamePlayerSearchTableRowComponent,
+  InviteGamePlayerSearchTableCardComponent,
+  InviteGamePlayerInfoComponent,
+  InviteGamePlayerCancelModalComponent,
+  InviteGameTeamInfoComponent,
+  InviteGameTeamSearchTableCardComponent,
+  InviteGameTeamSearchTableRowComponent,
+  InviteGameTeamSearchFilterGeneralComponent,
+  InviteGameTeamCancelModalComponent,
+  RequestGamePlayerAcceptModalComponent,
+  RequestGamePlayerDeclineModalComponent,
+  RequestGameTeamDeclineModalComponent,
+  RequestGameTeamAcceptModalComponent,
+  RequestGamePlayerInfoComponent,
+  RequestGameTeamInfoComponent,
+  RequestGamePlayerSearchTableCardComponent,
+  RequestGamePlayerSearchTableRowComponent,
+  RequestGamePlayerSearchFilterGeneralComponent,
+  RequestGameTeamSearchTableCardComponent,
+  RequestGameTeamSearchFilterGeneralComponent,
+  RequestGameTeamSearchTableRowComponent,
+  GamePlayerInfoComponent,
+  GamePlayerSearchTableCardComponent,
+  GamePlayerSearchTableRowComponent,
+  GamePlayerSearchFilterGeneralComponent,
+  LinkComponent,
+  GameTeamPlayerInfoComponent,
+  GameTeamPlayerSearchFilterGeneralComponent,
+  GameTeamPlayerSearchTableRowComponent,
+  GameTeamPlayerSearchTableCardComponent,
+  SchemeGameTeamSearchFilterGeneralComponent,
+  SchemeGameTeamSearchFilterFormationComponent,
+  SchemeGameTeamSearchTableRowComponent,
+  SchemeGameTeamSearchTableCardComponent,
+  SchemeGameTeamInfoComponent,
+  SchemeGameTeamModalRemoveComponent
 } from './components';
 import { TimePipe, DayPipe } from './pipes';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -88,6 +131,7 @@ import { RouterModule } from '@angular/router';
     StatusComponent,
     EnumComponent,
     BackComponent,
+    LinkComponent,
     PanelComponent,
     CircleComponent,
     FilterTagsComponent,
@@ -112,9 +156,9 @@ import { RouterModule } from '@angular/router';
     AvatarInputPlayersModalBodyComponent,
     AvatarInputPlayersModalBodyTableRowComponent,
     AvatarInputTeamsModalBodyComponent,
-    AvatarInputTeamsModalBodyTableRowComponent,
     AvatarInputTeamPlayersModalBodyComponent,
     AvatarInputTeamPlayersModalBodyTableRowComponent,
+    AvatarInputGameTeamsModalBodyComponent,
     // feature/player
     PlayerInfoComponent,
     PlayerPreviewComponent,
@@ -145,11 +189,61 @@ import { RouterModule } from '@angular/router';
     SchemeTeamSearchFilterFormationComponent,
     SchemeTeamSearchTableRowComponent,
     SchemeTeamSearchTableCardComponent,
+    // feature/scheme/game/team
+    SchemeGameTeamInfoComponent,
+    SchemeGameTeamSearchFilterGeneralComponent,
+    SchemeGameTeamSearchFilterFormationComponent,
+    SchemeGameTeamSearchTableRowComponent,
+    SchemeGameTeamSearchTableCardComponent,
+    SchemeGameTeamModalRemoveComponent,
     // feature/invite
     InviteTeamPlayerCancelModalComponent,
-    // feature/request
+    // feature/invite/game/player
+    InviteGamePlayerInfoComponent,
+    InviteGamePlayerCancelModalComponent,
+    InviteGamePlayerSearchFilterGeneralComponent,
+    InviteGamePlayerSearchTableRowComponent,
+    InviteGamePlayerSearchTableCardComponent,
+    // feature/invite/game/team
+    InviteGameTeamInfoComponent,
+    InviteGameTeamCancelModalComponent,
+    InviteGameTeamSearchFilterGeneralComponent,
+    InviteGameTeamSearchTableRowComponent,
+    InviteGameTeamSearchTableCardComponent,
+    // feature/request/team/player
     RequestTeamPlayerAcceptModalComponent,
     RequestTeamPlayerDeclineModalComponent,
+    // feature/request/game/player
+    RequestGamePlayerInfoComponent,
+    RequestGamePlayerAcceptModalComponent,
+    RequestGamePlayerDeclineModalComponent,
+    RequestGamePlayerSearchFilterGeneralComponent,
+    RequestGamePlayerSearchTableRowComponent,
+    RequestGamePlayerSearchTableCardComponent,
+    // feature/request/game/team
+    RequestGameTeamInfoComponent,
+    RequestGameTeamAcceptModalComponent,
+    RequestGameTeamDeclineModalComponent,
+    RequestGameTeamSearchFilterGeneralComponent,
+    RequestGameTeamSearchTableRowComponent,
+    RequestGameTeamSearchTableCardComponent,
+    // feature/game/team
+    GameTeamSearchFilterGeneralComponent,
+    GameTeamSearchFilterFinancialComponent,
+    GameTeamSearchFilterInventaryComponent,
+    GameTeamSearchTableRowComponent,
+    GameTeamSearchTableCardComponent,
+    GameTeamInfoComponent,
+    // feature/game/team/player
+    GameTeamPlayerInfoComponent,
+    GameTeamPlayerSearchFilterGeneralComponent,
+    GameTeamPlayerSearchTableRowComponent,
+    GameTeamPlayerSearchTableCardComponent,
+    // feature/game/player
+    GamePlayerInfoComponent,
+    GamePlayerSearchFilterGeneralComponent,
+    GamePlayerSearchTableRowComponent,
+    GamePlayerSearchTableCardComponent,
     // pipes
     TimePipe,
     DayPipe
@@ -173,6 +267,7 @@ import { RouterModule } from '@angular/router';
     StatusComponent,
     EnumComponent,
     BackComponent,
+    LinkComponent,
     PanelComponent,
     CircleComponent,
     NoDataComponent,
@@ -200,6 +295,7 @@ import { RouterModule } from '@angular/router';
     AvatarInputPlayersModalBodyComponent,
     AvatarInputTeamsModalBodyComponent,
     AvatarInputTeamPlayersModalBodyComponent,
+    AvatarInputGameTeamsModalBodyComponent,
     // feature/player
     PlayerInfoComponent,
     PlayerPreviewComponent,
@@ -230,14 +326,64 @@ import { RouterModule } from '@angular/router';
     SchemeTeamSearchFilterFormationComponent,
     SchemeTeamSearchTableRowComponent,
     SchemeTeamSearchTableCardComponent,
+    // feature/scheme/game/team
+    SchemeGameTeamInfoComponent,
+    SchemeGameTeamSearchFilterGeneralComponent,
+    SchemeGameTeamSearchFilterFormationComponent,
+    SchemeGameTeamSearchTableRowComponent,
+    SchemeGameTeamSearchTableCardComponent,
+    SchemeGameTeamModalRemoveComponent,
     // feature/invite
     InviteTeamPlayerCancelModalComponent,
-    // feature/request
+    // feature/invite/game/player
+    InviteGamePlayerInfoComponent,
+    InviteGamePlayerCancelModalComponent,
+    InviteGamePlayerSearchFilterGeneralComponent,
+    InviteGamePlayerSearchTableRowComponent,
+    InviteGamePlayerSearchTableCardComponent,
+    // feature/invite/game/team
+    InviteGameTeamInfoComponent,
+    InviteGameTeamCancelModalComponent,
+    InviteGameTeamSearchFilterGeneralComponent,
+    InviteGameTeamSearchTableRowComponent,
+    InviteGameTeamSearchTableCardComponent,
+    // feature/request/team/player
     RequestTeamPlayerAcceptModalComponent,
     RequestTeamPlayerDeclineModalComponent,
+    // feature/request/game/player
+    RequestGamePlayerInfoComponent,
+    RequestGamePlayerAcceptModalComponent,
+    RequestGamePlayerDeclineModalComponent,
+    RequestGamePlayerSearchFilterGeneralComponent,
+    RequestGamePlayerSearchTableRowComponent,
+    RequestGamePlayerSearchTableCardComponent,
+    // feature/request/game/team
+    RequestGameTeamInfoComponent,
+    RequestGameTeamAcceptModalComponent,
+    RequestGameTeamDeclineModalComponent,
+    RequestGameTeamSearchFilterGeneralComponent,
+    RequestGameTeamSearchTableRowComponent,
+    RequestGameTeamSearchTableCardComponent,
+    // feature/game/team
+    GameTeamSearchFilterGeneralComponent,
+    GameTeamSearchFilterFinancialComponent,
+    GameTeamSearchFilterInventaryComponent,
+    GameTeamSearchTableRowComponent,
+    GameTeamSearchTableCardComponent,
+    GameTeamInfoComponent,
+    // feature/game/team/player
+    GameTeamPlayerInfoComponent,
+    GameTeamPlayerSearchFilterGeneralComponent,
+    GameTeamPlayerSearchTableRowComponent,
+    GameTeamPlayerSearchTableCardComponent,
+    // feature/game/player
+    GamePlayerInfoComponent,
+    GamePlayerSearchFilterGeneralComponent,
+    GamePlayerSearchTableRowComponent,
+    GamePlayerSearchTableCardComponent,
     // pipes
     TimePipe,
     DayPipe
   ]
 })
-export class ShareModule { }
+export class ShareModule { } 

@@ -1,0 +1,62 @@
+@import "ngx-sfc-common/styles";
+@import "variables1";
+@import "table1/row";
+@import "../../../../info/request-game-team-info.component.mixins";
+
+:host {
+  @include row-host;
+
+  .container {
+    @include row-container;
+
+    .content {
+      .columns {
+        @include row-columns;
+
+        .column {
+          @include row-column;
+
+          &.select {
+            @include row-select-column($color-0);
+          }
+
+          &.information {
+            @include request-game-team-info($color-0);
+          }
+
+          &.actions {
+            @include action-menu($color-0);
+          }
+        }
+      }
+    }
+  }
+
+  &.request-game-team-status-0 {
+    @include row-background-with-related(
+      $team-player-request-status-actual-color,
+      $team-player-request-status-actual-hover-color
+    );
+  }
+
+  &.request-game-team-status-1 {
+    @include row-background-with-related(
+      $team-player-request-status-accepted-color,
+      $team-player-request-status-accepted-hover-color
+    );
+  }
+
+  &.request-game-team-status-2 {
+    @include row-background-with-related(
+      $team-player-request-status-canceled-color,
+      $team-player-request-status-canceled-hover-color
+    );
+  }
+
+  &.request-game-team-status-3 {
+    @include row-background-with-related(
+      $team-player-request-status-declined-color,
+      $team-player-request-status-declined-hover-color
+    );
+  }
+}

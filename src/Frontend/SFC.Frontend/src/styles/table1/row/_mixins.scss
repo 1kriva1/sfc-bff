@@ -4,6 +4,10 @@
 
 @mixin row-host() {
   @include host;
+
+  &.pointer {
+    cursor: pointer;
+  }
 }
 
 @mixin row-container() {

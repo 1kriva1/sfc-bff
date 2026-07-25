@@ -8,7 +8,7 @@ import { ISelectItemModel } from 'ngx-sfc-inputs';
 import { mapSelectItems } from '@share/utils/inputs';
 import { EnumService } from '@share/services';
 import { IFormationEnumModel } from '@share/services/enum/models/enum/formation-enum.model';
-import { SchemeTeamFormationEditFieldService } from './parts/field/scheme-team-formation-edit-field.service';
+import { SchemeFormationEditFieldService } from '../../../../../components/edit/parts/formation/parts/field/scheme-formation-edit-field.service';
 import { ModalService, stopAndPreventPropagation } from 'ngx-sfc-common';
 import { SchemeTeamFormationEditFormConstants } from './scheme-team-formation-edit-form.constants';
 import { Observable } from 'rxjs';
@@ -33,7 +33,7 @@ export class SchemeTeamFormationEditComponent<TFormValue extends ISchemeTeamEdit
 
     constructor(
         private modalService: ModalService,        
-        private SchemeTeamFormationEditFieldService: SchemeTeamFormationEditFieldService,
+        private schemeFormationEditFieldService: SchemeFormationEditFieldService, 
         parent: FormGroupDirective,
         formBuilder: FormBuilder,
         enumService: EnumService) {
@@ -41,14 +41,14 @@ export class SchemeTeamFormationEditComponent<TFormValue extends ISchemeTeamEdit
     }
 
     public onFormationChange(formation: number, event: Event): void {
-        if (this.SchemeTeamFormationEditFieldService.any) {
+        if (this.schemeFormationEditFieldService.any) {
             this.modalService.open(SchemeTeamFormationEditFormConstants.MODAL.FORMATION_CHANGE.ID, formation);
             stopAndPreventPropagation(event);
         }
     }
 
     public onApply(formation: number): void {
-        this.SchemeTeamFormationEditFieldService.clear();
+        this.schemeFormationEditFieldService.clear();
         this.form.patchValue({ formation: { formation } });
     }
 }

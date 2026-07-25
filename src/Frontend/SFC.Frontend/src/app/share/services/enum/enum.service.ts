@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+ import { Injectable } from "@angular/core";
 import { faAdversal, faAlgolia } from "@fortawesome/free-brands-svg-icons";
 import {
     faBellSlash, faBook, faCar,
@@ -11,6 +11,7 @@ import { InviteDataService } from "../invite/data/invite-data.service";
 import { RequestDataService } from "../request/data/request-data.service";
 import { SchemeDataService } from "../scheme/data/scheme-data.service";
 import { TeamDataService } from "../team/data/team-data.service";
+import { GameDataService } from "../game//data/game-data.service";
 import { IEnumsModel } from "./models/enum/enums.model";
 import { IServicesDataModel } from "./models/common/services-data.model";
 import {
@@ -24,8 +25,11 @@ import {
     mapTeamPlayerStatusEnum,
     mapTeamStatusEnum
 } from "../../mappers";
-import { GameDataService } from "../game";
-import { mapGameStatusEnum } from "../../mappers/enum/enum.mapper";
+import { 
+    mapGamePlayerStatusEnum, 
+    mapGameStatusEnum, 
+    mapGameTeamStatusEnum 
+} from "../../mappers/enum/enum.mapper";
 
 @Injectable({
     providedIn: 'root'
@@ -40,6 +44,8 @@ export class EnumService {
         workingFoots: [],
         badgeTypes: [],
         gameStatuses: [],
+        gameTeamStatuses: [],
+        gamePlayerStatuses: [],
         teamStatuses: [],
         shirts: [],
         inviteStatuses: [],
@@ -99,6 +105,8 @@ export class EnumService {
                         { key: 11, value: 'Badge_11', icon: faTruckMoving, description: 'Has posted more than 1000 posts on their profile' }
                     ],
                     gameStatuses: data.game.GameStatuses.map(value => mapGameStatusEnum(value)),
+                    gameTeamStatuses: data.game.GameTeamStatuses.map(value => mapGameTeamStatusEnum(value)),
+                    gamePlayerStatuses: data.game.GamePlayerStatuses.map(value => mapGamePlayerStatusEnum(value))
                 };
             }),
             map(() => this.enums)

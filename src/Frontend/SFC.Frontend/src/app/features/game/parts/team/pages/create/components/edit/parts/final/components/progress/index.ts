@@ -1,0 +1,1 @@
+export { GameTeamEditProgressComponent } from './game-team-edit-progress.component'

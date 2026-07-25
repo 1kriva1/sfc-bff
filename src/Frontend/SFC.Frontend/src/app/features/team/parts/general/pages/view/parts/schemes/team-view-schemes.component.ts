@@ -23,14 +23,14 @@ import {
 import { ThemeService } from "@share/components/theme-toggler/services/theme/theme.service";
 import { ITeamModel } from "@share/models";
 import { EnumService, IFindTeamSchemesFilterModel, ITeamSchemeServiceModel, SchemeTeamService } from "@share/services";
-import { ITeamSchemeModel } from "@share/services/scheme/team/models/common/team-scheme.model";
+import { ITeamSchemeModel } from "@share/services/scheme/team/general/models/common/team-scheme.model";
 import { buildViewSchemeTeamAction } from "@share/utils";
 import { IPaginationModel, ISortingModel, empty, ReloadService, SortingDirection, CommonConstants } from "ngx-sfc-common";
 import { IDropdownMenuItemModel, ITableColumnExtendedModel, TableColumnType } from "ngx-sfc-components";
 import { Observable } from "rxjs";
-import { TeamLocalization } from "src/app/features/team/localization";
 import { TeamViewPageConstants } from "../../team-view-page.constants";
 import { TeamViewSchemesLocalization } from "./team-view-schemes.localization";
+import { TeamLocalization } from "@share/localization";
 
 @Component({
     templateUrl: './team-view-schemes.component.html',

@@ -6,7 +6,7 @@ import { IPlayersTableModel } from "@share/components/features/player";
 import { InviteRoute, PlayerRoute, RequestRoute, SchemeRoute, TeamRoute } from "@share/enums";
 import { ITeamPlayerInviteModel } from "@share/models/invite/team-player-invite.model";
 import { ITeamPlayerRequestModel } from "@share/models/request/team-player-request.model";
-import { ISchemeTeamModel } from "@share/models/scheme/scheme-team.model";
+import { ISchemeTeamModel } from "@share/models/scheme/team/scheme-team.model";
 import { buildModalAction, buildRedirectAction } from "@share/utils/actions/actions.utils";
 import { ModalService } from "ngx-sfc-common";
 import { TeamModal } from "../components/modals/team-modal.enum";

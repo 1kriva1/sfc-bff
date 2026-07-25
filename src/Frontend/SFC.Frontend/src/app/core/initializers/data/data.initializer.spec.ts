@@ -41,7 +41,9 @@ describe('Core.Initializer:Data', () => {
             inviteStatuses: [],
             requestStatuses: [],
             teamPlayerStatuses: [],
-            formationType: []
+            formationType: [],
+            gamePlayerStatuses: [],
+            gameTeamStatuses: []
         };
         identityServiceStub.getIsAuthenticated = () => of(true);
         (enumServiceStub as any).load = () => of(enumsModel);

@@ -1,0 +1,23 @@
+@mixin request-game-team-info($color: $color-default) {
+  sfc-request-game-team-info {
+    ::ng-deep > .container .content {
+      > .info {
+        color: $color;
+
+        sfc-status {
+          font-size: 0.9em;
+
+          .container {
+            .content {
+              .component {
+                .label {
+                  color: $color-0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

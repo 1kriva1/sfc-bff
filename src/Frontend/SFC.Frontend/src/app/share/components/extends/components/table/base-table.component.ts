@@ -10,7 +10,7 @@ import {
     empty, ILoadContainerLoaderResultModel, ILoadContainerParameters, ILoadContainerPredicateParameters,
     IPaginationModel, isDefined, ISortingModel, LoaderFunction, ObservableModel, Position, ReloadService, Theme
 } from "ngx-sfc-common";
-import { ITableColumnExtendedModel, TableTemplate } from "ngx-sfc-components";
+import { ITableColumnExtendedModel, TableSelectService, TableTemplate } from "ngx-sfc-components";
 import { EMPTY, Observable, startWith, filter, distinctUntilChanged, pairwise, timer, of, debounce, tap, map, catchError } from "rxjs";
 import { TableConstants } from "./table.constants";
 import { TableLocalization } from "./table.localization";

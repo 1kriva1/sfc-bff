@@ -4,19 +4,26 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { BasePaginationRequest, BaseListResponse } from "@core/models";
 import { NotificationService } from "@core/services";
 import { IForm } from "@core/types";
+import { MapPredicateModelFunction } from "@core/utils";
 import { faSortAmountDown, faSortAmountUp } from "@fortawesome/free-solid-svg-icons";
 import { IPaginationModel, ISortingModel, empty, ReloadService, SortingDirection, CommonConstants, isDefined } from "ngx-sfc-common";
 import { ITableColumnExtendedModel, ITableSelectEvent, TableColumnType } from "ngx-sfc-components";
 import { Observable } from "rxjs";
 import { IAvatarInputTeamsModalBodyEventModel } from "./avatar-input-teams-modal-body-event.model";
 import { AvatarInputPlayersModalBodyLocalization } from "./avatar-input-teams-modal-body.localization";
-import { AvatarInputTeamsModalBodyTableConstants } from "./parts/table/avatar-input-teams-modal-body-table.constants";
 import { BaseTableComponent } from "../../../../../../../extends/components/table/base-table.component";
-import { ITeamSearchFilterModel, ITeamSearchTableModel, mapFindTeamsRequest, mapTeamPredicateMapModel, mapTeamSearchTableModel, TeamSearchTableColumn, TeamSearchTableLocalization } from "../../../../../../../../components/features/team";
+import {
+    ITeamSearchFilterModel,
+    ITeamSearchTableModel,
+    mapFindTeamsRequest,
+    mapTeamPredicateMapModel,
+    mapTeamSearchTableModel,
+    TeamSearchTableColumn,
+    TeamSearchTableLocalization
+} from "../../../../../../../../components/features/team";
 import { IFindTeamsFilterModel, ITeamServiceModel, TeamService } from "../../../../../../../../services/team";
 import { EnumService } from "../../../../../../../../services";
 import { ThemeService } from "../../../../../../../../components/theme-toggler/services/theme/theme.service";
-import { MapPredicateModelFunction } from "@core/utils";
 
 @Component({
     selector: 'sfc-avatar-input-teams-modal-body',
@@ -31,7 +38,6 @@ export class AvatarInputTeamsModalBodyComponent
 
     // component
     Localization = AvatarInputPlayersModalBodyLocalization;
-    Constants = AvatarInputTeamsModalBodyTableConstants;
 
     @Input()
     value: number | null = null;

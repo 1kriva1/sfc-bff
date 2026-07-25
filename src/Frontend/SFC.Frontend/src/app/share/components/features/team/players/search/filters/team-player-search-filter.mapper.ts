@@ -74,8 +74,8 @@ export function mapFindTeamPlayersRequest(
     }
 }
 
-export function mapFindTeamPlayersTeamPlayerFilterModel(model: ITeamPlayerFilterModel): IFindTeamPlayersTeamPlayerFilterModel {
+export function mapFindTeamPlayersTeamPlayerFilterModel(model?: ITeamPlayerFilterModel | empty): IFindTeamPlayersTeamPlayerFilterModel {
     return {
-        Statuses: model.general.statuses || [],
+        Statuses: model?.general?.statuses || [],
     };
 }

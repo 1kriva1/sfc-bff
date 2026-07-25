@@ -1,0 +1,61 @@
+<div class="container" [formGroupName]="GameTeamProfileEditPart.Inventary">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+        [icon]="faQuestionCircle" [tooltip]="Localization.TITLE.TOOLTIP" [sfcComponentSize] [customSize]="1"
+        [delimeter]="true">
+    </sfc-title>
+
+    <div class="content">
+        <div class="parts">
+            <div class="part inputs">
+                <div class="rows">
+                    <div class="row">
+                        <div class="columns">
+                            <div class="column shirts">
+                                <sfc-carousel-input id="shirts" formControlName="shirts" [multiple]="true"
+                                    [label]="Localization.INPUT.SHIRTS.LABEL"
+                                    [helperText]="Localization.INPUT.SHIRTS.HELPER_TEXT">
+                                    <ng-template *ngFor="let shirt of shirts" [sfcCarouselInputSlide]="shirt.key"
+                                        let-slide>
+                                        <sfc-carousel-slider [multiple]="true" [active]="slide.selected">
+                                            <sfc-shirt-carousel-slider-content [title]="shirt.value"
+                                                [image]="shirt.image!" [active]="slide.selected">
+                                            </sfc-shirt-carousel-slider-content>
+                                        </sfc-carousel-slider>
+                                    </ng-template>
+                                </sfc-carousel-input>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="columns">
+                            <div class="column balls">
+                                <sfc-number-input id="balls" formControlName="balls"
+                                    [label]="Localization.INPUT.BALLS.LABEL"
+                                    [placeholder]="Localization.INPUT.BALLS.PLACEHOLDER"
+                                    [helperText]="Localization.INPUT.BALLS.HELPER_TEXT" [edit]="true"
+                                    [fixedActions]="false" [fixedWidth]="true" [sign]="false"
+                                    [min]="ValidationConstants.MIN_NUMBER_VALUE"
+                                    [max]="ValidationConstants.MAX_NUMBER_VALUE" [validations]="{
+                                        required: ValidationLocalization.REQUIRED,
+                                        min: minValidationMessage(Constants.MIN_BALLS_COUNT),
+                                        max: maxValidationMessage(Constants.MAX_BALLS_COUNT)
+                                    }" [sfcComponentSize] [customSize]="1">
+                                </sfc-number-input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="part delimeter">
+                <sfc-delimeter></sfc-delimeter>
+            </div>
+
+            <div class="part actions" *ngIf="!model?.gameTeam">
+                <sfc-form-progress-actions [key]="Constants.ProgressKey" [form]="inventaryForm">
+                </sfc-form-progress-actions>
+            </div>
+        </div>
+    </div>
+</div>

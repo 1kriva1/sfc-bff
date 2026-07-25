@@ -8,3 +8,4 @@ export * from './home';
 export * from './profile';
 export * from './game';
 export { Feature } from './feature.enum';
+export { Route } from './feature-route.enum';

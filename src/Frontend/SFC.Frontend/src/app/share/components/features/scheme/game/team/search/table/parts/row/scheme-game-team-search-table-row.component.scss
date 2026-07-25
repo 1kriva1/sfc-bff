@@ -1,0 +1,43 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+@import "variables1";
+@import "table1/row";
+@import "../../../../info/scheme-game-team-info.component.mixins";
+
+:host {
+  @include row-host;
+
+  .container {
+    @include row-container;
+
+    .content {
+      .columns {
+        @include row-columns;
+
+        .column {
+          @include row-column;
+
+          &.select {
+            @include row-select-column($color-0);
+          }
+
+          &.information {
+            @include scheme-game-team-info($color-0);
+          }
+
+          &.comment {
+            @include text($color-0, 0.8em);
+          }
+
+          &.actions {
+            @include action-menu($color-0);
+          }
+        }
+      }
+    }
+  }
+
+  &.scheme-game-team-status-0 {
+    @include row-background-with-related($scheme-status-active-color, $scheme-status-active-hover-color);
+  }
+}

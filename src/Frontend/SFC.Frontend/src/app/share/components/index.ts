@@ -8,6 +8,7 @@ export { BadgeComponent } from "./badge/badge.component";
 export { StatusComponent } from './status/status.component';
 export { EnumComponent } from './enum/enum.component';
 export { BackComponent } from './back/back.component';
+export { LinkComponent } from './link/link.component';
 export { PanelComponent } from './panel/panel.component';
 export { CircleComponent } from './circle/circle.component';
 export { FilterTagsComponent } from './filter-tags/filter-tags.component';

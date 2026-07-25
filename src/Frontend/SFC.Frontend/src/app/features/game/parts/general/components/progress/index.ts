@@ -1,1 +1,0 @@
-export { GameEditProgressComponent } from './edit/game-edit-progress.component';

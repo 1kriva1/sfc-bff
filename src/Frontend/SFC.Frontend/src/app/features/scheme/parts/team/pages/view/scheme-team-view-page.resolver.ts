@@ -4,8 +4,8 @@ import { catchError, map, Observable, of } from "rxjs";
 import { BaseErrorResponse, IResolverModel } from "@core/models";
 import { buildErrorResolverModel, buildResolverModel, getRouteId } from "@core/utils";
 import { EnumService, IGetTeamSchemeResponse, SchemeTeamService } from "@share/services";
-import { mapTeamSchemeModel } from "@share/mappers/scheme/team-scheme.mapper";
-import { ISchemeTeamModel } from "@share/models/scheme/scheme-team.model";
+import { mapTeamSchemeModel } from "@share/mappers";
+import { ISchemeTeamModel } from "@share/models";
 import { SchemeConstants } from "@share/constants";
 
 export const SchemeTeamViewPageResolver: ResolveFn<IResolverModel<ISchemeTeamModel>> =

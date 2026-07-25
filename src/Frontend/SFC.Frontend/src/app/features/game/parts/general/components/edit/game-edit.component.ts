@@ -1,9 +1,14 @@
 import { Directive } from "@angular/core";
 import { FormGroupDirective, FormBuilder, FormGroup, AbstractControl } from "@angular/forms";
 import { BaseErrorResponse } from "@core/models";
-import { IGameEditFormModel } from "./game-edit-form.model";
-import { GameEditPart } from "./game-edit-part.enum";
 import { Observable, startWith } from "rxjs";
+import { GameEditPart } from "./enums/game-edit-part.enum";
+import { IGameEditFormModel } from "./game-edit-form.model";
+import { GameConstants } from "../../constants";
+import { IGameResolveModel } from "../../models/game-resolve.model";
+import { empty } from "ngx-sfc-common";
+import { ActivatedRoute } from "@angular/router";
+import { getDataFromRouteRecursively } from "@core/utils";
 
 @Directive()
 export abstract class GameEditComponent<TFormValue extends IGameEditFormModel, TResponse extends BaseErrorResponse> {
@@ -11,7 +16,7 @@ export abstract class GameEditComponent<TFormValue extends IGameEditFormModel, T
     // component
     GameEditPart = GameEditPart;
 
-    protected get form(): FormGroup { return this.parent.form; }
+    public get form(): FormGroup { return this.parent.form; }
 
     protected get value(): TFormValue { return this.form.value; }
 
@@ -19,5 +24,7 @@ export abstract class GameEditComponent<TFormValue extends IGameEditFormModel, T
 
     protected get controls(): { [key: string]: AbstractControl<any> } { return this.form.controls; }
 
-    constructor(protected parent: FormGroupDirective, protected formBuilder: FormBuilder) { }
+    public get model(): IGameResolveModel | empty { return getDataFromRouteRecursively<IGameResolveModel>(this.route, GameConstants.ResolveKey)!; };
+
+    constructor(protected route: ActivatedRoute, protected parent: FormGroupDirective, protected formBuilder: FormBuilder) { }
 }

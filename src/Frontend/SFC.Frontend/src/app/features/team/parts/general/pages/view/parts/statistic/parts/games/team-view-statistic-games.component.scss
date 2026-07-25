@@ -8,7 +8,7 @@
       .parts {
         .part {
           .part-content {
-            @include wrap-row;
+            @include wrap-row(1em);
           }
         }
       }

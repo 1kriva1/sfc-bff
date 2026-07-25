@@ -1,0 +1,1 @@
+export { SchemeGameTeamPreviewComponent } from './scheme-game-team-preview.component'

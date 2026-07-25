@@ -13,7 +13,7 @@ import { EnumService } from '@share/services';
 import { RouteKey } from '@core/enums';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { buildActionParameters, buildBackNavigationExtras, getRouteId } from '@core/utils';
-import { ITeamSchemeModel } from '@share/services/scheme/team/models/common/team-scheme.model';
+import { ITeamSchemeModel } from '@share/services/scheme/team/general/models/common/team-scheme.model';
 import { buildEditTeamSchemeAction, buildRemoveTeamSchemeAction } from 'src/app/features/team/utils/team-actions.utils';
 import { TableLocalization } from '@share/localization/table.localization';
 import { SearchComponent } from '@share/components/features/base/search/search.component';
@@ -23,9 +23,9 @@ import { TeamEditSchemesTableConstants } from './parts/table/team-edit-schemes-t
 import { ITeamEditSchemesFilterModel } from './team-edit-schemes-form.model';
 import { ITeamEditSchemesTableModel } from './parts/table/team-edit-schemes-table.model';
 import { mapFindTeamSchemesRequest, mapTeamEditSchemesTableModel } from './team-edit-schemes.mapper';
-import { TeamLocalization } from 'src/app/features/team/localization';
 import { ThemeService } from '@share/components/theme-toggler/services/theme/theme.service';
 import { buildViewSchemeTeamAction } from '@share/utils';
+import { TeamLocalization } from '@share/localization';
 
 @Component({
     templateUrl: './team-edit-schemes.component.html',

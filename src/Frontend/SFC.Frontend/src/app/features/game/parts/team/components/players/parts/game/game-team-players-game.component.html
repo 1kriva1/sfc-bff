@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="content">
+        <div class="parts">
+            <div class="part">
+                <div class="part-content">
+                    <div class="result">
+                        <div class="table">
+                            <sfc-table #table [columns]="columns" [predicate$]="predicate$" [loader]="loader"
+                                [pagination]="Constants.PAGINATION" [position]="Position.Center"
+                                [columnsShowOnInit]="false" [columnsToggle]="false" [showTotal]="true"
+                                [selectable]="true" [selectMultiple]="true" [showLoading]="showLoading"
+                                [paginationCount]="TableConstants.PAGINATION_COUNT" [paginationLimits]="true"
+                                [loadType]="LoadContainerLoadType.Button"
+                                [showColumnsLabel]="TableLocalization.TABLE.COLUMNS_SHOW_LABEL"
+                                [hideColumnsLabel]="TableLocalization.TABLE.COLUMNS_HIDE_LABEL"
+                                [totalLabel]="TableLocalization.TABLE.TOTAL_LABEL"
+                                [dataListLabel]="TableLocalization.TABLE.DATA_LIST_LABEL"
+                                [dataCardsLabel]="TableLocalization.TABLE.DATA_CARDS_LABEL"
+                                [notFoundLabel]="TableLocalization.TABLE.NOT_FOUND_LABEL" (selected)="onSelect($event)">
+                                <ng-template [sfcTemplateReference]="TableTemplate.Row" let-row>
+                                    <sfc-game-player-search-table-row [model]="row.model" [columns]="row.columns"
+                                        [radius]="Constants.TableContentRadius" [selectOnClick]="true"
+                                        [sfcComponentSize] [customSize]="0.8">
+                                    </sfc-game-player-search-table-row>
+                                </ng-template>
+
+                                <ng-template [sfcTemplateReference]="TableTemplate.Card" let-card>
+                                    <sfc-game-player-search-table-card [model]="card.model" [columns]="card.columns"
+                                        [radius]="Constants.TableContentRadius" [selectOnClick]="true"
+                                        [sfcComponentSize] [customSize]="0.8">
+                                    </sfc-game-player-search-table-card>
+                                </ng-template>
+                            </sfc-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

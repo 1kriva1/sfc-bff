@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="content">
+        <form [formGroup]="form" autocomplete="off">
+            <div class="parts">
+                <div class="part top">
+                    <div class="part-content">
+                        <div class="title">
+                            <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+                                [tooltip]="Localization.TITLE.TOOLTIP" [icon]="faQuestionCircle" [sfcComponentSize]
+                                [customSize]="1.2">
+                            </sfc-title>
+                        </div>
+
+                        <div class="main">
+                            <div class="menu">
+                                MENU
+                            </div>
+
+                            <div class="preview">
+                                PREVIEW
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="part bottom">
+                    <div class="part-content">
+                        <div class="routes">
+                            <router-outlet></router-outlet>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

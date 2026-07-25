@@ -1,0 +1,30 @@
+@mixin game-player-info($color: $color-default) {
+  sfc-game-player-info {
+    ::ng-deep > .container {
+      .content {
+        > .info {
+          color: $color;
+
+          h3,
+          p {
+            color: $color;
+          }
+
+          sfc-status {
+            font-size: 0.9em;
+
+            .container {
+              .content {
+                .component {
+                  .label {
+                    color: $color;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,7 @@
 export { ITeamPlayerModel as ITeamPlayerServiceModel } from './models/common/team-player.model';
+export { ITeamPlayerCreatesModel } from './models/creates/team-player-creates.model';
+export { ITeamPlayerCreatesRequest } from './models/creates/team-player-creates.request';
+export { ITeamPlayerCreatesResponse } from './models/creates/team-player-creates.response';
 export { IFindTeamPlayersRequest } from './models/find/find-team-players.request';
 export { IFindTeamPlayersResponse } from './models/find/find-team-players.response';
 export { IFindTeamPlayersFilterModel, IFindTeamPlayersTeamPlayerFilterModel } from './models/find/filters/find-team-players-filter.model';

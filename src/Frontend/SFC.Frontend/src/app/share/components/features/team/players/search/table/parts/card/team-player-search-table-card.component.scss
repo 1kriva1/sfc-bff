@@ -17,7 +17,7 @@
           @include card-column;
 
           &.actions-wrapper {
-            @include card-actions-wrapper-column;
+            @include card-actions-wrapper-column($color-0);
           }
 
           &.information {

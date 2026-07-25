@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Router, CanActivateFn, ActivatedRouteSnapshot } from '@angular/router';
-import { buildPath } from '@core/utils';
+import { buildPath, getRouteId, replaceRouteIdInPath } from '@core/utils';
 import { HomeRoute } from '@share/enums';
 
 @Injectable({
@@ -30,14 +30,19 @@ export class OneTimeAccessService {
         }
 
         // Not allowed - redirect
-        const redirectUrl = route.data['redirectUrl'] || buildPath(HomeRoute.Home);
+        let redirectUrl = route.data['redirectUrl'];
 
-        this.router.navigate([redirectUrl]);
-        
+        if (redirectUrl) {
+            const routeId: number = getRouteId(route);
+            redirectUrl = replaceRouteIdInPath(redirectUrl, routeId)
+        }
+
+        this.router.navigate([redirectUrl || buildPath(HomeRoute.Home)]);
+
         return false;
     }
 }
 
-export const CanActivateOnlyOneTimeAccess: CanActivateFn = 
+export const CanActivateOnlyOneTimeAccess: CanActivateFn =
     (route: ActivatedRouteSnapshot) =>
         inject(OneTimeAccessService).canActivate(route);

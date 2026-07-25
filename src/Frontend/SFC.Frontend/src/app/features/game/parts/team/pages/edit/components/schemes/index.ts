@@ -1,0 +1,1 @@
+export { GameTeamEditSchemesComponent } from './game-team-edit-schemes.component';

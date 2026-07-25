@@ -1,10 +1,9 @@
-import { EnumService, IFindTeamSchemesRequest } from "@share/services";
+import { EnumService, IFindTeamSchemesRequest, ITeamSchemeServiceModel } from "@share/services";
 import { empty, IPaginationModel, ISortingModel } from "ngx-sfc-common";
 import { IDropdownMenuItemModel } from "ngx-sfc-components";
 import { ISortingModel as ISortingRequestModel } from "@core/models";
 import { TeamEditSchemesTableColumn } from "./parts/table/team-edit-schemes-table-column.enum";
-import { ITeamSchemeModel } from "@share/services/scheme/team/models/common/team-scheme.model";
-import { mapTeamSchemeModel } from "@share/mappers/scheme/team-scheme.mapper";
+import { mapTeamSchemeModel } from "@share/mappers";
 import { ITeamEditSchemesTableModel } from "./parts/table/team-edit-schemes-table.model";
 import { ITeamEditSchemesFilterModel } from "./team-edit-schemes-form.model";
 
@@ -46,7 +45,7 @@ export function mapFindTeamSchemesRequest(
 }
 
 export function mapTeamEditSchemesTableModel(
-    model: ITeamSchemeModel,
+    model: ITeamSchemeServiceModel,
     enumService: EnumService,
     buildActions: ((model: ITeamEditSchemesTableModel) => IDropdownMenuItemModel[]) | empty = null): ITeamEditSchemesTableModel {
 

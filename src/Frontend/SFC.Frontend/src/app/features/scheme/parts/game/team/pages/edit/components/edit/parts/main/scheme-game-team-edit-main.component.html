@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="content">
+        <div class="parts">
+            <div class="info" *ngIf="schemeGameTeamInfoModel$ | async as schemeGameTeamInfoModel">
+                <sfc-scheme-game-team-info [radius]="Constants.LOGO_RADIUS" [avatar]="true" [info]="true"
+                    [progress]="true" [model]="schemeGameTeamInfoModel" [direction]="Direction.Vertical"
+                    [sfcComponentSize] [customSize]="1.2">
+                </sfc-scheme-game-team-info>
+            </div>
+
+            <div class="part tip">
+                <span>{{Localization.TIP}}</span>
+            </div>
+
+            <div class="part result" *ngIf="result$ | async as result">
+                <sfc-message *ngIf="!result.Success" [type]="NotificationType.Failed" [message]="result.Message">
+                </sfc-message>
+            </div>
+
+            <div class="part submit">
+                <sfc-submit-button #submitButton [text]="submitButtonText"
+                    [types]="[ButtonType.Rounded, ButtonType.Filled]" [disabled]="submitDisabled" [form]="form">
+                </sfc-submit-button>
+            </div>
+        </div>
+    </div>
+</div>

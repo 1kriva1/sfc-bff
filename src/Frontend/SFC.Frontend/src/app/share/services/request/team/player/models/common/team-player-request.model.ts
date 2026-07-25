@@ -5,8 +5,8 @@ import { empty } from "ngx-sfc-common";
 export interface ITeamPlayerRequestModel {
     Id: number;
     Status: number;
-    TeamComment: string| empty;
-    PlayerComment: string ;
+    TeamComment: string | empty;
+    PlayerComment: string;
     Team: ITeamModel;
     Player: IPlayerModel;
 }

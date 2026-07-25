@@ -34,10 +34,10 @@ import { ITeamPlayerModel } from "@share/models/team/player/team-player.model";
 import { ITeamPlayerModel as ITeamPlayerServiceModel } from "@share/services/team/player/general/models/common/team-player.model";
 import { ITeamPlayersPreviewModel } from "../../components/preview/team-players-preview.model";
 import { buildViewPlayerAction } from "@share/utils/features/player/player-action.utils";
-import { TeamLocalization } from "../../../../localization/team.localization";
 import { buildRemoveTeamPlayerAction } from "../../../../utils/team-actions.utils";
 import { InviteAction, RequestAction, SchemeAction, TeamAction } from "@share/enums";
 import { buildViewTeamPlayerAction } from "@share/utils";
+import { TeamLocalization } from "@share/localization";
 
 @Component({
     templateUrl: './team-edit-page.component.html',

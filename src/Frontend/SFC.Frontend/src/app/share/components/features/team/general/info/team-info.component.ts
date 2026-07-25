@@ -115,6 +115,8 @@ export class TeamInfoComponent implements OnInit {
 
     if (this.rating > 0) {
       this.avatarBadges = [{ position: AvatarBadgePosition.RightBottom, label: `${this.rating}` }];
+    } else {
+      this.avatarBadges = [];
     }
 
     this.stars = getStars(this.rating, CommonConstants.FULL_PERCENTAGE);

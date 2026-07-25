@@ -1,0 +1,13 @@
+<div class="container" [formGroupName]="GameTeamFilterPart.Inventary">
+    <div class="content">
+        <div class="rows">
+            <div class="row">
+                <div class="column">
+                    <sfc-bubbles-input id="shirts" formControlName="shirts" [items]="shirts"
+                        [label]="Localization.INPUT.SHIRTS.LABEL" [helperText]="Localization.INPUT.SHIRTS.HELPER_TEXT">
+                    </sfc-bubbles-input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

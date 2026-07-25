@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="content">
+        <div class="columns">
+            <div *ngIf="selectColumn || actionsColumn" class="column actions-wrapper">
+                <div *ngIf="selectColumn" class="column select">
+                    <sfc-checkmark [active]="selected" (click)="onSelect()" [type]="CheckmarkType.Circle"
+                        [sfcComponentSize] [customSize]="1.2">
+                    </sfc-checkmark>
+                </div>
+
+                <div *ngIf="actionsColumn" class="column actions">
+                    <sfc-dropdown-menu [items]="viewModel.actions" [bordered]="false" [filled]="true"
+                        [position]="[Position.Bottom, Position.Center]" [sfcComponentSize] [customSize]="1">
+                    </sfc-dropdown-menu>
+                </div>
+            </div>
+
+            <ng-container *ngFor="let column of columns">
+                <ng-container [ngSwitch]="column.field">
+                    <ng-container *ngSwitchCase="Column.Rating">
+                        <div class="column rating">
+                            <sfc-invite-game-team-info [radius]="Constants.LOGO_RADIUS" [logo]="true" [info]="false" [model]="{
+                                    logo: viewModel.logo,
+                                    raiting: viewModel.raiting
+                                }">
+                            </sfc-invite-game-team-info>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="Column.Information">
+                        <div class="column information">
+                            <sfc-invite-game-team-info [radius]="Constants.LOGO_RADIUS" [logo]="false" [info]="true" [model]="{
+                                    name: viewModel.name,
+                                    city: viewModel.city,
+                                    raiting: viewModel.raiting,
+                                    status: data.status
+                                }">
+                            </sfc-invite-game-team-info>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</div>

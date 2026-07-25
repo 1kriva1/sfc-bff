@@ -1,24 +1,27 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { IForm } from "@core/types";
-import { nameof } from "ngx-sfc-common";
+import { nameof, empty } from "ngx-sfc-common";
 import { GameProfileEditPart } from "../../enums/game-profile-edit-part.enum";
 import { getFormGroup } from "@core/utils";
-import { IGameEditFormModel } from "../../../../game-edit-form.model";
 import { IGameInventaryProfileEditFormModel } from "./game-inventary-profile-edit-form.model";
 import { addConditionalValidator } from "ngx-sfc-inputs";
 import { GameInventaryProfileEditConstants } from "./game-inventary-profile-edit.constants";
 import { IGameProfileEditFormModel } from "../../game-profile-edit-form.model";
+import { IGameProfileModel } from "@share/models";
+import { IGameEditFormModel } from "../../../../game-edit-form.model";
 
-export function addGameInventaryProfileEditControl(formBuilder: FormBuilder, form: FormGroup): void {
+export function addGameInventaryProfileEditControl(formBuilder: FormBuilder, form: FormGroup, model: IGameProfileModel | empty = null): void {
+    const formModel: IGameInventaryProfileEditFormModel = mapGameInventaryProfileEditFormModel(model);
+
     const controls: IForm<IGameInventaryProfileEditFormModel> = {
-        shirtsRequired: [null],
-        shirtsCount: [0],
+        shirtsRequired: [formModel.shirtsRequired],
+        shirtsCount: [formModel.shirtsCount],
     };
 
-    const formGroup: FormGroup = formBuilder.group(controls),
+    const inventaryProfileFormGroup: FormGroup = formBuilder.group(controls),
         profileForm: FormGroup = getFormGroup(nameof<IGameEditFormModel>('profile'), form.controls)!;
 
-    profileForm.addControl(GameProfileEditPart.Inventary, formGroup);
+    profileForm.addControl(GameProfileEditPart.Inventary, inventaryProfileFormGroup);
 
     const inventaryProfileForm: FormGroup = getFormGroup(nameof<IGameProfileEditFormModel>('inventary'), profileForm)!;
 
@@ -33,4 +36,11 @@ export function addGameInventaryProfileEditControl(formBuilder: FormBuilder, for
             Validators.max(GameInventaryProfileEditConstants.MAX_SHIRTS_COUNT)
         ]
     );
+}
+
+function mapGameInventaryProfileEditFormModel(model: IGameProfileModel | empty = null): IGameInventaryProfileEditFormModel {
+    return {
+        shirtsRequired: model?.inventary.shirtsRequired!,
+        shirtsCount: model?.inventary.shirtsCount
+    };
 }

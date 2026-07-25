@@ -12,6 +12,8 @@ import { ITeamPlayerExistResponse } from "./models/exist/team-player-exist.respo
 import { IGetTeamPlayersResponse } from "./models/get/get-team-players.response";
 import { IRemoveTeamPlayerRequest } from "./models/remove/remove-team-player.request";
 import { IRemoveTeamPlayerResponse } from "./models/remove/remove-team-player.response";
+import { ITeamPlayerCreatesRequest } from "./models/creates/team-player-creates.request";
+import { ITeamPlayerCreatesResponse } from "./models/creates/team-player-creates.response";
 
 @Injectable({
     providedIn: 'root'
@@ -19,6 +21,21 @@ import { IRemoveTeamPlayerResponse } from "./models/remove/remove-team-player.re
 export class TeamPlayerService {
 
     constructor(private http: HttpClient) { }
+
+    public creates(teamId: number, request: ITeamPlayerCreatesRequest): Observable<ITeamPlayerCreatesResponse> {
+        // return this.http.post<ITeamPlayerCreatesResponse>(
+        //     `${TeamServiceConstants.URI_PART}/${teamId}/${TeamPlayerServiceConstants.URI_PART}`,
+        //     request,
+        //     { context: new HttpContext().set(LOADER, { show: true }) }
+        // );
+
+        return of({
+            TeamPlayers: [],
+            Errors: null,
+            Success: true,
+            Message: 'All ok!'
+        } as ITeamPlayerCreatesResponse);
+    }
 
     public exist(teamId: number, playerId: number, request?: ITeamPlayerExistRequest): Observable<ITeamPlayerExistResponse> {
         return this.http.get<ITeamPlayerExistResponse>(

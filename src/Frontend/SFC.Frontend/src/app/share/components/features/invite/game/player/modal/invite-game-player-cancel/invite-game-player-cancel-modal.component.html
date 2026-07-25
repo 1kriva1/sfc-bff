@@ -1,0 +1,16 @@
+<sfc-modal *sfcModalOpen="InviteTeamPlayerModal.Cancel" [defaultHeaderModel]="headerModel"
+    [defaultFooterModel]="footerModel" [hideOnClickOutside]="true">
+    <ng-template [sfcTemplateReference]="ModalTemplate.Body" let-invite>
+        <div class="body">
+            <fa-icon [icon]="faTriangleExclamation" [sfcComponentSize] [customSize]="3"></fa-icon>
+
+            <h3>{{Localization.MODAL.BODY.TEXT}} <span>{{invite.player.general.firstName}}
+                    {{invite.player.general.lastName}}</span>?</h3>
+
+            <div class="result" *ngIf="result$ | async as result">
+                <sfc-message *ngIf="!result.Success" [type]="NotificationType.Failed" [message]="result.Message">
+                </sfc-message>
+            </div>
+        </div>
+    </ng-template>
+</sfc-modal>
