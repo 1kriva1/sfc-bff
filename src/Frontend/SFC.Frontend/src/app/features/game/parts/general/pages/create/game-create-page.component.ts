@@ -8,7 +8,6 @@ import { faBoxesStacked, faCoins, faFlagCheckered, faInfo, faPeopleGroup } from 
 import { filter, from, map, Observable, switchMap, tap } from "rxjs";
 import { GameCreatePageLocalization } from "./game-create-page.localization";
 import { mapCreateGameRequestAsync, mapCreateGameTeamInvitesRequest } from "./game-create-page.mapper";
-import { GameCreatePageFormModel } from "./game-create-page-form.model";
 import { GameRoute } from "@share/enums";
 import { ICreateGameTeamInvitesRequest, InviteGameTeamService } from "@share/services";
 import { GameService, ICreateGameRequest, ICreateGameResponse } from "@share/services/game";
@@ -20,13 +19,14 @@ import {
     addGameGeneralProfileEditControl,
     addGameInventaryProfileEditControl,
     addGameProfileEditControl,
-    addGameTeamsEditControl,
-    GameFinalEditConstants,
     GameFinancialProfileEditConstants,
     GameGeneralProfileEditConstants,
-    GameInventaryProfileEditConstants,
-    GameTeamsEditConstants
+    GameInventaryProfileEditConstants
 } from "../../components";
+import { GameTeamsEditConstants } from "./components/edit/parts/teams/game-teams-edit.constants";
+import { addGameTeamsEditControl } from "./components/edit/parts/teams/game-teams-edit.utils";
+import { GameFinalEditConstants } from "./components/edit/parts/final/game-final-edit.constants";
+import { IGameCreatePageFormModel } from "./game-create-page-form.model";
 
 @Component({
     templateUrl: './game-create-page.component.html',
@@ -60,39 +60,39 @@ export class GameCreatePageComponent implements OnInit {
 
     public steps: IFormProgressStepModel[] = [
         {
-            key: GameTeamsEditConstants.PROGRESS_KEY,
+            key: GameTeamsEditConstants.Progress.key,
             name: GameCreatePageLocalization.PROGRESS.STEP.TEAMS.NAME,
             icon: faPeopleGroup,
             color: Color.Green_0,
-            command: GameTeamsEditConstants.PROGRESS_CREATE_COMMAND
+            command: GameTeamsEditConstants.Progress.url
         },
         {
-            key: GameGeneralProfileEditConstants.PROGRESS_KEY,
+            key: GameGeneralProfileEditConstants.Progress.key,
             name: GameCreatePageLocalization.PROGRESS.STEP.GENERAL.NAME,
             icon: faInfo,
             color: Color.Blue_0,
-            command: GameGeneralProfileEditConstants.PROGRESS_CREATE_COMMAND
+            command: GameGeneralProfileEditConstants.Progress.url
         },
         {
-            key: GameInventaryProfileEditConstants.PROGRESS_KEY,
+            key: GameInventaryProfileEditConstants.Progress.key,
             name: GameCreatePageLocalization.PROGRESS.STEP.INVENTARY.NAME,
             icon: faBoxesStacked,
             color: Color.Blue_0,
-            command: GameInventaryProfileEditConstants.PROGRESS_CREATE_COMMAND
+            command: GameInventaryProfileEditConstants.Progress.url
         },
         {
-            key: GameFinancialProfileEditConstants.PROGRESS_KEY,
+            key: GameFinancialProfileEditConstants.Progress.key,
             name: GameCreatePageLocalization.PROGRESS.STEP.FINANCIAL.NAME,
             icon: faCoins,
             color: Color.Blue_0,
-            command: GameFinancialProfileEditConstants.PROGRESS_CREATE_COMMAND
+            command: GameFinancialProfileEditConstants.Progress.url
         },
         {
-            key: GameFinalEditConstants.PROGRESS_KEY,
+            key: GameFinalEditConstants.Progress.key,
             name: GameCreatePageLocalization.PROGRESS.STEP.FINAL.NAME,
             icon: faFlagCheckered,
             color: Color.Yellow_0,
-            command: GameFinalEditConstants.PROGRESS_CREATE_COMMAND,
+            command: GameFinalEditConstants.Progress.url,
             actions: {
                 next: {
                     text: GameCreatePageLocalization.PROGRESS.STEP.FINAL.ACTION.NEXT.TEXT,
@@ -106,7 +106,7 @@ export class GameCreatePageComponent implements OnInit {
 
     /* Properties */
 
-    public get value(): GameCreatePageFormModel { return this.form.value; }
+    public get value(): IGameCreatePageFormModel { return this.form.value; }
 
     /* End Properties */
 

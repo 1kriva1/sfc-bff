@@ -50,9 +50,7 @@
 
                   fa-icon {
                     font-size: 1.8em;
-                    transition:
-                      color $transition-duration-default
-                      $transition-timing-function-default;
+                    transition: color $transition-duration-default $transition-timing-function-default;
                   }
                 }
               }
@@ -130,12 +128,7 @@
         .step {
           cursor: default;
 
-          @include step-colors(
-            $color-disabled-default,
-            transparent,
-            $color-disabled-default,
-                        $color-disabled-default
-                    );
+          @include step-colors($color-disabled-default, transparent, $color-disabled-default, $color-disabled-default);
         }
       }
     }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import { map, Observable, of, delay } from 'rxjs';
-import { ILoadContainerParameters, ILoadContainerLoaderResultModel, where, skip, hasItemBy, nameof, CommonConstants, Compare } from 'ngx-sfc-common';
-import { compareThan, IAutoCompleteItemModel, maxArrayLength } from 'ngx-sfc-inputs';
+import { ILoadContainerParameters, ILoadContainerLoaderResultModel, where, skip, hasItemBy, nameof } from 'ngx-sfc-common';
+import { IAutoCompleteItemModel } from 'ngx-sfc-inputs';
 import { CoreConstants } from '@core/constants';
 import { tagMaxLengthValidationMessage } from '@share/utils/validations';
 import { ValidationLocalization } from '@share/localization';
@@ -16,9 +16,7 @@ import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { IGameProfileEditFormModel } from '../../game-profile-edit-form.model';
 import { GameGeneralProfileEditConstants } from './game-general-profile-edit.constants';
 import { getFormGroup } from '@core/utils';
-import { GameProfileEditPart } from '../../enums/game-profile-edit-part.enum';
-import { IForm } from '@core/types';
-import { IGameGeneralProfileEditFormModel } from './game-general-profile-edit-form.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'sfc-game-general-profile-edit',
@@ -52,14 +50,16 @@ export class GameGeneralProfileEditComponent
 
     /* End Fields */
 
-    constructor(private storageService: StorageService, parent: FormGroupDirective, formBuilder: FormBuilder) {
-        super(parent, formBuilder);
+    constructor(
+        private storageService: StorageService,
+        route: ActivatedRoute,
+        parent: FormGroupDirective,
+        formBuilder: FormBuilder) {
+        super(route, parent, formBuilder);
         this.locale = this.storageService.get<Locale>(CoreConstants.LOCALE_KEY, Locale.English)!;
     }
 
     ngOnInit(): void {
-        this.addControl();
-        
         this.generalForm = getFormGroup(nameof<IGameProfileEditFormModel>('general'), this.form.controls)!;
     }
 
@@ -125,21 +125,5 @@ export class GameGeneralProfileEditComponent
                 return data;
             })
         );
-    }
-
-    private addControl(): void {
-        const controls: IForm<IGameGeneralProfileEditFormModel> = {
-            name: [null, [Validators.required, Validators.maxLength(ValidationConstants.MAX_NAME_LENGTH)]],
-            description: [CommonConstants.EMPTY_STRING, [Validators.maxLength(ValidationConstants.MAX_DESCRIPTION_LENGTH)]],
-            tags: [null, [maxArrayLength(ValidationConstants.MAX_TAGS_LENGTH)]],
-            date: [null, [Validators.required]],
-            from: [null, [Validators.required, compareThan(nameof<IGameGeneralProfileEditFormModel>('to'), Compare.Less, true)]],
-            to: [null, [Validators.required, compareThan(nameof<IGameGeneralProfileEditFormModel>('from'), Compare.More, true)]],
-            stadium: [null],
-        };
-
-        const formGroup: FormGroup = this.formBuilder.group(controls);
-
-        this.form.addControl(GameProfileEditPart.General, formGroup);
     }
 }

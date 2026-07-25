@@ -1,6 +1,7 @@
 export {
     // side menu
     setMenuActiveItem,
+    setMenuInvalidItem,
     // tabs
     setTabsSelectedItem,
     setTabsSelectedItemByIds,

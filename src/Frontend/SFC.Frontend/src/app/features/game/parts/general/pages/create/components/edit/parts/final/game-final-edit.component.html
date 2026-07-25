@@ -1,0 +1,27 @@
+<div class="container" [formGroupName]="GameCreatePageEditPart.Teams">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+        [icon]="faQuestionCircle" [tooltip]="Localization.TITLE.TOOLTIP" [sfcComponentSize] [customSize]="1"
+        [delimeter]="true">
+    </sfc-title>
+
+    <div class="content">
+        <div class="parts">
+            <div class="part progress">
+                <sfc-game-progress [value$]="value$"></sfc-game-progress>
+            </div>
+
+            <div class="part tip">
+                <p>{{Localization.TIP}}</p>
+            </div>
+
+            <div class="part delimeter">
+                <sfc-delimeter></sfc-delimeter>
+            </div>
+
+            <div class="part actions">
+                <sfc-form-progress-actions [key]="Constants.Progress.key" [form]="form">
+                </sfc-form-progress-actions>
+            </div>
+        </div>
+    </div>
+</div>

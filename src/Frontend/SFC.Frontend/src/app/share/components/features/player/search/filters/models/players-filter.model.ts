@@ -4,7 +4,7 @@ import { IStatsFilterModel } from "../parts/stats/stats-filter.model";
 
 export interface IPlayersFilterModel {
     name: string | null;
-    general: IGeneralFilterModel;
-    football: IFootballFilterModel;
-    stats: IStatsFilterModel;
+    general?: IGeneralFilterModel;
+    football?: IFootballFilterModel;
+    stats?: IStatsFilterModel;
 }

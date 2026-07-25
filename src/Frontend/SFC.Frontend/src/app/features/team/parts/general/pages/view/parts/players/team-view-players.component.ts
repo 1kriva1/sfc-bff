@@ -23,9 +23,9 @@ import { buildViewPlayerAction, buildViewTeamPlayerAction } from "@share/utils";
 import { IPaginationModel, ISortingModel, empty, ReloadService, SortingDirection, CommonConstants } from "ngx-sfc-common";
 import { IDropdownMenuItemModel, ITableColumnExtendedModel, TableColumnType } from "ngx-sfc-components";
 import { Observable } from "rxjs";
-import { TeamLocalization } from "src/app/features/team/localization";
 import { TeamViewPageConstants } from "../../team-view-page.constants";
 import { TeamViewPlayersLocalization } from "./team-view-players.localization";
+import { TeamLocalization } from "@share/localization";
 
 @Component({
     templateUrl: './team-view-players.component.html',

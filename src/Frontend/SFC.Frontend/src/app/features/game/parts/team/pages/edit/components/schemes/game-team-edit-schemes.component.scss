@@ -1,0 +1,47 @@
+@import "ngx-sfc-common/styles";
+@import "components1";
+@import "page1";
+@import "inputs";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      padding: 1em 0;
+
+      .parts {
+        .part {
+          .part-content {
+            .actions {
+              display: flex;
+              justify-self: flex-end;
+            }
+
+            .filters {
+              form {
+                justify-content: center;
+                flex-direction: column;
+
+                .name {
+                  padding-bottom: 1em;
+                  width: 90%;
+                  margin: 0 auto;
+
+                  @include name-text-input;
+                }
+              }
+            }
+
+            .result {
+              @include page-content-result;
+
+              width: 100%;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

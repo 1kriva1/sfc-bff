@@ -10,7 +10,7 @@
             </sfc-circle>
 
             <ng-container *ngIf="progress$ | async as progress">
-                <sfc-progress-line [sfcShowHideElement]="progress.value"
+                <sfc-progress-line [sfcShowHideElement]="progress.value" [disabled]="pristine"
                     [progress]="progress.progress ? progress.progress.percentage : 0" [hideEnd]="true">
                 </sfc-progress-line>
             </ng-container>

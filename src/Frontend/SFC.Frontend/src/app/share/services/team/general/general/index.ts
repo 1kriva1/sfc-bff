@@ -18,5 +18,5 @@ export { ICreateTeamResponse } from './models/create/create-team.response';
 export { IGetTeamResponse } from './models/get/get-team.response';
 export { IUpdateTeamModel } from './models/update/update-team.model';
 export { IUpdateTeamRequest } from './models/update/update-team.request';
-export { IUpdateTeamResponse } from './models/update/update.-team.response';
+export { IUpdateTeamResponse } from './models/update/update-team.response';
 export { TeamService } from './team.service';

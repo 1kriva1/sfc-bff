@@ -64,7 +64,7 @@ export function mapTeamPredicateMapModel(parameters: IPredicateMapParametersMode
     }
 }
 
-export function buildTeamSearchFilterFormGroup(formBuilder: FormBuilder): FormGroup {
+export function buildTeamSearchFilterFormControls(formBuilder: FormBuilder): IForm<ITeamSearchFilterModel> {
     const generalControls: IForm<ITeamSearchFilterGeneralModel> = buildTeamSearchFilterGeneralFormControls(formBuilder),
         financialControls: IForm<ITeamSearchFilterFinancialModel> = buildTeamSearchFilterFinancialFormControls(),
         inventaryControls: IForm<ITeamSearchFilterInventaryModel> = buildTeamSearchFilterInventaryFormControls();
@@ -76,6 +76,10 @@ export function buildTeamSearchFilterFormGroup(formBuilder: FormBuilder): FormGr
         inventary: formBuilder.group(inventaryControls)
     };
 
-    return formBuilder.group(controls);
+    return controls;
 }
 
+export function buildTeamSearchFilterFormGroup(formBuilder: FormBuilder): FormGroup {
+    const controls: IForm<ITeamSearchFilterModel> = buildTeamSearchFilterFormControls(formBuilder);
+    return formBuilder.group(controls);
+}

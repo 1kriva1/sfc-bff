@@ -1,0 +1,118 @@
+@import "ngx-sfc-common/styles";
+@import "variables1";
+@import "common";
+@import "components1";
+
+:host {
+  .container {
+    .content {
+      .parts {
+        @include center-column;
+
+        .part {
+          &.teams {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+
+            .info {
+              @include center-column;
+
+              min-width: 50%;
+              margin: 0 3em;
+
+              .versus {
+                @include text-bold($color-yellow-0, 2em);
+              }
+
+              .name {
+                @include text-center-bold($color-default, 1em);
+
+                max-width: 20em;
+                overflow-wrap: break-word;
+                margin: 0;
+              }
+
+              .date-time {
+                @include center-column;
+
+                .date {
+                  @include text-bold($color-default, 1em);
+
+                  margin: 0.2em 0;
+
+                  .day {
+                    color: $color-green-1;
+                  }
+                }
+
+                .time {
+                  @include text-bold($color-yellow-0);
+
+                  .from,
+                  .to {
+                    color: $color-8;
+                  }
+                }
+              }
+            }
+          }
+
+          &.tip {
+            @include text-center($color-7, 0.6em);
+
+            max-width: 30%;
+            margin: 1em 0 3em;
+          }
+
+          &.result {
+            &:empty {
+              display: none;
+            }
+          }
+
+          &.submit {
+            width: 20%;
+            margin: 1em 0 2em;
+
+            sfc-submit-button {
+              @include button-inner(false);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.game-status-0 {
+    .container {
+      .content {
+        .parts {
+          .part {
+            &.teams {
+              .info {
+                @include status($game-status-new-color);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.game-status-1 {
+    .container {
+      .content {
+        .parts {
+          .part {
+            &.teams {
+              .info {
+                @include status($game-status-upcoming-color);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

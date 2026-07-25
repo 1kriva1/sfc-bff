@@ -1,0 +1,79 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+@import "components1";
+@import "page1";
+@import "inputs";
+
+:host {
+  .container {
+    .content {
+      padding: 2em 0;
+
+      .parts {
+        @include center-column;
+
+        .part {
+          @include center;
+
+          align-items: baseline;
+          justify-content: space-evenly;
+          width: 100%;
+
+          &.players {
+            @include center-column;
+
+            .filters {
+              width: 90%;
+              margin: 1em 0;
+
+              form {
+                justify-content: center;
+                flex-direction: column;
+
+                .name {
+                  padding-bottom: 1em;
+                  width: 90%;
+                  margin: 0 auto;
+
+                  @include name-text-input;
+                }
+              }
+            }
+
+            .tables {
+              display: flex;
+              align-items: baseline;
+              justify-content: center;
+              gap: 2em;
+              width: 100%;
+
+              .available,
+              .current {
+                width: 100%;
+              }
+
+              .actions {
+                @include center-column;
+
+                .tip {
+                  @include text-center($color-7, 0.6em);
+
+                  max-width: 80%;
+                  margin: 1em 0;
+                }
+              }
+            }
+          }
+
+          &.delimeter {
+            margin: 0 0 1em;
+
+            sfc-delimeter {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

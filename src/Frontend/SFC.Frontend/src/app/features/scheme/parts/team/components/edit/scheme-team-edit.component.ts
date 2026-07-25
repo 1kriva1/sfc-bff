@@ -4,9 +4,9 @@ import { BaseErrorResponse } from "@core/models";
 import { EnumService } from "@share/services";
 import { IFormationEnumModel } from "@share/services/enum/models/enum/formation-enum.model";
 import { Observable } from "rxjs";
-import { getFormationControlChanges } from "../../utils/scheme-team-form.utils";
 import { ISchemeTeamEditFormModel } from "./scheme-team-edit-form.model";
 import { SchemeTeamEditPart } from "./scheme-team-edit-part.enum";
+import { getFormationControlChanges } from "../../../../components/edit/parts/formation/scheme-formation-edit.utils";
 
 @Directive()
 export abstract class SchemeTeamEditComponent<TFormValue extends ISchemeTeamEditFormModel, TResponse extends BaseErrorResponse> {

@@ -7,6 +7,22 @@ export {
 } from './invite/team-player-invite.mapper';
 
 export {
+    mapInviteGamePlayerModel
+} from './invite/invite-game-player.mapper';
+
+export {
+    mapInviteGameTeamModel
+} from './invite/invite-game-team.mapper';
+
+export {
+    mapRequestGamePlayerModel
+} from './request/request-game-player.mapper';
+
+export {
+    mapRequestGameTeamModel
+} from './request/request-game-team.mapper';
+
+export {
     mapTeamPlayerRequestModel
 } from './request/team-player-request.mapper';
 
@@ -16,7 +32,11 @@ export {
 
 export {
     mapTeamSchemeModel
-} from './scheme/team-scheme.mapper';
+} from './scheme/scheme-team.mapper';
+
+export {
+    mapSchemeGameTeamModel
+} from './scheme/scheme-game-team.mapper';
 
 export {
     mapTeamModel
@@ -34,6 +54,8 @@ export {
 export {
     mapTeamGameStatisticModel
 } from './team/game/team-game-statistic.mapper';
+
+export * from './game';
 
 export {
     mapEnum,

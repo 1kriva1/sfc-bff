@@ -40,8 +40,8 @@
                 <sfc-delimeter></sfc-delimeter>
             </div>
 
-            <div class="part actions">
-                <sfc-form-progress-actions [key]="Constants.PROGRESS_KEY" [form]="inventaryForm">
+            <div class="part actions" *ngIf="!model?.game">
+                <sfc-form-progress-actions [key]="Constants.Progress.key" [form]="inventaryForm">
                 </sfc-form-progress-actions>
             </div>
         </div>

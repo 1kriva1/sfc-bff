@@ -1,0 +1,46 @@
+<div class="container">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+        [tooltip]="Localization.TITLE.TOOLTIP" [icon]="faQuestionCircle" [sfcComponentSize] [customSize]="1.2">
+    </sfc-title>
+
+    <div class="content">
+        <div class="parts">
+            <div class="part teams" *ngIf="teams$ | async as teams">
+                <div class="team first">
+                    <sfc-team-info [model]="teams.teamA" [direction]="Direction.Vertical"
+                        [radius]="Constants.TEAM_INFO_AVATAR_RADIUS" [sfcComponentSize] [customSize]="1.3">
+                    </sfc-team-info>
+                </div>
+
+                <div class="info"
+                    *ngIf="{ name: name$ | async, date: date$ | async, from: from$ | async, to: to$ | async} as vm">
+                    <span class="versus">vs</span>
+
+                    <p class="date-time">
+                        <span class="date">{{vm.date}}</span>
+                        <span class="time">
+                            <span class="from">{{CoreLocalization.From}}:</span> {{vm.from}} - <span
+                                class="to">{{CoreLocalization.To}}:</span>
+                            {{vm.to}}
+                        </span>
+                    </p>
+
+                    <h3 class="name">{{vm.name}}</h3>
+
+                    <sfc-status [label]="gameNewStatus.value"></sfc-status>
+                </div>
+
+                <div class="team second">
+                    <sfc-team-info [model]="teams.teamB" [direction]="Direction.Vertical"
+                        [radius]="Constants.TEAM_INFO_AVATAR_RADIUS" [sfcComponentSize] [customSize]="1.3">
+                    </sfc-team-info>
+                </div>
+            </div>
+
+            <div class="part tip">
+                <span>{{Localization.TIP}}</span>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -6,3 +6,4 @@ export * from './team';
 export * from './invite';
 export * from './request';
 export * from './scheme';
+export * from './game';

@@ -1,0 +1,23 @@
+@import "ngx-sfc-common/styles";
+
+:host {
+  .container {
+    .content {
+      .link {
+        transition: color $transition-duration-default $transition-timing-function-default;
+        cursor: pointer;
+
+        span {
+          font-weight: bold;
+          color: $color-blue-0;
+          font-size: 1em;
+          padding-left: 0.5em;
+        }
+
+        &:hover {
+          color: $color-blue-0;
+        }
+      }
+    }
+  }
+}

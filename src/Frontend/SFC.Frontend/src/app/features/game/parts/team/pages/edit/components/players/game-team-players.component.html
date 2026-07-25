@@ -1,0 +1,62 @@
+<div class="container">
+    <sfc-title [label]="'Localization.TITLE.LABEL'" [description]="'Localization.TITLE.DESCRIPTION'"
+        [icon]="faQuestionCircle" [tooltip]="'Localization.TITLE.TOOLTIP'" [sfcComponentSize] [customSize]="1"
+        [delimeter]="true">
+    </sfc-title>
+
+    <div class="content">
+        <div class="parts">
+            <div class="part players">
+                <div class="filters">
+                    <form [formGroup]="predicateForm" autocomplete="off">
+                        <div class="name">
+                            <sfc-text-input id="name" formControlName="name" [sfcFocusInput]="false"
+                                [showPlaceholderOnFocus]="true" [label]="CommonConstants.EMPTY_STRING"
+                                [placeholder]="'Type player name'" [bordered]="false" [sfcComponentSize]
+                                [customSize]="2">
+                            </sfc-text-input>
+
+                            <sfc-delimeter></sfc-delimeter>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="types">
+                    <form [formGroup]="form" autocomplete="off">
+                        <sfc-bubbles-input id="source" formControlName="source" [items]="sources"
+                            [allowEmptyValue]="false" [multiple]="false" [helperText]="'Choose players source'"
+                            (changeValue)="onSourceChange()">
+                        </sfc-bubbles-input>
+                    </form>
+                </div>
+
+                <div class="tables">
+                    <div class="available">
+                        <sfc-game-team-players-game *ngIf="form.value.source === GameTeamPlayersSource.Game"
+                            [filterForm]="predicateForm" [game]="model.game" (add)="onAddPlayer($event)">
+                        </sfc-game-team-players-game>
+
+                        <sfc-game-team-players-team *ngIf="form.value.source === GameTeamPlayersSource.Team"
+                            [filterForm]="predicateForm" [model]="model" (add)="onAddPlayer($event)">
+                        </sfc-game-team-players-team>
+                    </div>
+
+                    <div class="actions">
+                        <sfc-button [iconBefore]="faAnglesLeft" [iconAfter]="faAnglesRight" [disabled]="actionDisabled"
+                            [types]="[ButtonType.Circled]" [sfcComponentSize] [customSize]="0.7"
+                            (click)="togglePlayers()">
+                        </sfc-button>
+
+                        <p class="tip">{{'Move players from left side to the right if you want to add them to your team'}}</p>
+                    </div>
+
+                    <div class="current">
+                        <sfc-game-team-players-current [filterForm]="predicateForm" [model]="model"
+                            (remove)="onRemovePlayer($event)">
+                        </sfc-game-team-players-current>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

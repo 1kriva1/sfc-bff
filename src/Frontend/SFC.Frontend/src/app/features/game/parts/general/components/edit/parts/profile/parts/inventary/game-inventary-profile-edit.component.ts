@@ -13,6 +13,7 @@ import { IGameProfileEditFormModel } from '../../game-profile-edit-form.model';
 import { GameInventaryProfileEditConstants } from './game-inventary-profile-edit.constants';
 import { maxValidationMessage, minValidationMessage } from '@share/utils';
 import { ValidationLocalization } from '@share/localization';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'sfc-game-inventary-profile-edit',
@@ -52,8 +53,8 @@ export class GameInventaryProfileEditComponent
 
     /* End Observables */
 
-    constructor(parent: FormGroupDirective, formBuilder: FormBuilder) {
-        super(parent, formBuilder);
+    constructor(route: ActivatedRoute, parent: FormGroupDirective, formBuilder: FormBuilder) {
+        super(route, parent, formBuilder);
     }
 
     ngOnInit(): void {

@@ -1,0 +1,8 @@
+{
+    "game.player.pages.create.route.title": "Game player invite creation",
+    "game.player.pages.create.title.label": "Create new game player invite",
+    "game.player.pages.create.title.description": "At this page you can create new invite to join game for player.",
+    "game.player.pages.create.title.tooltip": "This step not required a lot of inputs. Just choose player and describe your invitation.",    
+    "game.player.pages.create.notification.created.title": "Game player invite successfully created!",
+    "game.player.pages.create.notification.created.value": "If player accept your invitation, he/she will join your game."  
+}

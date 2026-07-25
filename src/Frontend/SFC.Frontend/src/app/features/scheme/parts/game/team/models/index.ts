@@ -1,0 +1,1 @@
+export { ISchemeGameTeamResolveModel } from './scheme-game-team-resolve.model';

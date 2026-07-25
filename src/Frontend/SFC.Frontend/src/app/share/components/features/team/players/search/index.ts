@@ -1,8 +1,8 @@
 // search filters
-export { TeamPlayerSearchFilterGeneralComponent } from './filters/parts/general/team-player-search-filter-general.component'
-export { ITeamPlayersFilterModel } from './filters/models/team-player-search-filter.model';
+export { TeamPlayerSearchFilterGeneralComponent } from './filters/parts/general/team-player-search-filter-general.component';
 export { TeamPlayerSearchFilterLocalization } from './filters/team-player-search-filter.localization';
 export { TeamPlayerSearchFilterPart } from './filters/enums/team-player-search-filter-part.enum';
+export { ITeamPlayerSearchFilterModel, ITeamPlayersFilterModel } from './filters/models/team-player-search-filter.model';
 export { mapFindTeamPlayersRequest } from './filters/team-player-search-filter.mapper';
 export { buildTeamPlayerSearchFilterFormGroup, mapTeamPlayerPredicateMapModel } from './filters/team-player-search-filter.utils';
 // search content

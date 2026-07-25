@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="content">
+        <div class="parts">
+            <div class="part">
+                <div class="part-content">
+                    <form [formGroup]="predicateForm" autocomplete="off">
+                        <div class="name" [formGroupName]="GameTeamSearchFilterPart.Team">
+                            <sfc-text-input id="name" formControlName="name" [sfcFocusInput]="false"
+                                [showPlaceholderOnFocus]="true" [label]="CommonConstants.EMPTY_STRING"
+                                [placeholder]="Localization.INPUT.NAME.PLACEHOLDER" [bordered]="false"
+                                [sfcComponentSize] [customSize]="2">
+                            </sfc-text-input>
+
+                            <sfc-delimeter></sfc-delimeter>
+                        </div>
+
+                        <div class="statuses" [formGroupName]="GameTeamSearchFilterPart.GameTeam">
+                            <div [formGroupName]="GameTeamFilterPart.General">
+                                <sfc-bubbles-input id="statuses" formControlName="statuses" [items]="statuses"
+                                    [multiple]="true" [helperText]="'Choose game team status'">
+                                </sfc-bubbles-input>
+                            </div>
+                        </div>
+
+                        <div class="main">
+                            <div class="filters">
+                                <sfc-collapse-expand-container [expand]="true"
+                                    [labelExpand]="Localization.FILTERS.GENERAL"
+                                    [labelCollapse]="Localization.FILTERS.GENERAL" [delimeter]="true">
+                                    <sfc-game-team-search-filter-general></sfc-game-team-search-filter-general>
+                                </sfc-collapse-expand-container>
+
+                                <sfc-collapse-expand-container [expand]="false"
+                                    [labelExpand]="Localization.FILTERS.FINANCIAL"
+                                    [labelCollapse]="Localization.FILTERS.FINANCIAL" [delimeter]="true">
+                                    <sfc-game-team-search-filter-financial></sfc-game-team-search-filter-financial>
+                                </sfc-collapse-expand-container>
+
+                                <sfc-collapse-expand-container [expand]="false"
+                                    [labelExpand]="Localization.FILTERS.INVENTARY"
+                                    [labelCollapse]="Localization.FILTERS.INVENTARY" [delimeter]="true">
+                                    <sfc-game-team-search-filter-inventary></sfc-game-team-search-filter-inventary>
+                                </sfc-collapse-expand-container>
+                            </div>
+
+                            <div class="result">
+                                <div class="filters-preview">
+                                    <sfc-filter-tags [metadata$]="metadata$" [form]="predicateForm" [sfcComponentSize]
+                                        [customSize]="0.8"></sfc-filter-tags>
+                                </div>
+
+                                <div class="table">
+                                    <sfc-table [columns]="columns" [predicate$]="predicate$" [loader]="loader"
+                                        [pagination]="TableConstants.PAGINATION" [position]="Position.Center"
+                                        [showColumns]="true" [columnsToggle]="true" [showTotal]="true"
+                                        [showLoading]="showLoading" [selectable]="true" [selectMultiple]="false"
+                                        [paginationCount]="TableConstants.PAGINATION_COUNT" [paginationLimits]="true"
+                                        [showColumnsLabel]="TableLocalization.TABLE.COLUMNS_SHOW_LABEL"
+                                        [hideColumnsLabel]="TableLocalization.TABLE.COLUMNS_HIDE_LABEL"
+                                        [totalLabel]="TableLocalization.TABLE.TOTAL_LABEL"
+                                        [dataListLabel]="TableLocalization.TABLE.DATA_LIST_LABEL"
+                                        [dataCardsLabel]="TableLocalization.TABLE.DATA_CARDS_LABEL"
+                                        [notFoundLabel]="TableLocalization.TABLE.NOT_FOUND_LABEL"
+                                        (selected)="onSelect($event)">
+                                        <ng-template [sfcTemplateReference]="TableTemplate.Row" let-row>
+                                            <sfc-game-team-search-table-row [model]="row.model" [value]="value"
+                                                [selectOnClick]="true" [columns]="row.columns" [sfcComponentSize]
+                                                [customSize]="0.8">
+                                            </sfc-game-team-search-table-row>
+                                        </ng-template>
+
+                                        <ng-template [sfcTemplateReference]="TableTemplate.Card" let-card>
+                                            <sfc-game-team-search-table-card [model]="card.model" [value]="value"
+                                                [selectOnClick]="true" [columns]="card.columns" [sfcComponentSize]
+                                                [customSize]="0.8">
+                                            </sfc-game-team-search-table-card>
+                                        </ng-template>
+                                    </sfc-table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

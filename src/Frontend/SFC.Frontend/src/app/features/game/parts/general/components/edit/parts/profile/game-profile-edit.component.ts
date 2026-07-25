@@ -3,6 +3,7 @@ import { ControlContainer, FormBuilder, FormGroupDirective } from '@angular/form
 import { BaseErrorResponse } from '@core/models';
 import { IGameEditFormModel } from '../../game-edit-form.model';
 import { GameEditComponent } from '../../game-edit.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'sfc-game-profile-edit',
@@ -12,7 +13,7 @@ import { GameEditComponent } from '../../game-edit.component';
 export class GameProfileEditComponent<TFormValue extends IGameEditFormModel, TResponse extends BaseErrorResponse>
     extends GameEditComponent<TFormValue, TResponse> {
 
-    constructor(parent: FormGroupDirective, formBuilder: FormBuilder) {
-        super(parent, formBuilder);
+    constructor(route: ActivatedRoute, parent: FormGroupDirective, formBuilder: FormBuilder) {
+        super(route, parent, formBuilder);
     }
 }

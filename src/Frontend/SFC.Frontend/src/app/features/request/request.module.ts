@@ -15,15 +15,34 @@ import {
     RequestTeamPlayerViewPageComponent
 } from "./parts/team/player";
 import { RequestRoutingModule } from "./request-routing.module";
+import {
+    RequestGameTeamCreatePageComponent,
+    RequestGameTeamEditPageComponent,
+    RequestGameTeamViewPageComponent
+} from "./parts/game/team";
+import {
+    RequestGamePlayerCreatePageComponent,
+    RequestGamePlayerEditPageComponent,
+    RequestGamePlayerViewPageComponent
+} from "./parts/game/player";
 
 @NgModule({
     declarations: [
+        // request/team/player
         RequestTeamPlayerPreviewComponent,
         RequestTeamPlayerViewFootballProfileComponent,
         RequestTeamPlayerViewGeneralProfileComponent,
         RequestTeamPlayerViewMainComponent,
         RequestTeamPlayerViewProfileComponent,
-        RequestTeamPlayerViewPageComponent
+        RequestTeamPlayerViewPageComponent,
+        // request/team/player
+        RequestGamePlayerCreatePageComponent,
+        RequestGamePlayerEditPageComponent,
+        RequestGamePlayerViewPageComponent,
+        // request/team/team
+        RequestGameTeamCreatePageComponent,
+        RequestGameTeamEditPageComponent,
+        RequestGameTeamViewPageComponent
     ],
     imports: [
         CommonModule,

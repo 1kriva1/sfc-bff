@@ -13,6 +13,7 @@ import { GameFinancialProfileEditLocalization } from './game-financial-profile-e
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { IGameProfileEditFormModel } from '../../game-profile-edit-form.model';
 import { GameFinancialProfileEditConstants } from './game-financial-profile-edit.constants';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'sfc-game-financial-profile-edit',
@@ -52,8 +53,8 @@ export class GameFinancialProfileEditComponent
 
     /* End Observables */
 
-    constructor(parent: FormGroupDirective, formBuilder: FormBuilder) {
-        super(parent, formBuilder);
+    constructor(route: ActivatedRoute, parent: FormGroupDirective, formBuilder: FormBuilder) {
+        super(route, parent, formBuilder);
     }
 
     ngOnInit(): void {

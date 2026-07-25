@@ -1,5 +1,6 @@
 export {
-    getTeamRaiting
+    getTeamRaiting,
+    getTeamTemporaryStatusEnum
 } from './team.utils';
 
 export {

@@ -8,25 +8,25 @@
   .container {
     .content {
       .parts {
-        @include wrap-column;
+        @include wrap-column(1em);
 
         .part {
-          @include wrap-column;
+          @include wrap-column(1em);
 
           .part-content {
             .rows {
-              @include wrap-column;
+              @include wrap-column(1em);
 
               .row {
                 @include center;
 
                 .columns {
-                  @include wrap-row;
+                  @include wrap-row(1em);
 
                   width: 100%;
 
                   .column {
-                    @include wrap-column;
+                    @include wrap-column(1em);
                     @include panel;
 
                     flex-grow: 1;

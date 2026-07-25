@@ -5,7 +5,7 @@ import { IFormProgressStepModel } from './form-progress-step.model';
 import { FormProgressStepConstants } from './form-progress-step.constants';
 import { Router } from '@angular/router';
 import { AbstractControl, FormGroup } from '@angular/forms';
-import { EMPTY, Observable, of, startWith } from 'rxjs';
+import { EMPTY, map, Observable, of, startWith } from 'rxjs';
 import { IMapProgressModel, mapProgress } from '../../../../utils';
 import { hasInvalidAndDirtyControl } from '@core/utils';
 import { FormProgressService } from '../../form-progress.service';
@@ -80,9 +80,15 @@ export class FormProgressStepComponent implements OnInit {
   constructor(private router: Router, public formProgressService: FormProgressService) { }
 
   ngOnInit(): void {
-    this.progress$ = this.control
-      ? mapProgress(this.control.valueChanges.pipe(startWith(this.control.value)))
-      : of({} as IMapProgressModel);
+    if (this.control) {
+      const value$ = this.control.valueChanges.pipe(startWith(this.control.value));
+
+      this.progress$ = this.model.mapProgress
+        ? value$.pipe(map((value: any) => this.model.mapProgress!(value)))
+        : mapProgress(value$);
+    } else {
+      this.progress$ = of({} as IMapProgressModel);
+    }
 
     this.selected = this.model.command == this.router.url;
   }

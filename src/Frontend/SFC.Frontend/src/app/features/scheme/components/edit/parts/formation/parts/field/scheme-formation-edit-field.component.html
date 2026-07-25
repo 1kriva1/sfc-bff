@@ -1,0 +1,27 @@
+<div class="container" [formGroupName]="SchemeFormationEditPart.Field">
+    <div class="content">
+        <div class="rows" [formArrayName]="SchemeFormationFieldEditPart.Players" *ngIf="field$ | async as field">
+            <div class="row" *ngFor="let line of field.players; let lineIndex = index">
+                <div class="column" *ngFor="let player of line; let playerIndex = index;"
+                    [formGroupName]="getPlayerGroupName(playerIndex, lineIndex, field.players)">
+                    <sfc-avatar-input id="player" formControlName="player"
+                        [headerLabel]="buildPlayerAvatarHeaderLabel(player.position.formationPosition)"
+                        [avatarModel]="buildPlayerAvatarInputModel(player.player)" [clear]="true"
+                        [helperText]="player.position.formationPosition.value" [icon]="faUserPlus"
+                        [hideOnClickOutside]="false" [stars]="!!player.player" [defaultAvatar]="CoreConstants.DEFAULT_AVATAR_PATH"
+                        [applyLabel]="CoreLocalization.OK" [cancelLabel]="CoreLocalization.CANCEL"
+                        [radius]="Constants.INPUT.PLAYER.AVATAR_RADIUS"
+                        [progressColor]="Constants.INPUT.PLAYER.PROGRESS_COLOR"
+                        (changeValueModel)="onChangePlayer($event, player)">
+                        <ng-template [sfcTemplateReference]="AvatarInputTemplate.ModalBody" let-context>
+                            <sfc-avatar-input-team-players-modal-body [value]="context.value" [selectOnClick]="true"
+                                [excludePlayerIds]="schemeFormationEditFieldService.selectedPlayerIds"
+                                [teamId]="teamId" (selectPlayer)="onSelectPlayer($event, context)">
+                            </sfc-avatar-input-team-players-modal-body>
+                        </ng-template>
+                    </sfc-avatar-input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

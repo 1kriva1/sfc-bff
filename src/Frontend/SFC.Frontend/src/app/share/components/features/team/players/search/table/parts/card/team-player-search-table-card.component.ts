@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { TableSelectService } from "ngx-sfc-components";
 import { BaseTableContentComponent } from "../../../../../../../extends/components/table/parts/content/base-table-content.component";
 import { ITeamPlayerSearchTableModel } from "../../team-player-search-table.model";
@@ -19,6 +19,11 @@ export class TeamPlayerSearchTableCardComponent
     // component
     Constants = TeamPlayerSearchTableCardConstants;
     Column = TeamPlayerSearchTableColumn;
+
+    @Input()
+    radius: number = TeamPlayerSearchTableCardConstants.LOGO_RADIUS;
+
+    protected override get id(): number { return this.data.id; }
 
     constructor(selectedService: TableSelectService) {
         super(selectedService);

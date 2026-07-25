@@ -1,0 +1,1 @@
+export { SchemeGameTeamEditMainComponent } from './scheme-game-team-edit-main.component'

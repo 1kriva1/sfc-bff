@@ -1,0 +1,1 @@
+export { InviteGameRoutes } from './invite-game-routing.module';

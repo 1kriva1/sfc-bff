@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="content">
+        <div class="items" *ngIf="progress$ | async as progress">
+            <div class="item">
+                <sfc-progress-line [labelStart]="Localization.PROGRESS.GENERAL.LABEL_START"
+                    [progress]="progress.general.progress.percentage" [labelSuffix]="CommonConstants.PERCENTAGE_SYMBOL">
+                </sfc-progress-line>
+                <span>{{progress.general.progress.filled}} {{Localization.OF}}
+                    {{progress.general.progress.properties}} {{Localization.FILLED}}</span>
+            </div>
+
+            <div class="item">
+                <sfc-progress-line [labelStart]="Localization.PROGRESS.INVENTARY.LABEL_START"
+                    [progress]="progress.inventary.progress.percentage"
+                    [labelSuffix]="CommonConstants.PERCENTAGE_SYMBOL">
+                </sfc-progress-line>
+                <span>{{progress.inventary.progress.filled}} {{Localization.OF}}
+                    {{progress.inventary.progress.properties}} {{Localization.FILLED}}</span>
+            </div>
+
+            <div class="item">
+                <sfc-progress-line [labelStart]="Localization.PROGRESS.PLAYERS.LABEL_START"
+                    [progress]="progress.players.progress.percentage" [labelSuffix]="CommonConstants.PERCENTAGE_SYMBOL">
+                </sfc-progress-line>
+                <span>{{progress.players.progress.filled}} {{'players were added to game team'}}</span>
+            </div>
+        </div>
+
+    </div>
+</div>

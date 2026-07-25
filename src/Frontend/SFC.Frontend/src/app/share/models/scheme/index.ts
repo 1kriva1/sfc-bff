@@ -5,4 +5,6 @@ export {
     ISchemeTeamGeneralProfileModel,
     ISchemeTeamModel,
     ISchemeTeamProfileModel
-} from './scheme-team.model';
+} from './team/scheme-team.model';
+
+export * from './game';

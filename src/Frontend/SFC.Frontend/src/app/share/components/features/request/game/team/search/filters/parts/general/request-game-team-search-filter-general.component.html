@@ -1,0 +1,14 @@
+<div class="container" [formGroupName]="RequestGameTeamFilterPart.General">
+    <div class="content">
+        <div class="rows">
+            <div class="row">
+                <div class="column">
+                    <sfc-bubbles-input id="statuses" formControlName="statuses" [items]="statuses" [multiple]="true"
+                        [label]="Localization.INPUT.STATUSES.LABEL"
+                        [helperText]="Localization.INPUT.STATUSES.HELPER_TEXT">
+                    </sfc-bubbles-input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

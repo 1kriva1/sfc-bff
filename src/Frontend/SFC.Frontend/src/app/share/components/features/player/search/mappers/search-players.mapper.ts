@@ -42,51 +42,51 @@ export function mapFindPlayersRequest(
     }
 }
 
-export function mapFindPlayersFilterModel(model: IPlayersFilterModel, excludePlayerIds: number[] = []): IFindPlayersFilterModel {
+export function mapFindPlayersFilterModel(model?: IPlayersFilterModel | empty, excludePlayerIds: number[] = []): IFindPlayersFilterModel {
     return {
         ExcludeIds: excludePlayerIds,
         Profile: {
             General: ({
                 Availability: {
-                    Days: model.general?.availability.days,
-                    From: toEnglishLocaleTimeString(model.general?.availability.from),
-                    To: toEnglishLocaleTimeString(model.general?.availability.to)
+                    Days: model?.general?.availability.days || null,
+                    From: toEnglishLocaleTimeString(model?.general?.availability.from),
+                    To: toEnglishLocaleTimeString(model?.general?.availability.to)
                 },
-                City: model.general?.city,
-                Name: model.name,
-                FreePlay: model.general?.freePlay,
-                Tags: model.general?.tags,
-                HasPhoto: model.general?.hasPhoto,
-                Years: mapLimitSearchModel(model.general?.years)
+                City: model?.general?.city,
+                Name: model?.name!,
+                FreePlay: model?.general?.freePlay,
+                Tags: model?.general?.tags,
+                HasPhoto: model?.general?.hasPhoto,
+                Years: mapLimitSearchModel(model?.general?.years)
             }),
             Football: {
-                GameStyles: model.football?.gameStyles,
-                Height: mapLimitSearchModel(model.football?.height),
-                Weight: mapLimitSearchModel(model.football?.weight),
-                PhysicalCondition: model.football?.physicalCondition,
-                Skill: model.football?.skill,
-                Positions: model.football?.positions,
-                WorkingFoot: model.football?.workingFoot
+                GameStyles: model?.football?.gameStyles,
+                Height: mapLimitSearchModel(model?.football?.height),
+                Weight: mapLimitSearchModel(model?.football?.weight),
+                PhysicalCondition: model?.football?.physicalCondition,
+                Skill: model?.football?.skill,
+                Positions: model?.football?.positions,
+                WorkingFoot: model?.football?.workingFoot
             }
         },
         Stats: {
-            Total: mapLimitSearchModel(model.stats?.total),
+            Total: mapLimitSearchModel(model?.stats?.total),
             Mental: {
-                From: model.stats?.mental?.from,
-                To: model.stats?.mental?.to,
+                From: model?.stats?.mental?.from,
+                To: model?.stats?.mental?.to,
                 Skill: 1
             },
             Physical: {
-                From: model.stats?.physical?.from,
-                To: model.stats?.physical?.to,
+                From: model?.stats?.physical?.from,
+                To: model?.stats?.physical?.to,
                 Skill: 0
             },
             Skill: {
-                From: model.stats?.skill?.from,
-                To: model.stats?.skill?.to,
+                From: model?.stats?.skill?.from,
+                To: model?.stats?.skill?.to,
                 Skill: 2
             },
-            Raiting: model.stats?.raiting
+            Raiting: model?.stats?.raiting || null
         }
     };
 }

@@ -1,0 +1,34 @@
+@import "ngx-sfc-common/styles";
+@import "mixins1";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      @include center;
+
+      .items {
+        @include center-column;
+
+        width: 100%;
+
+        .item {
+          @include center-column;
+
+          width: 100%;
+          padding: 0.5em 0;
+
+          span {
+            @include theme-color($color-7, $color-5);
+
+            width: 100%;
+            font-size: 0.7em;
+            padding-top: 0.5em;
+            text-align: start;
+          }
+        }
+      }
+    }
+  }
+}

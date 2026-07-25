@@ -5,8 +5,8 @@ export { TeamSearchFilterInventaryComponent } from './filters/parts/inventary/te
 export { ITeamSearchFilterModel } from './filters/team-search-filter.model';
 export { TeamSearchFilterLocalization } from './filters/team-search-filter.localization';
 export { TeamSearchFilterPart } from './filters/team-search-filter-part.enum';
-export { mapFindTeamsRequest } from './filters/team-search-filter.mapper';
-export { mapTeamPredicateMapModel, buildTeamSearchFilterFormGroup } from './filters/team-search-filter.utils';
+export { mapFindTeamsRequest, mapFindTeamsFilterModel } from './filters/team-search-filter.mapper';
+export { mapTeamPredicateMapModel, buildTeamSearchFilterFormGroup, buildTeamSearchFilterFormControls } from './filters/team-search-filter.utils';
 // search content
 export { TeamSearchTableRowComponent } from './table/parts/row/team-search-table-row.component';
 export { TeamSearchTableCardComponent } from './table/parts/card/team-search-table-card.component';

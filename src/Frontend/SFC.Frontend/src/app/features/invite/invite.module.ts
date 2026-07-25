@@ -21,9 +21,20 @@ import {
     InviteTeamPlayerInformationProgressComponent,
     InviteTeamPlayerPreviewComponent
 } from "./parts/team/player";
+import {
+    InviteGamePlayerCreatePageComponent,
+    InviteGamePlayerEditPageComponent,
+    InviteGamePlayerViewPageComponent
+} from "./parts/game/player";
+import {
+    InviteGameTeamCreatePageComponent,
+    InviteGameTeamEditPageComponent,
+    InviteGameTeamViewPageComponent
+} from "./parts/game/team";
 
 @NgModule({
     declarations: [
+        // invite/team/player
         InviteTeamPlayerCreatePageComponent,
         InviteTeamPlayerMainEditComponent,
         InviteTeamPlayerProfileEditComponent,
@@ -35,7 +46,15 @@ import {
         InviteTeamPlayerViewGeneralProfileComponent,
         InviteTeamPlayerEditPageComponent,
         InviteTeamPlayerInformationProgressComponent,
-        InviteTeamPlayerPreviewComponent
+        InviteTeamPlayerPreviewComponent,
+        // invite/team/player
+        InviteGamePlayerCreatePageComponent,
+        InviteGamePlayerEditPageComponent,
+        InviteGamePlayerViewPageComponent,
+        // invite/team/team
+        InviteGameTeamCreatePageComponent,
+        InviteGameTeamEditPageComponent,
+        InviteGameTeamViewPageComponent
     ],
     imports: [
         CommonModule,

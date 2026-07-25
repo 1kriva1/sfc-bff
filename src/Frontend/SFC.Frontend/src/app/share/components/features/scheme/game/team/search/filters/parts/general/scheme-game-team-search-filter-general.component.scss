@@ -1,0 +1,17 @@
+@import "common";
+
+:host {
+  .container {
+    .content {
+      .rows {
+        .row {
+          @include row;
+
+          .column {
+            @include column;
+          }
+        }
+      }
+    }
+  }
+}

@@ -3,7 +3,6 @@ export { SchemeTeamProfileEditComponent } from "./edit/profile/scheme-team-profi
 export { SchemeTeamProfileEditRoute } from "./edit/profile/enums/scheme-team-profile-edit-route.enum";
 export { SchemeTeamProfileGeneralEditComponent } from "./edit/profile/parts/general/scheme-team-profile-general-edit.component";
 export { SchemeTeamFormationEditComponent } from "./edit/formation/scheme-team-formation-edit.component";
-export { SchemeTeamFormationEditFieldComponent } from "./edit/formation/parts/field/scheme-team-formation-edit-field.component";
 export { SchemeTeamInformationProgressComponent } from "./progress/information/scheme-team-information-progress.component";
 export { SchemeTeamFormationProgressComponent } from "./progress/formation/scheme-team-formation-progress.component";
 export { SchemeTeamPreviewComponent } from "./preview/scheme-team-preview.component";

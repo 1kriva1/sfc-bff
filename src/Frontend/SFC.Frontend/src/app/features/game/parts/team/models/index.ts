@@ -1,0 +1,1 @@
+export { IGameTeamResolveModel } from './game-team-resolve.model';

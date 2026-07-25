@@ -22,8 +22,8 @@ import { NotificationService } from "@core/services";
 import { CoreLocalization } from "@core/localization";
 import { ISelectItemModel, ISelectValue, ISelectValueType } from "ngx-sfc-inputs";
 import { ITeamViewStatisticPlayersFormModel } from "../../../../parts/statistic/parts/players/models/team-view-statistic-players-form.model";
-import { TeamLocalization } from "src/app/features/team/localization";
 import { TeamViewStatisticPlayersLocalization } from "./team-view-statistic-players.localization";
+import { TeamLocalization } from "@share/localization";
 
 @Component({
     templateUrl: './team-view-statistic-players.component.html',

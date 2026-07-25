@@ -1,0 +1,52 @@
+@import "ngx-sfc-common/styles";
+@import "ngx-sfc-common/components/delimeter/delimeter.component.mixins";
+@import "variables1";
+@import "table1/card";
+@import "../../../../info/game-team-player-info.component.mixins";
+@import "../../../../../../../game/team/general/info/game-team-info.component.mixins";
+
+:host {
+  @include card-host(25%);
+
+  .container {
+    @include card-container;
+
+    .content {
+      .columns {
+        @include card-columns;
+
+        .column {
+          @include card-column;
+
+          &.actions-wrapper {
+            @include card-actions-wrapper-column($color-default);
+          }
+
+          &.information {
+            @include game-team-player-info($color-default);
+          }
+
+          &.team {
+            width: 100%;
+
+            @include game-team-info($color-default);
+
+            sfc-delimeter {
+              width: 100%;
+              margin: 0.5em 0;
+
+              @include sfc-delimeter-as-dark;
+            }
+
+            sfc-no-data {
+              display: flex;
+              align-items: center;
+              color: $color-default;
+              height: 60px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

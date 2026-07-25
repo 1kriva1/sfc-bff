@@ -1,6 +1,7 @@
 import {
     faAsterisk, faBaby, faBan, faCheck, faClock, faFlagCheckered, faFutbol,
-    faPersonCane, faPowerOff, faUserInjured, faXmark, IconDefinition
+    faPause,
+    faPersonCane, faPlay, faPowerOff, faUserInjured, faXmark, IconDefinition
 } from "@fortawesome/free-solid-svg-icons";
 import { empty } from "ngx-sfc-common";
 
@@ -78,6 +79,28 @@ export function mapGameStatus(id: number): IconDefinition | empty {
             return faFlagCheckered;
         case 4:
             return faBan;
+        default:
+            return null;
+    }
+}
+
+export function mapGameTeamStatus(id: number): IconDefinition | empty {
+    switch (id) {
+        case 0:
+            return faPlay;
+        case 1:
+            return faPause;
+        default:
+            return null;
+    }
+}
+
+export function mapGamePlayerStatus(id: number): IconDefinition | empty {
+    switch (id) {
+        case 0:
+            return faPlay;
+        case 1:
+            return faPause;
         default:
             return null;
     }

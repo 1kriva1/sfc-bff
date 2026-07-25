@@ -6,7 +6,7 @@
             </div>
 
             <div *ngIf="selectColumn" class="column select" [style.width]="selectColumn.calculatedWidth">
-                <sfc-checkmark [active]="selected" (click)="onSelect()" [type]="CheckmarkType.Circle" [sfcComponentSize]
+                <sfc-checkmark [active]="selected" (click)="onSelect($event)" [type]="CheckmarkType.Circle" [sfcComponentSize]
                     [customSize]="1.2">
                 </sfc-checkmark>
             </div>
@@ -15,7 +15,7 @@
                 <ng-container [ngSwitch]="column.field">
                     <ng-container *ngSwitchCase="Column.Rating">
                         <div class="column raiting" [style.width]="column.calculatedWidth">
-                            <sfc-team-player-info [radius]="Constants.LOGO_RADIUS" [photo]="true" [info]="false"
+                            <sfc-team-player-info [radius]="radius" [photo]="true" [info]="false"
                                 [model]="{
                                     photo: viewModel.photo,
                                     stats: viewModel.stats
@@ -26,7 +26,7 @@
 
                     <ng-container *ngSwitchCase="Column.Information">
                         <div class="column information" [style.width]="column.calculatedWidth">
-                            <sfc-team-player-info [radius]="Constants.LOGO_RADIUS" [photo]="false" [info]="true"
+                            <sfc-team-player-info [radius]="radius" [photo]="false" [info]="true"
                                 [model]="{
                                     firstName: viewModel.firstName,
                                     lastName: viewModel.lastName,

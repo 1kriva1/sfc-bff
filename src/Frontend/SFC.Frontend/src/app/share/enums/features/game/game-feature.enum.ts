@@ -1,3 +1,5 @@
 export enum GameFeature {
-    General = 'general'
+    General = 'general',
+    Player = 'player',
+    Team = 'team'
 }

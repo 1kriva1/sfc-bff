@@ -1,0 +1,101 @@
+@import "ngx-sfc-common/styles";
+@import "variables1";
+@import "common";
+@import "components1";
+
+@mixin request-game-player-info-status($background) {
+  .container {
+    .content {
+      .info {
+        @include status($background, $color-default);
+      }
+    }
+  }
+}
+
+:host {
+  .container {
+    @include center;
+
+    .content {
+      display: flex;
+
+      .info {
+        @include center-column;
+        @include theme-value(color, $color-default, $color-0);
+
+        margin: 0 1.5em;
+        text-align: center;
+
+        h3,
+        p {
+          white-space: initial;
+          word-wrap: break-word;
+
+          @include max-size(10em);
+
+          overflow-y: auto;
+        }
+
+        h3 {
+          font-size: 0.8em;
+          margin: 0.3em 0;
+          text-align: center;
+        }
+
+        p {
+          @include theme-color($color-8, $color-5);
+
+          font-size: 0.6em;
+          font-weight: bold;
+          margin: 0;
+          user-select: none;
+
+          span {
+            color: $color-hover-default;
+          }
+        }
+
+        sfc-status {
+          margin-top: 0.5em;
+        }
+      }
+
+      .actions {
+        @include action-menu($color-default);
+      }
+    }
+  }
+
+  &.vertical {
+    .container {
+      .content {
+        flex-direction: column;
+      }
+    }
+  }
+
+  &.horizontal {
+    .container {
+      .content {
+        flex-direction: row;
+      }
+    }
+  }
+
+  &.request-game-player-status-0 {
+    @include request-game-player-info-status($team-player-request-status-actual-color);
+  }
+
+  &.request-game-player-status-1 {
+    @include request-game-player-info-status($team-player-request-status-accepted-color);
+  }
+
+  &.request-game-player-status-2 {
+    @include request-game-player-info-status($team-player-request-status-canceled-color);
+  }
+
+  &.request-game-player-status-3 {
+    @include request-game-player-info-status($team-player-request-status-declined-color);
+  }
+}

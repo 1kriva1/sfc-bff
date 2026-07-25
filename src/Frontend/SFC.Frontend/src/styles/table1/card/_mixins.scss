@@ -6,6 +6,10 @@
   @include host;
 
   width: calc($width - 1em);
+
+  &.pointer {
+    cursor: pointer;
+  }
 }
 
 @mixin card-container() {
@@ -56,13 +60,13 @@
   @include table-content-select-column($border-color);
 }
 
-@mixin card-actions-wrapper-column($border-color: $color-default) {
+@mixin card-actions-wrapper-column($color: $color-default) {
   width: 100%;
   position: relative;
   margin: 0 0 0.5em;
 
   .actions {
-    @include action-menu($color-0);
+    @include action-menu($color);
 
     position: absolute;
     right: 0;
@@ -70,7 +74,7 @@
   }
 
   .select {
-    @include card-select-column($color-0);
+    @include card-select-column($color);
   }
 }
 

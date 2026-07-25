@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { ButtonType, CommonConstants, Sequence, firstOrDefault, getNextItemByKey, getPreviousItemByKey, nameof, NotificationType } from 'ngx-sfc-common';
+import { ButtonType, CommonConstants, Sequence, firstOrDefault, getNextItemByKey, getPreviousItemByKey, nameof, NotificationType, any } from 'ngx-sfc-common';
 import { IFormProgressActionsModel } from "./models/form-progress-actions.model";
 import { FormProgressService } from "../../form-progress.service";
-import { EMPTY, map, Observable } from "rxjs";
+import { EMPTY, filter, map, Observable } from "rxjs";
 import { IFormProgressStepModel } from "../step/form-progress-step.model";
 import { faArrowLeft, faArrowRight, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { IFormProgressActionsViewModel } from "./models/form-progress-actions-view.model";
@@ -44,6 +44,7 @@ export class FormProgressActionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewModel$ = this.formProgressService.steps$.pipe(
+      filter((steps: IFormProgressModel[]) => any(steps)),
       map((steps: IFormProgressModel[]) => steps.map((model: IFormProgressModel) => model.step)),
       map((steps: IFormProgressStepModel[]) => {
         const currentStep: IFormProgressStepModel | empty = firstOrDefault(steps, (step: IFormProgressStepModel) => step.key == this.key),

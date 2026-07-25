@@ -1,0 +1,89 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+@import "components1";
+@import "inputs";
+
+:host {
+  .container {
+    .content {
+      padding: 2em 0;
+
+      .parts {
+        @include center-column;
+
+        .part {
+          @include center;
+
+          align-items: baseline;
+          justify-content: space-evenly;
+          width: 100%;
+
+          &.scheme {
+            @include center-column;
+
+            .header {
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-end;
+              width: 60%;
+
+              .formation {
+                display: flex;
+                flex-direction: column;
+
+                .title {
+                  @include text-bold($font-size: 1em);
+
+                  .value {
+                    color: $color-hover-default;
+                    letter-spacing: 0.2em;
+                  }
+                }
+
+                .description {
+                  @include text-bold($font-size: 0.7em);
+                }
+              }
+
+              .type {
+                width: 30%;
+              }
+            }
+
+            .field {
+              margin: 1em 0;
+              width: 60%;
+            }
+
+            .formation {
+              width: 60%;
+              padding: 0.5em 0;
+
+              @include carousel-input;
+            }
+          }
+
+          &.delimeter {
+            margin: 0 0 1em;
+
+            sfc-delimeter {
+              width: 100%;
+            }
+          }
+
+          &.actions {
+            justify-content: center;
+
+            sfc-button {
+              margin: 0 0.5em;
+
+              &.submit {
+                @include button-inner(false);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

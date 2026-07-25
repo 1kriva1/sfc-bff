@@ -10,9 +10,11 @@ import { LocaleInterceptor } from "./locale/locale.interceptor";
 import { CsrfInterceptor } from "./csrf/csrf.interceptor";
 import { NoContentInterceptor } from "./no-content/no-content.interceptor";
 import { ForbiddenInterceptor } from "./forbidden/forbidden.interceptor";
+import { IncludeInterceptor } from "./include/include.interceptor";
 
 export { CACHE } from "./cache/cache.interceptor";
 export { LOADER } from "./loader/loader.interceptor";
+export { INCLUDE } from "./include/include.interceptor";
 export const HttpInterceptorProviders = [
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
@@ -24,5 +26,6 @@ export const HttpInterceptorProviders = [
     { provide: HTTP_INTERCEPTORS, useClass: LocaleInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: CsrfInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: NoContentInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ForbiddenInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ForbiddenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: IncludeInterceptor, multi: true }
 ];

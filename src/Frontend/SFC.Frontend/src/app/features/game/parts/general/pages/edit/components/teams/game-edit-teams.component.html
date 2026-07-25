@@ -1,0 +1,76 @@
+<div class="container">
+    <sfc-title [label]="'Localization.TITLE.LABEL'" [description]="'Localization.TITLE.DESCRIPTION'"
+        [icon]="faQuestionCircle" [tooltip]="'Localization.TITLE.TOOLTIP'" [sfcComponentSize] [customSize]="1"
+        [delimeter]="true">
+    </sfc-title>
+
+    <div class="content">
+        <div class="parts">
+            <div class="part">
+                <div class="part-content">
+                    <div class="actions">
+                        <sfc-button [text]="'Create game team'" [iconBefore]="faPlus"
+                            [types]="[ButtonType.Rounded]" [sfcComponentSize] [customSize]="0.7"
+                            (click)="navigateToCreatePage()">
+                        </sfc-button>
+                    </div>
+
+                    <div class="filters">
+                        <form [formGroup]="predicateForm" autocomplete="off">
+                            <div class="name" [formGroupName]="GameTeamSearchFilterPart.Team">
+                                <sfc-text-input id="name" formControlName="name" [sfcFocusInput]="false"
+                                    [showPlaceholderOnFocus]="true" [label]="CommonConstants.EMPTY_STRING"
+                                    [placeholder]="'Type player name'" [bordered]="false" [sfcComponentSize]
+                                    [customSize]="2">
+                                </sfc-text-input>
+
+                                <sfc-delimeter></sfc-delimeter>
+                            </div>
+
+                            <div class="statuses" [formGroupName]="GameTeamSearchFilterPart.GameTeam">
+                                <div [formGroupName]="GameTeamFilterPart.General">
+                                    <sfc-bubbles-input id="statuses" formControlName="statuses" [items]="statuses"
+                                        [multiple]="false" [helperText]="'Choose game team statuses'">
+                                    </sfc-bubbles-input>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="result">
+                        <div class="filters-preview">
+                            <sfc-filter-tags [metadata$]="metadata$" [form]="predicateForm"></sfc-filter-tags>
+                        </div>
+
+                        <div class="table">
+                            <sfc-table [columns]="columns" [predicate$]="predicate$" [loader]="loader"
+                                [pagination]="TableConstants.PAGINATION" [position]="Position.Center"
+                                [columnsShowOnInit]="false" [columnsToggle]="true" [showTotal]="true"
+                                [showLoading]="showLoading" [paginationCount]="TableConstants.PAGINATION_COUNT"
+                                [paginationLimits]="true"
+                                [showColumnsLabel]="TableLocalization.TABLE.COLUMNS_SHOW_LABEL"
+                                [hideColumnsLabel]="TableLocalization.TABLE.COLUMNS_HIDE_LABEL"
+                                [totalLabel]="TableLocalization.TABLE.TOTAL_LABEL"
+                                [dataListLabel]="TableLocalization.TABLE.DATA_LIST_LABEL"
+                                [dataCardsLabel]="TableLocalization.TABLE.DATA_CARDS_LABEL"
+                                [notFoundLabel]="TableLocalization.TABLE.NOT_FOUND_LABEL">
+                                <ng-template [sfcTemplateReference]="TableTemplate.Row" let-row>
+                                    <sfc-game-team-search-table-row [model]="row.model" [columns]="row.columns"
+                                        [sfcComponentSize] [customSize]="0.8">
+                                    </sfc-game-team-search-table-row>
+                                </ng-template>
+
+                                <ng-template [sfcTemplateReference]="TableTemplate.Card" let-card>
+                                    <sfc-game-team-search-table-card [model]="card.model" [columns]="card.columns"
+                                        [sfcComponentSize] [customSize]="0.8">
+                                    </sfc-game-team-search-table-card>
+                                </ng-template>
+                            </sfc-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

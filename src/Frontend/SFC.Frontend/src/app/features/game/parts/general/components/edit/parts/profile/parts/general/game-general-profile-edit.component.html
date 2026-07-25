@@ -118,8 +118,8 @@
                 <sfc-delimeter></sfc-delimeter>
             </div>
 
-            <div class="part actions">
-                <sfc-form-progress-actions [key]="Constants.PROGRESS_KEY" [form]="generalForm">
+            <div class="part actions" *ngIf="!model?.game">
+                <sfc-form-progress-actions [key]="Constants.Progress.key" [form]="generalForm">
                 </sfc-form-progress-actions>
             </div>
         </div>

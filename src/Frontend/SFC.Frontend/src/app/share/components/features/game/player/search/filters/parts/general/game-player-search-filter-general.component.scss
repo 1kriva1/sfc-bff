@@ -1,0 +1,19 @@
+:host {
+  .container {
+    .content {
+      .rows {
+        .row {
+          display: flex;
+          flex-direction: column;
+
+          .column {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            padding: 1.2em 0.5em 0.5em;
+          }
+        }
+      }
+    }
+  }
+}

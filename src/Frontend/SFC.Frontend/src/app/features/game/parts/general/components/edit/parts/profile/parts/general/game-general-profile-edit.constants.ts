@@ -1,10 +1,13 @@
 import { RouteKey } from "@core/enums";
 import { buildPath } from "@core/utils";
-import { GameRoute } from "@share/enums";
-import { GameCreatePageRoute } from "../../../../../../../../parts/general/pages/create/game-create-page-route.enum";
+import { Route } from "@share/enums";
 import { GameProfileEditRoute } from "../../enums/game-profile-edit-route.enum";
+import { IFormProgressParameters } from "@share/components";
+import { GameEditRoute } from "../../../../enums/game-edit-route.enum";
 
 export class GameGeneralProfileEditConstants {
-    static PROGRESS_KEY: string = 'profile.general';
-    static PROGRESS_CREATE_COMMAND: string = buildPath(`${GameRoute.Games}/${RouteKey.Create}/${GameCreatePageRoute.Profile}/${GameProfileEditRoute.General}`);
+    static Progress: IFormProgressParameters = {
+        key: 'profile.general',
+        url: buildPath(`${Route.Games}/${RouteKey.Create}/${GameEditRoute.Profile}/${GameProfileEditRoute.General}`)
+    };
 }

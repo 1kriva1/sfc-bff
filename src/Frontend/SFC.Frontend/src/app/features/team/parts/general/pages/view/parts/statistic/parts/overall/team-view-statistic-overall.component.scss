@@ -8,13 +8,13 @@
   .container {
     .content {
       .parts {
-        @include wrap-row;
+        @include wrap-row(1em);
 
         .part {
-          @include wrap-column;
+          @include wrap-column(1em);
 
           .part-content {
-            @include wrap-row;
+            @include wrap-row(1em);
 
             .panels {
               display: flex;
@@ -28,7 +28,7 @@
             }
 
             .charts {
-              @include wrap-row;
+              @include wrap-row(1em);
               @include panel;
 
               sfc-panel {

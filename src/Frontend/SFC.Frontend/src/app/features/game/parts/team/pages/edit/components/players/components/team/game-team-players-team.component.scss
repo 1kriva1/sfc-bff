@@ -1,0 +1,31 @@
+@import "ngx-sfc-common/styles";
+@import "components1";
+@import "page1";
+@import "inputs";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      .parts {
+        .part {
+          .part-content {
+            .result {
+              @include page-content-result;
+
+              width: 100%;
+              margin: 0;
+
+              .table {
+                sfc-team-player-search-table-card {
+                  min-width: calc(50% - 1em);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

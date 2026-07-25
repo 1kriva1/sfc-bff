@@ -9,15 +9,15 @@ import { CoreLocalization } from '@core/localization';
 import { buildPreviewValue, getClickObservableFromElementReference, getControl } from '@core/utils';
 import { SchemeTeamMainEditLocalization } from './scheme-team-main-edit.localization';
 import { ISchemeTeamEditFormModel } from '../scheme-team-edit-form.model';
-import { ISchemeTeamFormationPlayerModel, ISchemeTeamModel } from '@share/models/scheme/scheme-team.model';
 import { SchemeTeamEditComponent } from '../scheme-team-edit.component';
 import { SchemeTeamMainEditConstants } from './scheme-team-main-edit.constants';
-import { ISchemeInfoModel } from '@share/components/features/scheme/general/info/scheme-info.model';
 import { EnumService } from '@share/services';
-import { SchemeTeamFormationEditFieldService } from '../formation/parts/field/scheme-team-formation-edit-field.service';
-import { getPlayersRaiting, getPlayersStars } from '@share/utils/stats';
+import { SchemeFormationEditFieldService } from '../../../../../components/edit/parts/formation/parts/field/scheme-formation-edit-field.service';
 import { ISchemeTeamProfileGeneralEditFormModel } from '../profile/parts/general/scheme-team-profile-general-edit-form.model';
-import { SchemeTeamModal } from '@share/components/features/scheme';
+import { ISchemeTeamFormationPlayerModel, ISchemeTeamModel } from '@share/models';
+import { ISchemeInfoModel } from '@share/components/features/scheme/general/info/scheme-info.model';
+import { getPlayersRaiting, getPlayersStars } from '@share/utils';
+import { SchemeTeamModal } from '@share/components';
 
 @Component({
     selector: 'sfc-scheme-team-main-edit',
@@ -99,7 +99,7 @@ export class SchemeTeamMainEditComponent<TFormValue extends ISchemeTeamEditFormM
 
     constructor(
         private modalService: ModalService,
-        private schemeTeamFormationEditFieldService: SchemeTeamFormationEditFieldService,
+        private schemeFormationEditFieldService: SchemeFormationEditFieldService,
         parent: FormGroupDirective,
         formBuilder: FormBuilder,
         enumService: EnumService) {
@@ -118,7 +118,7 @@ export class SchemeTeamMainEditComponent<TFormValue extends ISchemeTeamEditFormM
 
         this.schemeInfoModel$ = combineLatest([
             this.formationChanges$,
-            this.schemeTeamFormationEditFieldService.selectedPlayers$
+            this.schemeFormationEditFieldService.selectedPlayers$
         ]).pipe(
             map(([formation, players]) => {
                 return {
@@ -128,7 +128,7 @@ export class SchemeTeamMainEditComponent<TFormValue extends ISchemeTeamEditFormM
             })
         ); 
 
-        this.stars$ = this.schemeTeamFormationEditFieldService.selectedPlayers$.pipe(
+        this.stars$ = this.schemeFormationEditFieldService.selectedPlayers$.pipe(
             map((formationPlayers: ISchemeTeamFormationPlayerModel[]) =>
                 getPlayersStars(formationPlayers.map(formationPlayer => formationPlayer.player!))));
     }

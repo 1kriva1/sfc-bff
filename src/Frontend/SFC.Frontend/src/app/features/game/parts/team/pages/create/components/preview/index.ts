@@ -1,0 +1,1 @@
+export { GameTeamPreviewComponent } from './game-team-preview.component'

@@ -1,0 +1,71 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+@import "variables1";
+@import "table1/row";
+@import "../../../../info/invite-game-player-info.component.mixins";
+
+:host {
+  @include row-host;
+
+  .container {
+    @include row-container;
+
+    .content {
+      .columns {
+        @include row-columns;
+
+        .column {
+          @include row-column;
+
+          &.sequence {
+            @include row-sequence-column;
+          }
+
+          &.select {
+            @include row-select-column($color-0);
+          }
+
+          &.information {
+            @include invite-game-player-info($color-0);
+          }
+
+          &.position {
+            @include row-enum-column;
+          }
+
+          &.actions {
+            @include action-menu($color-0);
+          }
+        }
+      }
+    }
+  }
+
+  &.invite-game-player-status-0 {
+    @include row-background-with-related(
+      $team-player-invite-status-actual-color,
+      $team-player-invite-status-actual-hover-color
+    );
+  }
+
+  &.invite-game-player-status-1 {
+    @include row-background-with-related(
+      $team-player-invite-status-accepted-color,
+      $team-player-invite-status-accepted-hover-color
+    );
+  }
+
+  &.invite-game-player-status-2 {
+    @include row-background-with-related(
+      $team-player-invite-status-canceled-color,
+      $team-player-invite-status-canceled-hover-color
+    );
+  }
+
+  &.invite-game-player-status-3 {
+    @include row-background-with-related(
+      $team-player-invite-status-refused-color,
+      $team-player-invite-status-refused-hover-color
+    );
+  }
+}

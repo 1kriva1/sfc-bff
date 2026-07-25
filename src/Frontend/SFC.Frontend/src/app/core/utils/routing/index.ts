@@ -4,6 +4,7 @@ export {
     getUrlSegment,
     getUrlSegments,
     getPartUrlSegments,
+    findUrlSegments,
     buildFallbackRoute,
     getRouteId,
     buildNavigationExtras,
@@ -17,5 +18,6 @@ export {
     getBackNavigationModel,
     buildActionParameters,
     getDeepestRoute,
-    navigateWithOneTimeAccess
+    navigateWithOneTimeAccess,
+    replaceRouteIdInPath
 } from './routing.utils';

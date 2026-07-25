@@ -1,0 +1,1 @@
+export { GameProgressComponent } from './game-progress.component';

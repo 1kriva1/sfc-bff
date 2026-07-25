@@ -8,7 +8,7 @@ import { IFindTeamsResponse } from './models/find/find-teams.response';
 import { TeamServiceConstants } from '../../team-service.constants';
 import { ICreateTeamRequest } from './models/create/create-team.request';
 import { ICreateTeamResponse } from './models/create/create-team.response';
-import { IUpdateTeamResponse } from './models/update/update.-team.response';
+import { IUpdateTeamResponse } from './models/update/update-team.response';
 import { IUpdateTeamRequest } from './models/update/update-team.request';
 import { IGetTeamResponse } from './models/get/get-team.response';
 

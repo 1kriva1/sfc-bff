@@ -1,0 +1,41 @@
+<div class="container" [formGroupName]="GameTeamEditPageEditPart.Main">
+    <div class="content">
+        <div class="parts">
+            <div class="info" *ngIf="gameTeamInfoModel$ | async as gameTeamInfoModel">
+                <sfc-game-team-info [radius]="Constants.LOGO_RADIUS" [logo]="true" [info]="true" [model]="gameTeamInfoModel"
+                    [direction]="Direction.Vertical" [sfcComponentSize] [customSize]="1.2">
+                </sfc-game-team-info>
+            </div>
+
+            <div class="part tip">
+                <span>{{Localization.TIP}}</span>
+            </div>
+
+            <div class="part game">
+                <p class="link">
+                    <sfc-link [icon]="faLink" [label]="viewModel.game.name" [url]="gameLink"></sfc-link>
+                </p>
+                <p class="date">
+                    <fa-icon [icon]="faCalendar"></fa-icon>
+                    <span class="value">{{viewModel.game.date}}</span>
+                </p>
+                <p class="time">
+                    <fa-icon [icon]="faClock"></fa-icon>
+                    From: <span class="value">{{viewModel.game.from}}</span>
+                    To: <span class="value">{{viewModel.game.to}}</span>
+                </p>
+            </div>
+
+            <div class="part result" *ngIf="result$ | async as result">
+                <sfc-message *ngIf="!result.Success" [type]="NotificationType.Failed" [message]="result.Message">
+                </sfc-message>
+            </div>
+
+            <div class="part submit">
+                <sfc-submit-button #submitButton [text]="submitButtonText"
+                    [types]="[ButtonType.Rounded, ButtonType.Filled]" [disabled]="submitDisabled" [form]="form">
+                </sfc-submit-button>
+            </div>
+        </div>
+    </div>
+</div>

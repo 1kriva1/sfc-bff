@@ -1,0 +1,46 @@
+@import "ngx-sfc-common/styles";
+@import "variables1";
+@import "common";
+@import "components1";
+
+:host {
+  .container {
+    .content {
+      .parts {
+        @include center-column;
+
+        .part {
+          &.tip {
+            @include text-center($color-7, 0.6em);
+
+            max-width: 30%;
+            margin: 1em 0;
+          }
+
+          &.game {
+            @include center-column;
+
+            p {
+              @include text-center-bold($color-default, 0.8em);
+
+              margin: 0;
+
+              fa-icon {
+                margin: 0.5em;
+              }
+
+              .value {
+                @include text-bold($color-yellow-0, 1em);
+              }
+
+              &.date,
+              &.time {
+                font-size: 0.7em;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

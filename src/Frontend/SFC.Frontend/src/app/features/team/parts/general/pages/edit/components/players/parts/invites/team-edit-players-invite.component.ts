@@ -24,10 +24,10 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { buildBackNavigationExtras, getRouteId } from '@core/utils';
 import { isTeamPlayerInviteActual } from 'src/app/features/team/utils/team.utils';
 import { ITeamEditPlayersInviteFilterModel } from './team-edit-players-invite-form.model';
-import { TeamLocalization } from 'src/app/features/team/localization';
 import { InviteAction, InviteRoute, PlayerRoute, TeamRoute } from '@share/enums';
 import { ITeamPlayerInviteModel } from '@share/services/invite/team/player/service/models/common/team-player-invite.model';
 import { ThemeService } from '@share/components/theme-toggler/services/theme/theme.service';
+import { TeamLocalization } from '@share/localization';
 
 @Component({
     templateUrl: './team-edit-players-invite.component.html',

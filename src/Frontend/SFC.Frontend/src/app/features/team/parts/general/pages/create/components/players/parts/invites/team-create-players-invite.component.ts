@@ -27,11 +27,11 @@ import { IPlayerModel } from '@share/models/player/player.model';
 import { ActiveInviteStatus } from '@share/utils/enums';
 import { addNavigationExtras, buildBackNavigationExtras } from '@core/utils/routing/routing.utils';
 import { TeamCreatePlayersInviteConstants } from './team-create-players-invite.constants';
-import { TeamLocalization } from 'src/app/features/team/localization';
 import { InviteTeamPlayerConstants } from '@share/constants/features/invite';
 import { InviteRoute, PlayerRoute, TeamRoute } from '@share/enums';
 import { IInviteTeamPlayerResolveModel } from '@share/models';
 import { PlayersFiltersConstants } from '@share/components/features/player/search/filters/constants/players-filters.constants';
+import { TeamLocalization } from '@share/localization';
 
 @Component({
     templateUrl: './team-create-players-invite.component.html',

@@ -23,9 +23,9 @@ import { TeamEditPlayersRequestTableConstants } from './parts/table/team-edit-pl
 import { mapFindTeamPlayerRequestsRequest, mapTeamPlayersRequestTableModel } from './team-edit-players-request.mapper';
 import { isTeamPlayerInviteActual } from 'src/app/features/team/utils/team.utils';
 import { ITeamEditPlayersRequestFilterModel } from './team-edit-players-request-form.model';
-import { TeamLocalization } from 'src/app/features/team/localization';
 import { RequestAction } from '@share/enums';
 import { ThemeService } from '@share/components/theme-toggler/services/theme/theme.service';
+import { TeamLocalization } from '@share/localization';
 
 @Component({
     templateUrl: './team-edit-players-request.component.html',

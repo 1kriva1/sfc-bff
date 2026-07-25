@@ -1,7 +1,7 @@
 import { all, any, empty, firstOrDefault, hasItem, hasItemBy, ITagModel, where } from "ngx-sfc-common";
 import { ISideMenuItemModel, ISideMenuModel, ITabModel } from "ngx-sfc-components";
 import { IEnumModel } from "@core/types";
-import { getLongMonth, getLongMonthById, getShortMonth, getWeekDays } from "@core/utils";
+import { buildPropertyPath, getLongMonth, getLongMonthById, getShortMonth, getWeekDays } from "@core/utils";
 import { IStatisticModel } from "@share/models";
 
 /* Side menu */
@@ -12,9 +12,22 @@ export function setMenuActiveItem(menu: ISideMenuModel, id: string): void {
 
     menu.items.forEach((item: ISideMenuItemModel) => {
         if (any(item.items)) {
-            item.items!.forEach((innerItem: ISideMenuItemModel) => innerItem.active = innerItem.id === id)
+            item.items!.forEach((innerItem: ISideMenuItemModel) => innerItem.active = buildPropertyPath(item.id!, innerItem.id!) === id)
         } else {
             item.active = item.id === id;
+        }
+    });
+}
+
+export function setMenuInvalidItem(menu: ISideMenuModel, getInvalid: (id: string) => boolean | empty): void {
+    if (!menu.items)
+        return;
+
+    menu.items!.forEach((item: ISideMenuItemModel) => {
+        if (item.items?.length || false) {
+            item.items.forEach((innerItem: ISideMenuItemModel) => innerItem.invalid = getInvalid(buildPropertyPath(item.id!, innerItem.id!)));
+        } else {
+            item.invalid = getInvalid(item.id!);
         }
     });
 }

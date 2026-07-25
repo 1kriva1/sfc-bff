@@ -1,0 +1,75 @@
+<div class="container" [formGroupName]="GameEditPageEditPart.Main">
+    <div class="content">
+        <div class="parts">
+            <div class="part teams">
+                <div class="team first">
+                    <sfc-avatar-input id="teamAId" formControlName="teamAId" [radius]="Constants.AVATAR_INPUT_RADIUS"
+                        [stars]="true" [progress]="true" [label]="Localization.INPUT.TEAM.A.LABEL"
+                        [helperText]="Localization.INPUT.TEAM.A.HELPER_TEXT" [icon]="faA" [hideOnClickOutside]="false"
+                        [clear]="true" [defaultAvatar]="CoreConstants.DEFAULT_TEAM_A_IMAGE_PATH"
+                        [applyLabel]="CoreLocalization.OK" [cancelLabel]="CoreLocalization.CANCEL"
+                        [avatarModel]="teamAAvatarModel!" [validations]="{
+                            'sfc-compare-than': ValidationLocalization.NOT_EQUAL
+                        }">
+                        <ng-template [sfcTemplateReference]="AvatarInputTemplate.ModalBody" let-context>
+                            <sfc-avatar-input-game-teams-modal-body [value]="context.value"
+                                [gameId]="model.game.game.id" (selectTeam)="onSelectGameTeam($event, context)">
+                            </sfc-avatar-input-game-teams-modal-body>
+                        </ng-template>
+                    </sfc-avatar-input>
+                </div>
+
+                <div class="info"
+                    *ngIf="{ name: name$ | async, date: date$ | async, from: from$ | async, to: to$ | async} as vm">
+                    <span class="versus">vs</span>
+
+                    <p class="date-time">
+                        <span class="date">{{vm.date}}</span>
+                        <span class="time">
+                            <span class="from">{{CoreLocalization.From}}:</span> {{vm.from}} - <span
+                                class="to">{{CoreLocalization.To}}:</span>
+                            {{vm.to}}
+                        </span>
+                    </p>
+
+                    <h3 class="name">{{vm.name}}</h3>
+
+                    <sfc-status [label]="status.value"></sfc-status>
+                </div>
+
+                <div class="team second">
+                    <sfc-avatar-input id="teamBId" formControlName="teamBId" [radius]="Constants.AVATAR_INPUT_RADIUS"
+                        [stars]="true" [progress]="true" [label]="Localization.INPUT.TEAM.B.LABEL"
+                        [helperText]="Localization.INPUT.TEAM.B.HELPER_TEXT" [icon]="faB" [hideOnClickOutside]="false"
+                        [clear]="true" [defaultAvatar]="CoreConstants.DEFAULT_TEAM_B_IMAGE_PATH"
+                        [applyLabel]="CoreLocalization.OK" [cancelLabel]="CoreLocalization.CANCEL"
+                        [avatarModel]="teamBAvatarModel!" [validations]="{
+                            'sfc-compare-than': ValidationLocalization.NOT_EQUAL
+                        }">
+                        <ng-template [sfcTemplateReference]="AvatarInputTemplate.ModalBody" let-context>
+                            <sfc-avatar-input-game-teams-modal-body [value]="context.value"
+                                [gameId]="model.game.game.id" (selectTeam)="onSelectGameTeam($event, context)">
+                            </sfc-avatar-input-game-teams-modal-body>
+                        </ng-template>
+                    </sfc-avatar-input>
+                </div>
+            </div>
+
+            <div class="part tip">
+                <span>{{Localization.TIP}}</span>
+            </div>
+
+            <div class="part result" *ngIf="result$ | async as result">
+                <sfc-message *ngIf="!result.Success" [type]="NotificationType.Failed" [message]="result.Message">
+                </sfc-message>
+            </div>
+
+            <div class="part submit">
+                <sfc-submit-button #submitButton [text]="submitButtonText"
+                    [types]="[ButtonType.Rounded, ButtonType.Filled]" [disabled]="submitDisabled" [form]="form">
+                </sfc-submit-button>
+            </div>
+        </div>
+
+    </div>
+</div>

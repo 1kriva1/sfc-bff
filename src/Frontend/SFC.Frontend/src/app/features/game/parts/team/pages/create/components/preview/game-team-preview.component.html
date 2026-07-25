@@ -1,0 +1,34 @@
+<div class="container">
+    <sfc-title [label]="'Localization.TITLE.LABEL'" [description]="'Localization.TITLE.DESCRIPTION'"
+        [tooltip]="Localization.TITLE.TOOLTIP" [icon]="faQuestionCircle" [sfcComponentSize] [customSize]="1.2">
+    </sfc-title>
+
+    <div class="content">
+        <div class="parts">
+            <div class="part team" *ngIf="gameTeamInfoModel$ | async as gameTeamInfoModel">
+                <sfc-game-team-info [radius]="Constants.LOGO_RADIUS" [logo]="true" [info]="true" [model]="gameTeamInfoModel"
+                    [direction]="Direction.Vertical" [sfcComponentSize] [customSize]="1.2">
+                </sfc-game-team-info>
+            </div>
+
+            <div class="part tip">
+                <span>{{Localization.TIP}}</span>
+            </div>
+
+            <div class="part game">
+                <p class="link">
+                    <sfc-link [icon]="faLink" [label]="viewModel.game.name" [url]="gameLink"></sfc-link>
+                </p>
+                <p class="date">
+                    <fa-icon [icon]="faCalendar"></fa-icon>
+                    <span class="value">{{viewModel.game.date}}</span>
+                </p>
+                <p class="time">
+                    <fa-icon [icon]="faClock"></fa-icon>
+                    From: <span class="value">{{viewModel.game.from}}</span>
+                    To: <span class="value">{{viewModel.game.to}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

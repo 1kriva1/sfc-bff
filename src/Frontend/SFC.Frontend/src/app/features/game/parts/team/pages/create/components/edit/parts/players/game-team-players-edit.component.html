@@ -1,0 +1,58 @@
+<div class="container" [formGroupName]="GameTeamCreatePageEditPart.Players">
+    <sfc-title [label]="Localization.TITLE.LABEL" [description]="Localization.TITLE.DESCRIPTION"
+        [icon]="faQuestionCircle" [tooltip]="Localization.TITLE.TOOLTIP" [sfcComponentSize] [customSize]="1"
+        [delimeter]="true">
+    </sfc-title>
+
+    <div class="content">
+        <div class="parts">
+            <div class="part players">
+                <div class="filters">
+                    <form [formGroup]="predicateForm" autocomplete="off">
+                        <div class="name">
+                            <sfc-text-input id="name" formControlName="name" [sfcFocusInput]="false"
+                                [showPlaceholderOnFocus]="true" [label]="CommonConstants.EMPTY_STRING"
+                                [placeholder]="'Type player name'" [bordered]="false" [sfcComponentSize]
+                                [customSize]="2">
+                            </sfc-text-input>
+
+                            <sfc-delimeter></sfc-delimeter>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tables">
+                    <div class="available">
+                        <sfc-game-team-players-game [filterForm]="predicateForm" [game]="model.game"
+                            (add)="onAddPlayers([$event])">
+                        </sfc-game-team-players-game>
+                    </div>
+
+                    <div class="actions">
+                        <sfc-button [iconBefore]="faAnglesLeft" [iconAfter]="faAnglesRight" [disabled]="actionDisabled"
+                            [types]="[ButtonType.Circled]" [sfcComponentSize] [customSize]="0.7"
+                            (click)="togglePlayers()">
+                        </sfc-button>
+
+                        <p class="tip">{{'Move players from left side to the right if you want to add them to your team'}}</p>
+                    </div>
+
+                    <div class="current">
+                        <sfc-game-team-players-current-edit [filterForm]="predicateForm" [game]="model.game"
+                            (remove)="onRemovePlayers([$event])">
+                        </sfc-game-team-players-current-edit>
+                    </div>
+                </div>
+            </div>
+
+            <div class="part delimeter">
+                <sfc-delimeter></sfc-delimeter>
+            </div>
+
+            <div class="part actions">
+                <sfc-form-progress-actions [key]="Constants.ProgressKey" [form]="playersForm">
+                </sfc-form-progress-actions>
+            </div>
+        </div>
+    </div>
+</div>
