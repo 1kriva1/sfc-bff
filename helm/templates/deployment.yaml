@@ -75,6 +75,7 @@ spec:
               wait_on sfc-invite.sfc.svc.cluster.local 7666 "Invite"
               wait_on sfc-request.sfc.svc.cluster.local 7766 "Request"
               wait_on sfc-scheme.sfc.svc.cluster.local 7866 "Scheme"
+              wait_on sfc-game.sfc.svc.cluster.local 7966 "Game"
               echo "All dependencies are reachable!"
           resources:
             requests:

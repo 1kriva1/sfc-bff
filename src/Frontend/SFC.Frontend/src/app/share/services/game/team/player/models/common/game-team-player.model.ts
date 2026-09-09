@@ -1,10 +1,10 @@
 import { IPlayerModel } from "@share/services/player";
-import { ITeamModel } from "@share/services/team/general/general/models/common/team.model";
 import { empty } from "ngx-sfc-common";
+import { IGameTeamModel } from "../../../general/models/common/game-team.model";
 
 export interface IGameTeamPlayerModel {
     Id: number;
     Status: number;
     Player?: IPlayerModel | empty;
-    Team?: ITeamModel | empty;
+    GameTeam?: IGameTeamModel | empty;
 }

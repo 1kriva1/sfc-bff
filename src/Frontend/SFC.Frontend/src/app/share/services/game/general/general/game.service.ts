@@ -8,6 +8,7 @@ import { IUpdateGameRequest } from './models/update/update-game.request';
 import { IUpdateGameResponse } from './models/update/update-game.response';
 import { IGetGameResponse } from './models/get/get-game.response';
 import { GameServiceConstants } from '../../game-service.constants';
+import { GameInclude } from '@share/enums';
 
 @Injectable({
   providedIn: 'root'
@@ -67,10 +68,14 @@ export class GameService {
     } as IUpdateGameResponse);
   }
 
-  public get(id: number): Observable<IGetGameResponse> {
+  public get(id: number, include: GameInclude[] = []): Observable<IGetGameResponse> {
     // return this.http.get<IGetGameResponse>(
     //   `${GameServiceConstants.URI_PART}/${id}`,
-    //   { context: new HttpContext().set(LOADER, { show: true }) }
+    //   {
+    //     context: new HttpContext()
+    //       .set(LOADER, { show: true })
+    //       .set(INCLUDE, include)
+    //   }
     // );
 
     return of({
@@ -101,16 +106,5 @@ export class GameService {
       Success: true,
       Message: 'All ok!'
     } as IGetGameResponse);
-  }
-
-  public getV2(id: number, include: string[] = []): Observable<IGetGameResponse> {
-    return this.http.get<IGetGameResponse>(
-      `${GameServiceConstants.URI_PART}/${id}`,
-      {
-        context: new HttpContext()
-          .set(LOADER, { show: true })
-          .set(INCLUDE, include)
-      }
-    );
   }
 }

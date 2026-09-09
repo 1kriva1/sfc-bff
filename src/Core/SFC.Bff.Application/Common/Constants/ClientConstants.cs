@@ -7,5 +7,6 @@ public static class ClientConstants
     public const string Invite = "sfc.invite";
     public const string Request = "sfc.request";
     public const string Scheme = "sfc.scheme";
+    public const string Game = "sfc.game";
     public const string Identity = "sfc.identity";
 }

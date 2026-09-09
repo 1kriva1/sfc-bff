@@ -36,5 +36,6 @@ public static class InfrastructureRegistration
         services.AddSingleton<InviteApiDelegationAccessTokenRetriever>();
         services.AddSingleton<RequestApiDelegationAccessTokenRetriever>();
         services.AddSingleton<SchemeApiDelegationAccessTokenRetriever>();
+        services.AddSingleton<GameApiDelegationAccessTokenRetriever>();
     }
 }

@@ -36,6 +36,7 @@ spec:
                 - sfc-invite
                 - sfc-request
                 - sfc-scheme
+                - sfc-game
       ports:
         - protocol: TCP
           port: 5672

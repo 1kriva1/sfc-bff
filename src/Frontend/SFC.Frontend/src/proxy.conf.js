@@ -20,6 +20,7 @@ const PROXY_CONFIG = [
             "/api/invites",
             "/api/requests",
             "/api/schemes",
+            "/api/games"
         ],
         target,
         secure: false

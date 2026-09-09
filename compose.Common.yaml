@@ -69,6 +69,9 @@ services:
       sfc-scheme:
         condition: service_healthy
         restart: true
+      sfc-game:
+        condition: service_healthy
+        restart: true
   sfc-data:
     container_name: sfc-data 
     build:
@@ -333,6 +336,52 @@ services:
       - type: bind
         source: ../../Configurations/certificates/sfc-scheme/sfc-scheme.pfx
         target: /https/sfc-scheme.pfx
+    networks: 
+      - sfc-network
+    <<: *common_deploy
+    depends_on:
+      sfc-mssql:
+        condition: service_healthy
+        restart: true
+      sfc-redis:
+        condition: service_healthy
+        restart: true
+      sfc-rabbitmq:
+        condition: service_healthy
+        restart: true
+      sfc-data:
+        condition: service_healthy
+        restart: true
+      sfc-identity:
+        condition: service_healthy
+        restart: true
+      sfc-player:
+        condition: service_healthy
+        restart: true
+      sfc-team:
+        condition: service_healthy
+        restart: true
+  sfc-game:
+    container_name: sfc-game 
+    build:
+      context: ../../Services/sfc-game-service
+      args:
+        HTTP_PORT: 7965
+        HTTPS_PORT: 7966
+    ports:
+      - "7966:7966"
+      - "7965:7965"
+    healthcheck:
+          test: ["CMD", "curl", "--fail", "http://localhost:7965/health"] 
+          interval: 20s
+          timeout: 10s
+          retries: 3
+          start_period: 60s
+    volumes:
+      - *root-certificate-volume
+      - type: bind
+        source: ../../Configurations/certificates/sfc-game/sfc-game.pfx
+        target: /https/sfc-game.pfx
     networks: 
       - sfc-network
     <<: *common_deploy

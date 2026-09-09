@@ -13,7 +13,7 @@ import { BaseListResponse, BasePaginationRequest, IBuildActionParameters } from 
 import { Observable, tap } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { buildViewGamePlayerAction, buildViewPlayerAction } from '@share/utils';
-import { GameAction } from '@share/enums';
+import { GameAction, GameTeamPlayerIncludes } from '@share/enums';
 import { GameTeamPlayersCurrentLocalization } from './game-team-players-current.localization';
 import { GameTeamPlayersCurrentConstants } from './game-team-players-current.constants';
 import { GameTeamEditPlayersCurrentSelectService } from './game-team-players-current-select.service';
@@ -116,7 +116,7 @@ export class GameTeamPlayersCurrentComponent
 
     protected sendPaginationRequest(request: BasePaginationRequest<IGameTeamPlayerFindFilterModel>)
         : Observable<HttpResponse<BaseListResponse<IGameTeamPlayerServiceModel>>> {
-        return this.gameTeamPlayerService.find(this.model.game.game.id, this.model.gameTeam.gameTeam.id, request).pipe(
+        return this.gameTeamPlayerService.find(this.model.game.game.id, this.model.gameTeam.gameTeam.id, request, [GameTeamPlayerIncludes.WithPlayer, GameTeamPlayerIncludes.WithTeamWithPlayersWithPlayer]).pipe(
             tap(() => this.gameTeamEditPlayersCurrentSelectService.clear())
         );
     }
@@ -144,5 +144,5 @@ export class GameTeamPlayersCurrentComponent
             ];
 
         return actions;
-    }    
+    }
 }

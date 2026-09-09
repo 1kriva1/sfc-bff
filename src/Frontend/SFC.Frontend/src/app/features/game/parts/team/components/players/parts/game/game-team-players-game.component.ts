@@ -15,7 +15,7 @@ import { HttpResponse } from '@angular/common/http';
 import { buildViewGamePlayerAction, buildViewPlayerAction } from '@share/utils';
 import { GameTeamPlayersGameLocalization } from './game-team-players-game.localization';
 import { GameTeamPlayersGameSelectService } from './game-team-players-game-select.service';
-import { GameAction } from '@share/enums';
+import { GameAction, GamePlayerIncludes } from '@share/enums';
 import { GameTeamPlayersGameConstants } from './game-team-players-game.constants';
 import { IGameModel } from '@share/models';
 import { buildAddPlayerToTeamAction } from './game-team-players-game.utils';
@@ -116,7 +116,7 @@ export class GameTeamPlayersGameComponent
 
     protected sendPaginationRequest(request: BasePaginationRequest<IGamePlayerFindFilterModel>)
         : Observable<HttpResponse<BaseListResponse<IGamePlayerServiceModel>>> {
-        return this.gamePlayerService.find(this.game.game.id, request).pipe(
+        return this.gamePlayerService.find(this.game.game.id, request, [GamePlayerIncludes.WithPlayer, GamePlayerIncludes.WithGameTeamWithTeam]).pipe(
             tap(() => this.gameTeamPlayersGameSelectService.clear())
         );
     }

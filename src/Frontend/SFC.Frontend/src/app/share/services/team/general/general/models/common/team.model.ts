@@ -30,5 +30,5 @@ export interface ITeamModel {
     Id: number;
     Status: number;
     Profile: ITeamProfileModel;
-    Players: ITeamPlayerModel[];
+    Players?: ITeamPlayerModel[] | empty;
 }

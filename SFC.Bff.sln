@@ -115,6 +115,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "conf.d", "conf.d", "{65BB69
 		nginx\conf.d\redirect.conf = nginx\conf.d\redirect.conf
 		nginx\conf.d\sfc-bff.conf = nginx\conf.d\sfc-bff.conf
 		nginx\conf.d\sfc-data.conf = nginx\conf.d\sfc-data.conf
+		nginx\conf.d\sfc-game.conf = nginx\conf.d\sfc-game.conf
 		nginx\conf.d\sfc-identity.conf = nginx\conf.d\sfc-identity.conf
 		nginx\conf.d\sfc-invite.conf = nginx\conf.d\sfc-invite.conf
 		nginx\conf.d\sfc-player.conf = nginx\conf.d\sfc-player.conf

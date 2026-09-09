@@ -27,6 +27,7 @@ import {
 } from "../../../../../../../features";
 import { IBubbleModel } from "ngx-sfc-inputs";
 import { mapBubbles } from "../../../../../../../../utils";
+import { GameTeamIncludes } from "@share/enums";
 
 @Component({
     selector: 'sfc-avatar-input-game-teams-modal-body',
@@ -131,7 +132,7 @@ export class AvatarInputGameTeamsModalBodyComponent
 
     protected sendPaginationRequest(request: BasePaginationRequest<IFindGameTeamsFilterModel>)
         : Observable<HttpResponse<BaseListResponse<IGameTeamServiceModel>>> {
-        return this.gameTeamService.find(this.gameId, request, false);
+        return this.gameTeamService.find(this.gameId, request, [GameTeamIncludes.WithTeamWithPlayersWithPlayer, GameTeamIncludes.WithGameTeamPlayersWithTeamWithPlayersWithPlayer], false);
     }
 
     protected mapTableModel(item: IGameTeamServiceModel): IGameTeamSearchTableModel {

@@ -18,7 +18,7 @@ import { IBubbleModel } from 'ngx-sfc-inputs';
 import { faPlus, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { GameEditPageConstants } from '../../game-edit-page.constants';
 import { GameEditTeamsLocalization } from './game-edit-teams.localization';
-import { GameRoute, TeamRoute } from '@share/enums';
+import { GameRoute, GameTeamIncludes, TeamRoute } from '@share/enums';
 import { RouteKey } from '@core/enums';
 import { IGameEditPageModel } from '../../models/game-edit-page.model';
 
@@ -142,7 +142,7 @@ export class GameEditTeamsComponent
 
     protected sendPaginationRequest(request: BasePaginationRequest<IFindGameTeamsFilterModel>)
         : Observable<HttpResponse<BaseListResponse<IGameTeamServiceModel>>> {
-        return this.gameTeamService.find(this.model.game.game.id, request, false);
+        return this.gameTeamService.find(this.model.game.game.id, request, [GameTeamIncludes.WithTeam, GameTeamIncludes.WithGameTeamPlayersWithTeamWithPlayersWithPlayer], false);
     }
 
     protected mapTableModel(item: IGameTeamServiceModel): IGameTeamSearchTableModel {
