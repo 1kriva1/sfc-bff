@@ -4,7 +4,7 @@ import { buildHttpParams } from "ngx-sfc-common";
 import { Observable, of } from "rxjs";
 import { GameServiceConstants } from "../../game-service.constants";
 import { GameTeamServiceConstants } from "../game-team-service.constants";
-import { LOADER } from "@core/interceptors";
+import { INCLUDE, LOADER } from "@core/interceptors";
 import { ICreatesGameTeamPlayerRequest } from "./models/creates/creates-game-team-player.request";
 import { ICreatesGameTeamPlayerResponse } from "./models/creates/creates-game-team-player.response";
 import { IGameTeamPlayerFindRequest } from "./models/find/game-team-player-find.request";
@@ -14,27 +14,13 @@ import { ICreateGameTeamPlayerResponse } from "./models/create/create-game-team-
 import { IDeleteGameTeamPlayerResponse } from "./models/delete/delete-game-team-player.response";
 import { IDeletesGameTeamPlayerRequest } from "./models/deletes/deletes-game-team-player.request";
 import { IDeletesGameTeamPlayerResponse } from "./models/deletes/deletes-game-team-player.response";
+import { GameTeamPlayerInclude } from "@share/enums";
 @Injectable({
     providedIn: 'root'
 })
 export class GameTeamPlayerService {
 
     constructor(private http: HttpClient) { }
-
-    public creates(gameId: number, teamId: number, request: ICreatesGameTeamPlayerRequest): Observable<ICreatesGameTeamPlayerResponse> {
-        // return this.http.post<ICreatesGameTeamPlayerResponse>(
-        //     `${GameServiceConstants.URI_PART}/${gameId}/${GameTeamServiceConstants.URI_PART}/${teamId}/creates`,
-        //     request,
-        //     { context: new HttpContext().set(LOADER, { show: true }) }
-        // );
-
-        return of({
-            GameTeamPlayers: [],
-            Errors: null,
-            Success: true,
-            Message: 'All ok!'
-        } as ICreatesGameTeamPlayerResponse);
-    }
 
     public create(gameId: number, teamId: number, playerId: number): Observable<ICreateGameTeamPlayerResponse> {
         // return this.http.post<ICreateGameTeamPlayerResponse>(
@@ -241,6 +227,21 @@ export class GameTeamPlayerService {
         } as ICreateGameTeamPlayerResponse);
     }
 
+    public creates(gameId: number, teamId: number, request: ICreatesGameTeamPlayerRequest): Observable<ICreatesGameTeamPlayerResponse> {
+        // return this.http.post<ICreatesGameTeamPlayerResponse>(
+        //     `${GameServiceConstants.URI_PART}/${gameId}/${GameTeamServiceConstants.URI_PART}/${teamId}/creates`,
+        //     request,
+        //     { context: new HttpContext().set(LOADER, { show: true }) }
+        // );
+
+        return of({
+            GameTeamPlayers: [],
+            Errors: null,
+            Success: true,
+            Message: 'All ok!'
+        } as ICreatesGameTeamPlayerResponse);
+    }
+
     public delete(gameId: number, teamId: number, playerId: number): Observable<IDeleteGameTeamPlayerResponse> {
         // return this.http.delete<IDeleteGameTeamPlayerResponse>(
         //     `${GameServiceConstants.URI_PART}/${gameId}/${GameTeamServiceConstants.URI_PART}/${teamId}/${GameTeamPlayerServiceConstants.URI_PART}/${playerId}`,
@@ -269,11 +270,11 @@ export class GameTeamPlayerService {
         } as IDeletesGameTeamPlayerResponse);
     }
 
-    public find(gameId: number, teamId: number, request: IGameTeamPlayerFindRequest): Observable<HttpResponse<IGameTeamPlayerFindResponse>> {
+    public find(gameId: number, teamId: number, request: IGameTeamPlayerFindRequest, include: GameTeamPlayerInclude[] = []): Observable<HttpResponse<IGameTeamPlayerFindResponse>> {
         // return this.http.get<IGameTeamPlayerFindResponse>(
         //     `${GameServiceConstants.URI_PART}/${gameId}/${GameTeamServiceConstants.URI_PART}/${teamId}/${GameTeamPlayerServiceConstants.URI_PART}/find`,
         //     {
-        //         context: new HttpContext().set(LOADER, { show: false }),
+        //         context: new HttpContext().set(LOADER, { show: false }).set(INCLUDE, include),
         //         params: buildHttpParams(request),
         //         observe: 'response'
         //     }
@@ -444,33 +445,38 @@ export class GameTeamPlayerService {
                             ]
                         }
                     },
-                    Team: {
-                        Id: 40,
+                    GameTeam: {
+                        Id: 0,
+                        Index: 0,
                         Status: 0,
-                        Profile: {
-                            General: {
-                                Name: "Athletic Aces",
-                                City: "sqss",
-                                Description: null,
-                                Logo: null,
-                                Tags: [
-                                    "Athletic",
-                                    "Collective",
-                                    "Gladiators"
-                                ],
-                                Availability: []
+                        Team: {
+                            Id: 40,
+                            Status: 0,
+                            Profile: {
+                                General: {
+                                    Name: "Athletic Aces",
+                                    City: "sqss",
+                                    Description: null,
+                                    Logo: null,
+                                    Tags: [
+                                        "Athletic",
+                                        "Collective",
+                                        "Gladiators"
+                                    ],
+                                    Availability: []
+                                },
+                                Financial: {
+                                    FreePlay: false,
+                                    HasManiches: false
+                                },
+                                Inventary: {
+                                    Shirts: [
+                                        0
+                                    ]
+                                }
                             },
-                            Financial: {
-                                FreePlay: false,
-                                HasManiches: false
-                            },
-                            Inventary: {
-                                Shirts: [
-                                    0
-                                ]
-                            }
-                        },
-                        Players: []
+                            Players: []
+                        }
                     }
                 },
                 {
@@ -636,33 +642,38 @@ export class GameTeamPlayerService {
                             ]
                         }
                     },
-                    Team: {
-                        Id: 40,
+                    GameTeam: {
+                        Id: 0,
+                        Index: 0,
                         Status: 0,
-                        Profile: {
-                            General: {
-                                Name: "Athletic Aces",
-                                City: "sqss",
-                                Description: null,
-                                Logo: null,
-                                Tags: [
-                                    "Athletic",
-                                    "Collective",
-                                    "Gladiators"
-                                ],
-                                Availability: []
+                        Team: {
+                            Id: 40,
+                            Status: 0,
+                            Profile: {
+                                General: {
+                                    Name: "Athletic Aces",
+                                    City: "sqss",
+                                    Description: null,
+                                    Logo: null,
+                                    Tags: [
+                                        "Athletic",
+                                        "Collective",
+                                        "Gladiators"
+                                    ],
+                                    Availability: []
+                                },
+                                Financial: {
+                                    FreePlay: false,
+                                    HasManiches: false
+                                },
+                                Inventary: {
+                                    Shirts: [
+                                        0
+                                    ]
+                                }
                             },
-                            Financial: {
-                                FreePlay: false,
-                                HasManiches: false
-                            },
-                            Inventary: {
-                                Shirts: [
-                                    0
-                                ]
-                            }
-                        },
-                        Players: []
+                            Players: []
+                        }
                     }
                 }
             ],

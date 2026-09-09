@@ -1,7 +1,7 @@
 import { ITeamModel } from "@share/models/team/general/team.model";
 import { EnumService } from "@share/services";
 import { IAvailabilityModel } from "@share/services/common/availability/availability.model";
-import { ITeamModel as ITeamHttpModel} from "@share/services/team/general/general/models/common/team.model"
+import { ITeamModel as ITeamHttpModel } from "@share/services/team/general/general/models/common/team.model"
 import { mapAvailabilityEditFormModel } from "@share/utils/http";
 import { mapTeamPlayerModel } from "../player/team-player.mapper";
 
@@ -26,6 +26,6 @@ export function mapTeamModel(model: ITeamHttpModel, enumService: EnumService): I
                 hasManiches: model.Profile.Financial.HasManiches || false
             }
         },
-        players: model.Players.map(teamPlayer => mapTeamPlayerModel(teamPlayer, enumService))
+        players: model.Players?.map(teamPlayer => mapTeamPlayerModel(teamPlayer, enumService)) || []
     }
 }

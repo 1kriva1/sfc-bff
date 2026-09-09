@@ -21,6 +21,7 @@ import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { GameEditPlayersLocalization } from './game-edit-players.localization';
 import { GameEditPageConstants } from '../../game-edit-page.constants';
 import { IGameEditPageModel } from '../../models/game-edit-page.model';
+import { GamePlayerIncludes } from '@share/enums';
 
 @Component({
     selector: 'sfc-game-edit-players',
@@ -139,7 +140,7 @@ export class GameEditPlayersComponent
 
     protected sendPaginationRequest(request: BasePaginationRequest<IGamePlayerFindFilterModel>)
         : Observable<HttpResponse<BaseListResponse<IGamePlayerServiceModel>>> {
-        return this.gamePlayerService.find(this.model.game.game.id, request);
+        return this.gamePlayerService.find(this.model.game.game.id, request, [GamePlayerIncludes.WithPlayer, GamePlayerIncludes.WithGameTeamWithTeam]);
     }
 
     protected mapTableModel(item: IGamePlayerServiceModel): IGamePlayerSearchTableModel {

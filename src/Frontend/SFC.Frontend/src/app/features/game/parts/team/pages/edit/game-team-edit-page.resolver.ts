@@ -8,6 +8,7 @@ import { mapGameModel } from "@share/mappers/game/general/game.mapper";
 import { IGameTeamEditPageModel } from "./models/game-team-edit-page.model";
 import { mapGameTeamModel } from "@share/mappers/game";
 import { TeamConstants } from "@share/constants";
+import { GameTeamIncludes } from "@share/enums";
 
 export const GameTeamEditPageResolver: ResolveFn<IResolverModel<IGameTeamEditPageModel>> =
     (snapshot: ActivatedRouteSnapshot): Observable<IResolverModel<IGameTeamEditPageModel>> => {
@@ -19,7 +20,7 @@ export const GameTeamEditPageResolver: ResolveFn<IResolverModel<IGameTeamEditPag
 
         return gameService.get(gameId).pipe(
             switchMap((gameResponse: IGetGameResponse) => {
-                return gameTeamService.get(gameResponse.Game.Id, teamId).pipe(
+                return gameTeamService.get(gameResponse.Game.Id, teamId, [GameTeamIncludes.WithTeamWithPlayersWithPlayer, GameTeamIncludes.WithGameTeamPlayersWithTeamWithPlayersWithPlayer]).pipe(
                     map((gameTeamResponse: IGetGameTeamResponse) => {
                         const model: IGameTeamEditPageModel = {
                             game: mapGameModel(gameResponse.Game, enumService),

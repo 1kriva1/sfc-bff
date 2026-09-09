@@ -12,5 +12,6 @@ export {
     toEnglishLocaleTimeString,
     toEnglishLocaleTimeWithTwoDigitsString,
     convertFileToBase64StringAsync,
-    convertFileFromBase64StringAsync
+    convertFileFromBase64StringAsync,
+    checkIncludes
 } from './common.utils';

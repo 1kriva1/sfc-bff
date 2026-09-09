@@ -29,7 +29,7 @@ export function mapTeamSearchTableModel(
                 shirts: model.Profile.Inventary.Shirts
             }
         },
-        players: model.Players.map(teamPlayer => mapTeamPlayerModel(teamPlayer, enumService))
+        players: model.Players?.map(teamPlayer => mapTeamPlayerModel(teamPlayer, enumService)) || []
     };
 
     result.actions = buildActions ? buildActions(result) : [];

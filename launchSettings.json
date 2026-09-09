@@ -16,7 +16,8 @@
                 "sfc-redis": "StartWithoutDebugging",
                 "sfc-invite": "StartWithoutDebugging",
                 "sfc-request": "StartWithoutDebugging",
-                "sfc-scheme": "StartWithoutDebugging"
+                "sfc-scheme": "StartWithoutDebugging",
+                "sfc-game": "StartWithoutDebugging"
             }
         }
     }

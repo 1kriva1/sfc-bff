@@ -153,3 +153,21 @@ services:
       -  type: bind
          source: ../../Services/sfc-scheme-service
          target: /app
+  sfc-game:
+    extends:
+      file: compose.Common.yaml
+      service: sfc-game
+    image: kryvorukandrii/sfc.game:development
+    build:
+      dockerfile: ../../Services/sfc-game-service/src/API/SFC.Game.Api/Dockerfile.Development
+      <<: *build_args
+    env_file:
+      - ../../Services/sfc-game-service/environments/api/api.Development.env    
+    environment:
+      *use_authentication_volume
+    healthcheck:
+      start_period: 660s
+    volumes:
+      -  type: bind
+         source: ../../Services/sfc-game-service
+         target: /app

@@ -13,7 +13,7 @@ export function mapGameTeamPlayerSearchTableModel(
             id: model.Id,
             status: model.Status,
             player: model.Player ? mapPlayerModel(model.Player, enumService) : null!,
-            team: model.Team ? mapTeamModel(model.Team, enumService) : null!,
+            team: model.GameTeam?.Team ? mapTeamModel(model.GameTeam?.Team, enumService) : null!,
         }
     };
 

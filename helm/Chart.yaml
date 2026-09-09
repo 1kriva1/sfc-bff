@@ -29,3 +29,6 @@ dependencies:
   - name: sfc-scheme
     version: 1.0.0
     repository: "file://../../../Services/sfc-scheme-service/helm"
+  - name: sfc-game
+    version: 1.0.0
+    repository: "file://../../../Services/sfc-game-service/helm"

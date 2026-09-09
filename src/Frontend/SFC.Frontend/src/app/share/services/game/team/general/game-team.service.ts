@@ -6,7 +6,7 @@ import { IFindGameTeamsResponse } from "./models/find/find-game-teams.response";
 import { Observable, of } from "rxjs";
 import { GameServiceConstants } from "../../game-service.constants";
 import { GameTeamServiceConstants } from "../game-team-service.constants";
-import { LOADER } from "@core/interceptors";
+import { INCLUDE, LOADER } from "@core/interceptors";
 import { IGetGameTeamsResponse } from "./models/gets/get-game-teams.response";
 import { IUpdateGameTeamsResponse } from "./models/updates/update-game-teams.response";
 import { IUpdateGameTeamsRequest } from "./models/updates/update-game-teams.request";
@@ -15,6 +15,7 @@ import { ICreateGameTeamResponse } from "./models/create/create-game-team.respon
 import { IUpdateGameTeamResponse } from "./models/update/update-game-team.response";
 import { IUpdateGameTeamRequest } from "./models/update/update-game-team.request";
 import { IGetGameTeamResponse } from "./models/get/get-game-team.response";
+import { GameTeamInclude } from "@share/enums/features/game/game-include.enum";
 
 @Injectable({
     providedIn: 'root'
@@ -70,10 +71,12 @@ export class GameTeamService {
         } as ICreateGameTeamResponse);
     }
 
-    public get(gameId: number, teamId: number): Observable<IGetGameTeamResponse> {
+    public get(gameId: number, teamId: number, include: GameTeamInclude[] = []): Observable<IGetGameTeamResponse> {
         // return this.http.get<IGetGameTeamResponse>(
         //     `${GameServiceConstants.URI_PART}/${gameId}/${GameTeamServiceConstants.URI_PART}/${teamId}`,
-        //     { context: new HttpContext().set(LOADER, { show: true }) }
+        //     { 
+        //         context: new HttpContext().set(LOADER, { show: true }).set(INCLUDE, include)
+        //     }
         // );
 
         return of({
@@ -281,10 +284,10 @@ export class GameTeamService {
         } as IGetGameTeamResponse);
     }
 
-    public gets(gameId: number): Observable<IGetGameTeamsResponse> {
+    public gets(gameId: number, include: GameTeamInclude[] = []): Observable<IGetGameTeamsResponse> {
         // return this.http.get<IGetGameTeamsResponse>(
         //     `${GameServiceConstants.URI_PART}/${gameId}/${GameTeamServiceConstants.URI_PART}`,
-        //     { context: new HttpContext().set(LOADER, { show: true }) }
+        //     context: new HttpContext().set(LOADER, { show: true }).set(INCLUDE, include)
         // );
 
         return of({
@@ -329,7 +332,7 @@ export class GameTeamService {
         } as IGetGameTeamsResponse);
     }
 
-    public update(gameId: number, teamId: number,request: IUpdateGameTeamRequest): Observable<IUpdateGameTeamResponse> {
+    public update(gameId: number, teamId: number, request: IUpdateGameTeamRequest): Observable<IUpdateGameTeamResponse> {
         // return this.http.put<IUpdateGameTeamResponse>(
         //     `${GameServiceConstants.URI_PART}/${gameId}/${GameTeamServiceConstants.URI_PART}/${teamId}`,
         //     request,
@@ -355,11 +358,11 @@ export class GameTeamService {
         } as IUpdateGameTeamsResponse);
     }
 
-    public find(gameId: number, request: IFindGameTeamsRequest, loader: boolean = true): Observable<HttpResponse<IFindGameTeamsResponse>> {
+    public find(gameId: number, request: IFindGameTeamsRequest, include: GameTeamInclude[] = [], loader: boolean = true): Observable<HttpResponse<IFindGameTeamsResponse>> {
         // return this.http.get<IFindGameTeamsResponse>(
         //     `${GameServiceConstants.URI_PART}/${gameId}/${GameTeamServiceConstants.URI_PART}/find`,
         //     {
-        //         context: new HttpContext().set(LOADER, { show: loader }),
+        //         context: new HttpContext().set(LOADER, { show: loader }).set(INCLUDE, include),
         //         params: buildHttpParams(request),
         //         observe: 'response'
         //     }

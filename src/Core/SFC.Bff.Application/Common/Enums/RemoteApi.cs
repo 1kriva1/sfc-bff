@@ -7,5 +7,6 @@ public enum RemoteApi
     Invite,
     Request,
     Scheme,
+    Game,
     Identity
 }

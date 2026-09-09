@@ -66,3 +66,7 @@ export function toEnglishLocaleTimeString(value: Date | empty): string {
 export function toEnglishLocaleTimeWithTwoDigitsString(value: Date): string {
     return value.toLocaleTimeString(Locale.English, CoreConstants.DATE_TIME_TWO_DIGIT_FORMAT_OPTIONS);
 }
+
+export function checkIncludes<T extends string>(): <O extends Record<string, T>>(catalog: O) => O {
+    return catalog => catalog;
+}

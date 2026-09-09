@@ -133,3 +133,18 @@ services:
     volumes:
       - *entrypoint_common_volume
       - *entrypoint_volume
+  sfc-game:
+    extends:
+      file: compose.Common.yaml
+      service: sfc-game  
+    image: kryvorukandrii/sfc.game:latest
+    build:
+      dockerfile: ../../Services/sfc-game-service/src/API/SFC.Game.Api/Dockerfile
+      <<: *build_args
+    entrypoint: ["/bin/sh", "entrypoint.sh"]
+    command: ["SFC.Game.Api"]
+    env_file:
+      - ../../Services/sfc-game-service/environments/api/api.Production.env
+    volumes:
+      - *entrypoint_common_volume
+      - *entrypoint_volume

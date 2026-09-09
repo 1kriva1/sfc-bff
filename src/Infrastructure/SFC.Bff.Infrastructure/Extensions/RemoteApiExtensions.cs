@@ -16,6 +16,7 @@ public static class RemoteApiExtensions
             ClientConstants.Invite => RemoteApi.Invite,
             ClientConstants.Request => RemoteApi.Request,
             ClientConstants.Scheme => RemoteApi.Scheme,
+            ClientConstants.Game => RemoteApi.Game,
             ClientConstants.Identity => RemoteApi.Identity,
             _ => throw new NotImplementedException($"Not implemented Remote Api for Client Id: {clientId}")
         };
@@ -31,6 +32,7 @@ public static class RemoteApiExtensions
             RemoteApi.Invite => ClientConstants.Invite,
             RemoteApi.Request => ClientConstants.Request,
             RemoteApi.Scheme => ClientConstants.Scheme,
+            RemoteApi.Game => ClientConstants.Game,
             RemoteApi.Identity => ClientConstants.Identity,
             _ => throw new ArgumentOutOfRangeException(nameof(remoteApi), $"Remote Api: {remoteApi} is out of range.")
         };
@@ -59,6 +61,9 @@ public static class RemoteApiExtensions
                 break;
             case RemoteApi.Scheme:
                 builder.WithAccessTokenRetriever<SchemeApiDelegationAccessTokenRetriever>();
+                break;
+            case RemoteApi.Game:
+                builder.WithAccessTokenRetriever<GameApiDelegationAccessTokenRetriever>();
                 break;
             case RemoteApi.Identity:
                 builder.WithAccessTokenRetriever<IdentityApiDelegationAccessTokenRetriever>();

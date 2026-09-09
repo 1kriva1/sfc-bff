@@ -113,3 +113,13 @@ spec:
       ports:
         - protocol: TCP
           port: 7866
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: sfc
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: sfc-game
+      ports:
+        - protocol: TCP
+          port: 7966

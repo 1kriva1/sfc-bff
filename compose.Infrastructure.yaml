@@ -116,6 +116,9 @@ services:
       sfc-scheme:
         condition: service_healthy
         restart: true
+      sfc-game:
+        condition: service_healthy
+        restart: true
       sfc-bff:
         condition: service_healthy
         restart: true
