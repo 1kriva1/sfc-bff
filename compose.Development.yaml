@@ -38,7 +38,9 @@ services:
     environment:
       *use_authentication_volume
     healthcheck:
-      start_period: 660s
+      interval: 3m
+      retries: 3
+      start_period: 10m
     volumes:
       -  type: bind
          source: ../../Services/sfc-data-service
@@ -56,7 +58,9 @@ services:
     environment:
       *use_authentication_volume
     healthcheck:
-        start_period: 600s
+      interval: 3m
+      retries: 3
+      start_period: 10m
     volumes:
       - type: bind
         source: ../../Services/sfc-identity-service
@@ -76,7 +80,9 @@ services:
     environment:
       *use_authentication_volume
     healthcheck:
-      start_period: 660s
+      interval: 3m
+      retries: 3
+      start_period: 10m
     volumes:
       -  type: bind
          source: ../../Services/sfc-player-service
@@ -94,7 +100,9 @@ services:
     environment:
       *use_authentication_volume
     healthcheck:
-      start_period: 660s
+      interval: 3m
+      retries: 3
+      start_period: 10m
     volumes:
       -  type: bind
          source: ../../Services/sfc-team-service
@@ -112,7 +120,9 @@ services:
     environment:
       *use_authentication_volume
     healthcheck:
-      start_period: 660s
+      interval: 3m
+      retries: 3
+      start_period: 10m
     volumes:
       -  type: bind
          source: ../../Services/sfc-invite-service
@@ -130,7 +140,9 @@ services:
     environment:
       *use_authentication_volume
     healthcheck:
-      start_period: 660s
+      interval: 3m
+      retries: 3
+      start_period: 10m
     volumes:
       -  type: bind
          source: ../../Services/sfc-request-service
@@ -148,7 +160,9 @@ services:
     environment:
       *use_authentication_volume
     healthcheck:
-      start_period: 660s
+      interval: 3m
+      retries: 3
+      start_period: 10m
     volumes:
       -  type: bind
          source: ../../Services/sfc-scheme-service
@@ -166,7 +180,9 @@ services:
     environment:
       *use_authentication_volume
     healthcheck:
-      start_period: 660s
+      interval: 3m
+      retries: 3
+      start_period: 12m
     volumes:
       -  type: bind
          source: ../../Services/sfc-game-service

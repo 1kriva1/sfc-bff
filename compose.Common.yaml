@@ -407,3 +407,12 @@ services:
       sfc-team:
         condition: service_healthy
         restart: true
+      sfc-invite:
+        condition: service_healthy
+        restart: true
+      sfc-request:
+        condition: service_healthy
+        restart: true
+      sfc-scheme:
+        condition: service_healthy
+        restart: true
