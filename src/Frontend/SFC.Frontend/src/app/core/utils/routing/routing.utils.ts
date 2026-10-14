@@ -55,7 +55,22 @@ export function getRouteId(route: ActivatedRouteSnapshot, idRoutePathName: strin
 
 
 export function replaceRouteIdInPath(template: string, value: string | number, paramName: string = RouteConstants.ID_ROUTE_PATH): string {
-    return template.replace(`${paramName}`, String(value));
+    return template
+        .split('/')
+        .map(segment => segment === paramName ? String(value) : segment)
+        .join('/');
+}
+
+export function replaceRouteParamsInPath(template: string, route: ActivatedRouteSnapshot): string {
+    const routeParams: Record<string, string> = route.pathFromRoot.reduce((params, currentRoute) => ({
+        ...params,
+        ...currentRoute.params
+    }), {} as Record<string, string>);
+
+    return template
+        .split('/')
+        .map(segment => routeParams[segment] ?? segment)
+        .join('/');
 }
 
 export function buildNavigationExtras(key: string, value: any, navigationExtras: NavigationExtras | null = null): NavigationExtras {

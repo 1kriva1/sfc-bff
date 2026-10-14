@@ -1,8 +1,8 @@
 import { ISelectItemModel } from "ngx-sfc-inputs";
-import { ISchemeFormationEditFieldFormModel } from "../../../../../../../components/edit/parts/formation/parts/field/models/scheme-formation-edit-field-form.model";
+import { ISchemeGameTeamFormationEditFieldFormModel } from "./parts/field/models/scheme-game-team-formation-edit-field-form.model";
 
 export interface ISchemeGameTeamFormationEditFormModel {
     type: ISelectItemModel;
     formation: number;
-    field: ISchemeFormationEditFieldFormModel;
+    field: ISchemeGameTeamFormationEditFieldFormModel;
 }

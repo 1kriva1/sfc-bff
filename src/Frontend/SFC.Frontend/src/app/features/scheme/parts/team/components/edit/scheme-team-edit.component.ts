@@ -6,7 +6,7 @@ import { IFormationEnumModel } from "@share/services/enum/models/enum/formation-
 import { Observable } from "rxjs";
 import { ISchemeTeamEditFormModel } from "./scheme-team-edit-form.model";
 import { SchemeTeamEditPart } from "./scheme-team-edit-part.enum";
-import { getFormationControlChanges } from "../../../../components/edit/parts/formation/scheme-formation-edit.utils";
+import { getFormationControlChanges } from "./formation/scheme-team-formation-edit.utils";
 
 @Directive()
 export abstract class SchemeTeamEditComponent<TFormValue extends ISchemeTeamEditFormModel, TResponse extends BaseErrorResponse> {

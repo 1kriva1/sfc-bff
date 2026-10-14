@@ -50,11 +50,19 @@
     }
   }
 
-  &.game-player-status-0 {
-    @include row-background-with-related($game-player-status-in-game-color, $game-player-status-in-game-hover-color);
+  &.game-player-position-3 {
+    @include row-background-with-related($player-position-forward-color, $player-position-forward-color-hover);
   }
 
-  &.game-player-status-1 {
-    @include row-background-with-related($game-player-status-out-game-color, $game-player-status-out-game-hover-color);
+  &.game-player-position-2 {
+    @include row-background-with-related($player-position-midfielder-color, $player-position-midfielder-color-hover);
+  }
+
+  &.game-player-position-1 {
+    @include row-background-with-related($player-position-defender-color, $player-position-defender-color-hover);
+  }
+
+  &.game-player-position-0 {
+    @include row-background-with-related($player-position-goalkeeper-color, $player-position-goalkeeper-color-hover);
   }
 }

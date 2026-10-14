@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { ControlContainer, FormBuilder, FormGroupDirective } from "@angular/forms";
+import { Component, Input, OnInit } from "@angular/core";
+import { FormBuilder, FormGroupDirective } from "@angular/forms";
 import { IForm } from "@core/types";
 import { Direction } from "ngx-sfc-common";
 import { IBubbleModel } from "ngx-sfc-inputs";
@@ -21,9 +21,12 @@ import { buildTeamSearchFilterGeneralFormControls } from "./team-search-filter-g
     selector: 'sfc-team-search-filter-general',
     templateUrl: './team-search-filter-general.component.html',
     styleUrls: ['./team-search-filter-general.component.scss'],
-    viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
+    viewProviders: [CoreConstants.CONTROL_CONTAINER_PROVIDER]
 })
 export class TeamSearchFilterGeneralComponent implements OnInit {
+
+    @Input()
+    build: boolean = true;
 
     // ngx-sfc-common
     Direction = Direction;
@@ -57,7 +60,9 @@ export class TeamSearchFilterGeneralComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.buildFormGroup();
+        if (this.build) {
+            this.buildFormGroup();
+        }
     }
 
     private buildFormGroup(): void {

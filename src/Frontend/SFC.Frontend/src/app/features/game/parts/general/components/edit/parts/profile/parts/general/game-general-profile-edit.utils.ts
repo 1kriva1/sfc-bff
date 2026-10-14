@@ -1,7 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { IForm } from "@core/types";
 import { ValidationConstants } from "@share/constants";
-import { nameof, Compare, empty, convertTimestampToDate } from "ngx-sfc-common";
+import { nameof, Compare, empty, convertTimestampToDate, convertFromDateOnlyToDate } from "ngx-sfc-common";
 import { compareThan, maxArrayLength } from "ngx-sfc-inputs";
 import { GameProfileEditPart } from "../../enums/game-profile-edit-part.enum";
 import { IGameGeneralProfileEditFormModel } from "./game-general-profile-edit-form.model";
@@ -19,7 +19,7 @@ export function addGameGeneralProfileEditControl(formBuilder: FormBuilder, form:
         date: [formModel.date, [Validators.required]],
         from: [formModel.from, [Validators.required, compareThan(nameof<IGameGeneralProfileEditFormModel>('to'), Compare.Less, true)]],
         to: [formModel.to, [Validators.required, compareThan(nameof<IGameGeneralProfileEditFormModel>('from'), Compare.More, true)]],
-        stadium: [formModel.stadium],
+        location: [formModel.location],
     };
 
     const profileForm: FormGroup = getFormGroup(nameof<IGameEditFormModel>('profile'), form.controls)!,
@@ -33,9 +33,9 @@ function mapGameGeneralProfileEditFormModel(model: IGameProfileModel | empty = n
         name: model?.general.name!,
         description: model?.general.description,
         tags: model?.general.tags,
-        date: model?.general.date!,
-        from: model ? convertTimestampToDate(model.general.from) : null!,
-        to: model ? convertTimestampToDate(model.general.to!) : null!,
-        stadium: model?.general.stadium
+        date: model ? convertFromDateOnlyToDate(model.general.availability.date!) : null!,
+        from: model ? convertTimestampToDate(model.general.availability.from) : null!,
+        to: model ? convertTimestampToDate(model.general.availability.to!) : null!,
+        location: model?.general.location
     };
 }

@@ -21,7 +21,7 @@ export function addGameMainEditControl(formBuilder: FormBuilder, form: FormGroup
 
 function mapGameMainEditFormModel(model: IGameEditPageModel): IGameMainEditFormModel {
     return {
-        teamAId: model.gameTeam.a?.gameTeam.id!,
-        teamBId: model.gameTeam.b?.gameTeam.id!
+        teamAId: model.gameTeam.a?.gameTeam?.team?.id!,
+        teamBId: model.gameTeam.b?.gameTeam?.team?.id!
     };
 }

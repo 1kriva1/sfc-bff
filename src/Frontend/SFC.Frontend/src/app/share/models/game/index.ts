@@ -3,7 +3,8 @@ export {
     IGameGeneralProfileModel,
     IGameInventaryProfileModel,
     IGameModel,
-    IGameProfileModel
+    IGameProfileModel,
+    IGameAvailabilityModel
 } from './general/game.model';
 
 export {

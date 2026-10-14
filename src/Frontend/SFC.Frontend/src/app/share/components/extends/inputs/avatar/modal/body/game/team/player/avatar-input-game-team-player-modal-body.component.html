@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="content">
+        <form [formGroup]="predicateForm" autocomplete="off">
+            <ng-container [formGroupName]="GameTeamPlayerSearchFilterPart.Player">
+                <div class="name">
+                    <sfc-text-input id="name" formControlName="name" [sfcFocusInput]="false"
+                        [showPlaceholderOnFocus]="true" [label]="CommonConstants.EMPTY_STRING"
+                        [placeholder]="Localization.INPUT.NAME.PLACEHOLDER" [bordered]="false" [sfcComponentSize]
+                        [customSize]="2">
+                    </sfc-text-input>
+
+                    <sfc-delimeter></sfc-delimeter>
+                </div>
+            </ng-container>
+
+            <div class="main">
+                <div class="filters">
+                    <ng-container [formGroupName]="GameTeamPlayerSearchFilterPart.Player">
+                        <sfc-collapse-expand-container [expand]="true" [labelExpand]="Localization.FILTERS.GENERAL"
+                            [labelCollapse]="Localization.FILTERS.GENERAL" [delimeter]="true">
+                            <sfc-general-filter></sfc-general-filter>
+                        </sfc-collapse-expand-container>
+
+                        <sfc-collapse-expand-container [expand]="false" [labelExpand]="Localization.FILTERS.FOOTBALL"
+                            [labelCollapse]="Localization.FILTERS.FOOTBALL" [delimeter]="true">
+                            <sfc-football-filter></sfc-football-filter>
+                        </sfc-collapse-expand-container>
+
+                        <sfc-collapse-expand-container [expand]="false" [labelExpand]="Localization.FILTERS.STATS"
+                            [labelCollapse]="Localization.FILTERS.STATS" [delimeter]="true">
+                            <sfc-stats-filter></sfc-stats-filter>
+                        </sfc-collapse-expand-container>
+                    </ng-container>
+                </div>
+
+                <div class="table">
+                    <sfc-table #table [columns]="columns" [predicate$]="predicate$" [loader]="loader"
+                        [pagination]="Constants.PAGINATION" [position]="Position.Center" [columnsShowOnInit]="false"
+                        [columnsToggle]="false" [showTotal]="true" [selectable]="true" [selectMultiple]="false"
+                        [showLoading]="showLoading" [paginationCount]="TableConstants.PAGINATION_COUNT"
+                        [paginationLimits]="true" [showColumnsLabel]="TableLocalization.TABLE.COLUMNS_SHOW_LABEL"
+                        [hideColumnsLabel]="TableLocalization.TABLE.COLUMNS_HIDE_LABEL"
+                        [totalLabel]="TableLocalization.TABLE.TOTAL_LABEL"
+                        [dataListLabel]="TableLocalization.TABLE.DATA_LIST_LABEL"
+                        [dataCardsLabel]="TableLocalization.TABLE.DATA_CARDS_LABEL"
+                        [notFoundLabel]="TableLocalization.TABLE.NOT_FOUND_LABEL" (selected)="onSelect($event)">
+                        <ng-template [sfcTemplateReference]="TableTemplate.Row" let-row>
+                            <sfc-game-team-player-search-table-row [model]="row.model" [columns]="row.columns"
+                                [value]="value" [radius]="Constants.TableContentRadius" [selectOnClick]="selectOnClick"
+                                [sfcComponentSize] [customSize]="0.8">
+                            </sfc-game-team-player-search-table-row>
+                        </ng-template>
+
+                        <ng-template [sfcTemplateReference]="TableTemplate.Card" let-card>
+                            <sfc-game-team-player-search-table-card [model]="card.model" [columns]="card.columns"
+                                [value]="value" [radius]="Constants.TableContentRadius" [selectOnClick]="selectOnClick"
+                                [sfcComponentSize] [customSize]="0.8">
+                            </sfc-game-team-player-search-table-card>
+                        </ng-template>
+                    </sfc-table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

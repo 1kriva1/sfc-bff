@@ -5,11 +5,15 @@ import { empty } from "ngx-sfc-common";
 export interface IGameGeneralProfileModel {
     Name: string;
     Description: string | empty;
-    Date: Date;
+    Location: number | empty;
+    Tags: string[] | empty;
+    Availability: IGameAvailabilityModel;
+}
+
+export interface IGameAvailabilityModel {
+    Date: string;
     From: string;
     To: string;
-    Stadium: number | empty;
-    Tags: string[] | empty;
 }
 
 export interface IGameFinancialProfileModel {
@@ -32,6 +36,6 @@ export interface IGameModel {
     Id: number;
     Status: number;
     Profile: IGameProfileModel;
-    GamePlayers?: IGamePlayerModel[] | empty;
-    GameTeams?: IGameTeamModel[] | empty;
+    Players?: IGamePlayerModel[] | empty;
+    Teams?: IGameTeamModel[] | empty;
 }

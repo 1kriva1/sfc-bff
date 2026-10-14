@@ -15,8 +15,7 @@ import { RouteKey } from "@core/enums";
 import { Color } from "ngx-sfc-common";
 import { addSchemeGameTeamFormationEditControl, getSchemeGameTeamFormationProgressParameters } from "../../components/edit/parts/formation/scheme-game-team-formation-edit.utils";
 import { mapSchemeGameTeamRequestCreate } from "./scheme-game-team-create-page.mapper";
-import { addSchemeGameTeamGeneralProfileEditControl, addSchemeGameTeamProfileEditControl, getSchemeGameTeamGeneralProfileProgressParameters } from "../../components/edit";
-import { SchemeFormationEditFieldService } from "../../../../../components/edit/parts/formation/parts/field/scheme-formation-edit-field.service";
+import { addSchemeGameTeamGeneralProfileEditControl, addSchemeGameTeamProfileEditControl, getSchemeGameTeamGeneralProfileProgressParameters, SchemeGameTeamFormationEditFieldService } from "../../components/edit";
 import { mapArrayItemProgressValue } from "@share/utils";
 import { getSchemeGameTeamFinalProgressParameters } from "./components/edit/parts/final/scheme-game-team-final-edit.utils";
 import { SchemeGameTeamConstants } from "../../constants/scheme-game-team.constants";
@@ -57,7 +56,7 @@ export class SchemeGameTeamCreatePageComponent implements OnInit, OnDestroy {
         private notificationService: NotificationService,
         private formProgressService: FormProgressService,
         private schemeGameTeamService: SchemeGameTeamService,
-        private schemeFormationEditFieldService: SchemeFormationEditFieldService,
+        private schemeGameTeamFormationEditFieldService: SchemeGameTeamFormationEditFieldService,
         private enumService: EnumService) {
     }
 
@@ -68,7 +67,7 @@ export class SchemeGameTeamCreatePageComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.schemeFormationEditFieldService.clear();
+        this.schemeGameTeamFormationEditFieldService.clear();
     }
 
     private buildForm(): FormGroup {

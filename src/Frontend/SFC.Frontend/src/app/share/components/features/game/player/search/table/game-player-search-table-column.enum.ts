@@ -3,7 +3,7 @@ export enum GamePlayerSearchTableColumn {
     Rating = 'rating',
     Information = 'information',
     Position = 'position',
-    Status = 'status',
+    // Status = 'status',
     Team = 'team',
     Actions = 'actions'
 }

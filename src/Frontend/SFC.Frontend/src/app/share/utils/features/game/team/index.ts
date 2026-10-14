@@ -5,5 +5,7 @@ export {
 
 export {
     getGameTeamActiveStatusEnum,
-    getGameTeamOutOfGameStatusEnum
+    getGameTeamOutOfGameStatusEnum,
+    getGameTeamAIndexEnum,
+    getGameTeamBIndexEnum
 } from './game-team.utils';

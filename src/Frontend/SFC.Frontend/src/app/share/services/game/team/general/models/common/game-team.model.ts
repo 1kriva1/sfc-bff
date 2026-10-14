@@ -7,5 +7,5 @@ export interface IGameTeamModel {
     Status: number;
     Index: number | empty;
     Team? : ITeamModel | empty;
-    GameTeamPlayers? : IGameTeamPlayerModel[] | empty;
+    Players? : IGameTeamPlayerModel[] | empty;
 }

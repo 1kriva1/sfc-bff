@@ -19,5 +19,6 @@ export {
     buildActionParameters,
     getDeepestRoute,
     navigateWithOneTimeAccess,
-    replaceRouteIdInPath
+    replaceRouteIdInPath,
+    replaceRouteParamsInPath
 } from './routing.utils';

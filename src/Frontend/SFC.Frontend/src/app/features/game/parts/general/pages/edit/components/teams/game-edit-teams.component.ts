@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { CoreConstants } from '@core/constants';
 import { buildActionParameters, buildBackNavigationExtras, getDataFromRouteRecursively, MapPredicateModelFunction } from '@core/utils';
-import { BaseTableComponent, GamePlayerSearchTableColumn, IGameTeamSearchFilterModel, IGameTeamSearchTableModel, GameTeamSearchTableLocalization, GameTeamSearchTableColumn, mapGameTeamPredicateMapModel, buildGameTeamSearchFilterFormGroup, mapFindGameTeamsRequest, mapGameTeamSearchTableModel, GameTeamSearchFilterPart, GameTeamFilterPart } from '@share/components';
+import { BaseTableComponent, GamePlayerSearchTableColumn, IGameTeamSearchFilterModel, IGameTeamSearchTableModel, GameTeamSearchTableLocalization, GameTeamSearchTableColumn, mapGameTeamPredicateMapModel, buildGameTeamSearchFilterFormGroup, mapFindGameTeamsRequest, mapGameTeamSearchTableModel, GameTeamSearchFilterPart } from '@share/components';
 import { EnumService, GameTeamService, IFindGameTeamsFilterModel, IGameTeamServiceModel } from '@share/services';
 import { ButtonType, CommonConstants, empty, IPaginationModel, ISortingModel, ModalService, ReloadService, SortingDirection } from 'ngx-sfc-common';
 import { IDropdownMenuItemModel, ITableColumnExtendedModel, TableColumnType } from 'ngx-sfc-components';
@@ -18,7 +18,7 @@ import { IBubbleModel } from 'ngx-sfc-inputs';
 import { faPlus, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { GameEditPageConstants } from '../../game-edit-page.constants';
 import { GameEditTeamsLocalization } from './game-edit-teams.localization';
-import { GameRoute, GameTeamIncludes, TeamRoute } from '@share/enums';
+import { GameAction, GameRoute, GameTeamInclude, TeamRoute } from '@share/enums';
 import { RouteKey } from '@core/enums';
 import { IGameEditPageModel } from '../../models/game-edit-page.model';
 
@@ -39,7 +39,6 @@ export class GameEditTeamsComponent
 
     // share
     GameTeamSearchFilterPart = GameTeamSearchFilterPart;
-    GameTeamFilterPart = GameTeamFilterPart;
 
     // component
     Localization = GameEditTeamsLocalization;
@@ -105,6 +104,8 @@ export class GameEditTeamsComponent
 
     protected override mapPredicateModel: MapPredicateModelFunction = mapGameTeamPredicateMapModel;
 
+    protected override reloadEvents: string[] = [GameAction.GameTeam];
+
     /* End Override */
 
     constructor(
@@ -142,7 +143,7 @@ export class GameEditTeamsComponent
 
     protected sendPaginationRequest(request: BasePaginationRequest<IFindGameTeamsFilterModel>)
         : Observable<HttpResponse<BaseListResponse<IGameTeamServiceModel>>> {
-        return this.gameTeamService.find(this.model.game.game.id, request, [GameTeamIncludes.WithTeam, GameTeamIncludes.WithGameTeamPlayersWithTeamWithPlayersWithPlayer], false);
+        return this.gameTeamService.find(this.model.game.game.id, request, [GameTeamInclude.TeamProfile, GameTeamInclude.TeamWithTeamPlayersWithPlayerProfile], false);
     }
 
     protected mapTableModel(item: IGameTeamServiceModel): IGameTeamSearchTableModel {
@@ -152,9 +153,9 @@ export class GameEditTeamsComponent
     private buildActions(model: IGameTeamSearchTableModel): IDropdownMenuItemModel[] {
         const actionParameters: IBuildActionParameters = buildActionParameters(this.router, this.backNavigationExtras),
             actions: IDropdownMenuItemModel[] = [
-                buildEditGameTeamAction(this.model.game.game.id, model.gameTeam.id, actionParameters),
-                buildViewTeamAction(model.gameTeam.id, this.router),
-                buildViewGameTeamAction(this.model.game.game.id, model.gameTeam.id, actionParameters)
+                buildEditGameTeamAction(this.model.game.game.id, model.gameTeam.team!.id, actionParameters),
+                buildViewTeamAction(model.gameTeam.team!.id, this.router),
+                buildViewGameTeamAction(this.model.game.game.id, model.gameTeam.team!.id, actionParameters)
             ];
 
         return actions;

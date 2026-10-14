@@ -1,5 +1,5 @@
 @use "ngx-sfc-common/styles/index" as *;
-@import "table/row";
+@import "table1/row";
 @import "mixins";
 
 @mixin team-player-squad-row-background($background, $background-hover) {

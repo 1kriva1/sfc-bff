@@ -30,15 +30,15 @@ import { IFormationEnumModel } from "@share/services/enum/models/enum/formation-
 import { mapSelectItems } from "@share/utils/inputs";
 import { RouteConstants } from "@core/constants";
 import { SchemeTeamProfileEditRoute } from "../../components";
-import { SchemeFormationEditFieldService } from "../../../../components/edit/parts/formation/parts/field/scheme-formation-edit-field.service";
 import { ISchemeTeamProfileGeneralEditFormModel } from "../../components/edit/profile/parts/general/scheme-team-profile-general-edit-form.model";
 import { SchemeTeamProfileEditPart } from "../../components/edit/profile/enums/scheme-team-profile-edit-part.enum";
 import { SchemeTeamEditPart } from "../../components/edit/scheme-team-edit-part.enum";
 import { ISchemeTeamFormationEditFormModel } from "../../components/edit/formation/scheme-team-formation-edit-form.model";
 import { SchemeTeamFormationEditPart } from "../../components/edit/formation/scheme-team-formation-edit-part.enum";
 import { ISchemeTeamEditFormModel } from "../../components/edit/scheme-team-edit-form.model";
-import { ISchemeFormationPlayerEditFieldFormModel } from "../../../../components/edit/parts/formation/parts/field/models/scheme-formation-edit-field-form.model";
-import { buildSchemeTeamFormationPlayerEditFieldFormModels } from "../../../../components/edit/parts/formation/scheme-formation-edit.utils";
+import { buildSchemeTeamFormationPlayerEditFieldFormModels } from "../../components/edit/formation/scheme-team-formation-edit.utils";
+import { SchemeTeamFormationEditFieldService } from "../../components/edit/formation/parts/field/scheme-team-formation-edit-field.service";
+import { ISchemeTeamFormationPlayerEditFieldFormModel } from "../../components/edit/formation/parts/field/models/scheme-team-formation-edit-field-form.model";
 
 @Component({
     templateUrl: './scheme-team-edit-page.component.html',
@@ -114,7 +114,7 @@ export class SchemeTeamEditPageComponent implements OnInit, OnDestroy, IChangesC
         private location: Location,
         private enumService: EnumService,
         private storageService: StorageService,
-        private schemeFormationEditFieldService: SchemeFormationEditFieldService) { 
+        private schemeTeamFormationEditFieldService: SchemeTeamFormationEditFieldService) { 
         this.backNavigationModel = this.getBackNavigationModel();
         this.model = this.getResolveModel();
         this.form = this.buildForm();
@@ -124,12 +124,12 @@ export class SchemeTeamEditPageComponent implements OnInit, OnDestroy, IChangesC
     ngOnInit(): void {
         this.setFormValue();
         this.setPageTitle();
-        this.schemeFormationEditFieldService.init(this.model.formation.players);
+        this.schemeTeamFormationEditFieldService.init(this.model.formation.players);
         this.changesCheckService.init(this.form);
     }
 
     ngOnDestroy(): void {
-        this.schemeFormationEditFieldService.clear();
+        this.schemeTeamFormationEditFieldService.clear();
     }
 
     public onUpdated(response: IUpdateTeamSchemeResponse): void {
@@ -178,8 +178,8 @@ export class SchemeTeamEditPageComponent implements OnInit, OnDestroy, IChangesC
                 type: [typeData[0]]
             }, formationEditFormGroup: FormGroup = this.formBuilder.group(formationEditControls);
 
-        const players: ISchemeFormationPlayerEditFieldFormModel[] =
-            buildSchemeTeamFormationPlayerEditFieldFormModels(formation, this.schemeFormationEditFieldService.players),
+        const players: ISchemeTeamFormationPlayerEditFieldFormModel[] =
+            buildSchemeTeamFormationPlayerEditFieldFormModels(formation, this.schemeTeamFormationEditFieldService.players),
             fieldEditFormGroup: FormGroup = this.formBuilder.group({
                 players: this.formBuilder.array(players)
             });

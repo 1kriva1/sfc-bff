@@ -24,6 +24,9 @@ import {
     GameEditPlayerInvitesComponent,
     GameEditPlayerRequestsComponent,
     GameEditPlayersComponent,
+    GameEditPlayersRoute,
+    GameEditPlayersGameComponent,    
+    GameEditPlayersTeamComponent,
     GameEditRequestsComponent,
     GameEditRequestsRoute,
     GameEditTeamInvitesComponent,
@@ -161,7 +164,19 @@ export const GameGeneralRoutes: Routes = [
             {
                 path: GameEditPageRoute.Players,
                 data: { layout: LayoutConstants.ONLY_HEADER_LAYOUT_MODEL },
-                component: GameEditPlayersComponent
+                component: GameEditPlayersComponent,
+                children: [
+                    {
+                        path: GameEditPlayersRoute.Game,
+                        data: { layout: LayoutConstants.ONLY_HEADER_LAYOUT_MODEL },
+                        component: GameEditPlayersGameComponent
+                    },
+                    {
+                        path: GameEditPlayersRoute.Team,
+                        data: { layout: LayoutConstants.ONLY_HEADER_LAYOUT_MODEL },
+                        component: GameEditPlayersTeamComponent
+                    }
+                ]
             },
             {
                 path: GameEditPageRoute.Teams,

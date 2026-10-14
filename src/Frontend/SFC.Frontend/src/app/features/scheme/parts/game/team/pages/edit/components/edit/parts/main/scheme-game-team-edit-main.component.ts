@@ -17,6 +17,10 @@ import { ISchemeGameTeamGeneralProfileEditFormModel } from '../../../../../../co
 import { ISchemeGameTeamProfileEditFormModel } from '../../../../../../components/edit/parts/profile/scheme-game-team-profile-edit-form.model';
 import { ISchemeGameTeamEditFormModel } from '../../../../../../components/edit/scheme-game-team-edit-form.model';
 import { ISchemeGameTeamFormationEditFormModel } from '../../../../../../components/edit/parts/formation/scheme-game-team-formation-edit-form.model';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { ISchemeGameTeamEditMainViewModel } from './scheme-game-team-edit-main-view.model';
+import { Route } from '@share/enums';
+import { RouteKey } from '@core/enums';
 
 @Component({
     selector: 'sfc-scheme-game-team-edit-main',
@@ -29,6 +33,7 @@ export class SchemeGameTeamEditMainComponent
     implements OnInit, AfterViewInit {
 
     // icons
+    faLink = faLink;
 
     // ngx-sfc-common
     Direction = Direction;
@@ -60,6 +65,10 @@ export class SchemeGameTeamEditMainComponent
     /* End Outputs */
 
     /* Fields */
+
+    public viewModel!: ISchemeGameTeamEditMainViewModel;
+
+    public gameTeamLink: string = CommonConstants.EMPTY_STRING;
 
     /* End Fields */
 
@@ -109,6 +118,14 @@ export class SchemeGameTeamEditMainComponent
                     map(([general, formation]) => this.buildSchemeGameTeamInfoModel(general, formation))
                 );
         }
+
+        this.viewModel = {
+            gameTeam: {
+                name: this.model.team.profile.general.name
+            }
+        };
+
+        this.gameTeamLink = `/${Route.Games}/${this.model.game.game.id}/${Route.Teams}/${this.model.team.id}/${RouteKey.Edit}`;
     }
 
     ngAfterViewInit(): void {
@@ -135,7 +152,7 @@ export class SchemeGameTeamEditMainComponent
             name: buildPreviewValue(general.name, CoreLocalization.NOMENCLATURE),
             raiting: rating,
             formation: formation.formation,
-            players: where(formation.field.players, item => !!item.player)?.length || 0
+            players: where(formation.field.players, item => !!item.gameTeamPlayerId)?.length || 0
         };
     }
 }

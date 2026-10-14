@@ -43,7 +43,8 @@ describe('Core.Initializer:Data', () => {
             teamPlayerStatuses: [],
             formationType: [],
             gamePlayerStatuses: [],
-            gameTeamStatuses: []
+            gameTeamStatuses: [],
+            gameTeamIndexes:[]
         };
         identityServiceStub.getIsAuthenticated = () => of(true);
         (enumServiceStub as any).load = () => of(enumsModel);

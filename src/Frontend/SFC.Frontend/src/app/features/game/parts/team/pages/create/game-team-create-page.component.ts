@@ -19,7 +19,7 @@ import { RouteKey } from "@core/enums";
 import { mapCreateGameTeamRequest, mapCreatesGameTeamPlayerRequest, mapCreateTeamRequestAsync } from "./game-team-create-page.mapper";
 import { Color, any } from "ngx-sfc-common";
 import { getGameTeamFinalProgressParameters } from "./components/edit/parts/final/game-team-final-edit.utils";
-import { GameTeamPlayersCurrentEditSelectService } from "./components/edit/parts/players/components/current/services/game-team-players-current-edit-select.service";
+import { GameTeamPlayersCurrentEditStoreService } from "./components/edit/parts/players/components/current/services/game-team-players-current-edit-store.service";
 
 @Component({
     templateUrl: './game-team-create-page.component.html',
@@ -86,7 +86,7 @@ export class GameTeamCreatePageComponent implements OnInit {
         private teamService: TeamService,
         private gameTeamService: GameTeamService,
         private gameTeamPlayerService: GameTeamPlayerService,
-        private gameTeamPlayersCurrentEditSelectService: GameTeamPlayersCurrentEditSelectService) {
+        private gameTeamPlayersCurrentEditStoreService: GameTeamPlayersCurrentEditStoreService) {
     }
 
     async ngOnInit(): Promise<void> {
@@ -111,11 +111,11 @@ export class GameTeamCreatePageComponent implements OnInit {
 
     public onCreated(response: ICreateGameTeamResponse): void {
         if (response.Success) {
-            this.router.navigate([`${Route.Games}/${this.model.game.game.id}/${Route.Teams}/${response.Team.Id}/${RouteKey.Edit}`]);
+            this.router.navigate([`${Route.Games}/${this.model.game.game.id}/${Route.Teams}/${response.GameTeam!.Team!.Id}/${RouteKey.Edit}`]);
             this.notify();
         }
 
-        this.gameTeamPlayersCurrentEditSelectService.clear();
+        this.gameTeamPlayersCurrentEditStoreService.clear();
     }
 
     private notify(): void {

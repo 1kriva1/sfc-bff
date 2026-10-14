@@ -7,6 +7,7 @@ import { EnumService, GameService, TeamService } from "@share/services";
 import { ISchemeGameTeamCreatePageModel } from "./models/scheme-game-team-create-page.model";
 import { GameConstants, TeamConstants } from "@share/constants";
 import { mapGameModel, mapTeamModel } from "@share/mappers";
+import { GameInclude } from "@share/enums";
 
 export const SchemeGameTeamCreatePageResolver: ResolveFn<IResolverModel<ISchemeGameTeamCreatePageModel>> =
     (snapshot: ActivatedRouteSnapshot): Observable<IResolverModel<ISchemeGameTeamCreatePageModel>> => {
@@ -17,7 +18,7 @@ export const SchemeGameTeamCreatePageResolver: ResolveFn<IResolverModel<ISchemeG
             enumService: EnumService = inject(EnumService);
 
         return forkJoin({
-            game: gameService.get(gameId),
+            game: gameService.get(gameId, [GameInclude.Profile]),
             team: teamService.get(teamId)
         }).pipe(
             map(response => {

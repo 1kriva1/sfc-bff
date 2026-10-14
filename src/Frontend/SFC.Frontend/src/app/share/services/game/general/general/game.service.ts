@@ -1,6 +1,6 @@
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { INCLUDE, LOADER } from '@core/interceptors';
 import { ICreateGameResponse } from './models/create/create-game.response';
 import { ICreateGameRequest } from './models/create/create-game.request';
@@ -18,93 +18,29 @@ export class GameService {
   constructor(private http: HttpClient) { }
 
   public create(request: ICreateGameRequest): Observable<ICreateGameResponse> {
-    // return this.http.post<ICreateGameResponse>(
-    //   `${GameServiceConstants.URI_PART}`,
-    //   request,
-    //   { context: new HttpContext().set(LOADER, { show: true }) }
-    // );
-
-    return of({
-      Game: {
-        Id: 100,
-        Status: 1,
-        Profile: {
-          General: {
-            Name: "Test name",
-            Description: "My super description",
-            Date: new Date(4, 15, 2026),
-            From: '10:45:20',
-            To: '14:45:20',
-            Stadium: 5,
-            Tags: ['tag 1', 'tag 2', 'tag 3']
-          },
-          Inventary: {
-            ShirtsRequired: true,
-            ShirtsCount: 2
-          },
-          Financial: {
-            FreeGame: false,
-            PayAmount: 330
-          }
-        },
-        Teams: []
-      },
-      Errors: null,
-      Success: true,
-      Message: 'All ok!'
-    } as ICreateGameResponse);
+    return this.http.post<ICreateGameResponse>(
+      `${GameServiceConstants.URI_PART}`,
+      request,
+      { context: new HttpContext().set(LOADER, { show: true }) }
+    );
   }
 
   public update(id: number, request: IUpdateGameRequest): Observable<IUpdateGameResponse> {
-    // return this.http.put<IUpdateGameResponse>(
-    //   `${GameServiceConstants.URI_PART}/${id}`,
-    //   request,
-    //   { context: new HttpContext().set(LOADER, { show: true }) }
-    // )
-
-    return of({
-      Success: true,
-      Message: 'All ok!'
-    } as IUpdateGameResponse);
+    return this.http.put<IUpdateGameResponse>(
+      `${GameServiceConstants.URI_PART}/${id}`,
+      request,
+      { context: new HttpContext().set(LOADER, { show: true }) }
+    );
   }
 
   public get(id: number, include: GameInclude[] = []): Observable<IGetGameResponse> {
-    // return this.http.get<IGetGameResponse>(
-    //   `${GameServiceConstants.URI_PART}/${id}`,
-    //   {
-    //     context: new HttpContext()
-    //       .set(LOADER, { show: true })
-    //       .set(INCLUDE, include)
-    //   }
-    // );
-
-    return of({
-      Game: {
-        Id: id,
-        Status: 1,
-        Profile: {
-          General: {
-            Name: "Test name",
-            Description: "My super description",
-            Date: new Date(4, 15, 2026),
-            From: '10:45:20',
-            To: '14:45:20',
-            Stadium: 5,
-            Tags: ['tag 1', 'tag 2', 'tag 3']
-          },
-          Inventary: {
-            ShirtsRequired: true,
-            ShirtsCount: 2
-          },
-          Financial: {
-            FreeGame: false,
-            PayAmount: 330
-          }
-        }
-      },
-      Errors: null,
-      Success: true,
-      Message: 'All ok!'
-    } as IGetGameResponse);
+    return this.http.get<IGetGameResponse>(
+      `${GameServiceConstants.URI_PART}/${id}`,
+      {
+        context: new HttpContext()
+          .set(LOADER, { show: true })
+          .set(INCLUDE, include)
+      }
+    );
   }
 }

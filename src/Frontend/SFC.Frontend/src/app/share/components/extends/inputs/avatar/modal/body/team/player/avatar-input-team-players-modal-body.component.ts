@@ -78,6 +78,7 @@ export class AvatarInputTeamPlayersModalBodyComponent
     buildFilterForm(): FormGroup {
         const controls: IForm<ITeamPlayersFilterModel> = {
             name: [null],
+            excludeIds: [this.excludePlayerIds],
             statuses: [[]]
         };
 
@@ -86,7 +87,7 @@ export class AvatarInputTeamPlayersModalBodyComponent
 
     buildRequest(model: ITeamPlayersFilterModel, pagination: IPaginationModel, sorting: ISortingModel | empty)
         : BasePaginationRequest<IFindTeamPlayersFilterModel> {
-        return mapIFindTeamPlayersRequest(model, this.excludePlayerIds, pagination, sorting);
+        return mapIFindTeamPlayersRequest(model, pagination, sorting);
     }
 
     search(request: BasePaginationRequest<IFindTeamPlayersFilterModel>): Observable<HttpResponse<BaseListResponse<ITeamPlayerModel>>> {

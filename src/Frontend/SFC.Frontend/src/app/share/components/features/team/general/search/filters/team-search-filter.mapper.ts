@@ -27,28 +27,28 @@ export function mapFindTeamsRequest(
     }
 }
 
-export function mapFindTeamsFilterModel(model: ITeamSearchFilterModel): IFindTeamsFilterModel {
+export function mapFindTeamsFilterModel(model?: ITeamSearchFilterModel): IFindTeamsFilterModel {
     return {
         Profile: {
             General: {
-                Name: model.name,
-                Availability: {
+                Name: model?.name,
+                Availability: model?.general?.availability ? {
                     Days: model.general?.availability.days,
                     From: toEnglishLocaleTimeString(model.general?.availability.from),
                     To: toEnglishLocaleTimeString(model.general?.availability.to)
-                },
-                City: model.general?.city,
-                Tags: model.general?.tags,
-                HasLogo: model.general?.hasLogo,
-                LocationId: model.general?.locationId
+                } : null,
+                City: model?.general?.city,
+                Tags: model?.general?.tags,
+                HasLogo: model?.general?.hasLogo,
+                LocationId: model?.general?.locationId
             },
             Financial: {
-                FreePlay: model.financial?.freePlay
+                FreePlay: model?.financial?.freePlay
             },
             Inventary: {
-                Shirts: model.inventary?.shirts
+                Shirts: model?.inventary?.shirts
             }
         },
-        Statuses: model.general?.statuses
+        Statuses: model?.general?.statuses
     };
 }

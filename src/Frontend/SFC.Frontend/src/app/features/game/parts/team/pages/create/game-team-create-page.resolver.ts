@@ -6,6 +6,7 @@ import { buildErrorResolverModel, buildResolverModel, getRouteId } from "@core/u
 import { EnumService, GameService, IGetGameResponse } from "@share/services";
 import { IGameTeamCreatePageModel } from "./models/game-team-create-page.model";
 import { mapGameModel } from "@share/mappers";
+import { GameInclude } from "@share/enums";
 
 export const GameTeamCreatePageResolver: ResolveFn<IResolverModel<IGameTeamCreatePageModel>> =
     (snapshot: ActivatedRouteSnapshot): Observable<IResolverModel<IGameTeamCreatePageModel>> => {
@@ -13,7 +14,7 @@ export const GameTeamCreatePageResolver: ResolveFn<IResolverModel<IGameTeamCreat
             gameService: GameService = inject(GameService),
             enumService: EnumService = inject(EnumService);
 
-        return gameService.get(gameId).pipe(
+        return gameService.get(gameId, [GameInclude.Profile]).pipe(
             map((gameResponse: IGetGameResponse) => {
                 const model: IGameTeamCreatePageModel = {
                     game: mapGameModel(gameResponse.Game, enumService)

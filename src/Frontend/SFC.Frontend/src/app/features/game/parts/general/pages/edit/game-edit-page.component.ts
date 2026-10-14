@@ -1,17 +1,17 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { addGameFinancialProfileEditControl, addGameGeneralProfileEditControl, addGameInventaryProfileEditControl, addGameProfileEditControl } from "../../components";
-import { filter, from, map, Observable, startWith, Subscription, switchMap, tap } from "rxjs";
+import { from, Observable, startWith, Subscription, switchMap, tap } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { GameEditPageConstants } from "./game-edit-page.constants";
 import { ChangesCheckService } from "@core/guards/changes-check/changes-check.service";
-import { EnumService, GameService, GameTeamService, IUpdateGameRequest, IUpdateGameResponse, IUpdateGameTeamsRequest } from "@share/services";
+import { EnumService, GameService, GameTeamService, IUpdateGameRequest, IUpdateGameResponse } from "@share/services";
 import { GameEditPageLocalization } from "./game-edit-page.localization";
 import { MessageSeverity } from "@core/services/message/message-severity.enum";
 import { INotification, NotificationService } from "@core/services";
 import { buildPropertyPath, buildTitle, findUrlSegments } from "@core/utils";
 import { Title } from "@angular/platform-browser";
-import { mapUpdateGameRequestAsync, mapUpdateGameTeamRequest } from "./game-edit-page.mapper";
+import { mapUpdateGameRequestAsync } from "./game-edit-page.mapper";
 import { GameProfileEditRoute } from "../../components/edit/parts/profile/enums/game-profile-edit-route.enum";
 import { ISideMenuItemModel, ISideMenuModel, SideMenuItemType } from "ngx-sfc-components";
 import { faArrowsDownToPeople, faBoxesStacked, faCoins, faEnvelope, faHand, faHouse, faInfo, faPeopleGroup, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
@@ -22,6 +22,7 @@ import { IGameEditPageModel } from "./models/game-edit-page.model";
 import { IGameEditPageFormModel } from "./models/game-edit-page-form.model";
 import { isMenuItemInvalid } from "./game-edit-page.utils";
 import { RouteKey } from "@core/enums";
+import { GameEditPlayersRoute } from "./components/players/game-edit-players-route.enum";
 
 @Component({
     templateUrl: './game-edit-page.component.html',
@@ -43,26 +44,14 @@ export class GameEditPageComponent implements OnInit, OnDestroy {
 
     public get model(): IGameEditPageModel { return this.route.snapshot.data[GameEditPageConstants.RESOLVE_KEY].result; };
 
-    public update: (value: IGameEditPageFormModel) => Observable<IUpdateGameResponse> = (value: IGameEditPageFormModel) => {
-        const updateGameRequest$: Observable<IUpdateGameRequest> = from(mapUpdateGameRequestAsync(value)),
-            updateGame$: Observable<IUpdateGameResponse> = updateGameRequest$.pipe(
-                switchMap((request: IUpdateGameRequest) => this.gameService.update(this.model.game.game.id, request)),
-                tap((response: IUpdateGameResponse) => this.onUpdated(response))
-            );
+    public update: (value: IGameEditPageFormModel) => Observable<IUpdateGameResponse> = (value) => {
+        const updateGameRequest$ = from(mapUpdateGameRequestAsync(value));
 
-        if (value.main.teamAId != this.model.gameTeam.a?.gameTeam.id
-            || value.main.teamBId != this.model.gameTeam.b?.gameTeam.id) {
-            return updateGame$.pipe(
-                filter((updateGameResponse: IUpdateGameResponse) => updateGameResponse.Success),
-                switchMap((updateGameResponse: IUpdateGameResponse) => {
-                    const updateGameTeamRequest: IUpdateGameTeamsRequest = mapUpdateGameTeamRequest(value, this.model.gameTeam, this.enumService);
-                    return this.gameTeamService.updates(this.model.game.game.id, updateGameTeamRequest).pipe(map(() => updateGameResponse));
-                })
-            );
-        }
-
-        return updateGame$;
-    }
+        return updateGameRequest$.pipe(
+            switchMap((request: IUpdateGameRequest) => this.gameService.update(this.model.game.game.id, request)),
+            tap((updateGameResponse: IUpdateGameResponse) => this.onUpdated(updateGameResponse))
+        );
+    };
 
     public menu: ISideMenuModel = {
         label: GameEditPageLocalization.MENU.TITLE,
@@ -151,7 +140,23 @@ export class GameEditPageComponent implements OnInit, OnDestroy {
                 label: GameEditPageLocalization.MENU.ITEMS.PLAYERS,
                 icon: faPeopleGroup,
                 type: SideMenuItemType.Item,
-                click: item => this.navigate(item)
+                open: false,
+                items: [
+                    {
+                        id: GameEditPlayersRoute.Game,
+                        label: GameEditPageLocalization.MENU.ITEMS.GAMES,
+                        icon: faPeopleGroup,
+                        type: SideMenuItemType.Item,
+                        click: item => this.navigate(item, GameEditPageRoute.Players)
+                    },
+                    {
+                        id:  GameEditPlayersRoute.Team,
+                        label: GameEditPageLocalization.MENU.ITEMS.TEAMS,
+                        icon: faArrowsDownToPeople,
+                        type: SideMenuItemType.Item,
+                        click: item => this.navigate(item, GameEditPageRoute.Players)
+                    }
+                ]
             },
             {
                 id: GameEditPageRoute.Teams,

@@ -15,6 +15,7 @@ export interface IEnumsModel {
     badgeTypes: IBadgeTypeEnumModel[];
     gameStatuses: IEnumModel<number>[];
     gameTeamStatuses: IEnumModel<number>[];
+    gameTeamIndexes: IEnumModel<number>[];
     gamePlayerStatuses: IEnumModel<number>[];
     teamStatuses: IEnumModel<number>[];    
     inviteStatuses: IEnumModel<number>[];

@@ -23,11 +23,11 @@
           }
 
           &.select {
-            @include row-select-column($color-default);
+            @include row-select-column($color-0);
           }
 
           &.information {
-            @include game-team-player-info($color-default);
+            @include game-team-player-info($color-0);
           }
 
           &.position {
@@ -35,15 +35,61 @@
           }
 
           &.team {
-            @include game-team-info($color-default);
+            @include game-team-info($color-0);
 
             sfc-no-data {
-              color: $color-default;
+              color: $color-0;
             }
           }
 
           &.actions {
-            @include action-menu($color-default);
+            @include action-menu($color-0);
+          }
+        }
+      }
+    }
+  }
+
+  &.game-team-player-position-3 {
+    @include row-background-with-related($player-position-forward-color, $player-position-forward-color-hover);
+  }
+
+  &.game-team-player-position-2 {
+    @include row-background-with-related($player-position-midfielder-color, $player-position-midfielder-color-hover);
+  }
+
+  &.game-team-player-position-1 {
+    @include row-background-with-related($player-position-defender-color, $player-position-defender-color-hover);
+  }
+
+  &.game-team-player-position-0 {
+    @include row-background-with-related($player-position-goalkeeper-color, $player-position-goalkeeper-color-hover);
+  }
+
+  &.game-team-player-position-null {
+    .container {
+      .content {
+        .columns {
+          .column {
+            &.select {
+              @include row-select-column($color-default);
+            }
+
+            &.information {
+              @include game-team-player-info($color-default);
+            }
+
+            &.position {
+              @include row-enum-column($color-default);
+
+              sfc-no-data {
+                color: $color-default;
+              }
+            }
+
+            &.actions {
+              @include action-menu($color-default);
+            }
           }
         }
       }

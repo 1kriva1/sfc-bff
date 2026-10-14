@@ -82,11 +82,11 @@
     }
   }
 
-  &.game-team-status-1 {
+  &.game-team-status-0 {
     @include game-team-info-status($game-team-status-active-color);
   }
 
-  &.game-team-status-0 {
+  &.game-team-status-1 {
     @include game-team-info-status($game-team-status-not-active-color);
   }
 }

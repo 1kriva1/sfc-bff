@@ -26,7 +26,9 @@ import {
     GameEditRequestsComponent,
     GameEditPlayersComponent,
     GameEditTeamsComponent,
-    GameMainEditComponent
+    GameMainEditComponent,
+    GameEditPlayersGameComponent,
+    GameEditPlayersTeamComponent
 } from "./parts/general";
 import {
     GamePlayerViewPageComponent
@@ -57,7 +59,7 @@ import {
         GameProfileEditComponent,
         GameGeneralProfileEditComponent,
         GameInventaryProfileEditComponent,
-        GameFinancialProfileEditComponent,        
+        GameFinancialProfileEditComponent,
         // game/general/page/create
         GameCreatePageComponent,
         // game/general/page/create/components
@@ -74,8 +76,10 @@ import {
         GameEditTeamInvitesComponent,
         GameEditRequestsComponent,
         GameEditPlayerRequestsComponent,
-        GameEditTeamRequestsComponent,        
+        GameEditTeamRequestsComponent,
         GameEditPlayersComponent,
+        GameEditPlayersGameComponent,
+        GameEditPlayersTeamComponent,
         GameEditTeamsComponent,
         // game/player/page/view
         GamePlayerViewPageComponent,
@@ -83,7 +87,7 @@ import {
         GameTeamProfileEditComponent,
         GameTeamGeneralProfileEditComponent,
         GameTeamInventaryProfileEditComponent,
-        GameTeamPlayersGameComponent,           
+        GameTeamPlayersGameComponent,
         // game/team/page/create
         GameTeamCreatePageComponent,
         // game/team/page/create/components
@@ -93,10 +97,10 @@ import {
         GameTeamPlayersEditComponent,
         GameTeamPlayersCurrentEditComponent,
         // game/team/page/edit
-        GameTeamEditPageComponent, 
+        GameTeamEditPageComponent,
         // game/team/page/edit/components
-        GameTeamEditMainComponent,        
-        GameTeamPlayersComponent,        
+        GameTeamEditMainComponent,
+        GameTeamPlayersComponent,
         GameTeamPlayersCurrentComponent,
         GameTeamPlayersTeamComponent,
         GameTeamEditSchemesComponent,

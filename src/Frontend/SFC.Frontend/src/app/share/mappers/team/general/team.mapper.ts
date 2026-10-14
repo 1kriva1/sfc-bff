@@ -9,7 +9,7 @@ export function mapTeamModel(model: ITeamHttpModel, enumService: EnumService): I
     return {
         id: model.Id,
         status: model.Status,
-        profile: {
+        profile: model.Profile ? {
             general: {
                 logo: model.Profile.General.Logo,
                 city: model.Profile.General.City,
@@ -25,7 +25,7 @@ export function mapTeamModel(model: ITeamHttpModel, enumService: EnumService): I
                 freePlay: model.Profile.Financial.FreePlay,
                 hasManiches: model.Profile.Financial.HasManiches || false
             }
-        },
+        } : null!,
         players: model.Players?.map(teamPlayer => mapTeamPlayerModel(teamPlayer, enumService)) || []
     }
 }

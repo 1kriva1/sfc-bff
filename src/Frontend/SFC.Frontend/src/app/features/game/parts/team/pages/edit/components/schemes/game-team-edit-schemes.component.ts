@@ -9,7 +9,7 @@ import { GameTeamEditSchemesLocalization } from './game-team-edit-schemes.locali
 import { IGameTeamEditPageModel } from '../../models/game-team-edit-page.model';
 import { GameTeamEditPageConstants } from '../../game-team-edit-page.constants';
 import { ButtonType } from 'ngx-sfc-common';
-import { Route } from '@share/enums';
+import { Route, SchemeAction } from '@share/enums';
 import { RouteKey } from '@core/enums';
 import { BaseTableComponent, buildSchemeGameTeamSearchFilterFormGroup, ISchemeGameTeamSearchFilterModel, ISchemeGameTeamSearchTableModel, mapSchemeGameTeamFindRequest, mapSchemeGameTeamPredicateMapModel, mapSchemeGameTeamSearchTableModel, SchemeGameTeamSearchTableColumn, SchemeGameTeamSearchTableLocalization } from '@share/components';
 import { ThemeService } from '@share/components/theme-toggler/services/theme/theme.service';
@@ -37,6 +37,8 @@ export class GameTeamEditSchemesComponent
     ButtonType = ButtonType;
 
     CommonConstants = CommonConstants;
+
+    SchemeAction = SchemeAction;
 
     // component
     Localization = GameTeamEditSchemesLocalization;
@@ -100,6 +102,8 @@ export class GameTeamEditSchemesComponent
 
     protected override mapPredicateModel: MapPredicateModelFunction = mapSchemeGameTeamPredicateMapModel;
 
+    protected override reloadEvents: string[] = [SchemeAction.GameTeam];
+
     /* End Override */
 
     constructor(
@@ -129,7 +133,7 @@ export class GameTeamEditSchemesComponent
     }
 
     protected sendPaginationRequest(request: BasePaginationRequest<ISchemeGameTeamFilterFindModel>): Observable<HttpResponse<BaseListResponse<ISchemeGameTeamServiceModel>>> {
-        return this.schemeGameTeamService.find(this.model.game.game.id, this.model.gameTeam.gameTeam.id, request);
+        return this.schemeGameTeamService.find(this.model.game.game.id, this.model.gameTeam.gameTeam.team!.id, request);
     }
 
     protected mapTableModel(item: ISchemeGameTeamServiceModel): ISchemeGameTeamSearchTableModel {
@@ -138,7 +142,7 @@ export class GameTeamEditSchemesComponent
 
     public navigateToCreatePage(): void {
         this.router.navigate(
-            [`${Route.Schemes}/${Route.Games}/${this.model.game.game.id}/${Route.Teams}/${this.model.gameTeam.gameTeam.id}/${RouteKey.Create}`],
+            [`${Route.Schemes}/${Route.Games}/${this.model.game.game.id}/${Route.Teams}/${this.model.gameTeam.gameTeam.team!.id}/${RouteKey.Create}`],
             this.backNavigationExtras
         );
     }
@@ -146,9 +150,9 @@ export class GameTeamEditSchemesComponent
     private buildActions(scheme: ISchemeGameTeamSearchTableModel): IDropdownMenuItemModel[] {
         const actionParameters: IBuildActionParameters = buildActionParameters(this.router, this.backNavigationExtras),
             actions: IDropdownMenuItemModel[] = [
-                buildEditSchemeGameTeamAction(this.model.game.game.id, this.model.gameTeam.gameTeam.id, scheme.id, this.router, this.backNavigationExtras),
+                buildEditSchemeGameTeamAction(this.model.game.game.id, this.model.gameTeam.gameTeam.team!.id, scheme.id, this.router, this.backNavigationExtras),
                 buildRemoveSchemeGameTeamAction(this.modalService, scheme),
-                buildViewSchemeGameTeamAction(this.model.game.game.id, this.model.gameTeam.gameTeam.id, scheme.id, actionParameters)
+                buildViewSchemeGameTeamAction(this.model.game.game.id, this.model.gameTeam.gameTeam.team!.id, scheme.id, actionParameters)
             ];
 
         return actions;

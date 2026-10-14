@@ -8,3 +8,11 @@ export function getGameTeamActiveStatusEnum(enums: IEnumsModel): IEnumModel<numb
 export function getGameTeamOutOfGameStatusEnum(enums: IEnumsModel): IEnumModel<number> {
     return enums.gameTeamStatuses[1];
 }
+
+export function getGameTeamAIndexEnum(enums: IEnumsModel): IEnumModel<number> {
+    return enums.gameTeamIndexes[0];
+}
+
+export function getGameTeamBIndexEnum(enums: IEnumsModel): IEnumModel<number> {
+    return enums.gameTeamIndexes[1];
+}

@@ -1,0 +1,86 @@
+<div class="container">
+    <sfc-title [label]="'Localization.TITLE.LABEL'" [description]="'Localization.TITLE.DESCRIPTION'"
+        [icon]="faQuestionCircle" [tooltip]="'Localization.TITLE.TOOLTIP'" [sfcComponentSize] [customSize]="1"
+        [delimeter]="true">
+    </sfc-title>
+
+    <div class="content">
+        <div class="parts">
+            <div class="part">
+                <div class="part-content">
+                    <form [formGroup]="predicateForm" autocomplete="off">
+                        <div class="filters">
+                            <div class="name" [formGroupName]="TeamPlayerSearchFilterPart.Player">
+                                <sfc-text-input id="name" formControlName="name" [sfcFocusInput]="false"
+                                    [showPlaceholderOnFocus]="true" [label]="CommonConstants.EMPTY_STRING"
+                                    [placeholder]="'Type player name'" [bordered]="false" [sfcComponentSize]
+                                    [customSize]="2">
+                                </sfc-text-input>
+
+                                <sfc-delimeter></sfc-delimeter>
+                            </div>
+
+                            <div class="statuses" [formGroupName]="TeamPlayerSearchFilterPart.TeamPlayer">
+                                <div [formGroupName]="TeamPlayerFilterPart.General">
+                                    <sfc-bubbles-input id="statuses" formControlName="statuses" [items]="statuses"
+                                        [multiple]="true" [helperText]="'Choose team player statuses'">
+                                    </sfc-bubbles-input>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="main">
+                            <div class="side">
+                                <div class="team">
+                                    <sfc-collapse-expand-container [expand]="true" [labelExpand]="'Team filters'"
+                                        [labelCollapse]="'Team filters'" [delimeter]="true">
+                                        <div class="team-filters-content">
+                                            <sfc-autocomplete-input id="team" formControlName="team" [label]="'Team'"
+                                                [placeholder]="'Choose team'"
+                                                [helperText]="'Choose team to filter players'" [loader]="teamsLoader"
+                                                [loadOnStart]="true" [bordered]="true">
+                                            </sfc-autocomplete-input>
+                                        </div>
+                                    </sfc-collapse-expand-container>
+                                </div>
+                            </div>
+
+                            <div class="result">
+                                <div class="filters-preview">
+                                    <sfc-filter-tags [metadata$]="metadata$" [form]="predicateForm"></sfc-filter-tags>
+                                </div>
+
+                                <div class="table">
+                                    <sfc-table [columns]="columns" [predicate$]="predicate$" [loader]="loader"
+                                        [pagination]="TableConstants.PAGINATION" [position]="Position.Center"
+                                        [columnsShowOnInit]="false" [columnsToggle]="true" [showTotal]="true"
+                                        [showLoading]="showLoading" [paginationCount]="TableConstants.PAGINATION_COUNT"
+                                        [paginationLimits]="true"
+                                        [showColumnsLabel]="TableLocalization.TABLE.COLUMNS_SHOW_LABEL"
+                                        [hideColumnsLabel]="TableLocalization.TABLE.COLUMNS_HIDE_LABEL"
+                                        [totalLabel]="TableLocalization.TABLE.TOTAL_LABEL"
+                                        [dataListLabel]="TableLocalization.TABLE.DATA_LIST_LABEL"
+                                        [dataCardsLabel]="TableLocalization.TABLE.DATA_CARDS_LABEL"
+                                        [notFoundLabel]="TableLocalization.TABLE.NOT_FOUND_LABEL">
+                                        <ng-template [sfcTemplateReference]="TableTemplate.Row" let-row>
+                                            <sfc-team-player-search-table-row [model]="row.model"
+                                                [columns]="row.columns" [sfcComponentSize] [customSize]="0.8">
+                                            </sfc-team-player-search-table-row>
+                                        </ng-template>
+
+                                        <ng-template [sfcTemplateReference]="TableTemplate.Card" let-card>
+                                            <sfc-team-player-search-table-card [model]="card.model"
+                                                [columns]="card.columns" [sfcComponentSize] [customSize]="0.8">
+                                            </sfc-team-player-search-table-card>
+                                        </ng-template>
+                                    </sfc-table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

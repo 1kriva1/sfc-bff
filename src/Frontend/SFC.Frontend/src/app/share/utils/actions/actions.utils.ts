@@ -21,7 +21,8 @@ export function buildModalAction(label: string, icon: IconDefinition, delimeter:
     };
 }
 
-export function buildRedirectAction(label: string, icon: IconDefinition, delimeter: boolean, router: Router, commands: string[], state: any = undefined): IDropdownMenuItemModel {
+export function buildRedirectAction(label: string, icon: IconDefinition, delimeter: boolean, router: Router, commands: string[], state: any = undefined)
+    : IDropdownMenuItemModel {
     return {
         label: label,
         icon: icon,

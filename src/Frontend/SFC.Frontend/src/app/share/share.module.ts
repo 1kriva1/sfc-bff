@@ -70,10 +70,7 @@ import {
   FormProgressComponent,
   FormProgressStepComponent,
   FormProgressActionsComponent,
-  GameTeamSearchFilterGeneralComponent,
-  GameTeamSearchFilterFinancialComponent,
   GameTeamSearchTableRowComponent,
-  GameTeamSearchFilterInventaryComponent,
   GameTeamSearchTableCardComponent,
   AvatarInputGameTeamsModalBodyComponent,
   GameTeamInfoComponent,
@@ -100,7 +97,7 @@ import {
   RequestGameTeamSearchFilterGeneralComponent,
   RequestGameTeamSearchTableRowComponent,
   GamePlayerInfoComponent,
-  GamePlayerSearchTableCardComponent,
+  GamePlayerSearchTableCardComponent, 
   GamePlayerSearchTableRowComponent,
   GamePlayerSearchFilterGeneralComponent,
   LinkComponent,
@@ -113,7 +110,8 @@ import {
   SchemeGameTeamSearchTableRowComponent,
   SchemeGameTeamSearchTableCardComponent,
   SchemeGameTeamInfoComponent,
-  SchemeGameTeamModalRemoveComponent
+  SchemeGameTeamModalRemoveComponent,
+  AvatarInputGameTeamPlayerModalBodyComponent
 } from './components';
 import { TimePipe, DayPipe } from './pipes';
 
@@ -159,6 +157,7 @@ import { TimePipe, DayPipe } from './pipes';
     AvatarInputTeamPlayersModalBodyComponent,
     AvatarInputTeamPlayersModalBodyTableRowComponent,
     AvatarInputGameTeamsModalBodyComponent,
+    AvatarInputGameTeamPlayerModalBodyComponent,
     // feature/player
     PlayerInfoComponent,
     PlayerPreviewComponent,
@@ -228,9 +227,6 @@ import { TimePipe, DayPipe } from './pipes';
     RequestGameTeamSearchTableRowComponent,
     RequestGameTeamSearchTableCardComponent,
     // feature/game/team
-    GameTeamSearchFilterGeneralComponent,
-    GameTeamSearchFilterFinancialComponent,
-    GameTeamSearchFilterInventaryComponent,
     GameTeamSearchTableRowComponent,
     GameTeamSearchTableCardComponent,
     GameTeamInfoComponent,
@@ -296,6 +292,7 @@ import { TimePipe, DayPipe } from './pipes';
     AvatarInputTeamsModalBodyComponent,
     AvatarInputTeamPlayersModalBodyComponent,
     AvatarInputGameTeamsModalBodyComponent,
+    AvatarInputGameTeamPlayerModalBodyComponent,
     // feature/player
     PlayerInfoComponent,
     PlayerPreviewComponent,
@@ -365,9 +362,6 @@ import { TimePipe, DayPipe } from './pipes';
     RequestGameTeamSearchTableRowComponent,
     RequestGameTeamSearchTableCardComponent,
     // feature/game/team
-    GameTeamSearchFilterGeneralComponent,
-    GameTeamSearchFilterFinancialComponent,
-    GameTeamSearchFilterInventaryComponent,
     GameTeamSearchTableRowComponent,
     GameTeamSearchTableCardComponent,
     GameTeamInfoComponent,

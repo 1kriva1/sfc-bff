@@ -132,7 +132,7 @@ export class RequestGameTeamDeclineModalComponent implements OnDestroy {
         const model: IRequestGameTeamModel = this.modalService.args,
             request: IRequestGameTeamDeclineRequest = mapRequestGameTeamDeclineRequest(value);
 
-        return this.requestGameTeamService.decline(model.id, model.team.id, model.team.id, request).pipe(
+        return this.requestGameTeamService.decline(model.id, model.game.game.id, model.team.id, request).pipe(
             filter((response: IRequestGameTeamDeclineResponse) => response.Success),
             tap((_: IRequestGameTeamDeclineResponse) => this.postAction(model))
         );

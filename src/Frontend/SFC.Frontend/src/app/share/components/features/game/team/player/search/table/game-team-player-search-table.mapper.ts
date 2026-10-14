@@ -3,7 +3,7 @@ import { EnumService, IGameTeamPlayerServiceModel } from "@share/services";
 import { empty } from "ngx-sfc-common";
 import { IDropdownMenuItemModel } from "ngx-sfc-components";
 import { IGameTeamPlayerSearchTableModel } from "./game-team-player-search-table.model";
-import { mapTeamModel } from "@share/mappers";
+import { mapGameTeamModel } from "@share/mappers";
 
 export function mapGameTeamPlayerSearchTableModel(
     model: IGameTeamPlayerServiceModel, enumService: EnumService,
@@ -13,7 +13,7 @@ export function mapGameTeamPlayerSearchTableModel(
             id: model.Id,
             status: model.Status,
             player: model.Player ? mapPlayerModel(model.Player, enumService) : null!,
-            team: model.GameTeam?.Team ? mapTeamModel(model.GameTeam?.Team, enumService) : null!,
+            gameTeam: model.GameTeam ? mapGameTeamModel(model.GameTeam, enumService) : null!,
         }
     };
 

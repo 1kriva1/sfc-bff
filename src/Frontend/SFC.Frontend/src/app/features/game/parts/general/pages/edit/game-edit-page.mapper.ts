@@ -1,11 +1,12 @@
-import { EnumService, IGetGameTeamsResponse, IUpdateGameRequest, IUpdateGameTeamsModel, IUpdateGameTeamsRequest } from "@share/services";
-import { convertDateToTimestamp, firstOrDefault, isDefined, where } from "ngx-sfc-common";
+import { EnumService, IGameTeamServiceModel, IUpdateGameRequest } from "@share/services";
+import { convertDateTimeToDateOnly, firstOrDefault, where } from "ngx-sfc-common";
 import { IGameEditPageFormModel } from "./models/game-edit-page-form.model";
 import { mapGameTeamModel } from "@share/mappers";
-import { getGameTeamActiveStatusEnum, getGameTeamOutOfGameStatusEnum } from "@share/utils";
+import { getGameTeamActiveStatusEnum, getGameTeamAIndexEnum, getGameTeamBIndexEnum } from "@share/utils";
 import { IEnumModel } from "@core/types";
 import { IGameEditPageTeamModel } from "./models/game-edit-page.model";
-import { GameTeamIndex } from "@share/enums";
+import { toEnglishLocaleTimeWithTwoDigitsString } from "@core/utils";
+import { IGameTeamModel } from "@share/models";
 
 export async function mapUpdateGameRequestAsync(value: IGameEditPageFormModel): Promise<IUpdateGameRequest> {
     return {
@@ -15,10 +16,12 @@ export async function mapUpdateGameRequestAsync(value: IGameEditPageFormModel): 
                     Name: value.profile.general.name,
                     Description: value.profile.general.description,
                     Tags: value.profile.general.tags,
-                    Date: value.profile.general.date,
-                    From: convertDateToTimestamp(value.profile.general.from),
-                    To: convertDateToTimestamp(value.profile.general.to),
-                    Stadium: value.profile.general.stadium
+                    Location: value.profile.general.location,
+                    Availability: {
+                        Date: convertDateTimeToDateOnly(value.profile.general.date),
+                        From: toEnglishLocaleTimeWithTwoDigitsString(value.profile.general.from),
+                        To: toEnglishLocaleTimeWithTwoDigitsString(value.profile.general.to)
+                    }
                 },
                 Financial: {
                     FreeGame: value.profile.financial.freeGame,
@@ -33,55 +36,15 @@ export async function mapUpdateGameRequestAsync(value: IGameEditPageFormModel): 
     }
 }
 
-export function mapUpdateGameTeamRequest(value: IGameEditPageFormModel, model: IGameEditPageTeamModel, enumService: EnumService): IUpdateGameTeamsRequest {
-    const gameTeams: IUpdateGameTeamsModel[] = [],
+export function mapGameEditPageTeamModel(gameTeams: IGameTeamServiceModel[], enumService: EnumService): IGameEditPageTeamModel {
+    const gameTeamsAll: IGameTeamModel[] = gameTeams.map(gameTeam => mapGameTeamModel(gameTeam, enumService)),
         gameTeamActiveStatusEnum: IEnumModel<number> = getGameTeamActiveStatusEnum(enumService.enums),
-        gameTeamOutOfGameStatusEnum: IEnumModel<number> = getGameTeamOutOfGameStatusEnum(enumService.enums);
-
-    if (isDefined(value.main.teamAId)) {
-        gameTeams.push({
-            Index: GameTeamIndex.A,
-            Status: gameTeamActiveStatusEnum.key,
-            Team: value.main.teamAId!
-        });
-
-        if (isDefined(model.a?.gameTeam.id)) {
-            gameTeams.push({
-                Index: null,
-                Status: gameTeamOutOfGameStatusEnum.key,
-                Team: model.a?.gameTeam.id!
-            });
-        }
-    }
-
-    if (isDefined(value.main.teamBId)) {
-        gameTeams.push({
-            Index: GameTeamIndex.B,
-            Status: gameTeamActiveStatusEnum.key,
-            Team: value.main.teamBId!
-        });
-
-        if (isDefined(model.b?.gameTeam.id)) {
-            gameTeams.push({
-                Index: null,
-                Status: gameTeamOutOfGameStatusEnum.key,
-                Team: model.b?.gameTeam.id!
-            });
-        }
-    }
+        gameTeamAIndexEnum: IEnumModel<number> = getGameTeamAIndexEnum(enumService.enums),
+        gameTeamBIndexEnum: IEnumModel<number> = getGameTeamBIndexEnum(enumService.enums),
+        activeGameTeams: IGameTeamModel[] = where(gameTeamsAll, item => item.gameTeam.status == gameTeamActiveStatusEnum.key) || [];
 
     return {
-        GameTeams: gameTeams
-    }
-}
-
-export function mapGameEditPageTeamModel(response: IGetGameTeamsResponse, enumService: EnumService): IGameEditPageTeamModel {
-    const gameTeamsAll = response.GameTeams.map(gameTeam => mapGameTeamModel(gameTeam, enumService)),
-        gameTeamActiveStatusEnum: IEnumModel<number> = getGameTeamActiveStatusEnum(enumService.enums),
-        activeGameTeams = where(gameTeamsAll, item => item.gameTeam.status == gameTeamActiveStatusEnum.key) || [];
-
-    return {
-        a: firstOrDefault(activeGameTeams, item => item.gameTeam.index == GameTeamIndex.A),
-        b: firstOrDefault(activeGameTeams, item => item.gameTeam.index == GameTeamIndex.B)
+        a: firstOrDefault(activeGameTeams, item => item.gameTeam.index == gameTeamAIndexEnum.key),
+        b: firstOrDefault(activeGameTeams, item => item.gameTeam.index == gameTeamBIndexEnum.key)
     }
 }

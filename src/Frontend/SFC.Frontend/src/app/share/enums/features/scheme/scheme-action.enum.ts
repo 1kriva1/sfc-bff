@@ -1,3 +1,4 @@
 export enum SchemeAction {
-    Team = 'scheme-team'
+    Team = 'scheme-team',
+    GameTeam = 'scheme-game-team'
 }

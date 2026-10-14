@@ -1,4 +1,10 @@
-import { ICreatesGameTeamPlayerRequest, IDeletesGameTeamPlayerRequest } from "@share/services";
+import { ICreateGameTeamPlayerRequest, ICreatesGameTeamPlayerRequest, IDeletesGameTeamPlayerRequest } from "@share/services";
+
+export function mapCreateGameTeamPlayerRequest(): ICreateGameTeamPlayerRequest {
+    return {
+        GameTeamPlayer: {}
+    };
+}
 
 export function mapCreatesGameTeamPlayerRequest(playerIds: number[]): ICreatesGameTeamPlayerRequest {
     return {

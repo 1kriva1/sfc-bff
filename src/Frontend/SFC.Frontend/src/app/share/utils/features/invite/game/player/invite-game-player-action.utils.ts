@@ -8,13 +8,13 @@ import { IInviteGamePlayerModel } from "@share/models";
 import { buildModalAction, buildRedirectAction } from "@share/utils/actions";
 import { ModalService } from "ngx-sfc-common";
 
-export function buildViewInviteGamePlayerAction(inviteId: number, gameId: number, playerId: number, parameters: IBuildActionParameters) {
+export function buildViewInviteGamePlayerAction(inviteId: number, gameId: number, playerId: number, parameters: IBuildActionParameters) {    
     return buildRedirectAction(
         $localize`:@@share.utils.features.actions.invite.game.player.view-profile:View game player invite profile`,
         faInfoCircle,
         parameters.delimeter,
         parameters.router,
-        [`${Route.Invites}/${inviteId}/${Route}/${gameId}/${Route.Players}/${playerId}`],
+        [`${Route.Invites}/${inviteId}/${Route.Games}/${gameId}/${Route.Players}/${playerId}`],
         parameters.state
     );
 }

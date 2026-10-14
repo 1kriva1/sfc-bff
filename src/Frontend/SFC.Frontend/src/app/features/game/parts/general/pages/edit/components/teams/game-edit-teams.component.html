@@ -9,9 +9,8 @@
             <div class="part">
                 <div class="part-content">
                     <div class="actions">
-                        <sfc-button [text]="'Create game team'" [iconBefore]="faPlus"
-                            [types]="[ButtonType.Rounded]" [sfcComponentSize] [customSize]="0.7"
-                            (click)="navigateToCreatePage()">
+                        <sfc-button [text]="'Create game team'" [iconBefore]="faPlus" [types]="[ButtonType.Rounded]"
+                            [sfcComponentSize] [customSize]="0.7" (click)="navigateToCreatePage()">
                         </sfc-button>
                     </div>
 
@@ -28,11 +27,9 @@
                             </div>
 
                             <div class="statuses" [formGroupName]="GameTeamSearchFilterPart.GameTeam">
-                                <div [formGroupName]="GameTeamFilterPart.General">
-                                    <sfc-bubbles-input id="statuses" formControlName="statuses" [items]="statuses"
-                                        [multiple]="false" [helperText]="'Choose game team statuses'">
-                                    </sfc-bubbles-input>
-                                </div>
+                                <sfc-bubbles-input id="statuses" formControlName="statuses" [items]="statuses"
+                                    [multiple]="true" [helperText]="'Choose game team statuses'">
+                                </sfc-bubbles-input>
                             </div>
                         </form>
                     </div>

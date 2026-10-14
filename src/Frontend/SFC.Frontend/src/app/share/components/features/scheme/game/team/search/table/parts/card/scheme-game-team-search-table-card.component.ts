@@ -35,8 +35,8 @@ export class SchemeGameTeamSearchTableCardComponent
 
         const schemePlayers: IPlayerModel[] = where(
             this.data.formation.players,
-            (schemePlayer: ISchemeGameTeamFormationPlayerModel) => isDefined(schemePlayer.player))
-            ?.map((schemePlayer: ISchemeGameTeamFormationPlayerModel) => schemePlayer.player!) || [];
+            (schemePlayer: ISchemeGameTeamFormationPlayerModel) => isDefined(schemePlayer.gameTeamPlayer?.gameTeamPlayer.player))
+            ?.map((schemePlayer: ISchemeGameTeamFormationPlayerModel) => schemePlayer.gameTeamPlayer?.gameTeamPlayer.player!) || [];
 
         this.viewModel = {
             name: this.data.profile.general.name,
