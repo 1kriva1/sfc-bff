@@ -1,18 +1,18 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { AbstractControl, ControlContainer, FormBuilder, FormGroupDirective } from '@angular/forms';
 import { faA, faB, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
-import { map, Observable, startWith, EMPTY, filter, switchMap, tap } from 'rxjs';
-import { empty, nameof, convertDateToTimestamp, CommonConstants, NotificationType, ButtonType, Position } from 'ngx-sfc-common';
+import { map, Observable, startWith, EMPTY, filter, switchMap, tap, pairwise } from 'rxjs';
+import { empty, nameof, convertDateToTimestamp, CommonConstants, NotificationType, ButtonType, Position, ReloadService } from 'ngx-sfc-common';
 import { CoreConstants } from '@core/constants';
 import { buildPreviewValue, getClickObservableFromElementReference, getControl, getDataFromRouteRecursively, getEnum } from '@core/utils';
 import { CoreLocalization } from '@core/localization';
 import { IEnumModel } from '@core/types';
-import { EnumService } from '@share/services';
+import { EnumService, GameTeamService, IUpdateGameTeamsResponse } from '@share/services';
 import { formatDate } from '@angular/common';
 import { Locale } from '@core/enums';
-import { StorageService } from '@core/services';
+import { INotification, NotificationService, StorageService } from '@core/services';
 import { GameMainEditLocalization } from './game-main-edit.localization';
-import { getStars, getTeamRaiting } from '@share/utils';
+import { getGameTeamAIndexEnum, getGameTeamBIndexEnum, getStars, getTeamRaiting } from '@share/utils';
 import { GameMainEditConstants } from './game-main-edit.constants';
 import { IAvatarInputGameTeamsModalBodyEventModel } from '@share/components';
 import { ITeamModel } from '@share/models';
@@ -25,6 +25,11 @@ import { GameEditPageEditComponent } from '../../game-edit-page-edit.component';
 import { GameEditPageConstants } from '../../../../game-edit-page.constants';
 import { IGameEditPageModel } from '../../../../models/game-edit-page.model';
 import { IGameGeneralProfileEditFormModel } from '../../../../../../components/edit/parts/profile/parts/general/game-general-profile-edit-form.model';
+import { ChangesCheckService } from '@core/guards/changes-check/changes-check.service';
+import { MessageSeverity } from '@core/services/message/message-severity.enum';
+import { mapUpdateGameTeamRequest } from './game-main-edit.mapper';
+import { IGameMainEditFormModel } from './game-main-edit-form.model';
+import { GameAction } from '@share/enums';
 
 @Component({
     selector: 'sfc-game-main-edit',
@@ -122,6 +127,10 @@ export class GameMainEditComponent<TFormValue extends IGameEditPageFormModel, TR
         private enumService: EnumService,
         private storageService: StorageService,
         private route: ActivatedRoute,
+        private gameTeamService: GameTeamService,
+        private changesCheckService: ChangesCheckService,
+        private notificationService: NotificationService,
+        private reloadService: ReloadService,
         parent: FormGroupDirective,
         formBuilder: FormBuilder) {
         super(parent, formBuilder);
@@ -169,8 +178,17 @@ export class GameMainEditComponent<TFormValue extends IGameEditPageFormModel, TR
             );
         }
 
+        const teamAControl: AbstractControl | empty = getControl(nameof<IGameMainEditFormModel>('teamAId'), this.form.controls),
+            gameTeamAIndex: IEnumModel<number> = getGameTeamAIndexEnum(this.enumService.enums);
+        this.subscribeToGameTeamChanges(teamAControl, this.form.value.main.teamAId, gameTeamAIndex);
+
+        const teamBControl: AbstractControl | empty = getControl(nameof<IGameMainEditFormModel>('teamBId'), this.form.controls),
+            gameTeamBIndex: IEnumModel<number> = getGameTeamBIndexEnum(this.enumService.enums);
+
+        this.subscribeToGameTeamChanges(teamBControl, this.form.value.main.teamBId, gameTeamBIndex);
+
         this.teamAAvatarModel = this.buildTeamAvatarInputModel(this.model.gameTeam.a?.gameTeam.team);
-        
+
         this.teamBAvatarModel = this.buildTeamAvatarInputModel(this.model.gameTeam.b?.gameTeam.team);
     }
 
@@ -195,11 +213,23 @@ export class GameMainEditComponent<TFormValue extends IGameEditPageFormModel, TR
             const eventModel: IAvatarInputModalEventModel = {
                 avatarModel: this.buildTeamAvatarInputModel(event.gameTeam.gameTeam.team)!,
                 model: event.gameTeam,
-                value: event.gameTeam.gameTeam.id
+                value: event.gameTeam.gameTeam.team?.id!
             };
 
             context.onSelect(eventModel, event.selected);
         }
+    }
+
+    private updateGameTeams(currentTeamAId: number | empty, previousTeamAId: number | empty, index: IEnumModel<number>)
+        : Observable<IUpdateGameTeamsResponse> {
+        const request = mapUpdateGameTeamRequest(
+            currentTeamAId,
+            previousTeamAId,
+            index,
+            this.enumService
+        );
+
+        return this.gameTeamService.updates(this.model.game.game.id, request);
     }
 
     private buildTeamAvatarInputModel(model: ITeamModel | empty): IAvatarInputModel | empty {
@@ -215,5 +245,34 @@ export class GameMainEditComponent<TFormValue extends IGameEditPageFormModel, TR
             progress: rating,
             stars: getStars(rating)
         };
+    }
+
+    private subscribeToGameTeamChanges(control: AbstractControl | empty, teamId: number | empty, index: IEnumModel<number>): void {
+        if (control) {
+            control.valueChanges.pipe(
+                startWith(teamId),
+                filter(() => control.valid),
+                pairwise(),
+                switchMap(([previousTeamAId, currentTeamAId]) => this.updateGameTeams(currentTeamAId, previousTeamAId, index))
+            ).subscribe(response => this.onUpdated(response));
+        }
+    }
+
+    private notify(): void {
+        const notification: INotification = {
+            severity: MessageSeverity.INFO,
+            value: GameMainEditLocalization.NOTIFICATION.UPDATED.VALUE,
+            title: GameMainEditLocalization.NOTIFICATION.UPDATED.TITLE
+        };
+
+        this.notificationService.notify(notification);
+    }
+
+    public onUpdated(response: IUpdateGameTeamsResponse): void {
+        if (response.Success) {
+            this.notify();
+            this.reloadService.reload(GameAction.GameTeam);
+            this.changesCheckService.set(this.form);
+        }
     }
 }

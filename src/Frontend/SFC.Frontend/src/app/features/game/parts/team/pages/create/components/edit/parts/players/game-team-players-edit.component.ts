@@ -16,7 +16,7 @@ import { GameTeamCreatePageConstants } from '../../../../game-team-create-page.c
 import { GameTeamPlayersCurrentEditStoreService } from './components/current/services/game-team-players-current-edit-store.service';
 import { GameTeamPlayersCurrentEditSelectService } from './components/current/services/game-team-players-current-edit-select.service';
 import { IGameTeamPlayersEditFormModel } from './game-team-players-edit-form.model';
-import { GameTeamPlayersGameSelectService } from '../../../../../../components/players/parts/game/game-team-players-game-select.service';
+import { GameTeamPlayersGameSelectService } from '../../../../../../components/players/parts/game/services/game-team-players-game-select.service';
 import { buildGameTeamPlayersFilterFormGroup } from '../../../../../../components/players/game-team-players.utils';
 
 @Component({
@@ -107,7 +107,7 @@ export class GameTeamPlayersEditComponent<TFormValue extends IGameTeamCreatePage
 
     private setPlayersFormValue(): void {
         const formValue: IGameTeamPlayersEditFormModel = {
-            ids: this.gameTeamPlayersCurrentEditStoreService.value.map(item => item.gamePlayer.id)
+            ids: this.gameTeamPlayersCurrentEditStoreService.value.map(item => item.gamePlayer.player?.id!)
         };
 
         this.playersForm.setValue(formValue);

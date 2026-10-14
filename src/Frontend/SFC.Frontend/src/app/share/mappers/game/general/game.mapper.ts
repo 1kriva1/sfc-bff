@@ -10,11 +10,13 @@ export function mapGameModel(model: IGameServiceModel, enumService: EnumService)
                 general: {
                     name: model.Profile.General.Name,
                     description: model.Profile.General.Description,
-                    date: model.Profile.General.Date,
-                    from: model.Profile.General.From,
-                    to: model.Profile.General.To,
-                    stadium: model.Profile.General.Stadium,
-                    tags: model.Profile.General.Tags
+                    location: model.Profile.General.Location,
+                    tags: model.Profile.General.Tags,
+                    availability: {
+                        date: model.Profile.General.Availability.Date,
+                        from: model.Profile.General.Availability.From,
+                        to: model.Profile.General.Availability.To,
+                    }
                 },
                 inventary: {
                     shirtsRequired: model.Profile.Inventary.ShirtsRequired,

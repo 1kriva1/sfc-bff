@@ -9,7 +9,7 @@ import { GamePlayerSearchTableConstants } from "../../game-player-search-table.c
 import { IPlayerModel, ITeamPlayerModel } from "@share/models";
 import { getPlayersRaiting } from "@share/utils";
 import { GamePlayerInfoConstants } from "../../../../info/game-player-info.constants";
-import { hasItemBy } from "ngx-sfc-common";
+
 @Component({
     selector: 'sfc-game-player-search-table-card',
     templateUrl: './game-player-search-table-card.component.html',
@@ -46,10 +46,6 @@ export class GamePlayerSearchTableCardComponent
             actions: this.data.actions || []
         };
 
-        if (hasItemBy(this.columns, column => column.field == GamePlayerSearchTableColumn.Status)) {
-            this.viewModel.status = this.data.gamePlayer.status;
-        }
-
         if (this.data.gamePlayer.gameTeam) {
             const teamPlayers: IPlayerModel[] = this.data.gamePlayer.gameTeam.gameTeam.team!.players.map((teamPlayer: ITeamPlayerModel) => teamPlayer.player);
 
@@ -63,6 +59,6 @@ export class GamePlayerSearchTableCardComponent
             this.viewModel.team = gamePlayerTeam;
         }
 
-        this.statusClass = this.buildStatusClass(GamePlayerSearchTableConstants.STATUS_CLASS_PART, this.data.gamePlayer.status);
+        this.statusClass = this.buildStatusClass(GamePlayerSearchTableConstants.STATUS_CLASS_PART, this.data.gamePlayer.player!.football.position!);
     }
 }

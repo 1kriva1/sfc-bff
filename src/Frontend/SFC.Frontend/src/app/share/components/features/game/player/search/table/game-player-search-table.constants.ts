@@ -1,3 +1,3 @@
 export class GamePlayerSearchTableConstants {
-    static STATUS_CLASS_PART: string = 'game-player-status';
+    static STATUS_CLASS_PART: string = 'game-player-position';
 }

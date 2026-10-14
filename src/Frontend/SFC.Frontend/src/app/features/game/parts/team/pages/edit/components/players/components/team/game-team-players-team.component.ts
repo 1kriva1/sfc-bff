@@ -20,13 +20,14 @@ import { IDropdownMenuItemModel, ITableColumnExtendedModel, ITableSelectEvent, T
 import { Observable, tap } from "rxjs";
 import { GameTeamPlayersTeamLocalization } from "./game-team-players-team.localization";
 import { IGameTeamEditPageModel } from "../../../../models/game-team-edit-page.model";
-import { GameAction } from "@share/enums";
+import { TeamAction } from "@share/enums";
 import { GameTeamPlayersTeamConstants } from "./game-team-players-team.constants";
 import { GameTeamPlayersTeamSelectService } from "./game-team-players-team-select.service";
 import { TeamLocalization } from "@share/localization";
 import { buildAddPlayerToTeamAction } from "./game-team-players-team.utils";
 import { IGameTeamPlayersFilterFormModel } from "../../../../../../components/players/game-team-players-filter-form.model";
 import { mapTeamPlayerSearchFilterModel } from "../../../../../../components/players/game-team-players.mapper";
+import { GameTeamPlayersGameStoreService } from "src/app/features/game/parts/team/components/players/parts/game/services/game-team-players-game-store.service";
 
 @Component({
     selector: 'sfc-game-team-players-team',
@@ -105,7 +106,7 @@ export class GameTeamPlayersTeamComponent
 
     protected override mapPredicateModel: MapPredicateModelFunction = mapTeamPlayerPredicateMapModel;
 
-    protected override reloadEvents: string[] = [GameAction.GameTeamPlayer];
+    protected override reloadEvents: string[] = [TeamAction.Player];
 
     /* End Override */
 
@@ -113,6 +114,7 @@ export class GameTeamPlayersTeamComponent
         private teamPlayerService: TeamPlayerService,
         private router: Router,
         private gameTeamPlayersTeamSelectService: GameTeamPlayersTeamSelectService,
+        private gameTeamPlayersGameStoreService: GameTeamPlayersGameStoreService,
         enumService: EnumService,
         themeService: ThemeService,
         notificationService: NotificationService,
@@ -129,7 +131,10 @@ export class GameTeamPlayersTeamComponent
 
     protected buildPaginationRequest(model: IGameTeamPlayersFilterFormModel, pagination: IPaginationModel, sorting: ISortingModel | empty)
         : BasePaginationRequest<IFindTeamPlayersFilterModel> {
-        const filterModel: ITeamPlayerSearchFilterModel = mapTeamPlayerSearchFilterModel(model);
+        const filterModel: ITeamPlayerSearchFilterModel = mapTeamPlayerSearchFilterModel(
+            model,
+            this.gameTeamPlayersGameStoreService.value.map(id => id)
+        );
         return mapFindTeamPlayersRequest(filterModel, pagination, sorting);
     }
 

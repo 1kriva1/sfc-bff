@@ -1,7 +1,7 @@
-import { IPlayerModel } from "@share/services/player/general/models/common/player.model";
+import { IGameTeamPlayerServiceModel } from "@share/services/game/team/player";
 import { ISchemeGameTeamPlayerPositionModel } from "./scheme-game-team-player-position.model";
 
 export interface ISchemeGameTeamPlayerModel {
-    Player: IPlayerModel;
+    GameTeamPlayer: IGameTeamPlayerServiceModel;
     Position: ISchemeGameTeamPlayerPositionModel;
 }

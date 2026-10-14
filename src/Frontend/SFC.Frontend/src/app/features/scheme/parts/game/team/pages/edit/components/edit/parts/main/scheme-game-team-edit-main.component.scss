@@ -17,6 +17,16 @@
             margin: 1em 0;
           }
 
+          &.game-team {
+            @include center-column;
+
+            p {
+              @include text-center-bold($color-default, 0.8em);
+
+              margin: 0;
+            }
+          }
+
           &.result {
             &:empty {
               display: none;

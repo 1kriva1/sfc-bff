@@ -1,0 +1,65 @@
+@import "ngx-sfc-common/styles";
+@import "components1";
+@import "page1";
+@import "inputs";
+
+:host {
+  width: 100%;
+
+  .container {
+    .content {
+      padding: 1em 0;
+
+      .parts {
+        .part {
+          .part-content {
+            .filters {
+              justify-content: center;
+              flex-direction: column;
+
+              .name {
+                padding-bottom: 1em;
+                width: 90%;
+                margin: 0 auto;
+
+                @include name-text-input;
+              }
+
+              .statuses {
+                margin-bottom: 1em;
+              }
+            }
+
+            .main {
+              display: flex;
+              justify-content: center;
+              align-items: baseline;
+
+              .side {
+                width: 15%;
+                margin: 0 3em 0 0;
+                min-width: 25%;
+
+                .team {
+                  @include collapse-expand-container;
+
+                  .team-filters-content {
+                    padding: 1em 0;
+
+                    @include sfc-autocomplete-input($color-2);
+                  }
+                }
+              }
+
+              .result {
+                @include page-content-result;
+
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

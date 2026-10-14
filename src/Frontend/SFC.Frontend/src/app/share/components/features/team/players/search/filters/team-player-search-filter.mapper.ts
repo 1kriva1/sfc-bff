@@ -12,7 +12,6 @@ import { PlayersTableSorting } from "@share/components/features/player";
 // TODO - Legacy
 export function mapIFindTeamPlayersRequest(
     model: ITeamPlayersFilterModel,
-    excludePlayerIds: number[],
     pagination: IPaginationModel,
     sorting: ISortingModel | empty): IFindTeamPlayersRequest {
     return {
@@ -22,7 +21,7 @@ export function mapIFindTeamPlayersRequest(
             TeamPlayer: {
                 Statuses: model.statuses,
             },
-            Player: mapFindPlayersFilterModel(model, excludePlayerIds)
+            Player: mapFindPlayersFilterModel(model)
         }
     }
 

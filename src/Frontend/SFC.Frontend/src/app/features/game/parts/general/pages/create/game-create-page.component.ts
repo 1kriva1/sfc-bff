@@ -5,15 +5,14 @@ import { RouteKey } from "@core/enums";
 import { INotification, NotificationService } from "@core/services";
 import { MessageSeverity } from "@core/services/message/message-severity.enum";
 import { faBoxesStacked, faCoins, faFlagCheckered, faInfo, faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
-import { filter, from, map, Observable, switchMap, tap } from "rxjs";
+import { from, map, Observable, of, switchMap, tap } from "rxjs";
 import { GameCreatePageLocalization } from "./game-create-page.localization";
 import { mapCreateGameRequestAsync, mapCreateGameTeamInvitesRequest } from "./game-create-page.mapper";
 import { GameRoute } from "@share/enums";
-import { ICreateGameTeamInvitesRequest, InviteGameTeamService } from "@share/services";
+import { InviteGameTeamService } from "@share/services";
 import { GameService, ICreateGameRequest, ICreateGameResponse } from "@share/services/game";
-import { Color } from "ngx-sfc-common";
+import { Color, isDefined } from "ngx-sfc-common";
 import { FormProgressService, IFormProgressStepModel } from "@share/components";
-import { isDefined } from "ngx-sfc-common";
 import {
     addGameFinancialProfileEditControl,
     addGameGeneralProfileEditControl,
@@ -39,23 +38,30 @@ export class GameCreatePageComponent implements OnInit {
     public form!: FormGroup;
 
     public create: () => Observable<ICreateGameResponse> = () => {
-        const createGameRequest$: Observable<ICreateGameRequest> = from(mapCreateGameRequestAsync(this.value)),
-            createGame$: Observable<ICreateGameResponse> = createGameRequest$.pipe(
-                switchMap((request: ICreateGameRequest) => this.gameService.create(request)),
-                tap((response: ICreateGameResponse) => this.onCreated(response))
-            );
+        const createGameRequest$: Observable<ICreateGameRequest> = from(mapCreateGameRequestAsync(this.value));
 
-        if (isDefined(this.value.teams.teamAId) || isDefined(this.value.teams.teamBId)) {
-            return createGame$.pipe(
-                filter((createGameResponse: ICreateGameResponse) => createGameResponse.Success),
-                switchMap((createGameResponse: ICreateGameResponse) => {
-                    const createTeamPlayersRequest: ICreateGameTeamInvitesRequest = mapCreateGameTeamInvitesRequest(this.value.teams);
-                    return this.inviteGameTeamService.createRange(createGameResponse.Game.Id, createTeamPlayersRequest).pipe(map(() => createGameResponse));
-                })
-            );
-        }
+        return createGameRequest$.pipe(
+            switchMap((request: ICreateGameRequest) => this.gameService.create(request)),
+            switchMap((createGameResponse: ICreateGameResponse) => {
+                if (!isDefined(this.value.teams.teamAId) && !isDefined(this.value.teams.teamBId)) {
+                    this.onCreated(createGameResponse);
+                    return of(createGameResponse);
+                }
 
-        return createGame$;
+                if (!createGameResponse.Success) {
+                    return of(createGameResponse);
+                }
+
+                const gameTeamInviteRequest = mapCreateGameTeamInvitesRequest(this.value.teams);
+
+                return this.inviteGameTeamService
+                    .creates(createGameResponse.Game.Id, gameTeamInviteRequest)
+                    .pipe(
+                        tap(() => this.onCreated(createGameResponse)),
+                        map(() => createGameResponse)
+                    );
+            })
+        );
     }
 
     public steps: IFormProgressStepModel[] = [

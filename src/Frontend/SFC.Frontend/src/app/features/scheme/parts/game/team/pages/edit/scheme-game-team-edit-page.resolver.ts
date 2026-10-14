@@ -8,6 +8,7 @@ import { mapGameModel } from "@share/mappers/game/general/game.mapper";
 import { ISchemeGameTeamEditPageModel } from "./models/scheme-game-team-edit-page.model";
 import { GameConstants, TeamConstants } from "@share/constants";
 import { mapSchemeGameTeamModel, mapTeamModel } from "@share/mappers";
+import { GameInclude } from "@share/enums";
 
 export const SchemeGameTeamEditPageResolver: ResolveFn<IResolverModel<ISchemeGameTeamEditPageModel>> =
     (snapshot: ActivatedRouteSnapshot): Observable<IResolverModel<ISchemeGameTeamEditPageModel>> => {
@@ -21,7 +22,7 @@ export const SchemeGameTeamEditPageResolver: ResolveFn<IResolverModel<ISchemeGam
 
         return forkJoin({
             scheme: schemeGameTeamService.get(schemeId, gameId, teamId),
-            game: gameService.get(gameId),
+            game: gameService.get(gameId, [GameInclude.Profile]),
             team: teamService.get(teamId)
         }).pipe(
             map(response => {

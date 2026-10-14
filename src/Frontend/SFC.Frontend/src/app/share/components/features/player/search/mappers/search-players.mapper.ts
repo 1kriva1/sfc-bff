@@ -42,9 +42,9 @@ export function mapFindPlayersRequest(
     }
 }
 
-export function mapFindPlayersFilterModel(model?: IPlayersFilterModel | empty, excludePlayerIds: number[] = []): IFindPlayersFilterModel {
+export function mapFindPlayersFilterModel(model?: IPlayersFilterModel | empty): IFindPlayersFilterModel {
     return {
-        ExcludeIds: excludePlayerIds,
+        ExcludeIds: model?.excludeIds,
         Profile: {
             General: ({
                 Availability: {

@@ -23,7 +23,7 @@
                             <div class="statuses" [formGroupName]="RequestGamePlayerSearchFilterPart.Request">
                                 <div [formGroupName]="RequestGamePlayerFilterPart.General">
                                     <sfc-bubbles-input id="statuses" formControlName="statuses" [items]="statuses"
-                                        [multiple]="false" [helperText]="'Choose Request game statuses'">
+                                        [multiple]="true" [helperText]="'Choose Request game statuses'">
                                     </sfc-bubbles-input>
                                 </div>
                             </div>
@@ -69,8 +69,8 @@
     </div>
 
     <!-- accept player request modal -->
-    <sfc-request-game-player-accept-modal [actions]="[RequestAction.GameTeam]"></sfc-request-game-player-accept-modal>
+    <sfc-request-game-player-accept-modal [actions]="[RequestAction.GamePlayer]"></sfc-request-game-player-accept-modal>
 
     <!-- decline player request modal -->
-    <sfc-request-game-player-decline-modal [actions]="[RequestAction.GameTeam]"></sfc-request-game-player-decline-modal>
+    <sfc-request-game-player-decline-modal [actions]="[RequestAction.GamePlayer]"></sfc-request-game-player-decline-modal>
 </div>

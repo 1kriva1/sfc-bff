@@ -1,4 +1,6 @@
 export { IGameTeamPlayerModel as IGameTeamPlayerServiceModel } from './models/common/game-team-player.model';
+export { ICreateGameTeamPlayerModel } from './models/create/create-game-team-player.model';
+export { ICreateGameTeamPlayerRequest } from './models/create/create-game-team-player.request';
 export { ICreatesGameTeamPlayerModel } from './models/creates/creates-game-team-player.model';
 export { ICreatesGameTeamPlayerRequest } from './models/creates/creates-game-team-player.request';
 export { ICreatesGameTeamPlayerResponse } from './models/creates/creates-game-team-player.response';

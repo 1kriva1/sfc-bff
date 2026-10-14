@@ -1,13 +1,11 @@
 // search filters
-export { GameTeamSearchFilterGeneralComponent } from './filters/parts/general/game-team-search-filter-general.component';
-export { GameTeamSearchFilterFinancialComponent } from './filters/parts/financial/game-team-search-filter-financial.component';
-export { GameTeamSearchFilterInventaryComponent } from './filters/parts/inventary/game-team-search-filter-inventary.component';
-export { IGameTeamSearchFilterModel } from './filters/game-team-search-filter.model';
 export { GameTeamSearchFilterLocalization } from './filters/game-team-search-filter.localization';
 export { GameTeamSearchFilterPart } from './filters/game-team-search-filter-part.enum';
-export { GameTeamFilterPart } from './filters/parts/game-team-filter-part.enum';
 export { mapFindGameTeamsRequest } from './filters/game-team-search-filter.mapper';
 export { mapGameTeamPredicateMapModel, buildGameTeamSearchFilterFormGroup, buildGameTeamFilterFormControls } from './filters/game-team-search-filter.utils';
+export { GameTeamSearchFilterConstants } from './filters/game-team-search-filter.constants';
+export { IGameTeamFilterModel } from './filters/models/game-team-filter.model';
+export { IGameTeamSearchFilterModel } from './filters/models/game-team-search-filter.model';
 // search content
 export { GameTeamSearchTableRowComponent } from './table/parts/row/game-team-search-table-row.component';
 export { GameTeamSearchTableCardComponent } from './table/parts/card/game-team-search-table-card.component';

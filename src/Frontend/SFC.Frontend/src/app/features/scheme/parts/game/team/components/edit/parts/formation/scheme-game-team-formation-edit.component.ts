@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ControlContainer, FormBuilder, FormGroupDirective } from '@angular/forms';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { BaseErrorResponse } from '@core/models';
@@ -12,8 +12,8 @@ import { ISelectItemModel } from 'ngx-sfc-inputs';
 import { ModalService, stopAndPreventPropagation } from 'ngx-sfc-common';
 import { ISchemeGameTeamEditFormModel } from '../../scheme-game-team-edit-form.model';
 import { ActivatedRoute } from '@angular/router';
-import { getFormationControlChanges } from '../../../../../../../components/edit/parts/formation/scheme-formation-edit.utils';
-import { SchemeFormationEditFieldService } from '../../../../../../../components/edit/parts/formation/parts/field/scheme-formation-edit-field.service';
+import { SchemeGameTeamFormationEditFieldService } from './parts/field/scheme-game-team-formation-edit-field.service';
+import { getFormationControlChanges } from './scheme-game-team-formation-edit.utils';
 
 @Component({
     selector: 'sfc-scheme-game-team-formation-edit',
@@ -23,7 +23,7 @@ import { SchemeFormationEditFieldService } from '../../../../../../../components
 })
 export class SchemeGameTeamFormationEditComponent
     extends SchemeGameTeamEditComponent<ISchemeGameTeamEditFormModel, BaseErrorResponse>
-    implements OnInit {
+    implements OnInit, OnDestroy {
 
     // icons
     faQuestionCircle = faQuestionCircle;
@@ -44,7 +44,7 @@ export class SchemeGameTeamFormationEditComponent
         formBuilder: FormBuilder,
         private enumService: EnumService,
         private modalService: ModalService,
-        private schemeFormationEditFieldService: SchemeFormationEditFieldService) {
+        private schemeGameTeamFormationEditFieldService: SchemeGameTeamFormationEditFieldService) {
         super(route, parent, formBuilder);
     }
 
@@ -52,15 +52,19 @@ export class SchemeGameTeamFormationEditComponent
         this.formation$ = getFormationControlChanges(this.controls, this.enumService.enums.formations);
     }
 
+    ngOnDestroy(): void {
+        this.schemeGameTeamFormationEditFieldService.clear();
+    }
+
     public onFormationChange(formation: number, event: Event): void {
-        if (this.schemeFormationEditFieldService.any) {
+        if (this.schemeGameTeamFormationEditFieldService.any) {
             this.modalService.open(SchemeGameTeamFormationEditConstants.MODAL.FORMATION_CHANGE.ID, formation);
             stopAndPreventPropagation(event);
         }
     }
 
     public onApply(formation: number): void {
-        this.schemeFormationEditFieldService.clear();
+        this.schemeGameTeamFormationEditFieldService.clear();
         this.form.patchValue({ formation: { formation } });
     }
 }

@@ -49,6 +49,6 @@ export function mapGamePlayerFindRequest(
 
 export function mapGamePlayerGamePlayerFindFilterModel(model?: IGamePlayerFilterModel | empty): IGamePlayerGamePlayerFindFilterModel {
     return {
-        Statuses: model?.general.statuses || []
+        Statuses: model?.general?.statuses || []
     };
 }

@@ -1,3 +1,4 @@
 export {
-    mapPaginationResponse
+    mapPaginationResponse,
+    mapLoadContainerLoaderResultModel
 } from './observable.utils';

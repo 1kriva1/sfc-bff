@@ -14,13 +14,15 @@ import { Observable, tap } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { buildViewGamePlayerAction, buildViewPlayerAction } from '@share/utils';
 import { GameTeamPlayersGameLocalization } from './game-team-players-game.localization';
-import { GameTeamPlayersGameSelectService } from './game-team-players-game-select.service';
-import { GameAction, GamePlayerIncludes } from '@share/enums';
+import { GameTeamPlayersGameSelectService } from './services/game-team-players-game-select.service';
+import { GameAction, GamePlayerInclude } from '@share/enums';
 import { GameTeamPlayersGameConstants } from './game-team-players-game.constants';
 import { IGameModel } from '@share/models';
 import { buildAddPlayerToTeamAction } from './game-team-players-game.utils';
 import { IGameTeamPlayersFilterFormModel } from '../../game-team-players-filter-form.model';
 import { mapGamePlayerSearchFilterModel } from '../../game-team-players.mapper';
+import { GameTeamPlayersCurrentEditStoreService } from '../../../../pages/create/components/edit/parts/players/components/current/services/game-team-players-current-edit-store.service';
+import { GameTeamPlayersGameStoreService } from './services/game-team-players-game-store.service';
 
 @Component({
     selector: 'sfc-game-team-players-game',
@@ -95,6 +97,8 @@ export class GameTeamPlayersGameComponent
         private gamePlayerService: GamePlayerService,
         private router: Router,
         private gameTeamPlayersGameSelectService: GameTeamPlayersGameSelectService,
+        private gameTeamPlayersCurrentEditStoreService: GameTeamPlayersCurrentEditStoreService,
+        private gameTeamPlayersGameStoreService: GameTeamPlayersGameStoreService,
         enumService: EnumService,
         themeService: ThemeService,
         notificationService: NotificationService,
@@ -110,13 +114,24 @@ export class GameTeamPlayersGameComponent
 
     protected buildPaginationRequest(model: IGameTeamPlayersFilterFormModel, pagination: IPaginationModel, sorting: ISortingModel | empty)
         : BasePaginationRequest<IGamePlayerFindFilterModel> {
-        const filterModel: IGamePlayerSearchFilterModel = mapGamePlayerSearchFilterModel(model);
+        const excludePlayerIds: number[] =
+            this.gameTeamPlayersCurrentEditStoreService.value.map(item => item.gamePlayer.player!.id)
+                .concat(this.gameTeamPlayersGameStoreService.value.map(id => id))
+                
+        const filterModel: IGamePlayerSearchFilterModel = mapGamePlayerSearchFilterModel(
+            model,
+            excludePlayerIds
+        );
         return mapGamePlayerFindRequest(filterModel, pagination, sorting);
     }
 
     protected sendPaginationRequest(request: BasePaginationRequest<IGamePlayerFindFilterModel>)
         : Observable<HttpResponse<BaseListResponse<IGamePlayerServiceModel>>> {
-        return this.gamePlayerService.find(this.game.game.id, request, [GamePlayerIncludes.WithPlayer, GamePlayerIncludes.WithGameTeamWithTeam]).pipe(
+        return this.gamePlayerService.find(this.game.game.id, request, [
+            GamePlayerInclude.PlayerProfile,
+            GamePlayerInclude.GameTeamPlayerWithGameTeamWithTeamProfile,
+            GamePlayerInclude.GameTeamPlayerWithGameTeamWithTeamWithTeamPlayersWithPlayerProfile
+        ]).pipe(
             tap(() => this.gameTeamPlayersGameSelectService.clear())
         );
     }

@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonConstants, sum } from 'ngx-sfc-common';
 import { SchemeTeamFormationProgressLocalization } from './scheme-team-formation-progress.localization';
 import { combineLatest, EMPTY, map, Observable } from 'rxjs';
-import { SchemeFormationEditFieldService } from '../../../../../components/edit/parts/formation/parts/field/scheme-formation-edit-field.service';
+import { SchemeTeamFormationEditFieldService } from '../../edit/formation/parts/field/scheme-team-formation-edit-field.service';
 import { FormGroupDirective } from '@angular/forms';
 import { EnumService } from '@share/services';
 import { getProgressColorDynamicallyFunc } from 'ngx-sfc-components';
 import { IFormationEnumModel } from '@share/services/enum/models/enum/formation-enum.model';
 import { ISchemeTeamFormationProgressModel } from './scheme-team-formation-progress.model';
-import { getFormationControlChanges } from '../../../../../components/edit/parts/formation/scheme-formation-edit.utils';
+import { getFormationControlChanges } from '../../edit/formation/scheme-team-formation-edit.utils';
 
 @Component({
     selector: 'sfc-scheme-team-formation-progress',
@@ -33,7 +33,7 @@ export class SchemeTeamFormationProgressComponent implements OnInit {
     /* End Observables */
 
     constructor(
-        private schemeFormationEditFieldService: SchemeFormationEditFieldService,
+        private schemeTeamFormationEditFieldService: SchemeTeamFormationEditFieldService,
         private parent: FormGroupDirective,
         private enumService: EnumService) { }
 
@@ -43,7 +43,7 @@ export class SchemeTeamFormationProgressComponent implements OnInit {
 
         this.progress$ = combineLatest([
             formation$,
-            this.schemeFormationEditFieldService.selectedPlayers$
+            this.schemeTeamFormationEditFieldService.selectedPlayers$
         ]).pipe(
             map(([formation, schemePlayers]) => {
                 return {

@@ -19,17 +19,17 @@
           @include card-column;
 
           &.actions-wrapper {
-            @include card-actions-wrapper-column($color-default);
+            @include card-actions-wrapper-column($color-0);
           }
 
           &.information {
-            @include game-team-player-info($color-default);
+            @include game-team-player-info($color-0);
           }
 
           &.team {
             width: 100%;
 
-            @include game-team-info($color-default);
+            @include game-team-info($color-0);
 
             sfc-delimeter {
               width: 100%;
@@ -41,8 +41,42 @@
             sfc-no-data {
               display: flex;
               align-items: center;
-              color: $color-default;
+              color: $color-0;
               height: 60px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.game-team-player-position-3 {
+    @include card-background-with-related($player-position-forward-color, $player-position-forward-color-hover);
+  }
+
+  &.game-team-player-position-2 {
+    @include card-background-with-related($player-position-midfielder-color, $player-position-midfielder-color-hover);
+  }
+
+  &.game-team-player-position-1 {
+    @include card-background-with-related($player-position-defender-color, $player-position-defender-color-hover);
+  }
+
+  &.game-team-player-position-0 {
+    @include card-background-with-related($player-position-goalkeeper-color, $player-position-goalkeeper-color-hover);
+  }
+
+  &.game-team-player-position-null {
+    .container {
+      .content {
+        .columns {
+          .column {
+            &.actions-wrapper {
+              @include card-actions-wrapper-column($color-default);
+            }
+
+            &.information {
+              @include game-team-player-info($color-default);
             }
           }
         }

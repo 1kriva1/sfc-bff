@@ -4,7 +4,7 @@ import { ITeamSearchFilterInventaryModel } from "./parts/inventary/team-search-f
 
 export interface ITeamSearchFilterModel {
     name: string | null;
-    general: ITeamSearchFilterGeneralModel;
-    financial: ITeamSearchFilterFinancialModel;
-    inventary: ITeamSearchFilterInventaryModel;
+    general?: ITeamSearchFilterGeneralModel;
+    financial?: ITeamSearchFilterFinancialModel;
+    inventary?: ITeamSearchFilterInventaryModel;
 }

@@ -13,6 +13,7 @@ import { GameTeamPlayerSearchTableColumn } from "../../game-team-player-search-t
 import { IGameTeamPlayerModel, IPlayerModel } from "@share/models";
 import { getPlayersRaiting } from "@share/utils";
 import { GameTeamPlayerInfoConstants } from "../../../../info/game-team-player-info.constants";
+import { GameTeamPlayerSearchTableConstants } from "../../game-team-player-search-table.constants";
 
 @Component({
     selector: 'sfc-game-team-player-search-table-row',
@@ -84,5 +85,7 @@ export class GameTeamPlayerSearchTableRowComponent
         if (isDefined(this.data.gameTeamPlayer.player!.football.position)) {
             this.position = getEnum(this.data.gameTeamPlayer.player!.football.position!, this.enumService.enums.footballPositions);
         }
+
+        this.statusClass = this.buildStatusClass(GameTeamPlayerSearchTableConstants.STATUS_CLASS_PART, this.data.gameTeamPlayer.player!.football.position!);
     }
 }

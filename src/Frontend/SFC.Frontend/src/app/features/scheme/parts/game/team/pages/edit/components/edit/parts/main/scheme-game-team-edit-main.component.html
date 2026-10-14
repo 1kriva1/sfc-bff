@@ -12,6 +12,12 @@
                 <span>{{Localization.TIP}}</span>
             </div>
 
+            <div class="part game-team">
+                <p class="link">
+                    <sfc-link [icon]="faLink" [label]="viewModel.gameTeam.name" [url]="gameTeamLink"></sfc-link>
+                </p>
+            </div>
+
             <div class="part result" *ngIf="result$ | async as result">
                 <sfc-message *ngIf="!result.Success" [type]="NotificationType.Failed" [message]="result.Message">
                 </sfc-message>

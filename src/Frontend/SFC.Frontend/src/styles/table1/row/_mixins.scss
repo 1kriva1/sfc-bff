@@ -56,7 +56,7 @@
   @include center-column;
 
   color: $color;
-  font-size: 1em;
+  font-size: 0.8em;
   font-weight: bold;
   user-select: none;
   text-align: center;
@@ -109,15 +109,17 @@
 @mixin row-column-player-info($color: $color-0) {
   sfc-player-info {
     ::ng-deep > .container {
-      > .info {
-        color: $color;
-
-        h3 {
-          font-size: 0.9em;
-        }
-
-        p {
+      .content {
+        .info {
           color: $color;
+
+          h3 {
+            font-size: 0.9em;
+          }
+
+          p {
+            color: $color;
+          }
         }
       }
     }

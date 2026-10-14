@@ -20,6 +20,9 @@ export class FilterTagsComponent implements OnInit {
     @Input()
     form!: FormGroup;
 
+    @Input()
+    defaultFilterModel: any;
+
     /* End Inputs */
 
     /* Fields */
@@ -28,12 +31,13 @@ export class FilterTagsComponent implements OnInit {
 
     public resetTag: ITagModel = { label: CoreLocalization.RESET, click: (_: ITagModel) => this.resetFilters() };
 
-    private defaultFilterModel: any;
-
     /* End Fields */
 
     ngOnInit(): void {
-        this.defaultFilterModel = this.form.value;
+
+        if (!this.defaultFilterModel) {
+            this.defaultFilterModel = this.form.value;
+        }
 
         this.tags$ = this.metadata$.pipe(
             map((metadata: IPredicateMetadataModel[]) => {

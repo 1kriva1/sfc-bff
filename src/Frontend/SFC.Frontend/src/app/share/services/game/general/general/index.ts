@@ -3,7 +3,8 @@ export {
     IGameProfileModel as IGameProfileServiceModel,
     IGameGeneralProfileModel as IGameGeneralProfileServiceModel,
     IGameFinancialProfileModel as IGameFinancialProfileServiceModel,
-    IGameInventaryProfileModel as IGameInventaryProfileServiceModel
+    IGameInventaryProfileModel as IGameInventaryProfileServiceModel,
+    IGameAvailabilityModel as IGameAvailabilityModelServiceModel
 } from './models/common/game.model';
 export { ICreateGameModel } from './models/create/create-game.model';
 export { ICreateGameRequest } from './models/create/create-game.request';

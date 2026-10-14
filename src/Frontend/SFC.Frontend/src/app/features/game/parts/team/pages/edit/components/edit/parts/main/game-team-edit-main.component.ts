@@ -129,9 +129,9 @@ export class GameTeamEditMainComponent<TFormValue extends IGameTeamEditPageFormM
         this.viewModel = {
             game: {
                 name: this.model.game.game.profile.general.name,
-                date: formatDate(this.model.game.game.profile.general.date, 'fullDate', this.locale),
-                from: this.model.game.game.profile.general.from,
-                to: this.model.game.game.profile.general.to,
+                date: formatDate(this.model.game.game.profile.general.availability.date, 'fullDate', this.locale),
+                from: this.model.game.game.profile.general.availability.from,
+                to: this.model.game.game.profile.general.availability.to,
             }
         };
 

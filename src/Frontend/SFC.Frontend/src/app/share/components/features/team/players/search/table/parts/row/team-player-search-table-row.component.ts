@@ -74,6 +74,6 @@ export class TeamPlayerSearchTableRowComponent
             this.position = getEnum(this.data.player.football.position!, this.enumService.enums.footballPositions);
         }
 
-        this.statusClass = this.buildStatusClass(TeamPlayerSearchTableConstants.STATUS_CLASS_PART, this.data.status);
+        this.statusClass = this.buildStatusClass(TeamPlayerSearchTableConstants.STATUS_CLASS_PART, this.data.player.football.position!);
     }
 }

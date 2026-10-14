@@ -44,6 +44,6 @@ export class TeamPlayerSearchTableCardComponent
             actions: this.data.actions || []
         };
 
-        this.statusClass = this.buildStatusClass(TeamPlayerSearchTableConstants.STATUS_CLASS_PART, this.data.status);
+        this.statusClass = this.buildStatusClass(TeamPlayerSearchTableConstants.STATUS_CLASS_PART, this.data.player.football.position!);
     }
 }

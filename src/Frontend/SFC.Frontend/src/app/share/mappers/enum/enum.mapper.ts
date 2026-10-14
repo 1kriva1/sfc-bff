@@ -85,6 +85,10 @@ export function mapGameTeamStatusEnum(value: IDataValueModel): IEnumModel<number
     return mapIconEnum(value, mapGameTeamStatus);
 }
 
+export function mapGameTeamIndexEnum(value: IDataValueModel): IEnumModel<number> {
+    return mapEnum(value);
+}
+
 export function mapGamePlayerStatusEnum(value: IDataValueModel): IEnumModel<number> {
     return mapIconEnum(value, mapGamePlayerStatus);
 }

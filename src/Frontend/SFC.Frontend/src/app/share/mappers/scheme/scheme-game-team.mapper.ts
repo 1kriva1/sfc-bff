@@ -1,9 +1,9 @@
 import { ISchemeGameTeamModel } from "@share/models/scheme/game/team/scheme-game-team.model";
 import { EnumService, ISchemeGameTeamServiceModel } from "@share/services";
 import { mapTeamModel } from "../team/general/team.mapper";
-import { mapPlayerModel } from "../player/player.mapper";
 import { getFormationPositionEnum } from "@share/utils";
 import { mapGameModel } from "../game";
+import { mapGameTeamPlayerModel } from "../game/team/game-team-player.mapper";
 
 
 export function mapSchemeGameTeamModel(model: ISchemeGameTeamServiceModel, enumService: EnumService): ISchemeGameTeamModel {
@@ -21,7 +21,7 @@ export function mapSchemeGameTeamModel(model: ISchemeGameTeamServiceModel, enumS
             formationId: model.Formation.FormationId,
             typeId: model.Formation.TypeId,
             players: model.Formation.Players.map(schemePlayer => ({
-                player: mapPlayerModel(schemePlayer.Player, enumService),
+                gameTeamPlayer: mapGameTeamPlayerModel(schemePlayer.GameTeamPlayer, enumService),
                 position: {
                     index: schemePlayer.Position.Index,
                     formationPosition: getFormationPositionEnum(schemePlayer.Position.FormationPositionId, enumService.enums.formationPositions),

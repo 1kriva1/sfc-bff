@@ -2,6 +2,7 @@ import { HttpResponse } from "@angular/common/http";
 import { map, OperatorFunction, pipe } from "rxjs";
 import { HttpConstants } from "../../constants";
 import { BaseListResponse, IPageMetadataModel, IPageModel } from "../../models";
+import { ILoadContainerLoaderResultModel } from "ngx-sfc-common";
 
 export function mapPaginationResponse<R, I>(mapItems: (item: R) => I | I[])
     : OperatorFunction<HttpResponse<BaseListResponse<R>>, IPageModel<I>> {
@@ -12,6 +13,21 @@ export function mapPaginationResponse<R, I>(mapItems: (item: R) => I | I[])
                 items: I[] = response.body!.Items.flatMap(mapItems);
 
             return { items: items, total: pagination.TotalCount, next: pagination.HasNextPage };
+        })
+    );
+}
+
+export function mapLoadContainerLoaderResultModel<T>()
+    : OperatorFunction<IPageModel<T>, ILoadContainerLoaderResultModel<T>> {
+    return pipe(
+        map((value: IPageModel<T>) => {
+            const data: ILoadContainerLoaderResultModel<T> = {
+                total: value.total,
+                items: value.items,
+                next: value.next
+            };
+
+            return data;
         })
     );
 }

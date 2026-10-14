@@ -28,11 +28,11 @@
     }
   }
 
-  &.game-team-status-0 {
+  &.game-team-status-1 {
     @include card-background-with-related($game-team-status-not-active-color, $game-team-status-not-active-color-hover);
   }
 
-  &.game-team-status-1 {
+  &.game-team-status-0 {
     @include card-background-with-related($game-team-status-active-color, $game-team-status-active-color-hover);
   }
 }

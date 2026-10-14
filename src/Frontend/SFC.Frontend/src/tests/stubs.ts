@@ -248,7 +248,8 @@ export const ENUM_SERVICE: Partial<EnumService> = {
         requestStatuses: [],
         teamPlayerStatuses: [],
         gamePlayerStatuses: [],
-        gameTeamStatuses: []
+        gameTeamStatuses: [],
+        gameTeamIndexes: []
     }
 };
 

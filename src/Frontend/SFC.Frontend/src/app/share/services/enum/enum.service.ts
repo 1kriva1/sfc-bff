@@ -28,6 +28,7 @@ import {
 import { 
     mapGamePlayerStatusEnum, 
     mapGameStatusEnum, 
+    mapGameTeamIndexEnum, 
     mapGameTeamStatusEnum 
 } from "../../mappers/enum/enum.mapper";
 
@@ -45,6 +46,7 @@ export class EnumService {
         badgeTypes: [],
         gameStatuses: [],
         gameTeamStatuses: [],
+        gameTeamIndexes:[],
         gamePlayerStatuses: [],
         teamStatuses: [],
         shirts: [],
@@ -106,6 +108,7 @@ export class EnumService {
                     ],
                     gameStatuses: data.game.GameStatuses.map(value => mapGameStatusEnum(value)),
                     gameTeamStatuses: data.game.GameTeamStatuses.map(value => mapGameTeamStatusEnum(value)),
+                    gameTeamIndexes: data.game.GameTeamStatuses.map(value => mapGameTeamIndexEnum(value)),
                     gamePlayerStatuses: data.game.GamePlayerStatuses.map(value => mapGamePlayerStatusEnum(value))
                 };
             }),

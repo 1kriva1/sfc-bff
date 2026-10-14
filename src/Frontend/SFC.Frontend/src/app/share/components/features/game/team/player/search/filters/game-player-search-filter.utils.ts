@@ -32,7 +32,7 @@ export function buildGameTeamPlayerFilterFormControls(formBuilder: FormBuilder):
     };
 }
 
-export function buildGameTeamPlayerSearchFilterFormGroup(formBuilder: FormBuilder): FormGroup {
+export function buildGamePlayerSearchFilterFormGroup(formBuilder: FormBuilder): FormGroup {
     const gamePlayersControls: IForm<IGameTeamPlayerFilterModel> = buildGameTeamPlayerFilterFormControls(formBuilder),
         playerControls: IForm<IPlayersFilterModel> = buildPlayerSearchFilterFormControls(formBuilder);
 

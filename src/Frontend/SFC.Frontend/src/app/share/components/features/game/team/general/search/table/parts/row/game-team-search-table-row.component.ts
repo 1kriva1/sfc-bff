@@ -25,7 +25,7 @@ export class GameTeamSearchTableRowComponent
     Constants = GameTeamSearchTableRowConstants;
     Column = GameTeamSearchTableColumn;
 
-    protected override get id(): number { return this.data.gameTeam.id; }
+    protected override get id(): number { return this.data.gameTeam.team!.id; }
 
     constructor(private enumService: EnumService, selectedService: TableSelectService) {
         super(selectedService);

@@ -19,11 +19,11 @@ import { SchemeGameTeamProfileEditRoute } from "../../components/edit/parts/prof
 import { addSchemeGameTeamProfileEditControl } from "../../components/edit/parts/profile/scheme-game-team-profile-edit.utils";
 import { addSchemeGameTeamGeneralProfileEditControl } from "../../components/edit/parts/profile/parts/general/scheme-game-team-general-profile-edit.utils";
 import { addSchemeGameTeamFormationEditControl } from "../../components/edit/parts/formation/scheme-game-team-formation-edit.utils";
-import { SchemeFormationEditFieldService } from "../../../../../components/edit/parts/formation/parts/field/scheme-formation-edit-field.service";
 import { ISchemeGameTeamEditPageFormModel } from "./models/scheme-game-team-edit-page-form.model";
 import { isMenuItemInvalid } from "./scheme-game-team-edit-page.utils";
 import { RouteKey } from "@core/enums";
 import { SchemeGameTeamConstants } from "../../constants/scheme-game-team.constants";
+import { SchemeGameTeamFormationEditFieldService } from "../../components/edit/parts/formation/parts/field/scheme-game-team-formation-edit-field.service";
 
 @Component({
     templateUrl: './scheme-game-team-edit-page.component.html',
@@ -95,13 +95,13 @@ export class SchemeGameTeamEditPageComponent implements OnInit, OnDestroy {
         private notificationService: NotificationService,
         private titleService: Title,
         private schemeGameTeamService: SchemeGameTeamService,
-        private schemeFormationEditFieldService: SchemeFormationEditFieldService,
+        private schemeGameTeamFormationEditFieldService: SchemeGameTeamFormationEditFieldService,
         private enumService: EnumService
     ) {
     }
 
     ngOnInit(): void {
-        this.schemeFormationEditFieldService.init(this.model.scheme.formation.players);
+        this.schemeGameTeamFormationEditFieldService.init(this.model.scheme.formation.players);
         this.form = this.buildForm();
         this.changesCheckService.init(this.form);
         this.setPageTitle();
@@ -112,6 +112,7 @@ export class SchemeGameTeamEditPageComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this._menuSubscription.unsubscribe();
+        this.schemeGameTeamFormationEditFieldService.clear();
     }
 
     private buildForm(): FormGroup {

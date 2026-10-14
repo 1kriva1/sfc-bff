@@ -13,6 +13,7 @@ export class GameEditPageLocalization {
             INVENTARY: $localize`:@@core.Inventary:Inventary`,
             FINANCIAL: $localize`:@@core.Financial:Financial`,
             PLAYERS: $localize`:@@core.Players:Players`,
+            GAMES: $localize`:@@core.Games:Games`,
             INVITES: $localize`:@@core.Invites:Invites`,
             REQUESTS: $localize`:@@core.Requests:Requests`,
             TEAMS: $localize`:@@core.Teams:Teams`

@@ -1,11 +1,11 @@
 import { ISchemeGameTeamUpdateRequest } from "@share/services";
 import { isDefined, where } from "ngx-sfc-common";
 import { ISchemeGameTeamEditPageFormModel } from "./models/scheme-game-team-edit-page-form.model";
-import { ISchemeFormationPlayerEditFieldFormModel } from "../../../../../components/edit/parts/formation/parts/field/models/scheme-formation-edit-field-form.model";
+import { ISchemeGameTeamFormationPlayerEditFieldFormModel } from "../../components/edit/parts/formation/parts/field/models/scheme-game-team-formation-edit-field-form.model";
 
 export function mapSchemeGameTeamUpdateRequest(value: ISchemeGameTeamEditPageFormModel): ISchemeGameTeamUpdateRequest {
-    const selectedPlayers: ISchemeFormationPlayerEditFieldFormModel[] =
-        where(value.formation.field.players, schemePlayer => isDefined(schemePlayer.player)) || [];
+    const selectedPlayers: ISchemeGameTeamFormationPlayerEditFieldFormModel[] =
+        where(value.formation.field.players, schemePlayer => isDefined(schemePlayer.gameTeamPlayerId)) || [];
 
     return {
         Scheme: {
@@ -18,8 +18,8 @@ export function mapSchemeGameTeamUpdateRequest(value: ISchemeGameTeamEditPageFor
             Formation: {
                 TypeId: value.formation.type.key!,
                 FormationId: value.formation.formation,
-                Players: selectedPlayers.map((schemePlayer: ISchemeFormationPlayerEditFieldFormModel) => ({
-                    PlayerId: schemePlayer.player!,
+                Players: selectedPlayers.map((schemePlayer: ISchemeGameTeamFormationPlayerEditFieldFormModel) => ({
+                    GameTeamPlayerId: schemePlayer.gameTeamPlayerId!,
                     Position: { Index: schemePlayer.position.index, FormationPositionId: schemePlayer.position.formationPosition }
                 }))
             }

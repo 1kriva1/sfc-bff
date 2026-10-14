@@ -4,8 +4,10 @@ export { AvatarInputTeamsModalBodyComponent } from './avatar/modal/body/team/gen
 export { AvatarInputTeamPlayersModalBodyComponent } from './avatar/modal/body/team/player/avatar-input-team-players-modal-body.component';
 export { AvatarInputTeamPlayersModalBodyTableRowComponent } from './avatar/modal/body/team/player/parts/table/row/avatar-input-team-players-modal-body-table-row.component';
 export { IAvatarInputTeamsModalBodyEventModel } from './avatar/modal/body/team/general/avatar-input-teams-modal-body-event.model';
-export { AvatarInputGameTeamsModalBodyComponent } from './avatar/modal/body/game/team/avatar-input-game-teams-modal-body.component';
-export { IAvatarInputGameTeamsModalBodyEventModel } from './avatar/modal/body/game/team/avatar-input-game-teams-modal-body-event.model';
+export { AvatarInputGameTeamsModalBodyComponent } from './avatar/modal/body/game/team/general/avatar-input-game-teams-modal-body.component';
+export { IAvatarInputGameTeamsModalBodyEventModel } from './avatar/modal/body/game/team/general/avatar-input-game-teams-modal-body-event.model';
+export { IAvatarInputGameTeamPlayerModalBodyEventModel } from './avatar/modal/body/game/team/player/avatar-input-game-team-player-modal-body-event.model';
+export { AvatarInputGameTeamPlayerModalBodyComponent } from './avatar/modal/body/game/team/player/avatar-input-game-team-player-modal-body.component';
 export { FormationCarouselSliderContentComponent } from './carousel/contents/formation/formation-carousel-slider-content.component';
 export { ShirtCarouselSliderContentComponent } from './carousel/contents/shirt/shirt-carousel-slider-content.component';
 export { CarouselSliderComponent } from './carousel/slider/carousel-slider.components';

@@ -19,4 +19,11 @@ export class GameMainEditLocalization {
     };
 
     static TIP = $localize`:@@feature.game.general.components.preview.main.tip:This is a preview of created new game. Teams selected in first step of creation will receive invites. After this they can accept or decline them.`
+
+    static NOTIFICATION = {
+        UPDATED: {
+            TITLE: $localize`:@@feature.game.general.pages.edit.notification.updated.title:Game successfully updated!`,
+            VALUE: $localize`:@@feature.game.general.pages.edit.notification.updated.value:You are ready for game.`
+        }
+    };
 }

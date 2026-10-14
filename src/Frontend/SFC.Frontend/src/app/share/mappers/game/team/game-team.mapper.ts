@@ -1,6 +1,7 @@
-import { EnumService, IGameTeamServiceModel } from "@share/services";
+import { EnumService, IGameTeamPlayerServiceModel, IGameTeamServiceModel } from "@share/services";
 import { IGameTeamModel } from "@share/models/game/team/game-team.model";
 import { mapTeamModel } from "@share/mappers/team/general/team.mapper";
+import { mapGameTeamPlayerModel } from "./game-team-player.mapper";
 
 export function mapGameTeamModel(model: IGameTeamServiceModel, enumService: EnumService): IGameTeamModel {
     return {
@@ -8,7 +9,10 @@ export function mapGameTeamModel(model: IGameTeamServiceModel, enumService: Enum
             id: model.Id,
             status: model.Status,
             index: model.Index,
-            team: model.Team ? mapTeamModel(model.Team, enumService) : null!
+            team: model.Team ? mapTeamModel(model.Team, enumService) : null!,
+            gameTeamPlayers: model.Players
+                ? model.Players.map((gameTeamPlayer: IGameTeamPlayerServiceModel) => mapGameTeamPlayerModel(gameTeamPlayer, enumService))
+                : null
         }
     };
 }

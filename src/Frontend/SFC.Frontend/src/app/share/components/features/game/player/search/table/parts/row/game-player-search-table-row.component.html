@@ -44,12 +44,6 @@
                         </div>
                     </ng-container>
 
-                    <ng-container *ngSwitchCase="Column.Status">
-                        <div class="column status" [style.width]="column.calculatedWidth">
-                            <sfc-status [label]="status?.value"></sfc-status>
-                        </div>
-                    </ng-container>
-
                     <ng-container *ngSwitchCase="Column.Team">
                         <div class="column team" [style.width]="column.calculatedWidth">
                             <sfc-game-team-info *ngIf="viewModel.team" [radius]="Constants.LOGO_RADIUS" [logo]="true"

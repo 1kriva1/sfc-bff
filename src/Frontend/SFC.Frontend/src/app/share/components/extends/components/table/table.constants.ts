@@ -4,7 +4,7 @@ export class TableConstants {
     static SEARCH_DEBOUNCE_TIME: number = 1000;
 
    // how many rows/cards allowed in one page
-    static PAGINATION_SIZE: number = 12;
+    static PAGINATION_SIZE: number = 10;
 
     // how many pagination circles
     static PAGINATION_COUNT: number = 5;

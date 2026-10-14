@@ -6,11 +6,15 @@ import { IGameTeamModel } from "../team/game-team.model";
 export interface IGameGeneralProfileModel {
     name: string;
     description: string | empty;
-    date: Date;
+    location: number | empty;
+    tags: string[] | empty;
+    availability: IGameAvailabilityModel;
+}
+
+export interface IGameAvailabilityModel {
+    date: string;
     from: string;
     to: string;
-    stadium: number | empty;
-    tags: string[] | empty;
 }
 
 export interface IGameFinancialProfileModel {

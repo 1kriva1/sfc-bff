@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Router, CanActivateFn, ActivatedRouteSnapshot } from '@angular/router';
-import { buildPath, getRouteId, replaceRouteIdInPath } from '@core/utils';
+import { buildPath, replaceRouteParamsInPath } from '@core/utils';
 import { HomeRoute } from '@share/enums';
 
 @Injectable({
@@ -33,8 +33,7 @@ export class OneTimeAccessService {
         let redirectUrl = route.data['redirectUrl'];
 
         if (redirectUrl) {
-            const routeId: number = getRouteId(route);
-            redirectUrl = replaceRouteIdInPath(redirectUrl, routeId)
+            redirectUrl = replaceRouteParamsInPath(redirectUrl, route);
         }
 
         this.router.navigate([redirectUrl || buildPath(HomeRoute.Home)]);

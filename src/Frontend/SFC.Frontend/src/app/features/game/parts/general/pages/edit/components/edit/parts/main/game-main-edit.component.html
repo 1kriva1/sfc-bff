@@ -13,7 +13,7 @@
                         }">
                         <ng-template [sfcTemplateReference]="AvatarInputTemplate.ModalBody" let-context>
                             <sfc-avatar-input-game-teams-modal-body [value]="context.value"
-                                [gameId]="model.game.game.id" (selectTeam)="onSelectGameTeam($event, context)">
+                                [gameId]="model.game.game.id" (selectGameTeam)="onSelectGameTeam($event, context)">
                             </sfc-avatar-input-game-teams-modal-body>
                         </ng-template>
                     </sfc-avatar-input>
@@ -48,7 +48,7 @@
                         }">
                         <ng-template [sfcTemplateReference]="AvatarInputTemplate.ModalBody" let-context>
                             <sfc-avatar-input-game-teams-modal-body [value]="context.value"
-                                [gameId]="model.game.game.id" (selectTeam)="onSelectGameTeam($event, context)">
+                                [gameId]="model.game.game.id" (selectGameTeam)="onSelectGameTeam($event, context)">
                             </sfc-avatar-input-game-teams-modal-body>
                         </ng-template>
                     </sfc-avatar-input>

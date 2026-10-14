@@ -7,5 +7,5 @@ export interface IGameGeneralProfileEditFormModel {
     date: Date;
     from: Date;
     to: Date;
-    stadium: number | empty;
+    location: number | empty;
 }

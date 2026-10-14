@@ -9,6 +9,7 @@ import { IGameTeamPlayerModel, IPlayerModel } from "@share/models";
 import { getPlayersRaiting } from "@share/utils";
 import { GameTeamPlayerInfoConstants } from "../../../../info/game-team-player-info.constants";
 import { hasItemBy } from "ngx-sfc-common";
+import { GameTeamPlayerSearchTableConstants } from "../../game-team-player-search-table.constants";
 @Component({
     selector: 'sfc-game-team-player-search-table-card',
     templateUrl: './game-team-player-search-table-card.component.html',
@@ -61,5 +62,7 @@ export class GameTeamPlayerSearchTableCardComponent
 
             this.viewModel.team = gamePlayerTeam;
         }
+
+        this.statusClass = this.buildStatusClass(GameTeamPlayerSearchTableConstants.STATUS_CLASS_PART, this.data.gameTeamPlayer.player!.football.position!);
     }
 }

@@ -42,7 +42,7 @@ export abstract class BaseTableContentComponent<TData, TViewModel> // TData exte
 
     /* Properties */
 
-    public get selected(): boolean { return this.model.selected! || this.id == this.value; }
+    public get selected(): boolean { return this.model.selected!; }
 
     public get sequence(): number | null { return this.sequenceColumn ? this.model.sequence : null }
 
@@ -65,12 +65,13 @@ export abstract class BaseTableContentComponent<TData, TViewModel> // TData exte
         }
     }
 
-    constructor(private selectedService: TableSelectService) { }
+    constructor(protected selectedService: TableSelectService) { }
 
     ngOnInit(): void {
         this.sequenceColumn = this.getColumnByType(TableColumnType.Sequence);
         this.selectColumn = this.getColumnByType(TableColumnType.Selectable);
         this.actionsColumn = this.getColumnByType(TableColumnType.Action);
+        this.setSelectedIfRequired();
     }
 
     public onSelect(event?: MouseEvent | empty): void {
@@ -87,5 +88,11 @@ export abstract class BaseTableContentComponent<TData, TViewModel> // TData exte
 
     private getColumnByType(type: TableColumnType): ITableColumnExtendedModel | empty {
         return firstOrDefault(this.columns, column => column.type == type);
+    }
+
+    private setSelectedIfRequired(): void {
+        if (this.id === this.value) {
+            this.selectedService.selectSingle({ index: this.model.sequence, selected: true, args: this.data });
+        }
     }
 }

@@ -6,12 +6,12 @@ import { NgxSfcCommonModule } from "ngx-sfc-common";
 import { NgxSfcComponentsModule } from "ngx-sfc-components";
 import { NgxSfcInputsModule } from "ngx-sfc-inputs";
 import { ShareModule } from "@share/share.module";
-import { SchemeFormationEditFieldComponent } from "./components";
 import { SchemeRoutingModule } from "./scheme-routing.module";
 import {
     SchemeTeamCreatePageComponent,
     SchemeTeamEditPageComponent,
     SchemeTeamFormationEditComponent,
+    SchemeTeamFormationEditFieldComponent,
     SchemeTeamFormationProgressComponent,
     SchemeTeamInformationProgressComponent,
     SchemeTeamMainEditComponent,
@@ -31,6 +31,7 @@ import {
     SchemeGameTeamEditProgressComponent,
     SchemeGameTeamFinalEditComponent,
     SchemeGameTeamFormationEditComponent,
+    SchemeGameTeamFormationEditFieldComponent,
     SchemeGameTeamGeneralProfileEditComponent,
     SchemeGameTeamPreviewComponent,
     SchemeGameTeamProfileEditComponent,
@@ -41,7 +42,7 @@ import {
     declarations: [
         // scheme/team/components
         SchemeTeamFormationEditComponent,
-        SchemeFormationEditFieldComponent,
+        SchemeTeamFormationEditFieldComponent,
         SchemeTeamFormationProgressComponent,
         SchemeTeamInformationProgressComponent,
         SchemeTeamMainEditComponent,
@@ -62,6 +63,7 @@ import {
         SchemeGameTeamProfileEditComponent,
         SchemeGameTeamGeneralProfileEditComponent,
         SchemeGameTeamFormationEditComponent,
+        SchemeGameTeamFormationEditFieldComponent,
         // scheme/game/team/create 
         SchemeGameTeamCreatePageComponent,
         // scheme/game/team/page/create/components

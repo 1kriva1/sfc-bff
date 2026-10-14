@@ -31,9 +31,9 @@ import { SchemeTeamProfileEditPart } from "../../components/edit/profile/enums/s
 import { SchemeTeamEditPart } from "../../components/edit/scheme-team-edit-part.enum";
 import { ISchemeTeamFormationEditFormModel } from "../../components/edit/formation/scheme-team-formation-edit-form.model";
 import { SchemeTeamFormationEditPart } from "../../components/edit/formation/scheme-team-formation-edit-part.enum";
-import { SchemeFormationEditFieldService } from "../../../../components/edit/parts/formation/parts/field/scheme-formation-edit-field.service";
-import { ISchemeFormationPlayerEditFieldFormModel } from "../../../../components/edit/parts/formation/parts/field/models/scheme-formation-edit-field-form.model";
-import { buildSchemeTeamFormationPlayerEditFieldFormModels } from "../../../../components/edit/parts/formation/scheme-formation-edit.utils"; 
+import { buildSchemeTeamFormationPlayerEditFieldFormModels } from "../../components/edit/formation/scheme-team-formation-edit.utils"; 
+import { SchemeTeamFormationEditFieldService } from "../../components/edit/formation/parts/field/scheme-team-formation-edit-field.service";
+import { ISchemeTeamFormationPlayerEditFieldFormModel } from "../../components/edit/formation/parts/field/models/scheme-team-formation-edit-field-form.model";
 
 @Component({
     templateUrl: './scheme-team-create-page.component.html',
@@ -107,7 +107,7 @@ export class SchemeTeamCreatePageComponent implements OnDestroy {
         private storageService: StorageService,
         private location: Location,
         private enumService: EnumService,
-        private schemeFormationEditFieldService: SchemeFormationEditFieldService) {
+        private schemeTeamFormationEditFieldService: SchemeTeamFormationEditFieldService) {
         this.model = getRouteData(this.route.snapshot, SchemeTeamCreatePageConstants.RESOLVE_KEY)!;
         this.form = this.buildForm();
         this.backNavigationModel = this.getBackNavigationModel();
@@ -115,7 +115,7 @@ export class SchemeTeamCreatePageComponent implements OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.schemeFormationEditFieldService.clear();
+        this.schemeTeamFormationEditFieldService.clear();
     }
 
     private buildForm(): FormGroup {
@@ -141,8 +141,8 @@ export class SchemeTeamCreatePageComponent implements OnDestroy {
                 type: [typeData[0]]
             }, formationEditFormGroup: FormGroup = this.formBuilder.group(formationEditControls);
 
-        const players: ISchemeFormationPlayerEditFieldFormModel[] =
-            buildSchemeTeamFormationPlayerEditFieldFormModels(formation, this.schemeFormationEditFieldService.players),
+        const players: ISchemeTeamFormationPlayerEditFieldFormModel[] =
+            buildSchemeTeamFormationPlayerEditFieldFormModels(formation, this.schemeTeamFormationEditFieldService.players),
             fieldEditFormGroup: FormGroup = this.formBuilder.group({
                 players: this.formBuilder.array(players)
             });

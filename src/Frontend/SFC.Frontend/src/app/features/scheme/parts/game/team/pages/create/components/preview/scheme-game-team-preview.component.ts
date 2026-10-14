@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { faLink, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { map, Observable, startWith, EMPTY, combineLatest } from 'rxjs';
-import { empty, nameof, Direction, where } from 'ngx-sfc-common';
+import { empty, nameof, Direction, where, CommonConstants } from 'ngx-sfc-common';
 import { CoreConstants } from '@core/constants';
 import { buildPreviewValue, getControl, getDataFromRouteRecursively } from '@core/utils';
 import { CoreLocalization } from '@core/localization';
-import { Locale } from '@core/enums';
+import { Locale, RouteKey } from '@core/enums';
 import { StorageService } from '@core/services';
 import { SchemeGameTeamPreviewLocalization } from './scheme-game-team-preview.localization';
 import { getPlayersRaiting } from '@share/utils';
@@ -20,6 +20,8 @@ import { ISchemeGameTeamProfileEditFormModel } from '../../../../components/edit
 import { ISchemeGameTeamFormationEditFormModel } from '../../../../components/edit/parts/formation/scheme-game-team-formation-edit-form.model';
 import { ISchemeGameTeamEditFormModel } from '../../../../components/edit/scheme-game-team-edit-form.model';
 import { SchemeGameTeamConstants } from '../../../../constants/scheme-game-team.constants';
+import { ISchemeGameTeamPreviewViewModel } from './scheme-game-team-preview-view.model';
+import { Route } from '@share/enums';
 
 @Component({
     selector: 'sfc-scheme-game-team-preview',
@@ -60,6 +62,10 @@ export class SchemeGameTeamPreviewComponent
         return getDataFromRouteRecursively<ISchemeGameTeamCreatePageModel>(this.route, SchemeGameTeamConstants.ResolveKey)!;
     };
 
+    public viewModel!: ISchemeGameTeamPreviewViewModel;
+
+    public gameTeamLink: string = CommonConstants.EMPTY_STRING;
+
     /* End Fields */
 
     /* Observables */
@@ -98,6 +104,14 @@ export class SchemeGameTeamPreviewComponent
                     map(([general, formation]) => this.buildSchemeGameTeamInfoModel(general, formation))
                 );
         }
+
+        this.viewModel = {
+            gameTeam: {
+                name: this.model.team.profile.general.name
+            }
+        };
+
+        this.gameTeamLink = `/${Route.Games}/${this.model.game.game.id}/${Route.Teams}/${this.model.team.id}/${RouteKey.Edit}`;
     }
 
     private buildSchemeGameTeamInfoModel(general: ISchemeGameTeamGeneralProfileEditFormModel, formation: ISchemeGameTeamFormationEditFormModel)
@@ -108,7 +122,7 @@ export class SchemeGameTeamPreviewComponent
             name: buildPreviewValue(general.name, CoreLocalization.NOMENCLATURE),
             raiting: rating,
             formation: formation.formation,
-            players: where(formation.field.players, item => !!item.player)?.length || 0
+            players: where(formation.field.players, item => !!item.gameTeamPlayerId)?.length || 0
         };
     }
 }

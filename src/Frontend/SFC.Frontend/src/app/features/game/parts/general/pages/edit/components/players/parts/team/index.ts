@@ -1,0 +1,1 @@
+export { GameEditPlayersTeamComponent } from './game-edit-players-team.component';

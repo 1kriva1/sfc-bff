@@ -49,6 +49,6 @@ export function mapGameTeamPlayerFindRequest(
 
 export function mapGameTeamPlayerGameTeamPlayerFindFilterModel(model: IGameTeamPlayerFilterModel): IGameTeamPlayerGameTeamPlayerFindFilterModel {
     return {
-        ExcludeIds: model.excludeIds
+        ExcludeIds: model?.excludeIds
     };
 }
