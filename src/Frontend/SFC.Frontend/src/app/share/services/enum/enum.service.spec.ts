@@ -173,6 +173,7 @@ describe('Share.Service:Enum', () => {
             ],
             GamePlayerStatuses: [],
             GameTeamStatuses: [],
+            GameTeamIndexes:[],
             Errors: null,
             Success: true,
             Message: 'Success'
@@ -255,7 +256,8 @@ describe('Share.Service:Enum', () => {
             requestStatuses: [],
             teamPlayerStatuses: [],
             gamePlayerStatuses: [],
-            gameTeamStatuses: []
+            gameTeamStatuses: [],
+            gameTeamIndexes:[]
         };
     }
 });
