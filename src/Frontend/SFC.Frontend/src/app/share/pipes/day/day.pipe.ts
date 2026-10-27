@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import { any, CommonConstants, empty, firstOrDefault, isDefined } from "ngx-sfc-common";
-import { IEnumModel } from "@core/types";
-import { getWeekDays } from "@core/utils";
+import { IEnumModel } from "@share/models";
+import { getWeekDays } from "@share/utils";
 
 @Pipe({ name: 'sfcDay' })
 export class DayPipe implements PipeTransform {

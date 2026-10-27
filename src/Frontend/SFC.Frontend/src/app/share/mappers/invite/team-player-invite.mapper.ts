@@ -3,7 +3,7 @@ import { EnumService } from "@share/services";
 import { mapPlayerModel } from "../player/player.mapper";
 import { ITeamPlayerInviteModel } from "@share/models/invite/team-player-invite.model";
 import { mapTeamModel } from "../team/general/team.mapper";
-import { getEnum } from "@core/utils";
+import { getEnum } from "@share/utils";
 import { ITeamPlayerInviteServiceModel } from "@share/services/invite/team/player";
 
 export function mapTeamPlayerInviteModel(model: ITeamPlayerInviteServiceModel, enumService: EnumService): ITeamPlayerInviteModel {

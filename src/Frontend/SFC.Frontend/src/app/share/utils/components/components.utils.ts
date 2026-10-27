@@ -1,8 +1,9 @@
 import { all, any, empty, firstOrDefault, hasItem, hasItemBy, ITagModel, where } from "ngx-sfc-common";
 import { ISideMenuItemModel, ISideMenuModel, ITabModel } from "ngx-sfc-components";
-import { IEnumModel } from "@core/types";
-import { buildPropertyPath, getLongMonth, getLongMonthById, getShortMonth, getWeekDays } from "@core/utils";
+import { IEnumModel } from "@share/models";
+import { buildPropertyPath, getLongMonth, getLongMonthById, getShortMonth } from "@core/utils";
 import { IStatisticModel } from "@share/models";
+import { getWeekDays } from "../enums/enums.utils";
 
 /* Side menu */
 

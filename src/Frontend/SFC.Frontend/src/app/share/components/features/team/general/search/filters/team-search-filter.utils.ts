@@ -1,6 +1,6 @@
-import { IEnumModel, IForm } from "@core/types";
-import { buildPropertyPath, getEnum, getWeekDay, IPredicateMapModel, IPredicateMapParametersModel, toEnglishLocaleTimeString } from "@core/utils";
-import { IAvailabilityLimitModel } from "@share/models";
+import { IForm } from "@core/types";
+import { buildPropertyPath, IPredicateMapModel, IPredicateMapParametersModel, toEnglishLocaleTimeString } from "@core/utils";
+import { IAvailabilityLimitModel, IEnumModel } from "@share/models";
 import { nameof } from "ngx-sfc-common";
 import { TeamSearchFlterFinancialLocalization } from "./parts/financial/team-search-filter-financial.localization";
 import { ITeamSearchFilterFinancialModel } from "./parts/financial/team-search-filter-financial.model";
@@ -15,6 +15,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { buildTeamSearchFilterGeneralFormControls } from "./parts/general/team-search-filter-general.utils";
 import { buildTeamSearchFilterFinancialFormControls } from "./parts/financial/team-search-filter-financial.utils";
 import { buildTeamSearchFilterInventaryFormControls } from "./parts/inventary/team-search-filter-inventary.utils";
+import { getEnum, getWeekDay } from "@share/utils";
 
 export function mapTeamPredicateMapModel(parameters: IPredicateMapParametersModel): IPredicateMapModel {
     switch (parameters.path) {

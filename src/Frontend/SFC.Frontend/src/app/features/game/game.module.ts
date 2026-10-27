@@ -28,7 +28,8 @@ import {
     GameEditTeamsComponent,
     GameMainEditComponent,
     GameEditPlayersGameComponent,
-    GameEditPlayersTeamComponent
+    GameEditPlayersTeamComponent,
+    GameSearchPageComponent
 } from "./parts/general";
 import {
     GamePlayerViewPageComponent
@@ -81,6 +82,8 @@ import {
         GameEditPlayersGameComponent,
         GameEditPlayersTeamComponent,
         GameEditTeamsComponent,
+        // game/general/page/search
+        GameSearchPageComponent,
         // game/player/page/view
         GamePlayerViewPageComponent,
         // game/team/components        

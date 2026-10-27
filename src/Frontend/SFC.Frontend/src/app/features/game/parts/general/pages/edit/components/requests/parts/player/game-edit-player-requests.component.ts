@@ -14,13 +14,13 @@ import { GameLocalization } from 'src/app/features/game/localization';
 import { BaseListResponse, BasePaginationRequest, IBuildActionParameters } from '@core/models';
 import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
-import { buildAcceptRequestGamePlayerAction, buildDeclineRequestGamePlayerAction, buildViewPlayerAction, buildViewRequestGamePlayerAction, isRequestGamePlayerActual, mapBubbles } from '@share/utils';
+import { buildAcceptRequestGamePlayerAction, buildDeclineRequestGamePlayerAction, buildViewPlayerAction, buildViewRequestGamePlayerAction, mapBubbles } from '@share/utils';
 import { PlayersFilterPart } from '@share/components/features/player/search/filters/enums/players-filter-part.enum';
 import { PlayersFiltersLocalization } from '@share/components/features/player/search/filters';
 import { GameEditPlayerRequestsLocalization } from './game-edit-player-requests.localization';
 import { IBubbleModel } from 'ngx-sfc-inputs';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
-import { RequestAction } from '@share/enums';
+import { Enum, RequestAction } from '@share/enums';
 import { IGameEditPageModel } from '../../../../models/game-edit-page.model';
 
 @Component({
@@ -153,7 +153,7 @@ export class GameEditPlayerRequestsComponent
                 buildViewRequestGamePlayerAction(model.id, this.model.game.game.id, model.player.id, actionParameters)
             ];
 
-        if (isRequestGamePlayerActual(model.status, this.enumService.enums)) {
+        if (model.status == Enum.RequestStatus.Actual) {
             return [
                 buildAcceptRequestGamePlayerAction(model, this.modalService, actionParameters),
                 buildDeclineRequestGamePlayerAction(model, this.modalService, actionParameters),

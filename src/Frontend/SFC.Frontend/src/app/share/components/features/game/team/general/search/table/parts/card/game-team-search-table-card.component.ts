@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { TableSelectService } from "ngx-sfc-components";
-import { getEnum } from '@core/utils';
+import { getEnum } from '@share/utils';
 import { getPlayersRaiting } from "@share/utils/stats";
 import { EnumService } from "@share/services";
 import { IGameTeamSearchTableModel } from "../../game-team-search-table.model";

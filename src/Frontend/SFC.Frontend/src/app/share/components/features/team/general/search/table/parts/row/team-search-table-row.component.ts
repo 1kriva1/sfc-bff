@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { TableSelectService } from "ngx-sfc-components";
-import { getEnum } from '@core/utils';
+import { getEnum } from '@share/utils';
 import { getPlayersRaiting } from "@share/utils/stats";
 import { EnumService } from "@share/services";
 import { ITeamSearchTableModel } from "../../team-search-table.model";
@@ -37,6 +37,7 @@ export class TeamSearchTableRowComponent
         const teamPlayers: IPlayerModel[] = this.data.players.map((teamPlayer: ITeamPlayerModel) => teamPlayer.player);
 
         this.viewModel = {
+            id: this.data.id,
             name: this.data.profile.general.name,
             city: this.data.profile.general.city,
             logo: this.data.profile.general.logo,

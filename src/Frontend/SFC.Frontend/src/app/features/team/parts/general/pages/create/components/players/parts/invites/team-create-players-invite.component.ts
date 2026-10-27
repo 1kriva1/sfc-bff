@@ -4,7 +4,8 @@ import { NavigationExtras, Router } from '@angular/router';
 import { Observable, startWith, filter, timer, debounce, distinctUntilChanged, map, of, EMPTY } from 'rxjs';
 import {
     ModalService, CommonConstants, ILoadContainerPredicateParameters, ButtonType, ModalTemplate, Position,
-    FilterFunction, ILoadContainerParameters, where, isNullOrEmptyString, contains
+    FilterFunction, ILoadContainerParameters, where, isNullOrEmptyString, contains,
+    firstOrDefault
 } from 'ngx-sfc-common';
 import { IForm } from '@core/types';
 import { BaseErrorResponse } from '@core/models';
@@ -24,11 +25,10 @@ import { TeamCreatePageService } from '../../../../team-create-page.service';
 import { buildViewPlayerAction } from '@share/utils/features/player/player-action.utils';
 import { buildCancelTeamPlayerInviteAction } from 'src/app/features/team/utils/team-actions.utils';
 import { IPlayerModel } from '@share/models/player/player.model';
-import { ActiveInviteStatus } from '@share/utils/enums';
 import { addNavigationExtras, buildBackNavigationExtras } from '@core/utils/routing/routing.utils';
 import { TeamCreatePlayersInviteConstants } from './team-create-players-invite.constants';
 import { InviteTeamPlayerConstants } from '@share/constants/features/invite';
-import { InviteRoute, PlayerRoute, TeamRoute } from '@share/enums';
+import { Enum, InviteRoute, PlayerRoute, TeamRoute } from '@share/enums';
 import { IInviteTeamPlayerResolveModel } from '@share/models';
 import { PlayersFiltersConstants } from '@share/components/features/player/search/filters/constants/players-filters.constants';
 import { TeamLocalization } from '@share/localization';
@@ -115,7 +115,8 @@ export class TeamCreatePlayersInviteComponent<TFormValue extends ITeamEditFormMo
             map((players: IPlayerModel[]) => {
                 return players.map(player => {
                     const model: ITeamCreatePlayerInviteTableModel = {
-                        player: player, status: ActiveInviteStatus(this.enumService.enums),
+                        player: player,
+                        status: firstOrDefault(this.enumService.enums.inviteStatuses, status => status.key == Enum.InviteStatus.Actual)
                     } as ITeamCreatePlayerInviteTableModel;
 
                     model.actions = this.buildActions(model);

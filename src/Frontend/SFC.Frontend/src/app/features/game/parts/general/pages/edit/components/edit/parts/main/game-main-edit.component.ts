@@ -4,15 +4,15 @@ import { faA, faB, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { map, Observable, startWith, EMPTY, filter, switchMap, tap, pairwise } from 'rxjs';
 import { empty, nameof, convertDateToTimestamp, CommonConstants, NotificationType, ButtonType, Position, ReloadService } from 'ngx-sfc-common';
 import { CoreConstants } from '@core/constants';
-import { buildPreviewValue, getClickObservableFromElementReference, getControl, getDataFromRouteRecursively, getEnum } from '@core/utils';
+import { buildPreviewValue, getClickObservableFromElementReference, getControl, getDataFromRouteRecursively } from '@core/utils';
 import { CoreLocalization } from '@core/localization';
-import { IEnumModel } from '@core/types';
+import { IEnumModel } from "@share/models";
 import { EnumService, GameTeamService, IUpdateGameTeamsResponse } from '@share/services';
 import { formatDate } from '@angular/common';
 import { Locale } from '@core/enums';
 import { INotification, NotificationService, StorageService } from '@core/services';
 import { GameMainEditLocalization } from './game-main-edit.localization';
-import { getGameTeamAIndexEnum, getGameTeamBIndexEnum, getStars, getTeamRaiting } from '@share/utils';
+import { getEnum, getStars, getTeamRaiting } from '@share/utils';
 import { GameMainEditConstants } from './game-main-edit.constants';
 import { IAvatarInputGameTeamsModalBodyEventModel } from '@share/components';
 import { ITeamModel } from '@share/models';
@@ -29,7 +29,7 @@ import { ChangesCheckService } from '@core/guards/changes-check/changes-check.se
 import { MessageSeverity } from '@core/services/message/message-severity.enum';
 import { mapUpdateGameTeamRequest } from './game-main-edit.mapper';
 import { IGameMainEditFormModel } from './game-main-edit-form.model';
-import { GameAction } from '@share/enums';
+import { Enum, GameAction } from '@share/enums';
 
 @Component({
     selector: 'sfc-game-main-edit',
@@ -178,14 +178,11 @@ export class GameMainEditComponent<TFormValue extends IGameEditPageFormModel, TR
             );
         }
 
-        const teamAControl: AbstractControl | empty = getControl(nameof<IGameMainEditFormModel>('teamAId'), this.form.controls),
-            gameTeamAIndex: IEnumModel<number> = getGameTeamAIndexEnum(this.enumService.enums);
-        this.subscribeToGameTeamChanges(teamAControl, this.form.value.main.teamAId, gameTeamAIndex);
+        const teamAControl: AbstractControl | empty = getControl(nameof<IGameMainEditFormModel>('teamAId'), this.form.controls);
+        this.subscribeToGameTeamChanges(teamAControl, this.form.value.main.teamAId, Enum.GameTeamIndex.A);
 
-        const teamBControl: AbstractControl | empty = getControl(nameof<IGameMainEditFormModel>('teamBId'), this.form.controls),
-            gameTeamBIndex: IEnumModel<number> = getGameTeamBIndexEnum(this.enumService.enums);
-
-        this.subscribeToGameTeamChanges(teamBControl, this.form.value.main.teamBId, gameTeamBIndex);
+        const teamBControl: AbstractControl | empty = getControl(nameof<IGameMainEditFormModel>('teamBId'), this.form.controls);
+        this.subscribeToGameTeamChanges(teamBControl, this.form.value.main.teamBId, Enum.GameTeamIndex.B);
 
         this.teamAAvatarModel = this.buildTeamAvatarInputModel(this.model.gameTeam.a?.gameTeam.team);
 
@@ -220,13 +217,12 @@ export class GameMainEditComponent<TFormValue extends IGameEditPageFormModel, TR
         }
     }
 
-    private updateGameTeams(currentTeamAId: number | empty, previousTeamAId: number | empty, index: IEnumModel<number>)
+    private updateGameTeams(currentTeamAId: number | empty, previousTeamAId: number | empty, index: number)
         : Observable<IUpdateGameTeamsResponse> {
         const request = mapUpdateGameTeamRequest(
             currentTeamAId,
             previousTeamAId,
-            index,
-            this.enumService
+            index
         );
 
         return this.gameTeamService.updates(this.model.game.game.id, request);
@@ -247,7 +243,7 @@ export class GameMainEditComponent<TFormValue extends IGameEditPageFormModel, TR
         };
     }
 
-    private subscribeToGameTeamChanges(control: AbstractControl | empty, teamId: number | empty, index: IEnumModel<number>): void {
+    private subscribeToGameTeamChanges(control: AbstractControl | empty, teamId: number | empty, index: number): void {
         if (control) {
             control.valueChanges.pipe(
                 startWith(teamId),

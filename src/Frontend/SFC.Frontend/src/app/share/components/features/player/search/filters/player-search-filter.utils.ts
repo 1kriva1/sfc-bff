@@ -1,7 +1,7 @@
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { CoreLocalization } from "@core/localization";
-import { IEnumModel, IForm } from "@core/types";
-import { buildPropertyPath, getEnum, getWeekDay, IPredicateMapModel, IPredicateMapParametersModel, toEnglishLocaleTimeString } from "@core/utils";
+import { IForm } from "@core/types";
+import { buildPropertyPath, IPredicateMapModel, IPredicateMapParametersModel, toEnglishLocaleTimeString } from "@core/utils";
 import { TableConstants } from "@share/components/extends/components/table/table.constants";
 import { nameof } from "ngx-sfc-common";
 import { IRangeLimitValueModel } from "ngx-sfc-inputs";
@@ -16,6 +16,8 @@ import { buildPlayerSearchFilterGeneralFormControls } from "./parts/general/gene
 import { StatsFilterLocalization } from "./parts/stats/stats-filter.localization";
 import { IStatsFilterModel } from "./parts/stats/stats-filter.model";
 import { buildPlayerSearchFilterStatsFormControls } from "./parts/stats/stats-filter.utils";
+import { getEnum, getWeekDay } from "@share/utils";
+import { IEnumModel } from "@share/models";
 
 export function mapPlayerPredicateMapModel(parameters: IPredicateMapParametersModel): IPredicateMapModel {
     switch (parameters.path) {

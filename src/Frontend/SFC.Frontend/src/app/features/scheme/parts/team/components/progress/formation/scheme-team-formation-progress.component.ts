@@ -6,7 +6,7 @@ import { SchemeTeamFormationEditFieldService } from '../../edit/formation/parts/
 import { FormGroupDirective } from '@angular/forms';
 import { EnumService } from '@share/services';
 import { getProgressColorDynamicallyFunc } from 'ngx-sfc-components';
-import { IFormationEnumModel } from '@share/services/enum/models/enum/formation-enum.model';
+import { IFormationEnumModel } from '@share/models/enum/formation-enum.model';
 import { ISchemeTeamFormationProgressModel } from './scheme-team-formation-progress.model';
 import { getFormationControlChanges } from '../../edit/formation/scheme-team-formation-edit.utils';
 

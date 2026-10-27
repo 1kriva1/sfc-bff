@@ -26,7 +26,7 @@ import { ISchemeTeamEditPageFormModel } from "./scheme-team-edit-page-form.model
 import { ISchemeTeamModel } from "@share/models/scheme/team/scheme-team.model";
 import { ISelectItemModel } from "ngx-sfc-inputs";
 import { EnumService, IUpdateTeamSchemeRequest, IUpdateTeamSchemeResponse, SchemeTeamService } from "@share/services";
-import { IFormationEnumModel } from "@share/services/enum/models/enum/formation-enum.model";
+import { IFormationEnumModel } from "@share/models/enum/formation-enum.model";
 import { mapSelectItems } from "@share/utils/inputs";
 import { RouteConstants } from "@core/constants";
 import { SchemeTeamProfileEditRoute } from "../../components";

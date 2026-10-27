@@ -14,10 +14,10 @@ import { GameLocalization } from 'src/app/features/game/localization';
 import { BaseListResponse, BasePaginationRequest, IBuildActionParameters } from '@core/models';
 import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
-import { buildAcceptRequestGameTeamAction, buildDeclineRequestGameTeamAction, buildViewRequestGameTeamAction, buildViewTeamAction, isRequestGameTeamActual, mapBubbles } from '@share/utils';
+import { buildAcceptRequestGameTeamAction, buildDeclineRequestGameTeamAction, buildViewRequestGameTeamAction, buildViewTeamAction, mapBubbles } from '@share/utils';
 import { IBubbleModel } from 'ngx-sfc-inputs';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
-import { RequestAction } from '@share/enums';
+import { Enum, RequestAction } from '@share/enums';
 import { GameEditTeamRequestsLocalization } from './game-edit-team-requests.localization';
 import { IGameEditPageModel } from '../../../../models/game-edit-page.model';
 
@@ -148,7 +148,7 @@ export class GameEditTeamRequestsComponent
                 buildViewRequestGameTeamAction(model.id, this.model.game.game.id, model.team.id, actionParameters)
             ];
 
-        if (isRequestGameTeamActual(model.status, this.enumService.enums)) {
+        if (model.status == Enum.RequestStatus.Actual) {
             return [
                 buildAcceptRequestGameTeamAction(model, this.modalService, actionParameters),
                 buildDeclineRequestGameTeamAction(model, this.modalService, actionParameters),

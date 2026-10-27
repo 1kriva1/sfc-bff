@@ -15,7 +15,7 @@ import { buildPath } from '../../../../utils';
 import { CoreConstants } from '../../../../constants';
 import { HeaderService } from '../../services/header.service';
 import { IHeaderNavigationModel } from '../base/header-navigation.model';
-import { PlayerRoute, ProfileRoute, TeamRoute } from '@share/enums';
+import { ProfileRoute, Route } from '@share/enums';
 
 @Component({
   selector: 'sfc-authenticated-header',
@@ -37,19 +37,19 @@ export class AuthenticatedHeaderComponent implements OnInit, OnDestroy {
   public navigations: IHeaderNavigationModel[] = [
     {
       label: $localize`:@@core.component.header-authenticated.navigation.players:Players`,
-      click: () => this.navigate(PlayerRoute.Players)
+      click: () => this.navigate(Route.Players)
     },
     {
       label: $localize`:@@core.component.header-authenticated.navigation.games:Games`,
-      click: () => this.navigate(PlayerRoute.Players)
+      click: () => this.navigate(Route.Games)
     },
     {
       label: $localize`:@@core.component.header-authenticated.navigation.teams:Teams`,
-      click: () => this.navigate(TeamRoute.Teams)
+      click: () => this.navigate(Route.Teams)
     },
     {
       label: $localize`:@@core.component.header-authenticated.navigation.locations:Locations`,
-      click: () => this.navigate(PlayerRoute.Players)
+      click: () => this.navigate(Route.Players)
     }
   ];
 

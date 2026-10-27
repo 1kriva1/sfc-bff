@@ -5,7 +5,8 @@ export class ComponentsConstants {
     static get DATE_INPUT_MODAL_BUTTONS_MODEL(): IDateTimeModalButtonsModel {
         return {
             okLabel: CoreLocalization.OK,
-            cancelLabel: CoreLocalization.CANCEL
+            cancelLabel: CoreLocalization.CANCEL,
+            clearLabel: CoreLocalization.CLEAR
         }
     };
 }

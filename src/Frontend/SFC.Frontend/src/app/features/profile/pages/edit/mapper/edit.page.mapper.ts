@@ -7,8 +7,8 @@ import {
     ICreatePlayerRequest, IUpdatePlayerRequest, IGetPlayerModel,
     IProfileModel as ServiceProfileModel
 } from "../../../services/player/models";
-import { IEnumModel } from "@core/types";
-import { getWeekDays } from "@core/utils";
+import { IEnumModel } from "@share/models";
+import { getWeekDays } from "@share/utils";
 import { EnumService } from "@share/services";
 import { convertFromServerStats } from "@share/utils/stats";
 import { StatsValue } from "@share/types";

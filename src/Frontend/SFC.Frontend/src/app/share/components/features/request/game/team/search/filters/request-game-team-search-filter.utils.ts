@@ -1,5 +1,5 @@
-import { IEnumModel, IForm } from "@core/types";
-import { buildPropertyPath, getEnum, getPropertyPartByIndex, IPredicateMapModel, IPredicateMapParametersModel, removePropertyPart } from "@core/utils";
+import { IForm } from "@core/types";
+import { buildPropertyPath, getPropertyPartByIndex, IPredicateMapModel, IPredicateMapParametersModel, removePropertyPart } from "@core/utils";
 import { empty, nameof } from "ngx-sfc-common";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { IRequestGameTeamSearchFilterModel } from "./request-game-team-search-filter.model";
@@ -8,6 +8,8 @@ import { RequestGameTeamSearchFlterGeneralLocalization } from "./parts/general/r
 import { buildRequestGameTeamSearchFilterGeneralFormControls } from "./parts/general/request-game-team-search-filter-general.utils";
 import { IRequestGameTeamFilterModel } from "./parts/request-game-team-filter.model";
 import { buildTeamSearchFilterFormControls, ITeamSearchFilterModel, mapTeamPredicateMapModel } from "@share/components/features/team";
+import { getEnum } from "@share/utils";
+import { IEnumModel } from "@share/models";
 
 export function mapRequestGameTeamPredicateMapModel(parameters: IPredicateMapParametersModel): IPredicateMapModel {
     const filtersPart: string | empty = getPropertyPartByIndex(parameters.path);

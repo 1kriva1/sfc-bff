@@ -24,9 +24,7 @@ import {
     mapGameTeamPredicateMapModel,
     mapGameTeamSearchTableModel
 } from "../../../../../../../../features";
-import { GameTeamInclude } from "@share/enums";
-import { getGameTeamOutOfGameStatusEnum } from "@share/utils";
-import { IEnumModel } from "@core/types";
+import { Enum, GameTeamInclude } from "@share/enums";
 import { IGameTeamSearchFilterModel } from "@share/components/features/game/team/general/search/filters/models/game-team-search-filter.model";
 
 @Component({
@@ -123,15 +121,18 @@ export class AvatarInputGameTeamsModalBodyComponent
 
     protected buildPaginationRequest(model: IGameTeamSearchFilterModel, pagination: IPaginationModel, sorting: ISortingModel | empty)
         : BasePaginationRequest<IFindGameTeamsFilterModel> {
-        const request: IFindGameTeamsRequest = mapFindGameTeamsRequest(model, pagination, sorting),
-            gameTeamOutOfGameEnum: IEnumModel<number> = getGameTeamOutOfGameStatusEnum(this.enumService.enums);
-        request.Filter.GameTeam!.Statuses = [gameTeamOutOfGameEnum.key];
+        const request: IFindGameTeamsRequest = mapFindGameTeamsRequest(model, pagination, sorting);
+        request.Filter.GameTeam!.Statuses = [Enum.GameTeamStatus.OutOfGame];
         return request;
     }
 
     protected sendPaginationRequest(request: BasePaginationRequest<IFindGameTeamsFilterModel>)
         : Observable<HttpResponse<BaseListResponse<IGameTeamServiceModel>>> {
-        return this.gameTeamService.find(this.gameId, request, [GameTeamInclude.TeamProfile, GameTeamInclude.TeamWithTeamPlayersWithPlayerProfile], false);
+        return this.gameTeamService.find(this.gameId, request, [
+            GameTeamInclude.TeamProfile,
+            GameTeamInclude.GameTeamPlayersWithGamePlayerWithPlayerProfile,
+            GameTeamInclude.GameTeamPlayersWithTeamPlayerWithPlayerProfile
+        ], false);
     }
 
     protected mapTableModel(item: IGameTeamServiceModel): IGameTeamSearchTableModel {

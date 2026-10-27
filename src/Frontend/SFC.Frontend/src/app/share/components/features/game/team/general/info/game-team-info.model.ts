@@ -2,6 +2,7 @@ import { empty } from "ngx-sfc-common";
 import { IDropdownMenuItemModel } from "ngx-sfc-components";
 
 export interface IGameTeamInfoModel {
+    id?: number | empty;
     name?: string | empty;
     city?: string | empty;
     logo?: string | empty;

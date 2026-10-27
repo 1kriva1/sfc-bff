@@ -10,10 +10,11 @@ import { ChartConfiguration } from "chart.js";
 import { ComponentSize, MediaLimits } from "ngx-sfc-common";
 import { DashboardViewLocalization } from "./dashboard-view.localization";
 import { DashboardViewConstants } from "./dashboard-view.constants";
-import { getLongMonth, getMonths, getShortMonth } from '@core/utils';
-import { IEnumModel } from '@core/types';
+import { getLongMonth, getShortMonth } from '@core/utils';
+import { IEnumModel } from "@share/models";
 import { EnumService } from '@share/services';
 import { IInfoPanelModel } from '@share/components/info-panel/info-panel.model';
+import { getMonths } from '@share/utils';
 
 @Component({
     templateUrl: './dashboard-view.component.html',

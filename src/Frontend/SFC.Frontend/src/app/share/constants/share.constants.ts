@@ -1,4 +1,4 @@
-import { IEnumModel } from "@core/types";
+import { IEnumModel } from "@share/models";
 import { ShareLocalization } from "@share/localization";
 
 export class ShareConstants {

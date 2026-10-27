@@ -2,7 +2,7 @@ import { empty, firstOrDefault, ISortingModel } from "ngx-sfc-common";
 import { IGamesViewModel } from "../games-view.model";
 import { IGetGamesRequest, IGetGamesItemModel } from "../../../../../../services/game/models/get";
 import { ISortingModel as ISortingRequestModel } from "@core/models";
-import { IEnumModel } from "@core/types";
+import { IEnumModel } from "@share/models";
 import { IGameRowModel } from "../parts/table/row/game-row.model";
 
 export function mapGetGamesRequest(

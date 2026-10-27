@@ -48,9 +48,12 @@ function isExcludedValue(key: string, propertyValue: any, value: any): boolean {
 
         switch (key) {
             case nameof<IRangeLimitValueModel>('from'):
-                return rangeLimitValue.from == CommonConstants.LOW_PERCENTAGE;
+                return rangeLimitValue.from == (rangeLimitValue.min ?? CommonConstants.LOW_PERCENTAGE);
             case nameof<IRangeLimitValueModel>('to'):
-                return rangeLimitValue.to == CommonConstants.FULL_PERCENTAGE;
+                return rangeLimitValue.to == (rangeLimitValue.max ?? CommonConstants.FULL_PERCENTAGE);
+            case nameof<IRangeLimitValueModel>('min'):
+            case nameof<IRangeLimitValueModel>('max'):
+                return true;
         }
     }
 

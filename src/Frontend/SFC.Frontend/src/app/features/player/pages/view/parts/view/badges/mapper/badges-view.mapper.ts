@@ -1,6 +1,6 @@
 import { empty, firstOrDefault, ISortingModel } from "ngx-sfc-common";
 import { ISortingModel as ISortingRequestModel } from "@core/models";
-import { IBadgeTypeEnumModel } from "@share/services/enum/models/enum/badge-type-enum.model";
+import { IBadgeTypeEnumModel } from "@share/models/enum/badge-type-enum.model";
 import { IBadgesViewModel } from "../badges-view.model";
 import { IGetBadgesRequest, IGetBadgesItemModel } from "../../../../../../services/badge/models/get";
 import { IBadgeCardModel } from "../parts/table/card/badge-card.model";

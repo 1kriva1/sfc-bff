@@ -1,11 +1,11 @@
 import { CommonConstants, sum, where } from "ngx-sfc-common";
 import { getProgressColorDefaultFunc } from "ngx-sfc-components";
-import { IEnumModel } from "@core/types";
+import { IEnumModel } from "@share/models";
 import { StatsConstants } from "../../constants/stats.constants";
 import { IStatsModel } from "../../models/common/stats/stats.model";
 import { IPlayerModel, IStatsMetadataModel, IStatsTypeModel } from "../../models";
 import { StatsValue } from "../../types";
-import { IStatTypeEnumModel } from "../../services/enum/models/enum/stat-type-enum.model";
+import { IStatTypeEnumModel } from "../../models/enum/stat-type-enum.model";
 import { IPlayerStatValueModel } from "../../services";
 
 export function getStars(value: number, total: number = CommonConstants.FULL_PERCENTAGE): number {

@@ -8,8 +8,9 @@ import { RequestGameTeamSearchTableColumn } from "../../request-game-team-search
 import { EnumService } from "@share/services";
 import { IPlayerModel, ITeamPlayerModel } from "@share/models";
 import { getPlayersRaiting } from "@share/utils";
-import { getEnum } from "@core/utils";
+import { getEnum } from "@share/utils";
 import { RequestGameTeamSearchTableConstants } from "../../request-game-team-search-table.constants";
+
 @Component({
     selector: 'sfc-request-game-team-search-table-card',
     templateUrl: './request-game-team-search-table-card.component.html',

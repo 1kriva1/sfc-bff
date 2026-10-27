@@ -3,7 +3,7 @@ import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { faRulerVertical, faWeightScale } from "@fortawesome/free-solid-svg-icons";
 import { any, Position, UIClass, ITagModel } from "ngx-sfc-common";
 import { AvatarBadgePosition, ITableColumnExtendedModel } from "ngx-sfc-components";
-import { getEnum } from '@core/utils';
+import { getEnum } from '@share/utils';
 import { IPlayerRowModel } from "./player-row.model";
 import { getRaiting, getStars } from "@share/utils/stats";
 import { BasePlayerItemComponent } from "../../../../../player/search/table/base/base-player-item.component";

@@ -1,5 +1,6 @@
 // availability
 export { IAvailabilityLimitSearchModel } from './availability/availability-limit-search.model';
+export { IAvailabilityDateLimitSearchModel } from './availability/availability-date-limit-search.model';
 export { IAvailabilityModel } from './availability/availability.model';
 // stats
 export { IStatModel } from './stats/stat.model';

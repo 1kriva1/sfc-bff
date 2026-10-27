@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { TableSelectService } from "ngx-sfc-components";
-import { getEnum } from '@core/utils';
+import { getEnum } from '@share/utils';
 import { EnumService } from "@share/services";
 import { BaseTableContentComponent } from "@share/components/extends";
 import { IInviteGameTeamSearchTableModel } from "../../invite-game-team-search-table.model";

@@ -14,13 +14,13 @@ import { GameLocalization } from 'src/app/features/game/localization';
 import { BaseListResponse, BasePaginationRequest, IBuildActionParameters } from '@core/models';
 import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
-import { buildCancelInviteGamePlayerAction, buildEditInviteGamePlayerAction, buildViewInviteGamePlayerAction, buildViewPlayerAction, isInviteGamePlayerActual, mapBubbles } from '@share/utils';
+import { buildCancelInviteGamePlayerAction, buildEditInviteGamePlayerAction, buildViewInviteGamePlayerAction, buildViewPlayerAction, mapBubbles } from '@share/utils';
 import { PlayersFilterPart } from '@share/components/features/player/search/filters/enums/players-filter-part.enum';
 import { PlayersFiltersLocalization } from '@share/components/features/player/search/filters';
 import { GameEditPlayerInvitesLocalization } from './game-edit-player-invites.localization';
 import { IBubbleModel } from 'ngx-sfc-inputs';
 import { faPlus, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
-import { GameRoute, InviteAction, InviteRoute, PlayerRoute } from '@share/enums';
+import { Enum, GameRoute, InviteAction, InviteRoute, PlayerRoute } from '@share/enums';
 import { RouteKey } from '@core/enums';
 import { IGameEditPageModel } from '../../../../models/game-edit-page.model';
 
@@ -164,7 +164,7 @@ export class GameEditPlayerInvitesComponent
                 buildViewInviteGamePlayerAction(model.id, this.model.game.game.id, model.player.id, actionParameters)
             ];
 
-        if (isInviteGamePlayerActual(model.status, this.enumService.enums)) {
+        if (model.status == Enum.InviteStatus.Actual) {
             return [
                 buildEditInviteGamePlayerAction(model.id, this.model.game.game.id, model.player.id, actionParameters),
                 buildCancelInviteGamePlayerAction(model, this.modalService, actionParameters),

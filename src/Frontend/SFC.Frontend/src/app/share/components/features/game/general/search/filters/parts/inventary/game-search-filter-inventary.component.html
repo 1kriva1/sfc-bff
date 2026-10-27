@@ -1,0 +1,26 @@
+<div class="container" [formGroupName]="GameSearchFilterPart.Inventary">
+    <div class="content">
+        <div class="rows">
+            <div class="row" *ngIf="isPartVisible(GameSearchFilterInventaryPart.ShirtsRequired)">
+                <div class="column">
+                    <sfc-radio-input id="shirtsRequired" formControlName="shirtsRequired"
+                        [items]="Constants.SHIRTS_REQUIRED_RADIO_ITEMS" [direction]="Direction.Horizontal"
+                        [label]="Localization.INPUT.SHIRTS_REQUIRED.LABEL"
+                        [helperText]="Localization.INPUT.SHIRTS_REQUIRED.HELPER_TEXT">
+                    </sfc-radio-input>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="isPartVisible(GameSearchFilterInventaryPart.ShirtsCount)">
+                <div class="column">
+                    <sfc-range-input id="shirtsCount" formControlName="shirtsCount"
+                        [label]="Localization.INPUT.SHIRTS_COUNT.LABEL"
+                        [helperText]="Localization.INPUT.SHIRTS_COUNT.HELPER_TEXT" [multiple]="true" [showValue]="true"
+                        [max]="Constants.SHIRTS_COUNT_MAX_VALUE"
+                        [generateMultipleLabel]="generateShirtsCountRangeLabel">
+                    </sfc-range-input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

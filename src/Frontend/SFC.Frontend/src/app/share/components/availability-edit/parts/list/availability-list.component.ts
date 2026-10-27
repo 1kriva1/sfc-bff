@@ -3,8 +3,8 @@ import { ButtonType, ComponentSize, nameof, removeItem, SortingDirection } from 
 import { CoreConstants } from "@core/constants";
 import { Locale } from "@core/enums";
 import { StorageService } from "@core/services";
-import { IEnumModel } from "@core/types";
-import { getWeekDays } from "@core/utils";
+import { IEnumModel } from "@share/models";
+import { getWeekDays } from "@share/utils";
 import { faCalendarDay, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { IAvailabilityEditFormModel } from "../../availability-edit-form.model";
 import { AvailabilityListLocalization } from "./availability-list.localization";

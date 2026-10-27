@@ -1,4 +1,4 @@
-import { IEnumModel } from "@core/types";
+import { IEnumModel } from "@share/models";
 import { empty } from "ngx-sfc-common";
 
 export interface ITeamEditPlayerInviteRowModel {

@@ -1,4 +1,4 @@
-import { IEnumModel } from "@core/types";
+import { IEnumModel } from "@share/models";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { empty, ITagModel } from "ngx-sfc-common";
 

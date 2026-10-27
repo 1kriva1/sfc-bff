@@ -1,4 +1,4 @@
- import { Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { faAdversal, faAlgolia } from "@fortawesome/free-brands-svg-icons";
 import {
     faBellSlash, faBook, faCar,
@@ -11,9 +11,9 @@ import { InviteDataService } from "../invite/data/invite-data.service";
 import { RequestDataService } from "../request/data/request-data.service";
 import { SchemeDataService } from "../scheme/data/scheme-data.service";
 import { TeamDataService } from "../team/data/team-data.service";
-import { GameDataService } from "../game//data/game-data.service";
-import { IEnumsModel } from "./models/enum/enums.model";
-import { IServicesDataModel } from "./models/common/services-data.model";
+import { GameDataService } from "../game/data/game-data.service";
+import { IEnumsModel } from "./models/enums.model";
+import { IServicesDataModel } from "./models/services-data.model";
 import {
     mapEnum,
     mapFormationEnum,
@@ -25,12 +25,35 @@ import {
     mapTeamPlayerStatusEnum,
     mapTeamStatusEnum
 } from "../../mappers";
-import { 
-    mapGamePlayerStatusEnum, 
-    mapGameStatusEnum, 
-    mapGameTeamIndexEnum, 
-    mapGameTeamStatusEnum 
+import {
+    mapGamePlayerStatusEnum,
+    mapGameStatusEnum,
+    mapGameTeamIndexEnum,
+    mapGameTeamStatusEnum
 } from "../../mappers/enum/enum.mapper";
+import {
+    FootballPositionNames,
+    FormationNames,
+    FormationPositionNames,
+    GamePlayerStatusNames,
+    GameStatusNames,
+    GameStyleNames,
+    GameTeamIndexNames,
+    GameTeamStatusNames,
+    IEnum,
+    InviteStatusNames,
+    RequestStatusNames,
+    SchemeTypeNames,
+    setEnums,
+    ShirtNames,
+    StatCategoryNames,
+    StatSkillNames,
+    StatTypeNames,
+    TeamPlayerStatusNames,
+    TeamStatusNames,
+    WorkingFootNames
+} from "../../enums";
+import { buildEnumRecord } from "@share/utils";
 
 @Injectable({
     providedIn: 'root'
@@ -43,16 +66,16 @@ export class EnumService {
         statSkills: [],
         statTypes: [],
         workingFoots: [],
+        shirts: [],
         badgeTypes: [],
         gameStatuses: [],
         gameTeamStatuses: [],
-        gameTeamIndexes:[],
+        gameTeamIndexes: [],
         gamePlayerStatuses: [],
         teamStatuses: [],
-        shirts: [],
+        teamPlayerStatuses: [],
         inviteStatuses: [],
         requestStatuses: [],
-        teamPlayerStatuses: [],
         formations: [],
         formationPositions: [],
         formationType: []
@@ -77,42 +100,72 @@ export class EnumService {
             game: this.gameDataService.get()
         }).pipe(
             tap((data: IServicesDataModel) => {
-                this.enums = {
-                    footballPositions: data.data.FootballPositions.map(value => mapImageEnum(value, 'app/share/assets/images/enums/position')),
-                    gameStyles: data.data.GameStyles.map(value => mapImageEnum(value, 'app/share/assets/images/enums/game-style')),
-                    workingFoots: data.data.WorkingFoots.map(value => mapImageEnum(value, 'app/share/assets/images/enums/foot')),
-                    statCategories: data.data.StatCategories.map(value => mapEnum(value)),
-                    statSkills: data.data.StatSkills.map(value => mapEnum(value)),
-                    statTypes: data.data.StatTypes.map(value => mapStatTypeEnum(value)),
-                    shirts: data.data.Shirts.map(value => mapImageEnum(value, 'app/share/assets/images/enums/shirts')),
-                    teamStatuses: data.team.TeamStatuses.map(value => mapTeamStatusEnum(value)),
-                    teamPlayerStatuses: data.team.TeamPlayerStatuses.map(value => mapTeamPlayerStatusEnum(value)),
-                    inviteStatuses: data.invite.InviteStatuses.map(value => mapInviteStatusEnum(value)),
-                    requestStatuses: data.request.RequestStatuses.map(value => mapRequestStatusEnum(value)),
-                    formations: data.scheme.Formations.map(value => mapFormationEnum(value, 'app/share/assets/images/enums/formation', 'jpg')),
-                    formationPositions: data.scheme.FormationPositions.map(value => mapFormationPositionEnum(value)),
-                    formationType: data.scheme.SchemeTypes.map(value => mapEnum(value)),
-                    badgeTypes: [
-                        { key: 0, value: 'Badge_0', icon: faStar, description: 'Has posted more than 1000 posts on their profile' },
-                        { key: 1, value: 'Badge_1', icon: faStar, description: 'Has posted more than 1000 posts on their profile' },
-                        { key: 2, value: 'Badge_2', icon: faAdversal, description: 'Has posted more than 1000 posts on their profile' },
-                        { key: 3, value: 'Badge_3', icon: faAlgolia, description: 'Has posted more than 1000 posts on their profile' },
-                        { key: 4, value: 'Badge_4', icon: faBook, description: 'Has posted more than 1000 posts on their profile' },
-                        { key: 5, value: 'Badge_5', icon: faCar, description: 'Has posted more than 1000 posts on their profile' },
-                        { key: 6, value: 'Badge_6', icon: faHockeyPuck, description: 'Has posted more than 1000 posts on their profile' },
-                        { key: 7, value: 'Badge_7', icon: faRainbow, description: 'Has posted more than 1000 posts on their profile' },
-                        { key: 8, value: 'Badge_8', icon: faBellSlash, description: 'Has posted more than 1000 posts on their profile' },
-                        { key: 9, value: 'Badge_9', icon: faSpellCheck, description: 'Has posted more than 1000 posts on their profile' },
-                        { key: 10, value: 'Badge_10', icon: faSliders, description: 'Has posted more than 1000 posts on their profile' },
-                        { key: 11, value: 'Badge_11', icon: faTruckMoving, description: 'Has posted more than 1000 posts on their profile' }
-                    ],
-                    gameStatuses: data.game.GameStatuses.map(value => mapGameStatusEnum(value)),
-                    gameTeamStatuses: data.game.GameTeamStatuses.map(value => mapGameTeamStatusEnum(value)),
-                    gameTeamIndexes: data.game.GameTeamStatuses.map(value => mapGameTeamIndexEnum(value)),
-                    gamePlayerStatuses: data.game.GamePlayerStatuses.map(value => mapGamePlayerStatusEnum(value))
-                };
+                this.enums = this.buildEnumOptions(data);
+
+                const enums: IEnum = this.buildEnum(data);
+                setEnums(enums);
             }),
             map(() => this.enums)
         );
+    }
+
+    private buildEnum(data: IServicesDataModel): IEnum {
+        return {
+            FootballPosition: buildEnumRecord(data.data.FootballPositions, FootballPositionNames),
+            GameStyle: buildEnumRecord(data.data.GameStyles, GameStyleNames),
+            Shirt: buildEnumRecord(data.data.Shirts, ShirtNames),
+            StatCategory: buildEnumRecord(data.data.StatCategories, StatCategoryNames),
+            StatSkill: buildEnumRecord(data.data.StatSkills, StatSkillNames),
+            StatType: buildEnumRecord(data.data.StatTypes, StatTypeNames),
+            WorkingFoot: buildEnumRecord(data.data.WorkingFoots, WorkingFootNames),
+            InviteStatus: buildEnumRecord(data.invite.InviteStatuses, InviteStatusNames),
+            Formation: buildEnumRecord(data.scheme.Formations, FormationNames),
+            FormationPosition: buildEnumRecord(data.scheme.FormationPositions, FormationPositionNames),
+            SchemeType: buildEnumRecord(data.scheme.SchemeTypes, SchemeTypeNames),
+            GamePlayerStatus: buildEnumRecord(data.game.GamePlayerStatuses, GamePlayerStatusNames),
+            GameStatus: buildEnumRecord(data.game.GameStatuses, GameStatusNames),
+            GameTeamIndex: buildEnumRecord(data.game.GameTeamIndexes, GameTeamIndexNames),
+            GameTeamStatus: buildEnumRecord(data.game.GameTeamStatuses, GameTeamStatusNames),
+            TeamStatus: buildEnumRecord(data.team.TeamStatuses, TeamStatusNames),
+            TeamPlayerStatus: buildEnumRecord(data.team.TeamPlayerStatuses, TeamPlayerStatusNames),
+            RequestStatus: buildEnumRecord(data.request.RequestStatuses, RequestStatusNames),
+        };
+    }
+
+    private buildEnumOptions(data: IServicesDataModel): IEnumsModel {
+        return {
+            footballPositions: data.data.FootballPositions.map(value => mapImageEnum(value, 'app/share/assets/images/enums/position')),
+            gameStyles: data.data.GameStyles.map(value => mapImageEnum(value, 'app/share/assets/images/enums/game-style')),
+            workingFoots: data.data.WorkingFoots.map(value => mapImageEnum(value, 'app/share/assets/images/enums/foot')),
+            statCategories: data.data.StatCategories.map(value => mapEnum(value)),
+            statSkills: data.data.StatSkills.map(value => mapEnum(value)),
+            statTypes: data.data.StatTypes.map(value => mapStatTypeEnum(value)),
+            shirts: data.data.Shirts.map(value => mapImageEnum(value, 'app/share/assets/images/enums/shirts')),
+            teamStatuses: data.team.TeamStatuses.map(value => mapTeamStatusEnum(value)),
+            teamPlayerStatuses: data.team.TeamPlayerStatuses.map(value => mapTeamPlayerStatusEnum(value)),
+            inviteStatuses: data.invite.InviteStatuses.map(value => mapInviteStatusEnum(value)),
+            requestStatuses: data.request.RequestStatuses.map(value => mapRequestStatusEnum(value)),
+            formations: data.scheme.Formations.map(value => mapFormationEnum(value, 'app/share/assets/images/enums/formation', 'jpg')),
+            formationPositions: data.scheme.FormationPositions.map(value => mapFormationPositionEnum(value)),
+            formationType: data.scheme.SchemeTypes.map(value => mapEnum(value)),
+            badgeTypes: [
+                { key: 0, value: 'Badge_0', icon: faStar, description: 'Has posted more than 1000 posts on their profile' },
+                { key: 1, value: 'Badge_1', icon: faStar, description: 'Has posted more than 1000 posts on their profile' },
+                { key: 2, value: 'Badge_2', icon: faAdversal, description: 'Has posted more than 1000 posts on their profile' },
+                { key: 3, value: 'Badge_3', icon: faAlgolia, description: 'Has posted more than 1000 posts on their profile' },
+                { key: 4, value: 'Badge_4', icon: faBook, description: 'Has posted more than 1000 posts on their profile' },
+                { key: 5, value: 'Badge_5', icon: faCar, description: 'Has posted more than 1000 posts on their profile' },
+                { key: 6, value: 'Badge_6', icon: faHockeyPuck, description: 'Has posted more than 1000 posts on their profile' },
+                { key: 7, value: 'Badge_7', icon: faRainbow, description: 'Has posted more than 1000 posts on their profile' },
+                { key: 8, value: 'Badge_8', icon: faBellSlash, description: 'Has posted more than 1000 posts on their profile' },
+                { key: 9, value: 'Badge_9', icon: faSpellCheck, description: 'Has posted more than 1000 posts on their profile' },
+                { key: 10, value: 'Badge_10', icon: faSliders, description: 'Has posted more than 1000 posts on their profile' },
+                { key: 11, value: 'Badge_11', icon: faTruckMoving, description: 'Has posted more than 1000 posts on their profile' }
+            ],
+            gameStatuses: data.game.GameStatuses.map(value => mapGameStatusEnum(value)),
+            gameTeamStatuses: data.game.GameTeamStatuses.map(value => mapGameTeamStatusEnum(value)),
+            gameTeamIndexes: data.game.GameTeamIndexes.map(value => mapGameTeamIndexEnum(value)),
+            gamePlayerStatuses: data.game.GamePlayerStatuses.map(value => mapGamePlayerStatusEnum(value))
+        };
     }
 }

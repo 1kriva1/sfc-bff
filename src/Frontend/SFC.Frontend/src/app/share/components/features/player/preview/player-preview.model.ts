@@ -1,4 +1,4 @@
-import { IEnumModel } from "@core/types";
+import { IEnumModel } from "@share/models";
 import { StatsValue } from "@share/types";
 import { empty, ITagModel } from "ngx-sfc-common";
 

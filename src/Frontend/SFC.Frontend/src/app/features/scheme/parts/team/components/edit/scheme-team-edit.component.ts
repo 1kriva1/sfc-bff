@@ -2,7 +2,7 @@ import { Directive } from "@angular/core";
 import { FormGroupDirective, FormBuilder, FormGroup, AbstractControl } from "@angular/forms";
 import { BaseErrorResponse } from "@core/models";
 import { EnumService } from "@share/services";
-import { IFormationEnumModel } from "@share/services/enum/models/enum/formation-enum.model";
+import { IFormationEnumModel } from "@share/models/enum/formation-enum.model";
 import { Observable } from "rxjs";
 import { ISchemeTeamEditFormModel } from "./scheme-team-edit-form.model";
 import { SchemeTeamEditPart } from "./scheme-team-edit-part.enum";

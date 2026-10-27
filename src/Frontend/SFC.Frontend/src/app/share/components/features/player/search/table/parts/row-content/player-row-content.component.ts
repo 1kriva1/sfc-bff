@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { faCircleCheck, faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
 import { IPlayerRowContentModel } from "./player-row-content.model";
-import { getEnum } from "@core/utils";
+import { getEnum } from "@share/utils";
 import { getRaiting } from "@share/utils/stats";
 import { BasePlayerItemComponent } from "../../../../../player/search/table/base/base-player-item.component";
 import { PlayerRowContentLocalization } from "./player-row-content.localization";

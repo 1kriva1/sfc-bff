@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { CoreConstants } from '@core/constants/core.constants';
-import { IEnumModel } from '@core/types';
-import { getEnum } from '@core/utils';
+import { IEnumModel } from "@share/models";
+import { getEnum } from '@share/utils';
 import { EnumService } from '@share/services';
 import { getTags } from '@share/utils';
 import { getStars } from '@share/utils/stats';
@@ -16,6 +16,7 @@ import {
 } from 'ngx-sfc-components';
 import { TeamInfoConstants } from './team-info.constants';
 import { ITeamInfoModel } from './team-info.model';
+import { Route } from '@share/enums';
 
 @Component({
   selector: 'sfc-team-info',
@@ -51,6 +52,9 @@ export class TeamInfoComponent implements OnInit {
 
   @Input()
   info: boolean = true;
+
+  @Input()
+  showStars: boolean = true;
 
   @Input()
   direction: Direction = Direction.Horizontal;
@@ -92,6 +96,8 @@ export class TeamInfoComponent implements OnInit {
 
   public status: IEnumModel<number> | empty = null;
 
+  public link: string | empty;
+
   public actions: IDropdownMenuItemModel[] = [];
 
   /* End Fields */
@@ -128,5 +134,9 @@ export class TeamInfoComponent implements OnInit {
     }
 
     this.actions = this.model.actions || [];
+
+    if (isDefined(this.model.id)) {
+      this.link = `/${Route.Teams}/${this.model.id}`;
+    }
   }
 }

@@ -1,7 +1,7 @@
-import { IEnumModel } from "@core/types";
-import { getEnum } from "@core/utils";
-import { IFormationEnumModel } from "@share/services/enum/models/enum/formation-enum.model";
-import { IFormationPositionEnumModel } from "@share/services/enum/models/enum/formation-position-enum.model";
+import { IEnumModel } from "@share/models";
+import { getEnum } from "@share/utils";
+import { IFormationEnumModel } from "@share/models/enum/formation-enum.model";
+import { IFormationPositionEnumModel } from "@share/models/enum/formation-position-enum.model";
 import { empty, firstOrDefault, isDefined } from "ngx-sfc-common";
 
 export function getFormationEnum(value: number | null, values: IFormationEnumModel[]): IFormationEnumModel | empty {

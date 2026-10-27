@@ -22,6 +22,7 @@
                     <ng-container *ngSwitchCase="Column.Information">
                         <div class="column information" [style.width]="column.calculatedWidth">
                             <sfc-team-info [radius]="Constants.LOGO_RADIUS" [logo]="false" [info]="true" [model]="{
+                                    id: viewModel.id,
                                     name: viewModel.name,
                                     city: viewModel.city,
                                     raiting: viewModel.raiting

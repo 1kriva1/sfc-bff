@@ -1,6 +1,6 @@
 import { IBubbleModel, ISelectItemModel } from "ngx-sfc-inputs";
-import { IEnumModel } from "@core/types";
-import { getWeekDays } from "@core/utils";
+import { IEnumModel } from "@share/models";
+import { getWeekDays } from "@share/utils";
 import { IFormationEnumModel } from "@share/services";
 import { empty } from "ngx-sfc-common";
 import { CoreLocalization } from "@core/localization";

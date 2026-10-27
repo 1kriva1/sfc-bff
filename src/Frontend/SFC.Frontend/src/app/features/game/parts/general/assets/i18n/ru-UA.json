@@ -59,5 +59,6 @@
     "general.pages.create.notification.created.value": "Ви готові грати у футбол.",
     "general.pages.create.progress.step.final.action.next.text": "Створити гру",
     "general.pages.edit.notification.updated.title": "Гра успішно новлена!",
-    "general.pages.edit.notification.updated.value": "Ви готові до гри."
+    "general.pages.edit.notification.updated.value": "Ви готові до гри.",
+    "general.pages.search.route.title": "Пошук ігор"
 }

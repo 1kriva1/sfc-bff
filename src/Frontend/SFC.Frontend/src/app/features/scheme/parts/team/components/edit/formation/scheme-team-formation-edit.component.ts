@@ -7,7 +7,7 @@ import { SchemeTeamFormationEditLocalization } from './scheme-team-formation-edi
 import { ISelectItemModel } from 'ngx-sfc-inputs';
 import { mapSelectItems } from '@share/utils/inputs';
 import { EnumService } from '@share/services';
-import { IFormationEnumModel } from '@share/services/enum/models/enum/formation-enum.model';
+import { IFormationEnumModel } from '@share/models/enum/formation-enum.model';
 import { SchemeTeamFormationEditFieldService } from './parts/field/scheme-team-formation-edit-field.service';
 import { ModalService, stopAndPreventPropagation } from 'ngx-sfc-common';
 import { SchemeTeamFormationEditFormConstants } from './scheme-team-formation-edit-form.constants';

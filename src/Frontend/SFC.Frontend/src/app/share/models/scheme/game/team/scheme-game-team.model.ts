@@ -1,6 +1,6 @@
 import { IGameModel, IGameTeamPlayerModel } from "@share/models/game";
 import { ITeamModel } from "@share/models/team";
-import { IFormationPositionEnumModel } from "@share/services/enum/models/enum/formation-position-enum.model";
+import { IFormationPositionEnumModel } from "@share/models/enum/formation-position-enum.model";
 import { empty } from "ngx-sfc-common";
 
 export interface ISchemeGameTeamFormationPlayerPositionModel {

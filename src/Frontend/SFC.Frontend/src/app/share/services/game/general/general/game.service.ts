@@ -1,4 +1,4 @@
-import { HttpClient, HttpContext } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { INCLUDE, LOADER } from '@core/interceptors';
@@ -9,6 +9,9 @@ import { IUpdateGameResponse } from './models/update/update-game.response';
 import { IGetGameResponse } from './models/get/get-game.response';
 import { GameServiceConstants } from '../../game-service.constants';
 import { GameInclude } from '@share/enums';
+import { IGameFindRequest } from './models/find/game-find.request';
+import { IGameFindResponse } from './models/find/game-find.response';
+import { buildHttpParams } from 'ngx-sfc-common';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +43,17 @@ export class GameService {
         context: new HttpContext()
           .set(LOADER, { show: true })
           .set(INCLUDE, include)
+      }
+    );
+  }
+
+  public find(request: IGameFindRequest, include: GameInclude[] = [], loader: boolean = false): Observable<HttpResponse<IGameFindResponse>> {
+    return this.http.get<IGameFindResponse>(
+      `${GameServiceConstants.URI_PART}/find`,
+      {
+        context: new HttpContext().set(LOADER, { show: loader }).set(INCLUDE, include),
+        params: buildHttpParams(request),
+        observe: 'response'
       }
     );
   }

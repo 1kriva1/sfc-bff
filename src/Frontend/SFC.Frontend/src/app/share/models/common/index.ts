@@ -4,6 +4,7 @@ export { IStatsModel } from "./stats/stats.model";
 export { IStatsMetadataModel } from "./stats/stats-metadata.model";
 // availability
 export { IAvailabilityLimitModel } from "./availability/availability-limit.model";
+export { IAvailabilityDateLimitModel } from "./availability/availability-date-limit.model";
 // statistic
 export { IStatisticEnumModel } from "./statistic/statistic-enum.model";
 export { IStatisticItemModel } from "./statistic/statistic-item.model";

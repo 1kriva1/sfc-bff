@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="content">
+        <div *ngIf="result" class="result">
+            <sfc-team-info [model]="teamAInfoModel" [direction]="Direction.Vertical" [info]="true" [showStars]="true"
+                [stroke]="stroke" [radius]="radius">
+            </sfc-team-info>
+
+            <div class="score">
+                <span [class.win]="teamAScore! > teamBScore!">
+                    {{ teamAScore || CommonConstants.HYPHEN }}
+                </span>
+                <span> : </span>
+                <span [class.win]="teamBScore! > teamAScore!">
+                    {{ teamBScore || CommonConstants.HYPHEN }}
+                </span>
+            </div>
+
+            <sfc-team-info [model]="teamBInfoModel" [direction]="Direction.Vertical" [info]="true" [showStars]="true"
+                [stroke]="stroke" [radius]="radius">
+            </sfc-team-info>
+        </div>
+
+        <div class="info">
+            <h3 *ngIf="model.name" class="name">{{model.name}}</h3>
+            <div *ngIf="model.date" class="date">
+                <span class="value">{{model.date}}</span>
+                <span class="from-to">{{model.from}} - {{model.to}}</span>
+            </div>
+            <sfc-tags *ngIf="tags.length" [tags]="tags" [sfcComponentSize]="ComponentSize.Small"></sfc-tags>
+            <sfc-status *ngIf="status" [label]="status.value"></sfc-status>
+        </div>
+
+        <div *ngIf="actions.length" class="actions">
+            <sfc-dropdown-menu [items]="actions" [bordered]="false" [filled]="true"
+                [position]="[Position.Bottom, Position.Center]" [sfcComponentSize]="ComponentSize.Small">
+            </sfc-dropdown-menu>
+        </div>
+    </div>
+</div>
