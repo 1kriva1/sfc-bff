@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { IEnumModel } from '@core/types';
+import { IEnumModel } from "@share/models";
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { BadgeConstants } from './badge.constants';
 

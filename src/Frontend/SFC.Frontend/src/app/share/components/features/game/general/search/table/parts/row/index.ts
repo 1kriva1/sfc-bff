@@ -1,0 +1,1 @@
+export { GameSearchTableRowComponent } from './game-search-table-row.component';

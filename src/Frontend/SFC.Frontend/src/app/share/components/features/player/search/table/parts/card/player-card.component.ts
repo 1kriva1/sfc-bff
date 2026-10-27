@@ -1,7 +1,6 @@
 import { Component, HostBinding, HostListener, OnInit } from "@angular/core";
 import { any, Position, ITagModel } from "ngx-sfc-common";
 import { AvatarBadgePosition, getProgressColorDefaultFunc  } from "ngx-sfc-components";
-import { getEnum} from '@core/utils';
 import { PlayerCardSide } from "./player-card-side.enum";
 import { IPlayerCardModel } from "./player-card.model";
 import { faCircleCheck, faClock, faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
@@ -9,6 +8,7 @@ import { faRulerVertical, faWeightScale } from "@fortawesome/free-solid-svg-icon
 import { getRaiting, getStars, getModel, getMetadata } from "@share/utils/stats";
 import { BasePlayerItemComponent } from "../../base/base-player-item.component";
 import { PlayerCardLocalization } from "./player-card.localization";
+import { getEnum } from "@share/utils";
 
 @Component({
     selector: 'sfc-player-card',

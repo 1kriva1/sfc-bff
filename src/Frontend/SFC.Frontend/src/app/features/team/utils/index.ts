@@ -1,9 +1,6 @@
 export {
-    isTeamPlayerActive, isTeamPlayerInviteActual, isTeamPlayerRequestActual
-} from './team.utils';
-export {
     buildAcceptTeamPlayerRequestAction, buildCancelTeamPlayerInviteAction, buildDeclineTeamPlayerRequestAction,
     buildEditTeamPlayerInviteAction, buildEditTeamSchemeAction, buildRemoveTeamPlayerAction,
-    buildRemoveTeamSchemeAction, buildViewTeamPlayerAction, buildViewTeamPlayerInviteAction,
-    buildViewTeamPlayerRequestAction, buildViewTeamSchemeAction
+    buildRemoveTeamSchemeAction, buildViewTeamPlayerInviteAction,
+    buildViewTeamPlayerRequestAction
 } from './team-actions.utils';

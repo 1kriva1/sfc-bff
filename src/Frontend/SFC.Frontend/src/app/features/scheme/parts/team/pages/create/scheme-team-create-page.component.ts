@@ -23,7 +23,7 @@ import { ValidationConstants } from "@share/constants";
 import { EnumService, ICreateTeamSchemeRequest, ICreateTeamSchemeResponse, SchemeTeamService } from "@share/services";
 import { ISelectItemModel } from "ngx-sfc-inputs";
 import { mapSelectItems } from "@share/utils/inputs";
-import { IFormationEnumModel } from "@share/services/enum/models/enum/formation-enum.model";
+import { IFormationEnumModel } from "@share/models/enum/formation-enum.model";
 import { SchemeTeamProfileEditRoute } from "../../components";
 import { mapCreateTeamSchemeRequest } from "./scheme-team-create-page.mapper";
 import { ISchemeTeamProfileGeneralEditFormModel } from "../../components/edit/profile/parts/general/scheme-team-profile-general-edit-form.model";

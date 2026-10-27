@@ -12,7 +12,7 @@ import { GameTeamInventaryProfileEditConstants } from './game-team-inventary-pro
 import { GameTeamInventaryProfileEditLocalization } from './game-team-inventary-profile-edit.localization';
 import { IGameTeamProfileEditFormModel } from '../../game-team-profile-edit-form.model';
 import { EnumService } from '@share/services';
-import { IEnumModel } from '@core/types';
+import { IEnumModel } from "@share/models";
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

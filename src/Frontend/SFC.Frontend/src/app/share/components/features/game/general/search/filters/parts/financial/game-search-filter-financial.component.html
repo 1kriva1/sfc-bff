@@ -1,0 +1,24 @@
+<div class="container" [formGroupName]="GameSearchFilterPart.Financial">
+    <div class="content">
+        <div class="rows">
+            <div class="row" *ngIf="isPartVisible(GameSearchFilterFinancialPart.FreeGame)">
+                <div class="column">
+                    <sfc-radio-input id="free-game" formControlName="freeGame" [items]="Constants.FREE_PLAY_RADIO_ITEMS"
+                        [direction]="Direction.Horizontal" [label]="Localization.INPUT.FREE_GAME.LABEL"
+                        [helperText]="Localization.INPUT.FREE_GAME.HELPER_TEXT">
+                    </sfc-radio-input>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="isPartVisible(GameSearchFilterFinancialPart.PayAmount)">
+                <div class="column">
+                    <sfc-range-input id="payAmount" formControlName="payAmount"
+                        [label]="Localization.INPUT.PAY_AMOUNT.LABEL"
+                        [helperText]="Localization.INPUT.PAY_AMOUNT.HELPER_TEXT" [multiple]="true" [showValue]="true"
+                        [max]="Constants.PAY_AMOUNT_MAX_VALUE" [generateMultipleLabel]="generatePayAmountRangeLabel">
+                    </sfc-range-input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

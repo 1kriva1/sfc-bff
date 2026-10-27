@@ -2,7 +2,7 @@ import { ITeamPlayerRequestModel as ITeamPlayerRequestHttpModel } from "@share/s
 import { EnumService } from "@share/services";
 import { mapPlayerModel } from "../player/player.mapper";
 import { mapTeamModel } from "../team/general/team.mapper";
-import { getEnum } from "@core/utils";
+import { getEnum } from "@share/utils";
 import { ITeamPlayerRequestModel } from "@share/models/request/team-player-request.model";
 
 export function mapTeamPlayerRequestModel(model: ITeamPlayerRequestHttpModel, enumService: EnumService): ITeamPlayerRequestModel {

@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { CoreConstants } from '@core/constants/core.constants';
-import { IEnumModel } from '@core/types';
-import { getEnum } from '@core/utils';
+import { IEnumModel } from "@share/models";
+import { getEnum } from '@share/utils';
 import { EnumService } from '@share/services';
 import { getTags } from '@share/utils';
 import { getStars } from '@share/utils/stats';

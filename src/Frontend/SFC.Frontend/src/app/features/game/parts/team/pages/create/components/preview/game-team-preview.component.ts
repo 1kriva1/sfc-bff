@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { faLink, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { map, Observable, startWith, EMPTY, switchMap, combineLatest } from 'rxjs';
-import { empty, nameof, Direction } from 'ngx-sfc-common';
+import { empty, nameof, Direction, CommonConstants } from 'ngx-sfc-common';
 import { CoreConstants } from '@core/constants';
 import { buildPreviewValue, convertFileToBase64StringAsync, getControl, getDataFromRouteRecursively } from '@core/utils';
 import { CoreLocalization } from '@core/localization';
@@ -12,13 +12,12 @@ import { Locale, RouteKey } from '@core/enums';
 import { StorageService } from '@core/services';
 import { GameTeamPreviewLocalization } from './game-team-preview.localization';
 import { IGameTeamPreviewViewModel } from './game-team-preview-view.model';
-import { getTeamTemporaryStatusEnum, getPlayersRaiting } from '@share/utils';
+import { getPlayersRaiting } from '@share/utils';
 import { GameTeamPreviewConstants } from './game-team-preview.constants';
 import { IGamePlayerSearchTableModel, IGameTeamInfoModel } from '@share/components';
 import { ActivatedRoute } from '@angular/router';
 import { faCalendar, faClock } from '@fortawesome/free-regular-svg-icons';
-import { CommonConstants } from 'ngx-sfc-common';
-import { Route } from '@share/enums';
+import { Enum, Route } from '@share/enums';
 import { IGameTeamCreatePageModel } from '../../models/game-team-create-page.model';
 import { GameTeamCreatePageConstants } from '../../game-team-create-page.constants';
 import { IGameTeamGeneralProfileEditFormModel } from '../../../../components/edit/parts/profile/parts/general/game-team-general-profile-edit-form.model';
@@ -128,7 +127,7 @@ export class GameTeamPreviewComponent
             name: buildPreviewValue(value.name, CoreLocalization.NOMENCLATURE),
             logo: await convertFileToBase64StringAsync(value.logo),
             tags: value.tags,
-            status: getTeamTemporaryStatusEnum(this.enumService.enums).key,
+            status: Enum.TeamStatus.Temporary,
             raiting: rating
         };
     }

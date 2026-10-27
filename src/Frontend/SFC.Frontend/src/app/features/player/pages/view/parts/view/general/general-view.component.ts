@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Locale } from "@core/enums";
 import { StorageService } from "@core/services";
-import { IEnumModel } from "@core/types";
+import { IEnumModel } from "@share/models";
 import {
     faCakeCandles, faClock, faGamepad, faGift, faHeart, faMoneyBill1,
     faReceipt, faRulerVertical, faShirt, faSocks, faStreetView, faTag, faUserClock, faWallet, faWeightScale
@@ -12,9 +12,9 @@ import { map, Observable } from "rxjs";
 import { GeneralViewLocalization } from "./general-view.localization";
 import { IGeneralViewModel } from "./general-view.model";
 import { CoreConstants } from '@core/constants';
-import { getMonths } from "@core/utils";
 import { ViewPageConstants } from "../../../view.page.constants";
 import { IPlayerModel } from "../../../mapper/models";
+import { getMonths } from "@share/utils";
 
 @Component({
     templateUrl: './general-view.component.html',

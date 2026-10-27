@@ -1,5 +1,5 @@
-import { IEnumModel } from "@core/types";
-import { getWeekDays } from "@core/utils";
+import { IEnumModel } from "@share/models";
+import { getWeekDays } from "@share/utils";
 import { EnumService } from "@share/services";
 import { convertFromServerStats } from "@share/utils/stats";
 import { convertTimestampToDate, isDefined, firstOrDefault, any } from "ngx-sfc-common";

@@ -3,7 +3,7 @@ import { Position } from "ngx-sfc-common";
 import { ITableColumnExtendedModel } from "ngx-sfc-components";
 import { getPlayersRaiting } from "@share/utils/stats";
 import { EnumService } from "@share/services";
-import { IFormationEnumModel } from "@share/services/enum/models/enum/formation-enum.model";
+import { IFormationEnumModel } from "@share/models/enum/formation-enum.model";
 import { getFormationEnum } from "@share/utils/formations";
 import { TeamEditSchemesTableColumn } from "../team-edit-schemes-table-column.enum";
 import { ITeamEditSchemeRowModel } from "./team-edit-scheme-row.model";

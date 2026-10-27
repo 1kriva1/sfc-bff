@@ -6,7 +6,7 @@ import { empty, nameof, convertDateToTimestamp, Direction } from 'ngx-sfc-common
 import { CoreConstants } from '@core/constants';
 import { buildPreviewValue, getControl } from '@core/utils';
 import { CoreLocalization } from '@core/localization';
-import { IEnumModel } from '@core/types';
+import { IEnumModel } from "@share/models";
 import { EnumService } from '@share/services';
 import { formatDate } from '@angular/common';
 import { Locale } from '@core/enums';

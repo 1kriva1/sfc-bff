@@ -24,8 +24,25 @@
         @include center-column;
         @include theme-value(color, $color-default, $color-0);
 
-        margin: 0 1.5em;
         text-align: center;
+
+        sfc-link {
+          font-size: 0.8em;
+
+          ::ng-deep .container {
+            .content {
+              .link {
+                span {
+                  color: $color-0;
+
+                  &:hover {
+                    color: $color-yellow-0;
+                  }
+                }
+              }
+            }
+          }
+        }
 
         h3,
         span {

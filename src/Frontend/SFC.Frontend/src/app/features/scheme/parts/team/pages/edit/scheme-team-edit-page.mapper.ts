@@ -2,11 +2,11 @@ import { EnumService, IUpdateTeamSchemeRequest } from "@share/services";
 import { getFormationType } from "@share/utils/formations"
 import { mapSelectItem } from "@share/utils/inputs"
 import { ISchemeTeamEditPageFormModel } from "./scheme-team-edit-page-form.model";
-import { IEnumModel } from "@core/types";
+import { IEnumModel } from "@share/models";
 import { isDefined, where } from "ngx-sfc-common";
 import { ISchemeTeamModel } from "@share/models/scheme/team/scheme-team.model";
 import { getFormationEnum } from "@share/utils/formations/formations.utils";
-import { IFormationEnumModel } from "@share/services/enum/models/enum/formation-enum.model";
+import { IFormationEnumModel } from "@share/models/enum/formation-enum.model";
 import { buildSchemeTeamFormationPlayerEditFieldFormModels } from "../../components/edit/formation/scheme-team-formation-edit.utils";
 import { ISchemeTeamFormationPlayerEditFieldFormModel } from "../../components/edit/formation/parts/field/models/scheme-team-formation-edit-field-form.model";
 

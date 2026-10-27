@@ -1,7 +1,7 @@
 import { Component, HostBinding, HostListener, Input, OnInit } from "@angular/core";
 import { Position, getAge, CheckmarkType, UIClass, stopAndPreventPropagation } from "ngx-sfc-common";
 import { ITableColumnExtendedModel, ITableModel, TableSelectService } from "ngx-sfc-components";
-import { getEnum } from '@core/utils';
+import { getEnum } from '@share/utils';
 import { getRaiting } from "@share/utils/stats";
 import { EnumService } from "@share/services";
 import { getPhoto } from "@share/utils/features/player";

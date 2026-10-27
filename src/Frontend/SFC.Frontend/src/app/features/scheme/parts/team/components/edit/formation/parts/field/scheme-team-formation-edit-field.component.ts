@@ -6,7 +6,7 @@ import { CoreConstants } from "@core/constants";
 import { AvatarInputTemplate, IAvatarInputModalContextModel, IAvatarInputModalEventModel, IAvatarInputModel } from "ngx-sfc-inputs";
 import { CoreLocalization } from "@core/localization";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import { getControl, getEnum, getRouteId } from "@core/utils";
+import { getControl, getRouteId } from "@core/utils";
 import { ActivatedRoute } from "@angular/router";
 import { SchemeTeamFormationEditFieldService } from "./scheme-team-formation-edit-field.service";
 import { SchemeTeamFormationEditFieldLocalization } from "./scheme-team-formation-edit-field.localization";
@@ -20,7 +20,7 @@ import { SchemeTeamFormationFieldEditPart } from "./scheme-team-formation-edit-f
 import { IPlayerModel, ISchemeTeamFormationPlayerModel } from "@share/models";
 import { TeamConstants } from "@share/constants";
 import { buildSchemeTeamFormationPlayerEditFieldFormModels } from "../../scheme-team-formation-edit.utils";
-import { getRaiting, getStars } from "@share/utils";
+import { getEnum, getRaiting, getStars } from "@share/utils";
 import { IAvatarInputTeamPlayersModalBodyEventModel } from "@share/components";
 import { SchemeTeamEditComponent } from "../../../scheme-team-edit.component";
 import { ISchemeTeamEditFormModel } from "../../../scheme-team-edit-form.model";

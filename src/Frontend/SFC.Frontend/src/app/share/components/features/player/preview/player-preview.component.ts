@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CoreLocalization } from '@core/localization';
-import { getEnum } from '@core/utils';
+import { getEnum } from '@share/utils';
 import { IPlayerModel } from '@share/models/player/player.model';
 import { EnumService } from '@share/services';
 import { getTags } from '@share/utils/components';

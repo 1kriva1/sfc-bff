@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IEnumModel } from '@core/types';
+import { IEnumModel } from "@share/models";
 import { CommonConstants } from 'ngx-sfc-common';
 
 @Component({

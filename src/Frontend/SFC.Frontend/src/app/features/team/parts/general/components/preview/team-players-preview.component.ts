@@ -3,7 +3,7 @@ import { faIdCard, faTableList } from '@fortawesome/free-solid-svg-icons';
 import { EMPTY, map, Observable } from 'rxjs';
 import { getAge, IToggleSwitcherModel, where, ItemsView } from 'ngx-sfc-common';
 import { CoreConstants } from '@core/constants';
-import { getEnum } from '@core/utils';
+import { getEnum } from '@share/utils';
 import { EnumService } from '@share/services';
 import { getRaiting, getStars } from '@share/utils/stats';
 import { ShareConstants } from '@share/constants';

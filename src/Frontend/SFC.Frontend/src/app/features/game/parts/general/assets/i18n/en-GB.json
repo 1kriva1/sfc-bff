@@ -59,5 +59,6 @@
     "general.pages.create.notification.created.value": "You are ready to play football.",
     "general.pages.create.progress.step.final.action.next.text": "Create Game",
     "general.pages.edit.notification.updated.title": "Game successfully updated!",
-    "general.pages.edit.notification.updated.value": "You are ready game."
+    "general.pages.edit.notification.updated.value": "You are ready game.",
+    "general.pages.search.route.title": "Search games"
 }

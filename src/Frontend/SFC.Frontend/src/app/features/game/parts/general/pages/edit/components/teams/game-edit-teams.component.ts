@@ -143,7 +143,11 @@ export class GameEditTeamsComponent
 
     protected sendPaginationRequest(request: BasePaginationRequest<IFindGameTeamsFilterModel>)
         : Observable<HttpResponse<BaseListResponse<IGameTeamServiceModel>>> {
-        return this.gameTeamService.find(this.model.game.game.id, request, [GameTeamInclude.TeamProfile, GameTeamInclude.TeamWithTeamPlayersWithPlayerProfile], false);
+        return this.gameTeamService.find(this.model.game.game.id, request, [
+            GameTeamInclude.TeamProfile,
+            GameTeamInclude.GameTeamPlayersWithGamePlayerWithPlayerProfile,
+            GameTeamInclude.GameTeamPlayersWithTeamPlayerWithPlayerProfile
+        ], false);
     }
 
     protected mapTableModel(item: IGameTeamServiceModel): IGameTeamSearchTableModel {

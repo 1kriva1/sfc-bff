@@ -1,4 +1,4 @@
-import { IEnumModel } from "@core/types";
+import { IEnumModel } from "@share/models";
 import { ITeamPlayersPreviewListPartModel } from "./parts/team-players-preview-list-part.model";
 
 export interface ITeamPlayersPreviewListModel {

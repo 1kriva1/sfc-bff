@@ -4,7 +4,7 @@ import { CommonConstants, ILoadContainerModel, ILoadContainerResultModel, LoadCo
 import { EnumService, IGetAllTeamPlayerRequestsResponse, RequestTeamPlayerService } from '@share/services';
 import { TeamEditPlayerRequestsProgressLocalization } from './team-edit-player-requests-progress.localization';
 import { ITeamEditPlayerRequestsProgressModel } from './team-edit-player-requests-progress.model';
-import { IEnumModel } from '@core/types';
+import { IEnumModel } from "@share/models";
 import { calculatePercentageWithCount, getRouteId, switchReloadWithStart } from '@core/utils';
 import { ActivatedRoute } from '@angular/router';
 import { CoreLocalization } from '@core/localization';

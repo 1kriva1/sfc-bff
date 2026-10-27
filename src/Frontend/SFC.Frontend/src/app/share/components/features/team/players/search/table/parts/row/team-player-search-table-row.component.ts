@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { TableSelectService } from "ngx-sfc-components";
-import { getEnum } from '@core/utils';
+import { getEnum } from '@share/utils';
 import { EnumService } from "@share/services";
 import { BaseTableContentComponent } from "../../../../../../../extends/components/table/parts/content/base-table-content.component";
 import { TeamPlayerSearchTableLocalization } from "../../team-player-search-table.localization";
@@ -10,7 +10,7 @@ import { TeamPlayerSearchTableRowConstants } from "./team-player-search-table-ro
 import { TeamPlayerSearchTableColumn } from "../../team-player-search-table-column.enum";
 import { TeamPlayerSearchTableConstants } from "../../team-player-search-table.constants";
 import { Color, empty, isDefined } from "ngx-sfc-common";
-import { IEnumModel } from "@core/types";
+import { IEnumModel } from "@share/models";
 
 @Component({
     selector: 'sfc-team-player-search-table-row',

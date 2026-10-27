@@ -1,0 +1,94 @@
+<div class="container" [formGroupName]="GameSearchFilterPart.General">
+    <div class="content">
+        <div class="rows">
+            <div class="row" *ngIf="isPartVisible(GameSearchFilterGeneralPart.Name)">
+                <div class="column">
+                    <sfc-text-input id="name" formControlName="name" [label]="Localization.INPUT.NAME.LABEL"
+                        [placeholder]="Localization.INPUT.NAME.PLACEHOLDER" [bordered]="true"
+                        [helperText]="Localization.INPUT.NAME.HELPER_TEXT" [validations]="{
+                            maxlength: ValidationLocalization.MAX_LENGTH
+                          }">
+                    </sfc-text-input>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="isPartVisible(GameSearchFilterGeneralPart.Status)">
+                <div class="column">
+                    <sfc-bubbles-input id="statuses" formControlName="statuses" [items]="statuses" [multiple]="true"
+                        [label]="Localization.INPUT.STATUSES.LABEL"
+                        [helperText]="Localization.INPUT.STATUSES.HELPER_TEXT">
+                    </sfc-bubbles-input>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="isPartVisible(GameSearchFilterGeneralPart.Tag)">
+                <div class="column">
+                    <sfc-tags-input id="tags" formControlName="tags" [label]="Localization.INPUT.TAGS.LABEL"
+                        [placeholder]="Localization.INPUT.TAGS.PLACEHOLDER"
+                        [helperText]="Localization.INPUT.TAGS.HELPER_TEXT" [bordered]="true"
+                        [maxTagLength]="ValidationConstants.MAX_TAG_VALUE_LENGTH"
+                        [newTagPlaceholder]="InputLocalization.ADD_TAG" [validations]="{
+                            'sfc-empty':ValidationLocalization.EMPTY, 
+                            'sfc-duplicate': ValidationLocalization.DUPLICATE, 
+                            'sfc-tags-length': ValidationLocalization.TAG_LENGTH, 
+                            'sfc-max-array-length': ValidationLocalization.TAGS_LENGTH
+                          }">
+                    </sfc-tags-input>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="isPartVisible(GameSearchFilterGeneralPart.Date)" formGroupName="availability">
+                <div class="column">
+                    <sfc-datetime-input id="date" formControlName="date" [time]="false" [date]="true"
+                        [label]="Localization.INPUT.AVAILABLE_DATE.LABEL"
+                        [placeholder]="Localization.INPUT.AVAILABLE_DATE.PLACEHOLDER"
+                        [helperText]="Localization.INPUT.AVAILABLE_DATE.HELPER_TEXT" [switchOnClick]="true"
+                        [fullSize]="true" [bordered]="true" [hideOnClickOutside]="true" [clearButton]="true"
+                        [locale]="locale" [modalButtonsModel]="ComponentsConstants.DATE_INPUT_MODAL_BUTTONS_MODEL">
+                    </sfc-datetime-input>
+                </div>
+            </div>
+
+            <ng-container
+                *ngIf="isPartVisible(GameSearchFilterGeneralPart.From) || isPartVisible(GameSearchFilterGeneralPart.To)"
+                formGroupName="availability">
+                <div class="row" *ngIf="isPartVisible(GameSearchFilterGeneralPart.From)">
+                    <div class="column">
+                        <sfc-datetime-input id="from-time" formControlName="from" [time]="true" [date]="false"
+                            [label]="Localization.INPUT.AVAILABLE_FROM.LABEL"
+                            [placeholder]="Localization.INPUT.AVAILABLE_FROM.PLACEHOLDER"
+                            [helperText]="Localization.INPUT.AVAILABLE_FROM.HELPER_TEXT" [switchOnClick]="true"
+                            [fullSize]="true" [bordered]="true" [hideOnClickOutside]="true" [clearButton]="true"
+                            [locale]="locale" [modalButtonsModel]="ComponentsConstants.DATE_INPUT_MODAL_BUTTONS_MODEL"
+                            [validations]="{'sfc-compare-than': ValidationLocalization.FROM_LESS_TO}">
+                        </sfc-datetime-input>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="isPartVisible(GameSearchFilterGeneralPart.To)">
+                    <div class="column">
+                        <sfc-datetime-input id="to-time" formControlName="to" [time]="true" [date]="false"
+                            [label]="Localization.INPUT.AVAILABLE_TO.LABEL"
+                            [placeholder]="Localization.INPUT.AVAILABLE_TO.PLACEHOLDER"
+                            [helperText]="Localization.INPUT.AVAILABLE_TO.HELPER_TEXT" [switchOnClick]="true"
+                            [fullSize]="true" [bordered]="true" [hideOnClickOutside]="true" [clearButton]="true"
+                            [locale]="locale" [modalButtonsModel]="ComponentsConstants.DATE_INPUT_MODAL_BUTTONS_MODEL"
+                            [validations]="{'sfc-compare-than': ValidationLocalization.TO_MORE_FROM}">
+                        </sfc-datetime-input>
+                    </div>
+                </div>
+            </ng-container>
+
+            <div class="row" *ngIf="isPartVisible(GameSearchFilterGeneralPart.Location)">
+                <div class="column">
+                    <sfc-autocomplete-input id="location" formControlName="location"
+                        [label]="Localization.INPUT.LOCATION.LABEL"
+                        [placeholder]="Localization.INPUT.LOCATION.PLACEHOLDER"
+                        [helperText]="Localization.INPUT.LOCATION.HELPER_TEXT" [loader]="locationsLoader"
+                        [bordered]="true">
+                    </sfc-autocomplete-input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+@import "ngx-sfc-common/styles";
+@import "common";
+@import "variables1";
+@import "table1/row";
+@import "../../../../info/game-info.component.mixins";
+
+:host {
+  @include row-host;
+
+  .container {
+    @include row-container;
+
+    .content {
+      .columns {
+        @include row-columns;
+
+        .column {
+          @include row-column;
+
+          &.select {
+            @include row-select-column($color-0);
+          }
+
+          &.name {
+            @include text-center-bold($color-0, 1em);
+          }
+
+          &.date {
+            flex-direction: column;
+
+            .value {
+              @include text-center-bold($color-yellow-0, 1em);
+            }
+
+            .from-to {
+              @include text-center-bold($color-0, 0.7em);
+            }
+          }
+
+          &.location {
+            @include text-center-bold($color-0, 1em);
+          }
+
+          &.actions {
+            @include action-menu($color-0);
+          }
+        }
+      }
+    }
+  }
+
+  &.game-status-4 {
+    @include row-background-with-related($game-status-canceled-color, $game-status-canceled-color-hover);
+  }
+
+  &.game-status-3 {
+    @include row-background-with-related($game-status-finished-color, $game-status-finished-color-hover);
+  }
+
+  &.game-status-2 {
+    @include row-background-with-related($game-status-active-color, $game-status-active-color-hover);
+  }
+
+  &.game-status-1 {
+    @include row-background-with-related($game-status-upcoming-color, $game-status-upcoming-color-hover);
+  }
+
+  &.game-status-0 {
+    @include row-background-with-related($game-status-new-color, $game-status-new-color-hover);
+  }
+}

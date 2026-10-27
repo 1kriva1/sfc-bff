@@ -1,4 +1,4 @@
-import { IFormationEnumModel } from "@share/services/enum/models/enum/formation-enum.model";
+import { IFormationEnumModel } from "@share/models/enum/formation-enum.model";
 import { empty } from "ngx-sfc-common";
 
 export interface ITeamEditSchemeRowModel {

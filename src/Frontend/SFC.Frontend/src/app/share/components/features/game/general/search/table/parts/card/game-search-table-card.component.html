@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="content">
+        <div class="columns">
+            <div *ngIf="selectColumn || actionsColumn" class="column actions-wrapper">
+                <div *ngIf="selectColumn" class="column select">
+                    <sfc-checkmark [active]="selected" (click)="onSelect()" [type]="CheckmarkType.Circle"
+                        [sfcComponentSize] [customSize]="1.2">
+                    </sfc-checkmark>
+                </div>
+
+                <div *ngIf="actionsColumn" class="column actions">
+                    <sfc-dropdown-menu [items]="viewModel.actions" [bordered]="false" [filled]="true"
+                        [position]="[Position.Bottom, Position.Center]" [sfcComponentSize] [customSize]="1">
+                    </sfc-dropdown-menu>
+                </div>
+            </div>
+
+            <div class="column info">
+                <sfc-game-info [radius]="Constants.LOGO_RADIUS" [model]="{ 
+                    teams: viewModel.teams,
+                    name: viewModel.name,
+                    date: viewModel.date,
+                    from: viewModel.from,
+                    to: viewModel.to,
+                    status: viewModel.status.key
+                }" [direction]="Direction.Vertical">
+                </sfc-game-info>
+            </div>
+        </div>
+    </div>
+</div>

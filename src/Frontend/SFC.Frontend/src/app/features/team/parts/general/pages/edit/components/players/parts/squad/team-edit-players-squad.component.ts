@@ -19,11 +19,10 @@ import { buildViewPlayerAction } from '@share/utils/features/player/player-actio
 import { buildRemoveTeamPlayerAction } from 'src/app/features/team/utils/team-actions.utils';
 import { buildBackNavigationExtras, getRouteId } from '@core/utils';
 import { ITeamPlayerModel } from '@share/services/team/player/general/models/common/team-player.model';
-import { isTeamPlayerActive } from 'src/app/features/team/utils/team.utils';
 import { TeamEditPlayersSquadLocalization } from './team-edit-players-squad.localization';
 import { ITeamEditPlayersSquadFilterModel } from './team-edit-players-squad-form.model';
 import { mapFindTeamPlayersRequest, mapTeamEditPlayersSquadTableModel } from './team-edit-players-squad.mapper';
-import { TeamAction } from '@share/enums';
+import { Enum, TeamAction } from '@share/enums';
 import { ThemeService } from '@share/components/theme-toggler/services/theme/theme.service';
 import { buildViewTeamPlayerAction } from '@share/utils';
 import { TeamLocalization } from '@share/localization';
@@ -34,10 +33,10 @@ import { TeamLocalization } from '@share/localization';
 })
 export class TeamEditPlayersSquadComponent
     extends BasePlayersSearchComponent<
-    ITeamEditPlayersSquadFilterModel,
-    IFindTeamPlayersFilterModel,
-    ITeamPlayerModel,
-    ITeamEditPlayersSquadTableModel> {
+        ITeamEditPlayersSquadFilterModel,
+        IFindTeamPlayersFilterModel,
+        ITeamPlayerModel,
+        ITeamEditPlayersSquadTableModel> {
 
     // ngx-sfc-common
     CommonConstants = CommonConstants;
@@ -107,7 +106,7 @@ export class TeamEditPlayersSquadComponent
             buildViewPlayerAction(teamPlayer.player.id, this.router)
         ];
 
-        if (isTeamPlayerActive(teamPlayer.status, this.enumService.enums)) {
+        if (teamPlayer.status == Enum.TeamPlayerStatus.Active) {
             return [
                 buildRemoveTeamPlayerAction(teamPlayer.player, this.modalService),
                 ...actions

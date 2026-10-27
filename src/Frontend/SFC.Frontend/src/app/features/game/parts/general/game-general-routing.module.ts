@@ -25,7 +25,7 @@ import {
     GameEditPlayerRequestsComponent,
     GameEditPlayersComponent,
     GameEditPlayersRoute,
-    GameEditPlayersGameComponent,    
+    GameEditPlayersGameComponent,
     GameEditPlayersTeamComponent,
     GameEditRequestsComponent,
     GameEditRequestsRoute,
@@ -33,7 +33,9 @@ import {
     GameEditTeamRequestsComponent,
     GameEditTeamsComponent,
     GameFinalEditComponent,
-    GameTeamsEditComponent
+    GameTeamsEditComponent,
+    GameSearchPageComponent,
+    GameSearchPageLocalization
 } from "./pages";
 
 export const GameGeneralRoutes: Routes = [
@@ -185,5 +187,18 @@ export const GameGeneralRoutes: Routes = [
             },
             buildFallbackRoute(GameEditPageRoute.Profile)
         ]
+    },
+    // page/search
+    {
+        path: RouteKey.Search,
+        component: GameSearchPageComponent,
+        title: buildTitle(GameSearchPageLocalization.ROUTE.TITLE)
+    },
+    // default
+    // page/search
+    {
+        path: RouteConstants.DEFAULT_ROUTE_PATH,
+        component: GameSearchPageComponent,
+        title: buildTitle(GameSearchPageLocalization.ROUTE.TITLE)
     }
 ];

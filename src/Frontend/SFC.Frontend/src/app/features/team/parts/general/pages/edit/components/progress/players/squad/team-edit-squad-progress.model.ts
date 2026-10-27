@@ -1,4 +1,4 @@
-import { IEnumModel } from "@core/types";
+import { IEnumModel } from "@share/models";
 
 export interface ITeamEditSquadProgressModel {
     positions: ITeamEditSquadPositionProgressModel[];

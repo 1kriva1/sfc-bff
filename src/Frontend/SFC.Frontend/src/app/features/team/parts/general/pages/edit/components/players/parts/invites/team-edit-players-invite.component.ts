@@ -22,9 +22,8 @@ import { buildViewPlayerAction } from '@share/utils/features/player/player-actio
 import { buildCancelTeamPlayerInviteAction, buildEditTeamPlayerInviteAction, buildViewTeamPlayerInviteAction } from 'src/app/features/team/utils/team-actions.utils';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { buildBackNavigationExtras, getRouteId } from '@core/utils';
-import { isTeamPlayerInviteActual } from 'src/app/features/team/utils/team.utils';
 import { ITeamEditPlayersInviteFilterModel } from './team-edit-players-invite-form.model';
-import { InviteAction, InviteRoute, PlayerRoute, TeamRoute } from '@share/enums';
+import { Enum, InviteAction, InviteRoute, PlayerRoute, TeamRoute } from '@share/enums';
 import { ITeamPlayerInviteModel } from '@share/services/invite/team/player/service/models/common/team-player-invite.model';
 import { ThemeService } from '@share/components/theme-toggler/services/theme/theme.service';
 import { TeamLocalization } from '@share/localization';
@@ -35,10 +34,10 @@ import { TeamLocalization } from '@share/localization';
 })
 export class TeamEditPlayersInviteComponent
     extends BasePlayersSearchComponent<
-    ITeamEditPlayersInviteFilterModel,
-    IFindTeamPlayerInvitesFilterModel,
-    ITeamPlayerInviteModel,
-    ITeamEditPlayersInviteTableModel> {
+        ITeamEditPlayersInviteFilterModel,
+        IFindTeamPlayerInvitesFilterModel,
+        ITeamPlayerInviteModel,
+        ITeamEditPlayersInviteTableModel> {
 
     // icons
     faPlus = faPlus;
@@ -116,9 +115,9 @@ export class TeamEditPlayersInviteComponent
         const actions: IDropdownMenuItemModel[] = [
             buildViewTeamPlayerInviteAction(invite.player.id, this.teamId, invite.id, this.router, this.backNavigationExtras),
             buildViewPlayerAction(invite.player.id, this.router)
-        ];        
+        ];
 
-        if (isTeamPlayerInviteActual(invite.status.key, this.enumService.enums)) {
+        if (invite.status.key == Enum.InviteStatus.Actual) {
             return [
                 buildEditTeamPlayerInviteAction(invite.player.id, this.teamId, invite.id, this.router, this.backNavigationExtras),
                 buildCancelTeamPlayerInviteAction(invite, this.modalService),

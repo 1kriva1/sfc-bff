@@ -1,0 +1,137 @@
+@import "ngx-sfc-common/styles";
+@import "variables1";
+@import "common";
+@import "components1";
+@import "../../../team/general/info/team-info.component.mixins";
+
+@mixin game-info-status($background) {
+  .container {
+    .content {
+      .info {
+        @include status($background, $color-0);
+      }
+    }
+  }
+}
+
+:host {
+  .container {
+    @include center;
+
+    .content {
+      display: flex;
+
+      .result {
+        display: flex;
+
+        @include team-info($color-0);
+
+        sfc-team-info {
+          ::ng-deep > .container .content {
+            min-width: 7em;
+          }
+        }
+
+        .score {
+          display: flex;
+          align-items: center;
+          font-weight: bold;
+          padding: 0 0.3em;
+
+          span {
+            color: $color-0;
+            font-weight: bold;
+            padding: 0 0.1em;
+            font-size: 1.2em;
+
+            &:nth-child(2) {
+              color: $color-1;
+            }
+
+            &.win {
+              color: $color-yellow-0;
+            }
+          }
+        }
+      }
+
+      .info {
+        @include center-column;
+        @include theme-value(color, $color-default, $color-0);
+
+        text-align: center;
+
+        &:not(:empty) {
+          margin: 0 1.5em;
+        }
+
+        .name {
+          @include text-center-bold($color-0, 1em);
+
+          margin: 0.5em 0;
+        }
+
+        .date {
+          @include center-column;
+
+          .value {
+            @include text-center-bold($color-yellow-0, 0.8em);
+          }
+
+          .from-to {
+            @include text-center-bold($color-0, 0.7em);
+          }
+        }
+
+        sfc-tags {
+          max-width: 30em;
+          margin-top: 0.5em;
+        }
+
+        sfc-status {
+          margin-top: 0.5em;
+        }
+      }
+
+      .actions {
+        @include action-menu($color-default);
+      }
+    }
+  }
+
+  &.vertical {
+    .container {
+      .content {
+        flex-direction: column;
+      }
+    }
+  }
+
+  &.horizontal {
+    .container {
+      .content {
+        flex-direction: row;
+      }
+    }
+  }
+
+  &.game-status-4 {
+    @include game-info-status($game-status-canceled-color);
+  }
+
+  &.game-status-3 {
+    @include game-info-status($game-status-finished-color);
+  }
+
+  &.game-status-2 {
+    @include game-info-status($game-status-active-color);
+  }
+
+  &.game-status-1 {
+    @include game-info-status($game-status-upcoming-color);
+  }
+
+  &.game-status-0 {
+    @include game-info-status($game-status-new-color);
+  }
+}

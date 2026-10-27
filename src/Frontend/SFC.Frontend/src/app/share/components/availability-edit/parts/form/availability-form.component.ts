@@ -9,8 +9,8 @@ import { CommonValidator, compareThan, IBubbleModel, IDateTimeModalButtonsModel 
 import { CoreConstants } from "@core/constants";
 import { Locale } from "@core/enums";
 import { StorageService } from "@core/services";
-import { IEnumModel, IForm } from "@core/types";
-import { getWeekDay, getWeekDays, markControlTouchedAndDirty } from "@core/utils";
+import { IForm } from "@core/types";
+import { markControlTouchedAndDirty } from "@core/utils";
 import { IAvailabilityEditFormModel } from "../../availability-edit-form.model";
 import { AvailabilityFormConstants } from "./availability-form.constants";
 import { AvailabilityFormLocalization } from "./availability-form.localization";
@@ -20,6 +20,8 @@ import { mapBubbles } from "@share/utils/inputs";
 import { CoreLocalization } from "@core/localization";
 import { AvailabilityEditService } from "../../availability-edit.service";
 import { Subscription } from "rxjs";
+import { getWeekDay, getWeekDays } from "@share/utils";
+import { IEnumModel } from "@share/models";
 
 @Component({
     selector: 'sfc-availability-form',

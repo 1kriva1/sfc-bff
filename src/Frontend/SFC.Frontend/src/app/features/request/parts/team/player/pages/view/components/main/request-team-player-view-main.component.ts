@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { CoreLocalization } from '@core/localization';
-import { getEnum } from '@core/utils';
+import { getEnum } from '@share/utils';
 import { faAnglesDown, faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { RequestTeamPlayerModal } from '@share/components';
 import { IPlayerInfoModel } from '@share/components/features/player/info/player-info.model';
@@ -9,10 +9,9 @@ import { ITeamPlayerRequestModel } from '@share/models/request/team-player-reque
 import { EnumService } from '@share/services';
 import { getPlayersRaiting, getRaiting } from '@share/utils/stats';
 import { ButtonType, Direction, getAge, ModalService } from 'ngx-sfc-common';
-import { TeamModal } from 'src/app/features/team/components/modals/team-modal.enum';
-import { isTeamPlayerRequestActual } from 'src/app/features/team/utils/team.utils';
 import { RequestTeamPlayerViewMainConstants } from './request-team-player-view-main.constants';
 import { RequestTeamPlayerViewMainLocalization } from './request-team-player-view-main.localization';
+import { Enum } from '@share/enums';
 
 @Component({
     selector: 'sfc-request-team-player-view-main',
@@ -71,7 +70,7 @@ export class RequestTeamPlayerViewMainComponent implements OnInit {
             raiting: getPlayersRaiting(this.request.team.players.map(teamPlayer => teamPlayer.player))
         };
 
-        this.actions = isTeamPlayerRequestActual(this.request.status.key, this.enumService.enums);
+        this.actions = this.request.status.key == Enum.RequestStatus.Actual;
     }
 
     public accept(): void {

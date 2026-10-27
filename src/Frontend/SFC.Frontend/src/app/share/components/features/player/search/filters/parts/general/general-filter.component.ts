@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroupDirective } from "@angular/forms";
 import { Locale } from "@core/enums";
-import { IEnumModel, IForm } from "@core/types";
+import { IForm } from "@core/types";
 import { StorageService } from "@core/services";
-import { getWeekDays } from "@core/utils";
+import { getWeekDays } from "@share/utils";
 import { Direction } from "ngx-sfc-common";
 import { IBubbleModel, ToggleType } from "ngx-sfc-inputs";
 import { PlayersFilterPart } from "../../enums/players-filter-part.enum";
@@ -13,6 +13,7 @@ import { IGeneralFilterModel } from "./general-filter.model";
 import { BaseFilterComponent } from "../../base/base-filter.component";
 import { CoreConstants } from "@core/constants/core.constants";
 import { buildPlayerSearchFilterGeneralFormControls } from "./general-filter.utils";
+import { IEnumModel } from "@share/models";
 
 @Component({
     selector: 'sfc-general-filter',

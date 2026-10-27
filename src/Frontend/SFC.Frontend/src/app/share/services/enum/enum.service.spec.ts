@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { faAdversal, faAlgolia } from '@fortawesome/free-brands-svg-icons';
 import {
     faStar, faBook, faCar, faHockeyPuck, faRainbow, faBellSlash,
-    faSpellCheck, faSliders, faTruckMoving, faSun, faClock, faFutbol,
-    faBan, faHourglassEnd, faAsterisk, faPowerOff,
+    faSpellCheck, faSliders, faTruckMoving, faClock, faFutbol,
+    faBan, faAsterisk, faPowerOff,
     faFlagCheckered,
     faBaby
 } from '@fortawesome/free-solid-svg-icons';
@@ -20,7 +20,7 @@ import { SchemeDataService } from '../scheme/data/scheme-data.service';
 import { IGetTeamDataResponse } from '../team';
 import { TeamDataService } from '../team/data/team-data.service';
 import { EnumService } from './enum.service';
-import { IEnumsModel } from './models/enum/enums.model';
+import { IEnumsModel } from './models/enums.model';
 import { GameDataService } from '../game/data/game-data.service';
 import { IGetGameDataResponse } from '../game';
 

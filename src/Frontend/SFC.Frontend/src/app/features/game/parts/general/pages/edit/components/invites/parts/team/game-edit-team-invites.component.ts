@@ -14,10 +14,10 @@ import { GameLocalization } from 'src/app/features/game/localization';
 import { BaseListResponse, BasePaginationRequest, IBuildActionParameters } from '@core/models';
 import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
-import { buildCancelInviteGameTeamAction, buildEditInviteGameTeamAction, buildViewInviteGameTeamAction, buildViewTeamAction, isInviteGameTeamActual, mapBubbles } from '@share/utils';
+import { buildCancelInviteGameTeamAction, buildEditInviteGameTeamAction, buildViewInviteGameTeamAction, buildViewTeamAction, mapBubbles } from '@share/utils';
 import { IBubbleModel } from 'ngx-sfc-inputs';
 import { faPlus, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
-import { GameRoute, InviteAction, InviteRoute, TeamRoute } from '@share/enums';
+import { Enum, GameRoute, InviteAction, InviteRoute, TeamRoute } from '@share/enums';
 import { RouteKey } from '@core/enums';
 import { GameEditTeamInvitesLocalization } from './game-edit-team-invites.localization';
 import { IGameEditPageModel } from '../../../../models/game-edit-page.model';
@@ -159,7 +159,7 @@ export class GameEditTeamInvitesComponent
                 buildViewInviteGameTeamAction(model.id, this.model.game.game.id, model.team.id, actionParameters)
             ];
 
-        if (isInviteGameTeamActual(model.status, this.enumService.enums)) {
+        if (model.status == Enum.InviteStatus.Actual) {
             return [
                 buildEditInviteGameTeamAction(model.id, this.model.game.game.id, model.team.id, actionParameters),
                 buildCancelInviteGameTeamAction(model, this.modalService, actionParameters),

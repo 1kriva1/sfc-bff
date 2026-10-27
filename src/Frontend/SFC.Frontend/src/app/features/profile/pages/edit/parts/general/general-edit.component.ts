@@ -3,7 +3,6 @@ import { ControlContainer, FormBuilder, FormGroupDirective, Validators } from '@
 import { CheckmarkType, getPreviousDate, nameof, Compare } from 'ngx-sfc-common';
 import { SelectItemModel, IDateTimeModalButtonsModel, maxArrayLength, compareThan } from 'ngx-sfc-inputs';
 import { IForm } from '@core/types';
-import { getWeekDays } from '@core/utils';
 import { BaseEditComponent } from '../base-edit.component';
 import { StorageService } from '@core/services/storage/storage.service';
 import { Locale } from '@core/enums';
@@ -12,6 +11,7 @@ import { EditPagePart } from '../../enums/edit-page-part.enum';
 import { GeneralEditConstants } from './general-edit.constants';
 import { IGeneralEditAvailabilityModel, IGeneralEditModel } from './general-edit.model';
 import { CoreConstants } from '@core/constants';
+import { getWeekDays } from '@share/utils';
 
 @Component({
     selector: 'sfc-general-edit',

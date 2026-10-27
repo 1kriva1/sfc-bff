@@ -1,5 +1,4 @@
 export * from './routing';
-export * from './enum';
 export * from './form';
 export * from './common';
 export * from './observable';

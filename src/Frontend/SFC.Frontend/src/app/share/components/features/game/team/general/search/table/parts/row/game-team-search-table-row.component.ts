@@ -1,13 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { TableSelectService } from "ngx-sfc-components";
-import { getEnum } from '@core/utils';
+import { getEnum } from '@share/utils';
 import { getPlayersRaiting } from "@share/utils/stats";
 import { EnumService } from "@share/services";
 import { IGameTeamSearchTableModel } from "../../game-team-search-table.model";
 import { IPlayerModel } from "@share/models/player/player.model";
 import { GameTeamSearchTableRowConstants } from "./game-team-search-table-row.constants";
 import { IGameTeamSearchTableRowModel } from "./game-team-search-table-row.model";
-import { ITeamPlayerModel } from "@share/models";
+import { IGameTeamPlayerModel } from "@share/models";
 import { GameTeamSearchTableConstants } from "../../game-team-search-table.constants";
 import { GameTeamSearchTableColumn } from "../../game-team-search-table-column.enum";
 import { BaseTableContentComponent } from "@share/components/extends";
@@ -34,7 +34,7 @@ export class GameTeamSearchTableRowComponent
     override ngOnInit(): void {
         super.ngOnInit();
 
-        const teamPlayers: IPlayerModel[] = this.data.gameTeam.team!.players.map((teamPlayer: ITeamPlayerModel) => teamPlayer.player);
+        const teamPlayers: IPlayerModel[] = this.data.gameTeam!.gameTeamPlayers!.map((gameTeamPlayer: IGameTeamPlayerModel) => gameTeamPlayer.gameTeamPlayer.player!);
 
         this.viewModel = {
             name: this.data.gameTeam.team!.profile.general.name,

@@ -4,7 +4,7 @@ import { IGetTeamsItemModel } from "../../../../../../services/team/models/get/r
 import { IGetTeamsRequest } from "../../../../../../services/team/models/get/get-teams.request";
 import { ITeamsViewModel } from "../teams-view.model";
 import { ITeamRowModel } from "../parts/table/row/team-row.model";
-import { IEnumModel } from "@core/types";
+import { IEnumModel } from "@share/models";
 
 export function mapGetTeamsRequest(
     model: ITeamsViewModel,

@@ -1,5 +1,4 @@
-import { IEnumModel } from "@core/types";
-import { StatsValue } from "@share/types";
+import { IEnumModel } from "@share/models";
 import { empty } from "ngx-sfc-common";
 import { IDropdownMenuItemModel } from "ngx-sfc-components";
 

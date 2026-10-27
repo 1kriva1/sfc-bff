@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { TableSelectService } from "ngx-sfc-components";
-import { getEnum } from '@core/utils';
+import { getEnum } from '@share/utils';
 import { EnumService } from "@share/services";
 import { Color, empty, hasItemBy, isDefined } from "ngx-sfc-common";
-import { IEnumModel } from "@core/types";
+import { IEnumModel } from "@share/models";
 import { BaseTableContentComponent } from "@share/components/extends";
 import { IGameTeamPlayerSearchTableModel } from "../../game-team-player-search-table.model";
 import { IGameTeamPlayerSearchTableRowModel, IGameTeamPlayerTeamSearchTableRowModel } from "./game-team-player-search-table-row.model";

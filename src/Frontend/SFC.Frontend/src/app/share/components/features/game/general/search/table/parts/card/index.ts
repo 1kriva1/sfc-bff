@@ -1,0 +1,1 @@
+export { GameSearchTableCardComponent } from './game-search-table-card.component';

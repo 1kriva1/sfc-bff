@@ -21,9 +21,8 @@ import { ITeamEditPlayersRequestTableModel } from './parts/table/team-edit-playe
 import { ITeamPlayerRequestModel } from '@share/services/request/team/player/models/common/team-player-request.model';
 import { TeamEditPlayersRequestTableConstants } from './parts/table/team-edit-players-request-table.constants';
 import { mapFindTeamPlayerRequestsRequest, mapTeamPlayersRequestTableModel } from './team-edit-players-request.mapper';
-import { isTeamPlayerInviteActual } from 'src/app/features/team/utils/team.utils';
 import { ITeamEditPlayersRequestFilterModel } from './team-edit-players-request-form.model';
-import { RequestAction } from '@share/enums';
+import { Enum, RequestAction } from '@share/enums';
 import { ThemeService } from '@share/components/theme-toggler/services/theme/theme.service';
 import { TeamLocalization } from '@share/localization';
 
@@ -106,7 +105,7 @@ export class TeamEditPlayersRequestComponent
             buildViewPlayerAction(teamPlayerRequest.player.id, this.router)
         ];        
 
-        if (isTeamPlayerInviteActual(teamPlayerRequest.status.key, this.enumService.enums)) {
+        if (teamPlayerRequest.status.key == Enum.RequestStatus.Actual) {
             return [
                 buildAcceptTeamPlayerRequestAction(teamPlayerRequest, this.modalService),
                 buildDeclineTeamPlayerRequestAction(teamPlayerRequest, this.modalService),

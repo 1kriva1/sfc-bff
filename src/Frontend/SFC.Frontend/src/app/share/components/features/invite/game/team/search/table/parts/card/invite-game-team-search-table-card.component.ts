@@ -8,7 +8,7 @@ import { InviteGameTeamSearchTableColumn } from "../../invite-game-team-search-t
 import { EnumService } from "@share/services";
 import { IPlayerModel, ITeamPlayerModel } from "@share/models";
 import { getPlayersRaiting } from "@share/utils";
-import { getEnum } from "@core/utils";
+import { getEnum } from "@share/utils";
 import { InviteGameTeamSearchTableConstants } from "../../invite-game-team-search-table.constants";
 @Component({
     selector: 'sfc-invite-game-team-search-table-card',

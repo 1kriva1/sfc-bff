@@ -9,7 +9,7 @@ import { EnumService } from '@share/services';
 import { TeamEditSquadProgressLocalization } from './team-edit-squad-progress.localization';
 import { ITeamEditSquadMetadataProgressModel, ITeamEditSquadPositionProgressModel, ITeamEditSquadProgressModel } from './team-edit-squad-progress.model';
 import { calculatePercentage } from '@core/utils';
-import { IEnumModel } from '@core/types';
+import { IEnumModel } from "@share/models";
 import { CoreLocalization } from '@core/localization';
 import { ShareConstants } from '@share/constants';
 import { TeamEditSquadProgressPlayersLimit } from './team-edit-squad-progress-players-limit.enum';

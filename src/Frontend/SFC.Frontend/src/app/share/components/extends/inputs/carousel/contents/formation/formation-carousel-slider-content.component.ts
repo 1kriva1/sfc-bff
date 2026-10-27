@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { IFormationEnumModel } from '@share/services/enum/models/enum/formation-enum.model';
+import { IFormationEnumModel } from '@share/models/enum/formation-enum.model';
 import { UIClass } from 'ngx-sfc-common';
 
 @Component({
