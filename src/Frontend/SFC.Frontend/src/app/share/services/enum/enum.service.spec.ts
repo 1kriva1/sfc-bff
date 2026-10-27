@@ -80,22 +80,22 @@ describe('Share.Service:Enum', () => {
 
     function buildDataResponse(): IGetDataResponse {
         return {
-            FootballPositions: [{ Id: 0, Title: 'Goalkeeper' }],
-            GameStyles: [{ Id: 0, Title: 'Attacking' }],
-            StatCategories: [{ Id: 0, Title: 'Pace' }],
-            StatSkills: [{ Id: 0, Title: 'Mental' }],
-            StatTypes: [{ Id: 0, Title: 'SprintSpeed', Category: 0, Skill: 0 }],
-            WorkingFoots: [{ Id: 0, Title: 'Right' }],
+            FootballPositions: [{ Id: 0, Name: "Goalkeeper", Title: 'Goalkeeper' }],
+            GameStyles: [{ Id: 0, Name: "Attacking", Title: 'Attacking' }],
+            StatCategories: [{ Id: 0, Name: "Pace", Title: 'Pace' }],
+            StatSkills: [{ Id: 0, Name: "Mental", Title: 'Mental' }],
+            StatTypes: [{ Id: 0, Name: "SprintSpeed", Title: 'SprintSpeed', Category: 0, Skill: 0 }],
+            WorkingFoots: [{ Id: 0, Name: "Right", Title: 'Right' }],
             Shirts: [
-                { Id: 0, Title: 'Blue' },
-                { Id: 1, Title: 'Pink' },
-                { Id: 2, Title: 'Black' },
-                { Id: 3, Title: 'Red' },
-                { Id: 4, Title: 'Yellow' },
-                { Id: 5, Title: 'Purple' },
-                { Id: 6, Title: 'Orange' },
-                { Id: 7, Title: 'Brown' },
-                { Id: 8, Title: 'Green' }
+                { Id: 0, Name: "Blue", Title: 'Blue' },
+                { Id: 1, Name: "Pink", Title: 'Pink' },
+                { Id: 2, Name: "Black", Title: 'Black' },
+                { Id: 3, Name: "Red", Title: 'Red' },
+                { Id: 4, Name: "Yellow", Title: 'Yellow' },
+                { Id: 5, Name: "Purple", Title: 'Purple' },
+                { Id: 6, Name: "Orange", Title: 'Orange' },
+                { Id: 7, Name: "Brown", Title: 'Brown' },
+                { Id: 8, Name: "Green", Title: 'Green' }
             ],
             Errors: null,
             Success: true,
@@ -136,10 +136,10 @@ describe('Share.Service:Enum', () => {
         return {
             TeamPlayerStatuses: [],
             TeamStatuses: [
-                { Id: 0, Title: 'Temporary' },
-                { Id: 1, Title: 'New' },
-                { Id: 2, Title: 'Active' },
-                { Id: 3, Title: 'Postponed' }
+                { Id: 0, Name: "Temporary", Title: 'Temporary' },
+                { Id: 1, Name: "New", Title: 'New' },
+                { Id: 2, Name: "Active", Title: 'Active' },
+                { Id: 3, Name: "Postponed", Title: 'Postponed' }
             ],
             Errors: null,
             Success: true,
@@ -151,23 +151,28 @@ describe('Share.Service:Enum', () => {
         return {
             GameStatuses: [
                 {
-                    Id: 0,
+                    Id: 0, 
+                    Name: "New",
                     Title: 'New'
                 },
                 {
-                    Id: 1,
+                    Id: 1, 
+                    Name: "Upcoming",
                     Title: 'Upcoming'
                 },
                 {
-                    Id: 2,
+                    Id: 2, 
+                    Name: "Active",
                     Title: 'Active'
                 },
                 {
-                    Id: 3,
+                    Id: 3, 
+                    Name: "Finished",
                     Title: 'Finished'
                 },
                 {
-                    Id: 4,
+                    Id: 4, 
+                    Name: "Canceled",
                     Title: 'Canceled'
                 }
             ],
